@@ -1,1 +1,1 @@
-2023 © DynProg
+© 2023 DynProg
