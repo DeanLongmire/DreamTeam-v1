@@ -1,0 +1,19 @@
+{
+  "name": "lbower10",
+  "version": "1.0.0",
+  "description": "Logan Bowers\r COSC 340",
+  "main": "helloplus.js",
+  "scripts": {
+    "devStart": "nodemon helloplus.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
+  }
+}
