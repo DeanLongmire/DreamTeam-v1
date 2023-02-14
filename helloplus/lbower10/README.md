@@ -14,7 +14,7 @@ As the group project progresses, some experience with CSS could allow me to styl
 
 # How to Run:
 * Prerequisites:
-    - Must install node.js first
+    - Must install [node.js](https://nodejs.org/en/). Version should not matter. I believe LTS definitely works.
     - Once node.js is installed, navigate to helloplus/lbower10 directory
     - In the terminal, run the command "npm install" to install any needed dependencies
     - In helloplus/lbower10 directory, create a new file named ".env" and inside of this file, type " SESSION_SECRET= 'anythingHereInSignleQuote' "
