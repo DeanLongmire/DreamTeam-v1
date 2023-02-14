@@ -8,7 +8,7 @@ Web Dev Simplified on youtube: [Node.js Passport Login System](https://www.youtu
 
 In this tutorial, I created a login system that allows a user to register an account, login with that account, and then log out. The account is not yet saved to an actual database, rather it is stored locally in memory just for simplicity.
 
-I gained practice with writing code to create a webpage, redirect users to different pages, and overall practice with the structure of node.js and html. On top of this, I learned how to use nodemon to host my node.js server.
+I gained practice with writing code to create a webpage, redirect users to different pages, and overall practice with the structure of node.js and ejs files. On top of this, I learned how to use nodemon to host my node.js server.
 
 As the group project progresses, some experience with CSS could allow me to style my websites how I want them as well.
 
@@ -20,3 +20,6 @@ application, first navigate to the "sign up" page. Enter a username of your choi
 
 # Current error checking
 * Server knows whether an email or password is incorrect or an account doesn't exist, and displays a message accordingly.
+
+# How this might be used in our project
+This sort of interface may be used in our project as the main login page for our website. It will allow a user to log in and access their account, or create an account.
