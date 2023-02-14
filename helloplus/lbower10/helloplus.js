@@ -11,6 +11,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 
+// Utilizing passport-config.js file
 const initializePassport = require('./passport-config')
 initializePassport(
   passport,
@@ -18,8 +19,9 @@ initializePassport(
   id => userList.find(user => user.id === id)
 )
 
-const userList = []
+const userList = [] // locally storing users
 
+// setting and using library functions
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({extended: false}))
 app.use(flash())
@@ -51,6 +53,11 @@ app.get('/register', checkNotAuthenticated, (req, res) =>{
   res.render('register.ejs')
 })
 
+/*
+  Allows a user to register an account by
+  providing a username, email, and pwd that
+  is hashed by bcrypt library
+*/
 app.post('/register', checkNotAuthenticated, async (req, res) =>{
   try{
     const hashedpwd = await bcrypt.hash(req.body.password, 10)
@@ -66,6 +73,10 @@ app.post('/register', checkNotAuthenticated, async (req, res) =>{
   }
 })
 
+/* 
+  Handles logging a user out and
+  redirecting them to the login page.
+*/
 app.delete('/logout', (req, res, next) => {
   req.logOut((err) => {
     if (err) {
@@ -75,14 +86,15 @@ app.delete('/logout', (req, res, next) => {
   });
 });
 
+// Confirms a user is authenticated
 function confirmAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
   }
-
   res.redirect('/login')
 }
 
+// Check if user is not authenticated
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return res.redirect('/')

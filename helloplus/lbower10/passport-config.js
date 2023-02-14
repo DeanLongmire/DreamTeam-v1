@@ -1,6 +1,10 @@
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
+/*
+  Initialize user. Added error checking for nonexistent user or
+  incorrect password associated with user.
+*/
 function initialize(passport, getUserByEmail, getUserById) {
   const authenticateUser = async (email, password, done) => {
     const user = getUserByEmail(email)
