@@ -12,8 +12,14 @@ I gained practice with writing code to create a webpage, redirect users to diffe
 
 As the group project progresses, some experience with CSS could allow me to style my websites how I want them as well.
 
-# How to Run: 
-* In VSCode terminal, type the command "npm run devStart" to host the server. The website URL is [localhost:3000/login](http://localhost:3000/login). Must have node.js installed to run.
+# How to Run:
+* Prerequisites:
+    - Must install node.js first
+    - Once node.js is installed, navigate to helloplus/lbower10 directory
+    - In the terminal, run the command "npm install" to install any needed dependencies
+    - In helloplus/lbower10 directory, create a new file named ".env" and inside of this file, type " SESSION_SECRET= 'anythingHereInSignleQuote' "
+    - Make sure that your session environment variable is in SINGLE QUOTES. Can be anything.
+* Once prerequisites are complete, in VSCode terminal type the command "npm run devStart" to host the server. The website URL is [localhost:3000/login](http://localhost:3000/login).
 * Since this demo is not connected to an actual database, user emails and passwords are stored locally. To use all features of this
 application, first navigate to the "sign up" page. Enter a username of your choice, an email (must have an '@' character), and a password. Once this is done, you will be redirected to the login page. Use the email and password you have just entered, and then you will be redirected to a page that displays a greeting message with your username. Press sign out to be redirected to the home page.
 * While the server is running, your credentials will be stored locally and you will be able to log in as many times as you please. Once the server is shut down using ctrl+c in the terminal, your credentials will not be remembered upon the next "npm run devStart" command.
