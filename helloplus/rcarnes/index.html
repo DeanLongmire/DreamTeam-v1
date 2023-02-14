@@ -25,6 +25,9 @@
         flex-flow: column;
         height: 100%;
     }
+    .box-container{
+        display: contents;
+    }
     .box .row{
         border: 1px dotted coral;
     }
@@ -34,17 +37,21 @@
     }
     .box .row.content {
         flex: 1 1 auto;
+        background-color: beige;
+
     }
     .box .row.footer {
         flex: 0 1 40px;
         text-align: center;
+        background-color: beige;
+
     }
     </style>
 </head>
 
 <body>
-  <div class="box">
-
+<div class="box">
+  <div class="box-container">
     <div class="row header">
       <h1>Build Your Team</h1>
     </div>
@@ -61,8 +68,8 @@
         <input type="button" name="button" value="Free Cookies" onclick="alert('virus.mal.ware is being installed on your device! Uh oh!!')">
     </form>
     </div>
-
   </div>
+</div>
 </body>
 
 </html>
