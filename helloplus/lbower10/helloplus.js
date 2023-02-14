@@ -1,19 +1,105 @@
-myPee = document.getElementById("myPee");
-myPee.innerHTML = "Robert is the coolest"
+if(process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
+}
 
-const http = require('http');
+// Libraries used
+const express = require('express')
+const app = express()
+const bcrypt = require('bcrypt')
+const passport = require('passport')
+const flash = require('express-flash')
+const session = require('express-session')
+const methodOverride = require('method-override')
 
+// Utilizing passport-config.js file
+const initializePassport = require('./passport-config')
+initializePassport(
+  passport,
+  email => userList.find(userList => userList.email === email),
+  id => userList.find(user => user.id === id)
+)
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const userList = [] // locally storing users
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Harry is gay');
+// setting and using library functions
+app.set('view-engine', 'ejs')
+app.use(express.urlencoded({extended: false}))
+app.use(flash())
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
+
+app.get('/', confirmAuthenticated, (req, res) =>{
+  res.render('index.ejs', {name: req.user.name})
+})
+
+app.get('/login', checkNotAuthenticated, (req, res) =>{
+  res.render('login.ejs')
+})
+
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+
+app.get('/register', checkNotAuthenticated, (req, res) =>{
+  res.render('register.ejs')
+})
+
+/*
+  Allows a user to register an account by
+  providing a username, email, and pwd that
+  is hashed by bcrypt library
+*/
+app.post('/register', checkNotAuthenticated, async (req, res) =>{
+  try{
+    const hashedpwd = await bcrypt.hash(req.body.password, 10)
+    userList.push({
+      id: Date.now().toString(),
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedpwd
+    })
+    res.redirect('/login')
+  } catch {
+    res.redirect('/register')
+  }
+})
+
+/* 
+  Handles logging a user out and
+  redirecting them to the login page.
+*/
+app.delete('/logout', (req, res, next) => {
+  req.logOut((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/login');
+  });
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+// Confirms a user is authenticated
+function confirmAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.redirect('/login')
+}
 
+// Check if user is not authenticated
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
+  next()
+}
+
+app.listen(3000)
