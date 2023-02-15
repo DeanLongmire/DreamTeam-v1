@@ -30,7 +30,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
@@ -44,8 +43,8 @@ app.get('/login', checkNotAuthenticated, (req, res) =>{
 })
 
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
+  successRedirect: '/', // on success, display home page with greeting message
+  failureRedirect: '/login', // redirects to login page on failure
   failureFlash: true
 }))
 
@@ -62,12 +61,13 @@ app.post('/register', checkNotAuthenticated, async (req, res) =>{
   try{
     const hashedpwd = await bcrypt.hash(req.body.password, 10)
     userList.push({
+      // populating user list with a user's credentials
       id: Date.now().toString(),
       name: req.body.name,
       email: req.body.email,
       password: hashedpwd
     })
-    res.redirect('/login')
+    res.redirect('/login') // once registered, return to login page
   } catch {
     res.redirect('/register')
   }
@@ -86,7 +86,8 @@ app.delete('/logout', (req, res, next) => {
   });
 });
 
-// Confirms a user is authenticated
+// Confirms a user is authenticated,
+// else redirects them to the login page
 function confirmAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
@@ -95,6 +96,7 @@ function confirmAuthenticated(req, res, next) {
 }
 
 // Check if user is not authenticated
+// if not, redirects them to home page with message displayed
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return res.redirect('/')
@@ -102,4 +104,4 @@ function checkNotAuthenticated(req, res, next) {
   next()
 }
 
-app.listen(3000)
+app.listen(3000) // running on port 3000
