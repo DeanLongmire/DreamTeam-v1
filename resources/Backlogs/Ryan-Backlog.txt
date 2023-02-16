@@ -1,0 +1,21 @@
+Netid: rcarnes Github Username: Ryan-Carnes-01
+Project Name: DreamTeam
+Description: DreamTeam is a web-based sports team building
+application for leagues to use to keep track of teams, players, and
+stats.
+Backlog items:
+1. Host website using Node.js Express + javascript + Html +
+css
+2. Create account system
+3. Log in system
+4. Log out system
+5. Browse leagues and teams and their players
+6. Browse player stats
+7. Create league
+8. Create team
+9. Add player
+10. Admin system for leagues/teams (can only edit the
+league/team if you created it or have given someone else
+privileges)
+11. Dark mode
+12. Light graphic design elements (logo, etc
