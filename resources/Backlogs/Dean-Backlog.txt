@@ -1,0 +1,39 @@
+Product Name: League Creator
+Product Overview: A program where users can create oar join leagues where they are then able to create and be a part of teams in the league. Stats for each player will be entered and available across the entire league. Accessible in browser on both a website and mobile device.
+Product backlog 
+General
+1.	Account Creation
+As a user, I want to be able to create an account with a username and password so that I can view the teams and leagues I am a part of. 
+League Admins
+1.	League Creation
+As a league admin, I want to be able to create a league that other teams can join so that I can have an organized space to manage the league.
+2.	Inviting Members
+As a league admin, I want to be able to send invites to other users who have an account so not any one can join the league.
+3.	Open Registration
+As a league admin, I want to be able to open my league for registration to the public so I can easily find teams to join my league.
+4.	Schedule Creation
+As a league admin, I want to be able to easily generate a schedule so that every team plays an equal amount of games and there are no overlaps on fields.
+5.	Bracket Creation
+As a league admin, I want to be able to create dynamic brackets for post season play.
+6.	Role Assigning
+As a league admin, I want to be able to give certain users different roles with assigned permissions so that my league is better managed in a hierarchal fashion (refs, scorekeepers, assistant managers, etc.)
+Team Admins
+1.	Invite Members
+As a team admin, I want to be able to send invitations to other users who I want on my team.
+2.	Player Pickups
+As a team admin, I want to be able to pick up players from the free agency list in case I need extra members and these members do not already have teams.
+3.	Stat Entry
+As a team admin, I want to be able to add recorded stats for my team members in the case of there being no designated score keeper so that my teams stats can be displayed across the league.
+4.	Mass Messaging 
+As a team admin, I want to be able to send team-wide messages so that the entire team is able to read any important information I need them to know.
+5.	League Discussion Board
+As a team admin, I want to be able to post and read on the league discussion board so the other team members and I have an open space for communication with each other and the league admin.
+Player Users
+1.	Stat Comparisons
+As a player, I want to be able to view things such as stats across the league and be able to sort this data in different ways. I would also like to be able to see schedules and brackets so I know when to show up to play.
+2.	View Matchups
+As a player, I want to be able to view future matchups with teams which display important stats such as points per game and scoring leaders so I can prepare for my game.
+3.	Direct Messaging to Owner
+As a player, I want a way to message my team owner directly so that I can have a line of direct communication with my team owner.
+4.	Team Discussion Board
+As a player, I want to be able to have a place where I can communicate with my whole team and team owner so we can share important information with each other.
