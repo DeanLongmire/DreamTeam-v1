@@ -1,0 +1,1 @@
+This is the main folder which houses DynProg's DreamTeam project
