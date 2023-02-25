@@ -1,0 +1,17 @@
+Product Name: Dream Team: Team Manager
+
+Product Overview: An application that allows people to keep track of stats, both individually and as a team, for specific sports. Users will also be able to create fantasy teams. This product is aimed towards Intramural or club teams/players.
+
+Product Backlog:
+Create Account: As a new user, I want to register by creating a username and password so that the system can remember me and my data. This will use Google API for login.
+Personal Profile: As a user, I want to view my own profile that has records of my stats, previous and current teams, and my fantasy league.
+View Team Rosters: As a user, I want to view team rosters of different teams throughout the platform.
+Display Data from a Database: As a user, I want to view multiple pieces of data on the site. This will pull from a database to display the data.
+Interactive User Interface: As a user, I want to interact positively with the site-meaning no annoying tabs or confusing designs that will dissuade me from using the application.
+Draft Players for Fantasy: As a user, I want to be able to draft players for my fantasy team should I choose to participate. This will require that another person not select the same player.
+Trade Players for Fantasy: As a user, I want to be able to trade my players with other friends participating in the fantasy league.
+Set Lineup for Fantasy: As a user, I want to set my preferred player lineup. This will include the starting and benching of my selected players.
+View Rulebooks: As a user, I want to be able to view the rules for each specific league. I want to be able to see them displayed clearly on the page.
+Team Profiles: As a team captain, I want to be able to control the information for my team. I will have the ability to view my personal profile and manage my team profile. I will be able to update stats for the players on my team, and I will approve the stats that people put on their personal profiles in regards to the team.
+Fantasy/Dream Team Creation: As a user, I want to be able to set my fantasy league. I will need to be able to view accurate player stat and profiles. 
+Display Fantasy/Dream Teams: As a user, I want to be able to view other players’ fantasy teams. I want to be able to compare weekly stats through charts or well-laid out data.
