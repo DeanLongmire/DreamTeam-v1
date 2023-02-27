@@ -1,3 +1,5 @@
+//This is the V1 test file for creating, updating, and deleting Teams from
+//the SQLite3 ../database.db 
 const sqlite3 = require('sqlite3').verbose();
 
 class team_dbmanager{
