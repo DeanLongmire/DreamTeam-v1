@@ -1,0 +1,183 @@
+/*CSS style guide with extracts from W3.css style guide by Jan Egil and Borge Refsnes*/
+/*Dynprog.css style guide February 2023 by Dynprog*/
+
+/*Extract from W3.css style guide*/
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
+article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}summary{display:list-item}
+audio,canvas,progress,video{display:inline-block}progress{vertical-align:baseline}
+audio:not([controls]){display:none;height:0}[hidden],template{display:none}
+a{background-color:transparent}a:active,a:hover{outline-width:0}
+abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
+b,strong{font-weight:bolder}dfn{font-style:italic}mark{background:#ff0;color:#000}
+small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sub{bottom:-0.25em}sup{top:-0.5em}figure{margin:1em 40px}img{border-style:none}
+code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}
+button,input,select,textarea,optgroup{font:inherit;margin:0}optgroup{font-weight:bold}
+button,input{overflow:visible}button,select{text-transform:none}
+button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}
+button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
+button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}
+legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}
+[type=checkbox],[type=radio]{padding:0}
+[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
+[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
+[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+/*End extract*/
+
+/*Begin Dynprog css style with reference to W3 CSS guide*/
+/*BODY & HEADING SIZES, fonts, etc*/
+html, body{font-family:monospace; font-size:14px; line-height:1.5}html{overflow-x:hidden}
+h1{font-size:36px;}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
+h1,h2,h3,h4,h5,h6{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight:400;margin:10px 0} .dynprog-wide{letter-spacing:4px}
+hr{border:0;border-top:1px solid #eee;margin:20px 0}
+
+/*Fun features like images, tables, borders, buttons, etc.*/
+.dynprog-image{max-width:100%;height:auto}img{vertical-align:middle}a{color:inherit}
+.dynprog-table,.dynprog-table-all{border-collapse:collapse;border-spacing:0;width:100%;display:table}.dynprog-table-all{border:1px solid #ccc}
+.dynprog-bordered tr,.dynprog-table-all tr{border-bottom:1px solid #ddd}.dynprog-striped tbody tr:nth-child(even){background-color:#f1f1f1}
+.dynprog-table-all tr:nth-child(odd){background-color:#fff}.dynprog-table-all tr:nth-child(even){background-color:#f1f1f1}
+.dynprog-hoverable tbody tr:hover,.dynprog-ul.dynprog-hoverable li:hover{background-color:#ccc}.dynprog-centered tr th,.dynprog-centered tr td{text-align:center}
+.dynprog-table td,.dynprog-table th,.dynprog-table-all td,.dynprog-table-all th{padding:8px 8px;display:table-cell;text-align:left;vertical-align:top}
+.dynprog-table th:first-child,.dynprog-table td:first-child,.dynprog-table-all th:first-child,.dynprog-table-all td:first-child{padding-left:16px}
+.dynprog-btn,.dynprog-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+.dynprog-btn:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}
+.dynprog-btn,.dynprog-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}   
+.dynprog-disabled,.dynprog-btn:disabled,.dynprog-button:disabled{cursor:not-allowed;opacity:0.3}.dynprog-disabled *,:disabled *{pointer-events:none}
+.dynprog-btn.dynprog-disabled:hover,.dynprog-btn:disabled:hover{box-shadow:none}
+.dynprog-badge,.dynprog-tag{background-color:#000;color:#fff;display:inline-block;padding-left:8px;padding-right:8px;text-align:center}.dynprog-badge{border-radius:50%}
+.dynprog-ul{list-style-type:none;padding:0;margin:0}.dynprog-ul li{padding:8px 16px;border-bottom:1px solid #ddd}.dynprog-ul li:last-child{border-bottom:none}
+.dynprog-tooltip,.dynprog-display-container{position:relative}.dynprog-tooltip .dynprog-text{display:none}.dynprog-tooltip:hover .dynprog-text{display:inline-block}
+.dynprog-ripple:active{opacity:0.5}.dynprog-ripple{transition:opacity 0s}
+.dynprog-input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%}
+.dynprog-select{padding:9px 0;width:100%;border:none;border-bottom:1px solid #ccc}
+.dynprog-dropdown-click,.dynprog-dropdown-hover{position:relative;display:inline-block;cursor:pointer}
+.dynprog-dropdown-hover:hover .dynprog-dropdown-content{display:block}
+.dynprog-dropdown-hover:first-child,.dynprog-dropdown-click:hover{background-color:#ccc;color:#000}
+.dynprog-dropdown-hover:hover > .dynprog-button:first-child,.dynprog-dropdown-click:hover > .dynprog-button:first-child{background-color:#ccc;color:#000}
+.dynprog-dropdown-content{cursor:auto;color:#000;background-color:#fff;display:none;position:absolute;min-width:160px;margin:0;padding:0;z-index:1}
+.dynprog-check,.dynprog-radio{width:24px;height:24px;position:relative;top:6px}
+.dynprog-sidebar{height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
+.dynprog-bar-block .dynprog-dropdown-hover,.dynprog-bar-block .dynprog-dropdown-click{width:100%}
+.dynprog-bar-block .dynprog-dropdown-hover .dynprog-dropdown-content,.dynprog-bar-block .dynprog-dropdown-click .dynprog-dropdown-content{min-width:100%}
+.dynprog-bar-block .dynprog-dropdown-hover .dynprog-button,.dynprog-bar-block .dynprog-dropdown-click .dynprog-button{width:100%;text-align:left;padding:8px 16px}
+.dynprog-main,#main{transition:margin-left .4s}
+.dynprog-modal{z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)}
+.dynprog-modal-content{margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px}
+.dynprog-bar{width:100%;overflow:hidden}.dynprog-center .dynprog-bar{display:inline-block;width:auto}
+.dynprog-bar .dynprog-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
+.dynprog-bar .dynprog-dropdown-hover,.dynprog-bar .dynprog-dropdown-click{position:static;float:left}
+.dynprog-bar .dynprog-button{white-space:normal}
+.dynprog-bar-block .dynprog-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
+.dynprog-bar-block.dynprog-center .dynprog-bar-item{text-align:center}.dynprog-block{display:block;width:100%}
+.dynprog-responsive{display:block;overflow-x:auto}
+.dynprog-container:after,.dynprog-container:before,.dynprog-panel:after,.dynprog-panel:before,.dynprog-row:after,.dynprog-row:before,.dynprog-row-padding:after,.dynprog-row-padding:before,
+.dynprog-cell-row:before,.dynprog-cell-row:after,.dynprog-clear:after,.dynprog-clear:before,.dynprog-bar:before,.dynprog-bar:after{content:"";display:table;clear:both}
+.dynprog-col,.dynprog-half,.dynprog-third,.dynprog-twothird,.dynprog-threequarter,.dynprog-quarter{float:left;width:100%}
+.dynprog-col.s1{width:8.33333%}.dynprog-col.s2{width:16.66666%}.dynprog-col.s3{width:24.99999%}.dynprog-col.s4{width:33.33333%}
+.dynprog-col.s5{width:41.66666%}.dynprog-col.s6{width:49.99999%}.dynprog-col.s7{width:58.33333%}.dynprog-col.s8{width:66.66666%}
+.dynprog-col.s9{width:74.99999%}.dynprog-col.s10{width:83.33333%}.dynprog-col.s11{width:91.66666%}.dynprog-col.s12{width:99.99999%}
+@media (min-width:601px){.dynprog-col.m1{width:8.33333%}.dynprog-col.m2{width:16.66666%}.dynprog-col.m3,.dynprog-quarter{width:24.99999%}.dynprog-col.m4,.dynprog-third{width:33.33333%}
+.dynprog-col.m5{width:41.66666%}.dynprog-col.m6,.dynprog-half{width:49.99999%}.dynprog-col.m7{width:58.33333%}.dynprog-col.m8,.dynprog-twothird{width:66.66666%}
+.dynprog-col.m9,.dynprog-threequarter{width:74.99999%}.dynprog-col.m10{width:83.33333%}.dynprog-col.m11{width:91.66666%}.dynprog-col.m12{width:99.99999%}}
+@media (min-width:993px){.dynprog-col.l1{width:8.33333%}.dynprog-col.l2{width:16.66666%}.dynprog-col.l3{width:24.99999%}.dynprog-col.l4{width:33.33333%}
+.dynprog-col.l5{width:41.66666%}.dynprog-col.l6{width:49.99999%}.dynprog-col.l7{width:58.33333%}.dynprog-col.l8{width:66.66666%}
+.dynprog-col.l9{width:74.99999%}.dynprog-col.l10{width:83.33333%}.dynprog-col.l11{width:91.66666%}.dynprog-col.l12{width:99.99999%}}
+.dynprog-rest{overflow:hidden}.dynprog-stretch{margin-left:-16px;margin-right:-16px}
+.dynprog-content,.dynprog-auto{margin-left:auto;margin-right:auto}.dynprog-content{max-width:980px}.dynprog-auto{max-width:1140px}
+.dynprog-cell-row{display:table;width:100%}.dynprog-cell{display:table-cell}
+.dynprog-cell-top{vertical-align:top}.dynprog-cell-middle{vertical-align:middle}.dynprog-cell-bottom{vertical-align:bottom}
+.dynprog-hide{display:none!important}.dynprog-show-block,.dynprog-show{display:block!important}.dynprog-show-inline-block{display:inline-block!important}
+@media (max-width:1205px){.dynprog-auto{max-width:95%}}
+@media (max-width:600px){.dynprog-modal-content{margin:0 10px;width:auto!important}.dynprog-modal{padding-top:30px}
+.dynprog-dropdown-hover.dynprog-mobile .dynprog-dropdown-content,.dynprog-dropdown-click.dynprog-mobile .dynprog-dropdown-content{position:relative}	
+.dynprog-hide-small{display:none!important}.dynprog-mobile{display:block;width:100%!important}.dynprog-bar-item.dynprog-mobile,.dynprog-dropdown-hover.dynprog-mobile,.dynprog-dropdown-click.dynprog-mobile{text-align:center}
+.dynprog-dropdown-hover.dynprog-mobile,.dynprog-dropdown-hover.dynprog-mobile .dynprog-btn,.dynprog-dropdown-hover.dynprog-mobile .dynprog-button,.dynprog-dropdown-click.dynprog-mobile,.dynprog-dropdown-click.dynprog-mobile .dynprog-btn,.dynprog-dropdown-click.dynprog-mobile .dynprog-button{width:100%}}
+@media (max-width:768px){.dynprog-modal-content{width:500px}.dynprog-modal{padding-top:50px}}
+@media (min-width:993px){.dynprog-modal-content{width:900px}.dynprog-hide-large{display:none!important}.dynprog-sidebar.dynprog-collapse{display:block!important}}
+@media (max-width:992px) and (min-width:601px){.dynprog-hide-medium{display:none!important}}
+@media (max-width:992px){.dynprog-sidebar.dynprog-collapse{display:none}.dynprog-main{margin-left:0!important;margin-right:0!important}.dynprog-auto{max-width:100%}}
+.dynprog-top,.dynprog-bottom{position:fixed;width:100%;z-index:1}.dynprog-top{top:0}.dynprog-bottom{bottom:0}
+.dynprog-overlay{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2}
+.dynprog-display-topleft{position:absolute;left:0;top:0}.dynprog-display-topright{position:absolute;right:0;top:0}
+.dynprog-display-bottomleft{position:absolute;left:0;bottom:0}.dynprog-display-bottomright{position:absolute;right:0;bottom:0}
+.dynprog-display-middle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}
+.dynprog-display-left{position:absolute;top:50%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)}
+.dynprog-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
+.dynprog-display-topmiddle{position:absolute;left:50%;top:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
+.dynprog-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
+.dynprog-display-container:hover .dynprog-display-hover{display:block}.dynprog-display-container:hover span.dynprog-display-hover{display:inline-block}.dynprog-display-hover{display:none}
+.dynprog-display-position{position:absolute}
+.dynprog-circle{border-radius:50%}
+.dynprog-round-small{border-radius:2px}.dynprog-round,.dynprog-round-medium{border-radius:4px}.dynprog-round-large{border-radius:8px}.dynprog-round-xlarge{border-radius:16px}.dynprog-round-xxlarge{border-radius:32px}
+.dynprog-row-padding,.dynprog-row-padding>.dynprog-half,.dynprog-row-padding>.dynprog-third,.dynprog-row-padding>.dynprog-twothird,.dynprog-row-padding>.dynprog-threequarter,.dynprog-row-padding>.dynprog-quarter,.dynprog-row-padding>.dynprog-col{padding:0 8px}
+.dynprog-container,.dynprog-panel{padding:0.01em 16px}.dynprog-panel{margin-top:16px;margin-bottom:16px}
+.dynprog-code,.dynprog-codespan{font-family:monospace;font-size:16px}
+.dynprog-code{width:auto;background-color:#fff;padding:8px 12px;border-left:4px solid #4CAF50;word-wrap:break-word}
+.dynprog-codespan{color:crimson;background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%}
+.dynprog-card,.dynprog-card-2{box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)}
+.dynprog-card-4,.dynprog-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
+.dynprog-spin{animation:dynprog-spin 2s infinite linear}@keyframes dynprog-spin{0%{transform:rotate(0deg)}100%{transform:rotate(359deg)}}
+.dynprog-animate-fading{animation:fading 10s infinite}@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+.dynprog-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}
+.dynprog-animate-top{position:relative;animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+.dynprog-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+.dynprog-animate-right{position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
+.dynprog-animate-bottom{position:relative;animation:animatebottom 0.4s}@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}}
+.dynprog-animate-zoom {animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}
+.dynprog-animate-input{transition:width 0.4s ease-in-out}.dynprog-animate-input:focus{width:100%!important}
+.dynprog-opacity,.dynprog-hover-opacity:hover{opacity:0.60}.dynprog-opacity-off,.dynprog-hover-opacity-off:hover{opacity:1}
+.dynprog-opacity-max{opacity:0.25}.dynprog-opacity-min{opacity:0.75}
+.dynprog-greyscale-max,.dynprog-grayscale-max,.dynprog-hover-greyscale:hover,.dynprog-hover-grayscale:hover{filter:grayscale(100%)}
+.dynprog-greyscale,.dynprog-grayscale{filter:grayscale(75%)}.dynprog-greyscale-min,.dynprog-grayscale-min{filter:grayscale(50%)}
+.dynprog-sepia{filter:sepia(75%)}.dynprog-sepia-max,.dynprog-hover-sepia:hover{filter:sepia(100%)}.dynprog-sepia-min{filter:sepia(50%)}
+.dynprog-tiny{font-size:10px!important}.dynprog-small{font-size:12px!important}.dynprog-medium{font-size:15px!important}.dynprog-large{font-size:18px!important}
+.dynprog-xlarge{font-size:24px!important}.dynprog-xxlarge{font-size:36px!important}.dynprog-xxxlarge{font-size:48px!important}.dynprog-jumbo{font-size:64px!important}
+.dynprog-left-align{text-align:left!important}.dynprog-right-align{text-align:right!important}.dynprog-justify{text-align:justify!important}.dynprog-center{text-align:center!important}
+.dynprog-border-0{border:0!important}.dynprog-border{border:1px solid #ccc!important}
+.dynprog-border-top{border-top:1px solid #ccc!important}.dynprog-border-bottom{border-bottom:1px solid #ccc!important}
+.dynprog-border-left{border-left:1px solid #ccc!important}.dynprog-border-right{border-right:1px solid #ccc!important}
+.dynprog-topbar{border-top:6px solid #ccc!important}.dynprog-bottombar{border-bottom:6px solid #ccc!important}
+.dynprog-leftbar{border-left:6px solid #ccc!important}.dynprog-rightbar{border-right:6px solid #ccc!important}
+.dynprog-section,.dynprog-code{margin-top:16px!important;margin-bottom:16px!important}
+.dynprog-margin{margin:16px!important}.dynprog-margin-top{margin-top:16px!important}.dynprog-margin-bottom{margin-bottom:16px!important}
+.dynprog-margin-left{margin-left:16px!important}.dynprog-margin-right{margin-right:16px!important}
+.dynprog-padding-small{padding:4px 8px!important}.dynprog-padding{padding:8px 16px!important}.dynprog-padding-large{padding:12px 24px!important}
+.dynprog-padding-16{padding-top:16px!important;padding-bottom:16px!important}.dynprog-padding-24{padding-top:24px!important;padding-bottom:24px!important}
+.dynprog-padding-32{padding-top:32px!important;padding-bottom:32px!important}.dynprog-padding-48{padding-top:48px!important;padding-bottom:48px!important}
+.dynprog-padding-64{padding-top:64px!important;padding-bottom:64px!important}
+.dynprog-padding-top-64{padding-top:64px!important}.dynprog-padding-top-48{padding-top:48px!important}
+.dynprog-padding-top-32{padding-top:32px!important}.dynprog-padding-top-24{padding-top:24px!important}
+.dynprog-left{float:left!important}.dynprog-right{float:right!important}
+.dynprog-button:hover{color:#000!important;background-color:#ccc!important}
+.dynprog-transparent,.dynprog-hover-none:hover{background-color:transparent!important}
+.dynprog-hover-none:hover{box-shadow:none!important}
+
+/*Colors Official UT Colors!*/
+.dynprog-white,.dynprog-hover-white:hover{color:#000!important;background-color:#fff!important}
+.dynprog-black,.dynprog-hover-black:hover{color:#fff!important;background-color:#000!important}
+.dynprog-gray,.dynprog-hover-grey:hover,.dynprog-gray,.dynprog-hover-gray:hover{color:#000!important;background-color:#58595B!important}
+/* Will see if need these colors
+.dynprog-light-grey,.dynprog-hover-light-grey:hover,.dynprog-light-gray,.dynprog-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
+.dynprog-dark-grey,.dynprog-hover-dark-grey:hover,.dynprog-dark-gray,.dynprog-hover-dark-gray:hover{color:#fff!important;background-color:#616161!important}
+*/
+.dynprog-orange,.dynprog-hover-orange:hover{color:#000!important;background-color:#ff8200!important}
+
+.dynprog-text-black,.dynprog-hover-text-black:hover{color:#000!important}
+.dynprog-text-white,.dynprog-hover-text-white:hover{color:#fff!important}
+.dynprog-text-gray,.dynprog-hover-text-grey:hover,.dynprog-text-gray,.dynprog-hover-text-gray:hover{color:#58595B!important}
+/* Will see if need these colors
+.dynprog-text-light-grey,.dynprog-hover-text-light-grey:hover,.dynprog-text-light-gray,.dynprog-hover-text-light-gray:hover{color:#f1f1f1!important}
+.dynprog-text-dark-grey,.dynprog-hover-text-dark-grey:hover,.dynprog-text-dark-gray,.dynprog-hover-text-dark-gray:hover{color:#3a3a3a!important}
+*/
+.dynprog-text-orange,.dynprog-hover-text-orange:hover{color:#ff8200!important}
+
+.dynprog-border-white,.dynprog-hover-border-white:hover{border-color:#fff!important}
+.dynprog-border-black,.dynprog-hover-border-black:hover{border-color:#000!important}
+.dynprog-border-gray,.dynprog-hover-border-grey:hover,.dynprog-border-gray,.dynprog-hover-border-gray:hover{border-color:#58595B!important}
+/* Will see if need these colors
+.dynprog-border-light-grey,.dynprog-hover-border-light-grey:hover,.dynprog-border-light-gray,.dynprog-hover-border-light-gray:hover{border-color:#f1f1f1!important}
+.dynprog-border-dark-grey,.dynprog-hover-border-dark-grey:hover,.dynprog-border-dark-gray,.dynprog-hover-border-dark-gray:hover{border-color:#616161!important}
+*/
+.dynprog-border-orange,.dynprog-hover-border-orange:hover{border-color:#ff8200!important}
