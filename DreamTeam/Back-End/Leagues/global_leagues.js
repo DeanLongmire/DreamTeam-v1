@@ -1,5 +1,6 @@
-//This is the V1 test file for creating, updating, and deleting Leagues from
-//the SQLite3 ../database.db 
+/*This is the V1 test file for creating, updating, and deleting Leagues from
+the SQLite3 ../database.db 
+see links-to-resources 1, 2, & 4*/
 const sqlite3 = require('sqlite3').verbose();
 
 class league_dbmanager{
