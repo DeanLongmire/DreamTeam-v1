@@ -1,0 +1,46 @@
+
+Initial Product Backlog
+Product Name: 
+•	League Manager
+
+Product Overview: 
+League Manager will consist of a website that will allow users to view statistics
+of players participating in certain sporting events and leagues. Users will be
+able to navigate throughout different leagues, teams in those leagues, and players
+on those teams. They will be able to view league-wide, team-wide, and individual
+player stats. Although users can freely navigate and view our website, creating
+an account will allow them to create fantasy sports teams if they so choose.
+With this comes the ability to participate in different fantasy leagues with
+friends, coworkers, family, or simply just other users on the website.
+
+Backlog Items: 
+1.	Create Account: Allow the user to create an account on our website.
+	This can be implemented via google login, or other similar login APIs.
+2.	Personalize Profile: Allow user who has created an account to customize
+	their profile, whether it be choosing their own profile picture/avatar,
+	listing their interests and perhaps a bio.
+3.	View Team Rosters: Allow users to view rosters of various teams in various
+	leagues on the website.
+4.	Pull and Display Data: Website needs to have access to provided database
+	of teams, players, player stats, etc..
+5.	View Stats from Different Teams: Allow users to view team stats from
+	teams in various leagues.
+6.	View Individual Player Stats: Allow users to view stats from individual
+	players in our database.
+7.	Ability to Sort Players: Allow users to sort their view of teams,
+	players, etc. via different stat lines of their choosing.
+8.	Fantasy/Dream Team Creation: Allow users to create and enter fantasy
+	leagues with their friends, family, coworkers, etc.
+9.	Ability to Draft Players: Allow users participating in fantasy leagues to
+	host drafts, where participating users can select players they want on
+	their fantasy teams. Would need to make sure that once a player is
+	selected, they can no longer be selected by another user.
+10.	Ability to Drop Players: Allow fantasy users who previously drafted a
+	player to remove the player from their team and send them into
+	“free agency.”
+11.	Ability to Trade Players: With this feature, fantasy users would be able
+	to negotiate trades amongst themselves, and transfer certain players to
+	and from one another’s teams. 
+12.	Set Fantasy Lineups: Through a user interface, allow users to customize
+	and set their desired lineup for their fantasy games. This includes
+	starting and benching certain players of their choosing.

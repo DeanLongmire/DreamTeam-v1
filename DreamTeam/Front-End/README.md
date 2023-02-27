@@ -1,0 +1,1 @@
+This folder holds the front-end files, such as HTML and CSS files
