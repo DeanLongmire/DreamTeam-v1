@@ -4,12 +4,10 @@
 //Integration with other systems will be handled once prelimenary proof-of-concept
 //functionality is implemented 
 
-//TODO - make insert/update/display/delete take parameters for their functionality
-
 //Requires
 const sqlite3 = require('sqlite3').verbose();
 
-//Class for portability/simplicity between files
+//Class for portability/simplicity of use between files
 class league_dbmanager{
     constructor(db, sql, data){}
     open(){
@@ -32,14 +30,14 @@ class league_dbmanager{
             console.log('Dropped league table')
         });
     }
-    insert(){
+    insert(name, ID, sport){
         this.sql = 'INSERT INTO Leagues (name, ID, sport) VALUES(?,?,?)';
-        this.db.run(this.sql, ["UTKFF", 1, "Flag Football"], (err)=>{
+        this.db.run(this.sql, [name, ID, sport], (err)=>{
             if(err) {return console.error(err.message);}
             console.log("New row created in League table");
         });
     }
-    display(){
+    display_all(){
         this.sql = 'SELECT * FROM Leagues';
         this.db.all(this.sql, [], (err,rows)=>{
             if(err) {
@@ -50,17 +48,25 @@ class league_dbmanager{
             });
         });
     }
-    update(){
-        this.data = ['Soccer', 'Flag Football'];
-        this.sql = 'UPDATE Leagues SET sport = ? WHERE sport = ?';
+    update_sport(name, new_sport){
+        this.data = [new_sport, name];
+        this.sql = 'UPDATE Leagues SET sport = ? WHERE name = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
-            console.log('Row(s) updated');
+            console.log('Row(s) sport updated');
         });
     }
-    delete(){
-        this.data = ['Soccer'];
-        this.sql = 'DELETE FROM Leagues WHERE sport = ?';
+    update_name(name, new_name){
+        this.data = [new_name, name];
+        this.sql = 'UPDATE Leagues SET name = ? WHERE name = ?';
+        this.db.run(this.sql, this.data, (err)=>{
+            if(err){return console.log(err.message);}
+            console.log('Row(s) name updated');
+        });
+    }
+    delete(name){
+        this.data = [name];
+        this.sql = 'DELETE FROM Leagues WHERE name = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
             console.log('Row(s) deleted')
@@ -83,10 +89,15 @@ let league_db = new league_dbmanager();
 league_db.open();
 
 //league_db.create();
-//league_db.insert();
-//league_db.update();
-//league_db.delete();
-//league_db.display();
+//league_db.insert("UTKFF", 1, "Flag Football");
+//league_db.insert("UTKS", 2, "Soccer");
+//league_db.insert("UTKBB", 3, "Basketball");
+//league_db.insert("UTKT", 4, "Tennis");
+//league_db.insert("UTKBB2", 5, "Basketball");
+//league_db.update_sport("UTKBB", "Archery");
+//league_db.update_name("UTKBB2", "NBA-Official");
+//league_db.delete("UTKFF");
+//league_db.display_all();
 //league_db.drop();
 
 league_db.close();
