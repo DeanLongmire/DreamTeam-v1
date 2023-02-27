@@ -1,9 +1,11 @@
 const sqlite3 = require('sqlite3').verbose();
 const global_leagues = require('./Leagues/global_leagues'); //Custom import
 const global_teams = require('./Teams/global_teams'); //Custom import
+const global_users = require('./Users/global_users'); //Custom import
 
 let league_db = new global_leagues.league_dbmanager;
 let team_db = new global_teams.team_dbmanager;
+let users_db = new global_users.users_dbmanager;
 
 //TESTING
 //league_db.open();

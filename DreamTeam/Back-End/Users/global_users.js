@@ -1,7 +1,7 @@
 //Requires
 const sqlite3 = require('sqlite3').verbose();
 
-class team_dbmanager{
+class users_dbmanager{
     constructor(db, sql, data){};
     open(){
         this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
@@ -37,8 +37,8 @@ class team_dbmanager{
     };
 }
 
-driver = new team_dbmanager();
+driver = new users_dbmanager();
 driver.open();
 driver.create();
 
-module.exports.team_dbmanager = team_dbmanager;
+module.exports.users_dbmanager = users_dbmanager;
