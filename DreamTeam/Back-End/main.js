@@ -1,4 +1,3 @@
-//Requires
 const sqlite3 = require('sqlite3').verbose();
 const global_leagues = require('./Leagues/global_leagues'); //Custom import
 const global_teams = require('./Teams/global_teams');
