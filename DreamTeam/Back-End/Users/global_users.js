@@ -32,16 +32,26 @@ class users_dbmanager{
     };
     display_all(){
         this.sql = 'SELECT * FROM Users';
-        this.db.run(this.sql, [], (err,rows)=>{
+
+        this.db.all(this.sql, [], (err,rows)=>{
             if(err){return console.error(err.message);}
+            console.log("");
             rows.forEach((row)=>{
-                console.log(row);
+                console.log(`${row.ID} ${row.first_name} ${row.last_name} - ${row.email}`);
             });
+            console.log("");
             console.log('End of Users Table')
         });
     };
     update_name(){};
-    delete(){};
+    delete_user(ID){
+        this.sql = 'DELETE FROM Users WHERE ID = ?';
+
+        this.db.run(this.sql, [ID], (err)=>{
+            if(err){return console.log(err.message);}
+            console.log('Deleted a user from the table')
+        });
+    };
     close(){
         this.db.close((err) => {
             if(err){
@@ -55,9 +65,10 @@ class users_dbmanager{
 driver = new users_dbmanager();
 driver.open();
 //driver.create();
-//driver.insert(0,"Dean-Longmire","deanlongmire100@gmail.com","password","Dean","Longmire", "Student at UTK", "WR",null);
+//driver.insert(1,"Ye2020","KanyeWeezy@yahoo.com","gayfish","Kanye","West", "WTF does that mean Kobe Bryant", "All Around Dawg",null);
 //driver.drop();
 driver.display_all();
+//driver.delete_user(0);
 driver.close();
 
 module.exports.users_dbmanager = users_dbmanager;
