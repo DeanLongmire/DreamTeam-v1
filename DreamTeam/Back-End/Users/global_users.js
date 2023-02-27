@@ -12,7 +12,7 @@ class users_dbmanager{
         });
     };
     create(){
-        this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, firs_name TEXT, last_name TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
+        this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created User table');
         });
@@ -23,8 +23,23 @@ class users_dbmanager{
             console.log('Dropped User table')
         });
     };
-    insert(){};
-    display_all(){};
+    insert(ID, un, email, password, fn, ln, bio, pos, pp){
+        this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)';
+        this.db.run(this.sql, [ID, un, email, password, fn, ln, bio, pos, pp], (err)=>{
+            if(err){return console.log(err.message);}
+            console.log('New row created in Users table')
+        });
+    };
+    display_all(){
+        this.sql = 'SELECT * FROM Users';
+        this.db.run(this.sql, [], (err,rows)=>{
+            if(err){return console.error(err.message);}
+            rows.forEach((row)=>{
+                console.log(row);
+            });
+            console.log('End of Users Table')
+        });
+    };
     update_name(){};
     delete(){};
     close(){
@@ -39,6 +54,10 @@ class users_dbmanager{
 
 driver = new users_dbmanager();
 driver.open();
-driver.create();
+//driver.create();
+//driver.insert(0,"Dean-Longmire","deanlongmire100@gmail.com","password","Dean","Longmire", "Student at UTK", "WR",null);
+//driver.drop();
+driver.display_all();
+driver.close();
 
 module.exports.users_dbmanager = users_dbmanager;

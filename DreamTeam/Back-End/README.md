@@ -2,3 +2,5 @@ Folder with subdirectories to handle different backend functionalities. (Users, 
 These files will export their functionality and be imported into main.js
 all files connect to main database.db in DreamTeam/Databases
 This is to partition the work between multiple files/directories to avoid overlap
+
+Main.js is main test driver for editing database
