@@ -7,11 +7,11 @@
 //Requires
 const sqlite3 = require('sqlite3').verbose();
 
-//Class for portability/simplicity of use between files
+//Class for portability/simplicity of use between files (need to make module export)
 class league_dbmanager{
     constructor(db, sql, data){}
     open(){
-        this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
+        this.db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) => {
             if (err){
                 return console.error(err.message);
             }
@@ -82,11 +82,11 @@ class league_dbmanager{
     }
 }
 
+module.exports.league_dbmanager = league_dbmanager;
 
+//let league_db = new league_dbmanager();
 
-let league_db = new league_dbmanager();
-
-league_db.open();
+//league_db.open();
 
 //league_db.create();
 //league_db.insert("UTKFF", 1, "Flag Football");
@@ -100,4 +100,4 @@ league_db.open();
 //league_db.display_all();
 //league_db.drop();
 
-league_db.close();
+//league_db.close();
