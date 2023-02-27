@@ -3,6 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 class users_dbmanager{
     constructor(db, sql, data){};
+
     open(){
         this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
             if (err){
@@ -11,18 +12,21 @@ class users_dbmanager{
             console.log('Connected to SQLite database.db');
         });
     };
+
     create(){
         this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created User table');
         });
     };
+
     drop(){
         this.db.run('DROP TABLE Users', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Dropped User table')
         });
     };
+
     insert(ID, un, email, password, fn, ln, bio, pos, pp){
         this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)';
         this.db.run(this.sql, [ID, un, email, password, fn, ln, bio, pos, pp], (err)=>{
@@ -30,6 +34,7 @@ class users_dbmanager{
             console.log('New row created in Users table')
         });
     };
+
     display_all(){
         this.sql = 'SELECT * FROM Users';
 
@@ -43,7 +48,9 @@ class users_dbmanager{
             console.log('End of Users Table')
         });
     };
+
     update_name(){};
+
     delete_user(ID){
         this.sql = 'DELETE FROM Users WHERE ID = ?';
 
@@ -52,6 +59,7 @@ class users_dbmanager{
             console.log('Deleted a user from the table')
         });
     };
+    
     close(){
         this.db.close((err) => {
             if(err){
