@@ -1,1 +1,1 @@
-alert("Hello world");
+alert("You have been logged out");
