@@ -5,18 +5,18 @@ const global_users = require('./Users/global_users');
 
 const express = require('express')
 const app = express()
+const path = require('path')
 var http = require('http')
 var fs = require('fs')
 
-app.use(express.static('Front-End'));
-fs.readFile('../Front-End/index.html', function(error, html) {
-    if(error) throw error;
-    http.createServer(function(req, res){
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.write(html);
-        res.end();
-    }). listen(3000)
-})
+app.get('/DreamTeam', function (req, res) {
+    res.render('index', {});
+});
+
+app.use(express.static(path.join(__dirname, '../Front-End'))); //'Front-End'));
+
+
+app.listen(3000);
 
 let league_db = new global_leagues.league_dbmanager;
 let team_db = new global_teams.team_dbmanager;
