@@ -1,26 +1,53 @@
 <!--HOME Page of Website-->
 <!DOCTYPE html>
-<html>
+<html class = "no-js">
+<title> DreamTeam - Intermural Team Builder for UTK</title>
+<meta charset="utf-8">
     <link rel="stylesheet" href="Dynprog.css">
-
-
-    <head>
-        <a href="Registry.html"> <button class ="dynprog-button dynprog-text-gray dynprog-right">Register</button></a>
-        <button class ="dynprog-button dynprog-text-gray dynprog-right">Login</button>
-    </head>
-
-    <div class="dynprog-bar dynprog-border dynprog-orange">
-        <a href="#top" class="dynprog-bar-item dynprog-button">Home</a> <!--takes back to top-->
-        <a href="#" class="dynprog-bar-item dynprog-button">Team Builder</a>
-        <div class="dynprog-dropdown-hover">
-            <button class ="dynprog-button">Sports</button>
-            <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
-                <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
-                <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
-                <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
-            </div>
+<style>
+    #navbar {
+        background-color: #ff8200; /* Dynprog orange */
+        position: fixed; /* Make it stick/fixed */
+        width: 100%; /* Full width */
+        /*padding-top: 40px;*/
+        transition: top 0.3s; /* Transition effect when sliding down (and up) */
+      }
+      
+      /* Style the navbar links */
+      #navbar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+      }
+      
+      #navbar a:hover {
+        background-color: #fff;
+        color: black;
+      }
+</style>
+<body>
+    <div id = "navbar">
+        <a href="Registry.html"> <button class ="dynprog-button dynprog-text-black dynprog-right">Register</button></a>
+        <a href="login.html">    <button class ="dynprog-button dynprog-text-black dynprog-right">Login</button></a>
+        <div style = "padding-left: 15px; font-size: 25px; font-family: Fantasy">
+        <p>DreamTeam</p>
         </div>
     </div>
-   
+    <div style=" padding-top:80px ;"> </div>
+    <div class="dynprog-card-4 dynprog-padding-24">
+        <div class="dynprog-container dynprog-center dynprog-orange">
+            <h2 class="dynprog-text-white">Welcome to DreamTeam, your all-in-one team builder</h2>
+        </div>
 
+<!-- When the user scrolls down 20px from the top of the document, slide down the navbar-->
+<script>
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("navbar").style.top = "0";
+  }
+}
+</script>
+</body>
 </html>
