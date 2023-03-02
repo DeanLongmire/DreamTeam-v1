@@ -8,6 +8,7 @@ const app = express()
 const path = require('path')
 var http = require('http')
 var fs = require('fs')
+const port = 3000
 
 app.get('/DreamTeam', function (req, res) {
     res.render('index', {});
@@ -15,8 +16,8 @@ app.get('/DreamTeam', function (req, res) {
 
 app.use(express.static(path.join(__dirname, '../Front-End'))); //'Front-End'));
 
-
-app.listen(3000);
+app.listen(port, () => console.log(`API listening on port ${port}`));
+//app.listen(3000);
 
 let league_db = new global_leagues.league_dbmanager;
 let team_db = new global_teams.team_dbmanager;
