@@ -60,7 +60,7 @@ class users_dbmanager{
             callback(row.password,row.ID);
           }
           else {
-            console.log("error");
+            callback(null, new Error('User not found'));
           }
         });
     }
@@ -169,29 +169,5 @@ class users_dbmanager{
         })
     }
 }
-
-let driver = new users_dbmanager()
-let fn
-let id
-let successfullLogin
-let attempt = "password"
-
-driver.open()
-
-driver.get_fn(1, (first_name) => {fn = first_name});
-
-driver.get_ID("Deanathan",(pswd,ID) => {
-    successfullLogin = (pswd == attempt)
-    if(successfullLogin) 
-    {
-        id = ID
-        console.log(`Successfull Login! User ${id} is logged in.`)
-    }
-    else console.log("Incorrect Password")
-})
-
-setTimeout(() => console.log(fn), 100) //slight delay to pull name from database
-
-driver.close()
 
 module.exports.users_dbmanager = users_dbmanager
