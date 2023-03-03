@@ -23,6 +23,8 @@ let league_db = new global_leagues.league_dbmanager;
 let team_db = new global_teams.team_dbmanager;
 let users_db = new global_users.users_dbmanager;
 
+console.log("Test")
+
 // league_db.open();
 // console.log("League Opened");
 // //league_db.create();
