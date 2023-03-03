@@ -50,6 +50,20 @@ class users_dbmanager{
     }
 
     /* SACRED CODE. DO NOT TOUCH. I HAVE NO IDEA HOW IT WORKS */
+    get_ID(user_name, callback) {
+        this.sql = 'SELECT password, ID FROM Users WHERE user_name = ?';
+        this.db.get(this.sql, [user_name], (err, row) => {
+          if (err) {
+            return console.error(err.message);
+          }
+          if (row) {
+            callback(row.password,row.ID);
+          } else {
+            console.log("error");
+          }
+        });
+    }
+
     get_fn(ID, callback) {
         this.sql = 'SELECT first_name FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
@@ -58,6 +72,20 @@ class users_dbmanager{
           }
           if (row) {
             callback(row.first_name);
+          } else {
+            console.log("error");
+          }
+        });
+    }
+
+    get_ln(ID, callback) {
+        this.sql = 'SELECT last_name FROM Users WHERE ID = ?';
+        this.db.get(this.sql, [ID], (err, row) => {
+          if (err) {
+            return console.error(err.message);
+          }
+          if (row) {
+            callback(row.last_name);
           } else {
             console.log("error");
           }
@@ -141,10 +169,26 @@ class users_dbmanager{
 
 let driver = new users_dbmanager()
 let fn
+let id
+let successfullLogin
+let attempt = "password"
 
 driver.open()
+
 driver.get_fn(1, (first_name) => {fn = first_name});
-setTimeout(() => console.log(fn), 10) //slight delay to pull name from database
+
+driver.get_ID("Deanathan",(pswd,ID) => {
+    successfullLogin = (pswd == attempt)
+    if(successfullLogin) 
+    {
+        id = ID
+        console.log(`Successfull Login! User ${id} is logged in.`)
+    }
+    else console.log("Incorrect Password")
+})
+
+setTimeout(() => console.log(fn), 100) //slight delay to pull name from database
+
 driver.close()
 
 module.exports.users_dbmanager = users_dbmanager
