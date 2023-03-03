@@ -53,12 +53,13 @@ class users_dbmanager{
     get_ID(user_name, callback) {
         this.sql = 'SELECT password, ID FROM Users WHERE user_name = ?';
         this.db.get(this.sql, [user_name], (err, row) => {
-          if (err) {
+          if(err) {
             return console.error(err.message);
           }
-          if (row) {
+          if(row) {
             callback(row.password,row.ID);
-          } else {
+          }
+          else {
             console.log("error");
           }
         });
@@ -67,12 +68,13 @@ class users_dbmanager{
     get_fn(ID, callback) {
         this.sql = 'SELECT first_name FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
-          if (err) {
+          if(err) {
             return console.error(err.message);
           }
-          if (row) {
+          if(row) {
             callback(row.first_name);
-          } else {
+          } 
+          else {
             console.log("error");
           }
         });
@@ -81,12 +83,13 @@ class users_dbmanager{
     get_ln(ID, callback) {
         this.sql = 'SELECT last_name FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
-          if (err) {
+          if(err) {
             return console.error(err.message);
           }
-          if (row) {
+          if(row) {
             callback(row.last_name);
-          } else {
+          } 
+          else {
             console.log("error");
           }
         });
