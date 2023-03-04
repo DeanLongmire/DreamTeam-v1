@@ -110,12 +110,12 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .dynprog-display-container:hover .dynprog-display-hover{display:block}.dynprog-display-container:hover span.dynprog-display-hover{display:inline-block}.dynprog-display-hover{display:none}
 .dynprog-display-position{position:absolute}
 .dynprog-circle{border-radius:50%}
-.dynprog-round-small{border-radius:2px}.dynprog-round,.dynprog-round-medium{border-radius:4px}.dynprog-round-large{border-radius:8px}.dynprog-round-xlarge{border-radius:16px}.dynprog-round-xxlarge{border-radius:32px}
+.dynprog-round-small{border-radius:2px}.dynprog-round,.dynprog-round-medium{border-radius:4px}.dynprog-round-large{border-radius:8px}.dynprog-round-xlarge{border-radius:16px}.dynprog-round-xxlarge{border-radius:48px}
 .dynprog-row-padding,.dynprog-row-padding>.dynprog-half,.dynprog-row-padding>.dynprog-third,.dynprog-row-padding>.dynprog-twothird,.dynprog-row-padding>.dynprog-threequarter,.dynprog-row-padding>.dynprog-quarter,.dynprog-row-padding>.dynprog-col{padding:0 8px}
 .dynprog-container,.dynprog-panel{padding:0.01em 16px}.dynprog-panel{margin-top:16px;margin-bottom:16px}
 .dynprog-code,.dynprog-codespan{font-family:monospace;font-size:16px}
 .dynprog-code{width:auto;background-color:#fff;padding:8px 12px;border-left:4px solid #4CAF50;word-wrap:break-word}
-.dynprog-codespan{color:crimson;background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%}
+.dynprog-codespan{color:rgb(230, 120, 17);background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%}
 .dynprog-card,.dynprog-card-2{box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)}
 .dynprog-card-4,.dynprog-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
 .dynprog-spin{animation:dynprog-spin 2s infinite linear}@keyframes dynprog-spin{0%{transform:rotate(0deg)}100%{transform:rotate(359deg)}}
@@ -142,7 +142,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .dynprog-leftbar{border-left:6px solid #ccc!important}.dynprog-rightbar{border-right:6px solid #ccc!important}
 .dynprog-section,.dynprog-code{margin-top:16px!important;margin-bottom:16px!important}
 .dynprog-margin{margin:16px!important}.dynprog-margin-top{margin-top:16px!important}.dynprog-margin-bottom{margin-bottom:16px!important}
-.dynprog-margin-left{margin-left:16px!important}.dynprog-margin-right{margin-right:16px!important}
+.dynprog-margin-left{margin-left:30px!important}.dynprog-margin-right{margin-right:16px!important}
 .dynprog-padding-small{padding:4px 8px!important}.dynprog-padding{padding:8px 16px!important}.dynprog-padding-large{padding:12px 24px!important}
 .dynprog-padding-16{padding-top:16px!important;padding-bottom:16px!important}.dynprog-padding-24{padding-top:24px!important;padding-bottom:24px!important}
 .dynprog-padding-32{padding-top:32px!important;padding-bottom:32px!important}.dynprog-padding-48{padding-top:48px!important;padding-bottom:48px!important}
@@ -196,3 +196,9 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 /* The dots/bullets/indicators */
 .dynprog-dot {cursor: pointer;height: 15px;width: 15px;margin: 0 2px;background-color: #bbb;border-radius: 50%;display: inline-block;transition: background-color 0.6s ease;}
 .active, .dynprog-dot:hover {background-color: #717171;}
+
+/*Making columns within a page - this will let you have columns side by side*/
+.dynprog-column {box-sizing:border-box}
+.dynprog-child-column{ border:5px solid white}
+.dynprog-parent-column{ display:flex}
+
