@@ -12,4 +12,12 @@ async function basiclogin(email, password){
     localStorage.setItem('token', token)
 }
 
+
+document.querySelector("#Edit").onclick = function(){
+    const h4 = document.querySelector("#Name");
+    h4.innerText = "Dynprog"; 
+
+}
+
+
 //alert("You have been logged out");
