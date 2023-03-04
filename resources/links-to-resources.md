@@ -6,4 +6,4 @@
 6. Event based asynchronous programming reference: https://kislayverma.com/programming/event-based-asynchronous-programming/ 
 7. Node.js asynchronous handling reference: https://blog.risingstack.com/node-hero-async-programming-in-node-js/#:~:text=asynchronous%20programming%20model.-
 8. W3 CSS Guide: https://www.w3schools.com/w3css/default.asp
-
+9. Store HTML from Data to MYSQL Database: https://www.youtube.com/watch?v=qm4Eih_2p-M (IDK if we need this but... dosesn't hurt to have)
