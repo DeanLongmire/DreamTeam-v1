@@ -4,10 +4,10 @@
 * Dynprog
 
 ### What you planned to do
-* Create profile page - [Issue 1] (https://github.com/utk-cs340-spring23/DynProg/issues/1)
-* Allow users to edit profile page - [Issue 2] (https://github.com/utk-cs340-spring23/DynProg/issues/2)
-* Navigate from profile page to other pages - [Issue 3] (https://github.com/utk-cs340-spring23/DynProg/issues/3)
-* Create login page - [Issue 8] (https://github.com/utk-cs340-spring23/DynProg/issues/8)
+* Create profile page - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/1)
+* Allow users to edit profile page - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/2)
+* Navigate from profile page to other pages - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/3)
+* Create login page - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/8)
 (Give a short bulleted list of the items you planned to do for this sprint. Include the github issue number and link to the issue)
 
 ### What you did not do
