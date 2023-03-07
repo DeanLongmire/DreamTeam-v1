@@ -9,7 +9,6 @@ class users_dbmanager{
             if (err){
                 return console.error(err.message)
             }
-            console.log('Connected to SQLite database.db')
         })
     }
 
@@ -27,15 +26,25 @@ class users_dbmanager{
         })
     }
 
-    insert(ID, un, email, password, fn, ln, bio, pos, pp){
-        this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
-        this.db.run(this.sql, [ID, un, email, password, fn, ln, bio, pos, pp], (err)=>{
-            if(err){return console.log(err.message)}
-            console.log('New row created in Users table')
+    insert(un, email, password, fn, ln, bio, pos, pp){
+        this.db.serialize(() => {
+            this.db.get('SELECT * FROM Users ORDER BY ID DESC LIMIT 1', (err, row) => {
+                if(err)
+                {
+                  console.error(err.message);
+                }
+                else
+                {
+                    this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
+                    this.db.run(this.sql, [row.ID+1, un, email, password, fn, ln, bio, pos, pp], (err)=>{
+                        if(err){return console.log(err.message)}
+                    })
+                }
+            })
         })
     }
 
-    display_all(){
+    display_all(callback){
         this.sql = 'SELECT * FROM Users'
 
         this.db.all(this.sql, [], (err,rows)=>{
@@ -46,6 +55,7 @@ class users_dbmanager{
             })
             console.log("")
             console.log('End of Users Table')
+            callback()
         })
     }
 
@@ -88,6 +98,81 @@ class users_dbmanager{
           }
           if(row) {
             callback(row.last_name);
+          } 
+          else {
+            console.log("error");
+          }
+        });
+    }
+
+    get_email(ID, callback) {
+        this.sql = 'SELECT email FROM Users WHERE ID = ?';
+        this.db.get(this.sql, [ID], (err, row) => {
+          if(err) {
+            return console.error(err.message);
+          }
+          if(row) {
+            callback(row.email);
+          } 
+          else {
+            console.log("error");
+          }
+        });
+    }
+
+    get_user_name(ID, callback) {
+        this.sql = 'SELECT user_name FROM Users WHERE ID = ?';
+        this.db.get(this.sql, [ID], (err, row) => {
+          if(err) {
+            return console.error(err.message);
+          }
+          if(row) {
+            callback(row.user_name);
+          } 
+          else {
+            console.log("error");
+          }
+        });
+    }
+
+    get_password(ID, callback) {
+        this.sql = 'SELECT password FROM Users WHERE ID = ?';
+        this.db.get(this.sql, [ID], (err, row) => {
+          if(err) {
+            return console.error(err.message);
+          }
+          if(row) {
+            callback(row.password);
+          } 
+          else {
+            console.log("error");
+          }
+        });
+    }
+
+    get_position(ID, callback) {
+        this.sql = 'SELECT pos FROM Users WHERE ID = ?';
+        this.db.get(this.sql, [ID], (err, row) => {
+          if(err) {
+            return console.error(err.message);
+          }
+          if(row) {
+            callback(row.pos);
+          } 
+          else {
+            console.log("error");
+          }
+        });
+    }
+
+    get_bio(ID, callback) {
+        this.sql = 'SELECT bio FROM Users WHERE ID = ?';
+        this.db.get(this.sql, [ID], (err, row) => {
+          if(err) {
+            return console.error(err.message);
+          }
+          if(row) {
+            callback(row.bio);
           } 
           else {
             console.log("error");
@@ -156,7 +241,6 @@ class users_dbmanager{
 
         this.db.run(this.sql, [ID], (err)=>{
             if(err){return console.log(err.message)}
-            console.log('Deleted a user from the table')
         })
     }
     
