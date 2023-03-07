@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3').verbose();
 class team_dbmanager{
     constructor(db, sql, data){};
     open(){
-        this.db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) => {
+        this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
             if (err){
                 return console.error(err.message);
             }
@@ -14,7 +14,7 @@ class team_dbmanager{
         });
     };
     create(){
-        this.db.run('CREATE TABLE Teams(name, ID, sport, num_players)', (err)=>{
+        this.db.run('CREATE TABLE Teams(name, ID, P_ID, sport, num_players)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created team table');
         });
@@ -25,9 +25,9 @@ class team_dbmanager{
             console.log('Dropped team table')
         });
     };
-    insert(name, ID, sport, num_players){
-        this.sql = 'INSERT INTO Teams (name, ID, sport, num_players) VALUES(?, ?, ?, ?)';
-        this.db.run(this.sql, [name, ID, sport, num_players], (err)=>{
+    insert(name, ID, P_ID, sport, num_players){
+        this.sql = 'INSERT INTO Teams (name, ID, P_ID, sport, num_players) VALUES(?, ?, ?, ?, ?)';
+        this.db.run(this.sql, [name, ID, P_ID, sport, num_players], (err)=>{
             if(err){return console.error(err.message);}
             console.log('New row created in Team table')
         });

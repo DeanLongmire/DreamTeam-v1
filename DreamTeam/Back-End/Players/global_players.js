@@ -1,9 +1,6 @@
-/*This is the V1 test file for creating, updating, and deleting Leagues from
-the SQLite3 ../database.db 
-see links-to-resources 1, 2, & 4*/
 const sqlite3 = require('sqlite3').verbose();
 
-class league_dbmanager{
+class player_dbmanager{
     constructor(db, sql, data){}
     open(){
         this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
@@ -14,26 +11,26 @@ class league_dbmanager{
         });
     }
     create(){
-        this.db.run('CREATE TABLE Leagues(name, ID, sport)', (err)=>{
+        this.db.run('CREATE TABLE Players(name, username, ID, P_ID, position)', (err)=>{
             if(err){return console.error(err.message);}
-            console.log('Created league table');
+            console.log('Created player table');
         }); 
     }
     drop(){
-        this.db.run('DROP TABLE Leagues', (err)=>{
+        this.db.run('DROP TABLE Players', (err)=>{
             if(err){return console.error(err.message);}
-            console.log('Dropped league table')
+            console.log('Dropped player table')
         });
     }
-    insert(name, ID, sport){
-        this.sql = 'INSERT INTO Leagues (name, ID, sport) VALUES(?,?,?)';
-        this.db.run(this.sql, [name, ID, sport], (err)=>{
+    insert(name, username, ID, P_ID, position){
+        this.sql = 'INSERT INTO Players (name, username, ID, P_ID, position) VALUES(?,?,?,?,?)';
+        this.db.run(this.sql, [name, username, ID, P_ID, position], (err)=>{
             if(err) {return console.error(err.message);}
-            console.log("New row created in League table");
+            console.log("New row created in Player table");
         });
     }
     display_all(){
-        this.sql = 'SELECT * FROM Leagues';
+        this.sql = 'SELECT * FROM Players';
         this.db.all(this.sql, [], (err,rows)=>{
             if(err) {
                 return console.error(err.message);
@@ -43,17 +40,17 @@ class league_dbmanager{
             });
         });
     }
-    update_sport(name, new_sport){
-        this.data = [new_sport, name];
-        this.sql = 'UPDATE Leagues SET sport = ? WHERE name = ?';
+    update_position(name, new_position){
+        this.data = [new_position, name];
+        this.sql = 'UPDATE Players SET position = ? WHERE name = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
-            console.log('Row(s) sport updated');
+            console.log('Row(s) position updated');
         });
     }
     update_name(name, new_name){
         this.data = [new_name, name];
-        this.sql = 'UPDATE Leagues SET name = ? WHERE name = ?';
+        this.sql = 'UPDATE Players SET name = ? WHERE name = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
             console.log('Row(s) name updated');
@@ -61,7 +58,7 @@ class league_dbmanager{
     }
     delete(name){
         this.data = [name];
-        this.sql = 'DELETE FROM Leagues WHERE name = ?';
+        this.sql = 'DELETE FROM Players WHERE name = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
             console.log('Row(s) deleted')
@@ -77,4 +74,4 @@ class league_dbmanager{
     }
 }
 
-module.exports.league_dbmanager = league_dbmanager;
+module.exports.player_dbmanager = player_dbmanager;
