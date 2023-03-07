@@ -1,0 +1,192 @@
+main.js:
+
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500   6) const express = require('express')
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500   7) const app = express()
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500   8) app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500   9)
+872364db (Logan Bowers   2023-02-28 08:24:56 -0500  10) const path = require('path')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  11) const passport = require('passport')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  12) const flash = require('express-flash')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  13) const session = require('express-session')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  14) const methodOverride = require('method-override')
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500  15) var http = require('http')
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500  16) var fs = require('fs')
+8138e6fa (Logan Bowers   2023-03-02 13:17:50 -0500  17) const port = 3000
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500  18)
+872364db (Logan Bowers   2023-02-28 08:24:56 -0500  19)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  20) // Utilizing passport-config.js file
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  21) const initializePassport = require('./Users/passport-config')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  22) initializePassport(
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  23)   passport,
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  24)   email => userList.find(userList => userList.email === email),
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  25)   id => userList.find(user => user.id === id)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  26) )
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  27)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  28) const userList = []
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  29) app.use(express.urlencoded({extended: false}))
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  30) app.use(flash())
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  31) app.use(session({
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  32)   secret: process.env.SESSION_SECRET,
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  33)   resave: false,
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  34)   saveUninitialized: false
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  35) }))
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  36) app.use(passport.initialize())
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  37) app.use(passport.session())
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  38) app.use(methodOverride('_method'))
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  39)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  40)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  41) // app.get('/DreamTeam', function (req, res) {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  42) //     res.render('index', {});
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  43) // });
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  44)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  45) app.use(express.static(path.join(__dirname, '../Front-End')));
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  46)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  47) app.get('/', confirmAuthenticated, (req, res) =>{
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  48)     res.render('index', {name: req.user.name})
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  49)   })
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  50)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  51)   app.get('/login', checkNotAuthenticated, (req, res) =>{
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  52)     res.render('login')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  53)   })
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  54)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  55)   app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  56)     successRedirect: '/', // on success, redirect to home page
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  57)     failureRedirect: '/login', // redirects to login page on failure
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  58)     failureFlash: true
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  59)   }))
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  60)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  61)   app.get('/registry', checkNotAuthenticated, (req, res) =>{
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  62)     res.render('registry')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  63)   })
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  64)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  65)   /*
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  66)     Allows a user to register an account by
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  67)     providing a username, email, and pwd that
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  68)     is hashed by bcrypt library
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  69)   */
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  70)   app.post('/registry', checkNotAuthenticated, async (req, res) =>{
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  71)     try{
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  72)       const hashedpwd = await bcrypt.hash(req.body.password, 10)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  73)       userList.push({
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  74)         // populating user list with a user's credentials
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  75)         id: Date.now().toString(),
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  76)         name: req.body.name,
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  77)         email: req.body.email,
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  78)         password: hashedpwd
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  79)       })
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  80)       res.redirect('/login') // once registered, return to login page
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  81)     } catch {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  82)       res.redirect('/registry')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  83)     }
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  84)   })
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  85)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  86)   /*
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  87)     Handles logging a user out and
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  88)     redirecting them to the login page.
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  89)   */
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  90)   app.delete('/logout', (req, res, next) => {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  91)     req.logOut((err) => {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  92)       if (err) {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  93)         return next(err);
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  94)       }
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  95)       res.redirect('/login');
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  96)     });
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  97)   });
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  98)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500  99)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 100) // Confirms a user is authenticated,
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 101) // else redirects them to the login page
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 102) function confirmAuthenticated(req, res, next) {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 103)     if (req.isAuthenticated()) {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 104)       return next()
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 105)     }
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 106)     res.redirect('/login')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 107)   }
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 108)
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 109)   // Check if user is not authenticated
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 110)   // if not, redirects them to home page with message displayed
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 111)   function checkNotAuthenticated(req, res, next) {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 112)     if (req.isAuthenticated()) {
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 113)       return res.redirect('/')
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 114)     }
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 115)     next()
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 116) }
+58f705ee (Logan Bowers   2023-03-06 20:02:01 -0500 117)
+872364db (Logan Bowers   2023-02-28 08:24:56 -0500 118)
+8138e6fa (Logan Bowers   2023-03-02 13:17:50 -0500 119) app.listen(port, () => console.log(`API listening on port ${port}`));
+8138e6fa (Logan Bowers   2023-03-02 13:17:50 -0500 120) //app.listen(3000);
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 128) // league_db.open();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 129) // console.log("League Opened");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 130) // //league_db.create();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 131) // //league_db.insert("UTKFF", 1, "Flag Football");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 132) // //league_db.insert("UTKS", 2, "Soccer");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 133) // //league_db.insert("UTKBB", 3, "Basketball");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 134) // //league_db.insert("UTKT", 4, "Tennis");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 135) // //league_db.insert("UTKBB2", 5, "Basketball");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 136) // //league_db.update_sport("UTKBB", "Archery");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 137) // //league_db.update_name("UTKBB2", "NBA-Official");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 138) // //league_db.delete("UTKFF");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 139) // //league_db.display_all();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 140) // //league_db.drop();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 141) // league_db.close();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 142) // console.log("League Closed");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 144) // team_db.open();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 145) // console.log("Team Opened");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 146) // //team_db.create();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 147) // //team_db.insert("UTKFF", 1, "Flag Football");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 148) // //team_db.insert("UTKS", 2, "Soccer");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 149) // //team_db.insert("UTKBB", 3, "Basketball");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 150) // //team_db.insert("UTKT", 4, "Tennis");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 151) // //team_db.insert("UTKBB2", 5, "Basketball");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 152) // //team_db.update_sport("UTKBB", "Archery");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 153) // //team_db.update_name("UTKBB2", "NBA-Official");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 154) // //team_db.delete("UTKFF");
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 155) // //team_db.display_all();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 156) // //team_db.drop();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 157) // team_db.close();
+3c810622 (Logan Bowers   2023-02-27 16:19:00 -0500 158) // console.log("Team Closed");
+
+
+passport-config.js:
+
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  1) const LocalStrategy = require('passport-local').Strategy
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  2) const bcrypt = require('bcrypt')
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  3)
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  4) /*
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  5)   Initialize user. Added error checking for nonexistent user or
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  6)   incorrect password associated with user.
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  7) */
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  8) function initialize(passport, getUserByEmail, getUserById) {
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500  9)   const authenticateUser = async (email, password, done) => {
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 10)     const user = getUserByEmail(email)
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 11)     if (user == null) {
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 12)       // this checks for an invalid email account used at login
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 13)       return done(null, false, { message: 'Account does not exist' })
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 14)     }
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 15)
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 16)     try {
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 17)       // making sure of correct password
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 18)       if (await bcrypt.compare(password, user.password)) {
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 19)         return done(null, user)
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 20)       } else {
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 21)         // Checking for incorrect password with an existing account email
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 22)         return done(null, false, { message: 'Incorrect Password' })
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 23)       }
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 24)     } catch (e) {
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 25)       return done(e)
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 26)     }
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 27)   }
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 28)
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 29)   // utilizing passport functions
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 30)   passport.use(new LocalStrategy({ usernameField: 'email' },
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 31)   authenticateUser))
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 32)   // Serialize user "saves" the user in the current session
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 33)   passport.serializeUser((user, done) => done(null, user.id))
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 34)   // retrieves the saved data about user in a session
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 35)   passport.deserializeUser((id, done) => {
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 36)     return done(null, getUserById(id))
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 37)   })
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 38) }
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 39)
+58f705ee (Logan Bowers 2023-03-06 20:02:01 -0500 40) module.exports = initialize
+
