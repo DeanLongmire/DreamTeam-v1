@@ -1,0 +1,454 @@
+# Dean Longmire Commits
+## global_users.js
+5d68a85e DreamTeam/Databases/Users/global_users.js (jlongmi9 2023-02-21 09:44:21 -0500   1) //Requires
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500   2) const sqlite3 = require('sqlite3').verbose()
+5d68a85e DreamTeam/Databases/Users/global_users.js (jlongmi9 2023-02-21 09:44:21 -0500   3)
+a5e9a9a5 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:27:12 -0500   4) class users_dbmanager{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500   5)     constructor(db, sql, data){}
+19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500   6)
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500   7)     open(){
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500   8)         this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500   9)             if (err){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  10)                 return console.error(err.message)
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500  11)             }
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  12)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  13)     }
+19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500  14)
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500  15)     create(){
+8d3c9bdf DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:02:47 -0500  16)         this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  17)             if(err){return console.error(err.message)}        
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  18)             console.log('Created User table')
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  19)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  20)     }
+19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500  21)
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500  22)     drop(){
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500  23)         this.db.run('DROP TABLE Users', (err)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  24)             if(err){return console.error(err.message)}        
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500  25)             console.log('Dropped User table')
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  26)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  27)     }
+19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500  28)
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  29)     insert(un, email, password, fn, ln, bio, pos, pp){        
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  30)         this.db.serialize(() => {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  31)             this.db.get('SELECT * FROM Users ORDER BY ID DESC 
+LIMIT 1', (err, row) => {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  32)                 if(err)
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  33)                 {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  34)                   console.error(err.message);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  35)                 }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  36)                 else
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  37)                 {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  38)                     this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  39)                     this.db.run(this.sql, [row.ID+1, un, email, password, fn, ln, bio, pos, pp], (err)=>{
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  40)                         if(err){return console.log(err.message)}
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  41)                     })
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  42)                 }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  43)             })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  44)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  45)     }
+19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500  46)
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  47)     display_all(callback){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  48)         this.sql = 'SELECT * FROM Users'
+8c761049 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:50:12 -0500  49)
+8c761049 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:50:12 -0500  50)         this.db.all(this.sql, [], (err,rows)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  51)             if(err){return console.error(err.message)}        
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  52)             console.log("")
+8d3c9bdf DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:02:47 -0500  53)             rows.forEach((row)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  54)                 console.log(`${row.ID} ${row.first_name} ${row.last_name} - ${row.email} - ${row.user_name} : ${row.password} - ${row.bio} - ${row.pos}`)
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  55)             })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  56)             console.log("")
+8d3c9bdf DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:02:47 -0500  57)             console.log('End of Users Table')
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  58)             callback()
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  59)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  60)     }
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  61)
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  62)     /* SACRED CODE. DO NOT TOUCH. I HAVE NO IDEA HOW IT WORKS 
+*/
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  63)     get_ID(user_name, callback) {
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  64)         this.sql = 'SELECT password, ID FROM Users WHERE user_name = ?';
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  65)         this.db.get(this.sql, [user_name], (err, row) => {    
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  66)           if(err) {
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  67)             return console.error(err.message);
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  68)           }
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  69)           if(row) {
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  70)             callback(row.password,row.ID);
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  71)           }
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  72)           else {
+c5ccd203 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-03 01:41:24 -0500  73)             callback(null, new Error('User not found'));      
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  74)           }
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  75)         });
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  76)     }
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  77)
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  78)     get_fn(ID, callback) {
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  79)         this.sql = 'SELECT first_name FROM Users WHERE ID = ?';
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  80)         this.db.get(this.sql, [ID], (err, row) => {
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  81)           if(err) {
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  82)             return console.error(err.message);
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  83)           }
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  84)           if(row) {
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  85)             callback(row.first_name);
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  86)           }
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  87)           else {
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  88)             console.log("error");
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  89)           }
+8d3c9bdf DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:02:47 -0500  90)         });
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  91)     }
+19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500  92)
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  93)     get_ln(ID, callback) {
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  94)         this.sql = 'SELECT last_name FROM Users WHERE ID = ?';d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  95)         this.db.get(this.sql, [ID], (err, row) => {
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  96)           if(err) {
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  97)             return console.error(err.message);
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  98)           }
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500  99)           if(row) {
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500 100)             callback(row.last_name);
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500 101)           }
+a43054be DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:15:23 -0500 102)           else {
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500 103)             console.log("error");
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500 104)           }
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500 105)         });
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500 106)     }
+d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500 107)
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 108)     get_email(ID, callback) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 109)         this.sql = 'SELECT email FROM Users WHERE ID = ?';    
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 110)         this.db.get(this.sql, [ID], (err, row) => {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 111)           if(err) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 112)             return console.error(err.message);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 113)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 114)           if(row) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 115)             callback(row.email);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 116)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 117)           else {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 118)             console.log("error");
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 119)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 120)         });
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 121)     }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 122)
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 123)     get_user_name(ID, callback) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 124)         this.sql = 'SELECT user_name FROM Users WHERE ID = ?';96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 125)         this.db.get(this.sql, [ID], (err, row) => {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 126)           if(err) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 127)             return console.error(err.message);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 128)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 129)           if(row) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 130)             callback(row.user_name);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 131)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 132)           else {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 133)             console.log("error");
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 134)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 135)         });
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 136)     }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 137)
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 138)     get_password(ID, callback) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 139)         this.sql = 'SELECT password FROM Users WHERE ID = ?'; 
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 140)         this.db.get(this.sql, [ID], (err, row) => {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 141)           if(err) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 142)             return console.error(err.message);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 143)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 144)           if(row) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 145)             callback(row.password);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 146)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 147)           else {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 148)             console.log("error");
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 149)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 150)         });
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 151)     }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 152)
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 153)     get_position(ID, callback) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 154)         this.sql = 'SELECT pos FROM Users WHERE ID = ?';      
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 155)         this.db.get(this.sql, [ID], (err, row) => {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 156)           if(err) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 157)             return console.error(err.message);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 158)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 159)           if(row) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 160)             callback(row.pos);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 161)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 162)           else {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 163)             console.log("error");
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 164)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 165)         });
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 166)     }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 167)
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 168)     get_bio(ID, callback) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 169)         this.sql = 'SELECT bio FROM Users WHERE ID = ?';      
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 170)         this.db.get(this.sql, [ID], (err, row) => {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 171)           if(err) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 172)             return console.error(err.message);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 173)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 174)           if(row) {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 175)             callback(row.bio);
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 176)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 177)           else {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 178)             console.log("error");
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 179)           }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 180)         });
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 181)     }
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 182)
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 183)     update_user_name(new_user_name, ID){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 184)         this.sql = "UPDATE Users SET user_name = ? WHERE ID = 
+?"
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 185)         this.db.run(this.sql, [new_user_name, ID], (err)=>{   
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 186)             if(err){return console.log(err.message)}
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 187)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 188)     }
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 189)
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 190)     update_first_name(new_fn, ID){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 191)         this.sql = "UPDATE Users SET first_name = ? WHERE ID = ?"
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 192)         this.db.run(this.sql, [new_fn, ID], (err)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 193)             if(err){return console.log(err.message)}
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 194)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 195)     }
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 196)
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 197)     update_last_name(new_ln, ID){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 198)         this.sql = "UPDATE Users SET last_name = ? WHERE ID = 
+?"
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 199)         this.db.run(this.sql, [new_ln, ID], (err)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 200)             if(err){return console.log(err.message)}
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 201)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 202)     }
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 203)
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 204)     update_email(new_email, ID){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 205)         this.sql = "UPDATE Users SET email = ? WHERE ID = ?"  
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 206)         this.db.run(this.sql, [new_email, ID], (err)=>{       
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 207)             if(err){return console.log(err.message)}
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 208)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 209)     }
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 210)
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 211)     update_pos(new_pos, ID){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 212)         this.sql = "UPDATE Users SET pos = ? WHERE ID = ?"    
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 213)         this.db.run(this.sql, [new_pos, ID], (err)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 214)             if(err){return console.log(err.message)}
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 215)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 216)     }
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 217)
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 218)     update_bio(new_bio, ID){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 219)         this.sql = "UPDATE Users SET bio = ? WHERE ID = ?"    
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 220)         this.db.run(this.sql, [new_bio, ID], (err)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 221)             if(err){return console.log(err.message)}
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 222)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 223)     }
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 224)
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 225)     update_password(new_password, ID){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 226)         this.sql = "UPDATE Users SET password = ? WHERE ID = ?"
+bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 227)         this.db.run(this.sql, [new_password, ID], (err)=>{    
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 228)             if(err){return console.log(err.message)}
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 229)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 230)     }
+19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500 231)
+8c761049 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:50:12 -0500 232)     delete_user(ID){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 233)         this.sql = 'DELETE FROM Users WHERE ID = ?'
+8c761049 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:50:12 -0500 234)
+8c761049 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:50:12 -0500 235)         this.db.run(this.sql, [ID], (err)=>{
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 236)             if(err){return console.log(err.message)}
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 237)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 238)     }
+19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500 239)
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500 240)     close(){
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500 241)         this.db.close((err) => {
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500 242)             if(err){
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 243)                 return console.error(err.message)
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500 244)             }
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 245)             console.log('Database Closed.')
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 246)         })
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 247)     }
+e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32 -0500 248) }
+5d68a85e DreamTeam/Databases/Users/global_users.js (jlongmi9 2023-02-21 09:44:21 -0500 249)
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 250) module.exports.users_dbmanager = users_dbmanager
+
+## test.js
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   1) const global_users = require("./global_users")
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   2) const readline = require('readline');
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   3)
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   4) const rl = readline.createInterface({
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   5)     input: process.stdin,
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   6)     output: process.stdout
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   7) });
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   8)
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   9) let driver = new global_users.users_dbmanager
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  10)
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  11) function ask_credentials() {
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  12)     rl.question('Please Enter a User Name and Password\n', (answer) => {
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  13)         const[user_name,password] = answer.split(' ')
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  14)         if(answer.split(' ').length != 2)
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  15)         {
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  16)             console.log("Please enter a password too.")
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  17)             ask_credentials()
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  18)             return
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  19)         }
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  20)         driver.open()
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  21)         driver.get_ID(user_name,(returned_password,returned_ID) => {
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  22)             if(returned_password == password)
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  23)             {
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  24)                 driver.get_fn(returned_ID,(first_name) => {
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  25)                     console.log('\x1b[32;1m%s\x1b[0m', `Welcome ${first_name}!`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  26)                     choose_processes()
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  27)                 })
+42e7838c (jlongmi9 2023-03-02 21:27:32 -0500  28)             }
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  29)             else
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  30)             {
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  31)                 if(returned_ID instanceof Error)
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  32)                     console.log('User not found');
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  33)                 else
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  34)                     console.log('\x1b[31m%s\x1b[0m', 'Incorrect Password');
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  35)                 ask_credentials();
+42e7838c (jlongmi9 2023-03-02 21:27:32 -0500  36)             }
+42e7838c (jlongmi9 2023-03-02 21:27:32 -0500  37)         })
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500  38)     })
+42e7838c (jlongmi9 2023-03-02 21:27:32 -0500  39) }
+42e7838c (jlongmi9 2023-03-02 21:27:32 -0500  40)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  41) function choose_processes() {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  42)     rl.question("What would you like to do?\n0 Read all\n1 Add to database\n2 Delete from database\n3 Get data\n4 Change data\n5 Exit\n",(answer) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  43)         switch(answer) {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  44)             case '0':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  45)                 driver.display_all(choose_processes)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  46)                 break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  47)             case '1':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  48)                 console.log("Adding to the database")
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  49)                 add_to_db(choose_processes)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  50)                 break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  51)             case '2':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  52)                 console.log("Deleting from the database")
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  53)                 delete_from_db(choose_processes)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  54)                 break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  55)             case '3':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  56)                 console.log("Getting data")
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  57)                 get_data(choose_processes)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  58)                 break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  59)             case '4':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  60)                 console.log("Changing a users data")
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500  61)                 change_data(choose_processes)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  62)                 break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  63)             case '5':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  64)                 driver.close()
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500  65)                 rl.close()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  66)                 process.exit(1)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  67)         }
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  68)     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  69) }
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  70)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  71) function add_to_db(callback) {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  72)     rl.question("Please enter a user name, password, email, first name, last name, position, and a #bio#\n",(answer) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  73)         const[un,psswd,email,fn,ln,pos] = answer.split(' ')
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  74)         const[junk,bio] = answer.split('#')
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  75)         driver.insert(un,email,psswd,fn,ln,bio,pos,null)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  76)         console.log(`User, ${fn}, added to database\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  77)         callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  78)     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  79) }
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  80)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  81) function delete_from_db(callback) {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  82)     rl.question("Enter the ID of the user to delete\n",(answer) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  83)         let fn
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  84)         driver.get_fn(answer,(firstname) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  85)             fn = firstname
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  86)             driver.delete_user(answer)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  87)             console.log(`User ${fn} has been deleted\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  88)             callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  89)         })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  90)     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  91) }
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  92)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  93) function get_data(callback) {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  94)     rl.question("What User's data would you like to get (ID)?\n",(answer) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  95)         let ID = answer
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  96)         rl.question("What would you like to read?\n0 Username\n1 First Name\n2 Last Name\n3 Password\n4 
+Email\n5 Position\n6 Bio\n",(answer) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  97)             switch(answer) {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  98)                 case '0':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  99)                     driver.get_user_name(ID, (us) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 100)                         console.log(`User ${ID}'s username is ${us}\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 101)                         callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 102)                     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 103)                     break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 104)                 case '1':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 105)                     driver.get_fn(ID, (firstname) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 106)                         console.log(`User ${ID}'s first name is ${firstname}\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 107)                         callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 108)                     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 109)                     break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 110)                 case '2':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 111)                     driver.get_ln(ID, (lastname) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 112)                         console.log(`User ${ID}'s last name is ${lastname}\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 113)                         callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 114)                     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 115)                     break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 116)                 case '3':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 117)                     driver.get_password(ID, (password) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 118)                         console.log(`User ${ID}'s password is ${password}\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 119)                         callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 120)                     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 121)                     break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 122)                 case '4':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 123)                     driver.get_email(ID, (email) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 124)                         console.log(`User ${ID}'s email is ${email}\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 125)                         callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 126)                     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 127)                     break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 128)                 case '5':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 129)                     driver.get_position(ID, (pos) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 130)                         console.log(`User ${ID}'s position is ${pos}\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 131)                         callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 132)                     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 133)                     break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 134)                 case '6':
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 135)                     driver.get_bio(ID, (bio) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 136)                         console.log(`User ${ID}'s bio is "${bio}"\n`)
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 137)                         callback()
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 138)                     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 139)                     break;
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 140)             }
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 141)         })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 142)     })
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 143) }
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500 144)
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 145) function change_data(callback) {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 146)     rl.question("What User's data would you like to change (ID)?\n",(answer) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 147)         let ID = answer
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 148)         rl.question("What would you like to change?\n0 Username\n1 First Name\n2 Last Name\n3 Password\n4 Email\n5 Position\n6 Bio\n",(answer) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 149)             switch(answer) {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 150)                 case '0':
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 151)                     rl.question("Enter the new username:\n",(username) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 152)                         driver.update_user_name(username,ID)
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 153)                         callback()
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 154)                     })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 155)                     break;
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 156)                 case '1':
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 157)                     rl.question("Enter the new first name:\n",(fn) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 158)                         driver.update_first_name(fn,ID)
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 159)                         callback()
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 160)                     })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 161)                     break;
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 162)                 case '2':
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 163)                     rl.question("Enter the new last name:\n",(ln) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 164)                         driver.update_last_name(ln,ID)
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 165)                         callback()
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 166)                     })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 167)                     break;
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 168)                 case '3':
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 169)                     rl.question("Enter the new password:\n",(password) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 170)                         driver.update_password(password,ID)
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 171)                         callback()
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 172)                     })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 173)                     break;
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 174)                 case '4':
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 175)                     rl.question("Enter the new email:\n",(email) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 176)                         driver.update_email(email,ID)
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 177)                         callback()
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 178)                     })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 179)                     break;
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 180)                 case '5':
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 181)                     rl.question("Enter the new position:\n",(pos) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 182)                         driver.update_pos(pos,ID)
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 183)                         callback()
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 184)                     })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 185)                     break;
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 186)                 case '6':
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 187)                     rl.question("Enter the new bio:\n",(bio) => {
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 188)                         driver.update_bio(bio,ID)
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 189)                         callback()
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 190)                     })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 191)                     break;
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 192)             }
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 193)         })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 194)     })
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 195) }
+e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500 196)
+c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500 197) ask_credentials()
