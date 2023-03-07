@@ -58,9 +58,11 @@ function choose_processes() {
                 break;
             case '4': 
                 console.log("Changing a users data")
+                change_data(choose_processes)
                 break;
             case '5':
                 driver.close()
+                rl.close()
                 process.exit(1)
         }
     })
@@ -132,6 +134,58 @@ function get_data(callback) {
                 case '6':
                     driver.get_bio(ID, (bio) => {
                         console.log(`User ${ID}'s bio is "${bio}"\n`)
+                        callback()
+                    })
+                    break;
+            }
+        })
+    })
+}
+
+function change_data(callback) {
+    rl.question("What User's data would you like to change (ID)?\n",(answer) => {
+        let ID = answer
+        rl.question("What would you like to change?\n0 Username\n1 First Name\n2 Last Name\n3 Password\n4 Email\n5 Position\n6 Bio\n",(answer) => {
+            switch(answer) {
+                case '0': 
+                    rl.question("Enter the new username:\n",(username) => {
+                        driver.update_user_name(username,ID)
+                        callback()
+                    })
+                    break;
+                case '1': 
+                    rl.question("Enter the new first name:\n",(fn) => {
+                        driver.update_first_name(fn,ID)
+                        callback()
+                    })
+                    break;
+                case '2':
+                    rl.question("Enter the new last name:\n",(ln) => {
+                        driver.update_last_name(ln,ID)
+                        callback()
+                    })
+                    break;
+                case '3': 
+                    rl.question("Enter the new password:\n",(password) => {
+                        driver.update_password(password,ID)
+                        callback()
+                    })
+                    break;
+                case '4': 
+                    rl.question("Enter the new email:\n",(email) => {
+                        driver.update_email(email,ID)
+                        callback()
+                    })
+                    break;
+                case '5':
+                    rl.question("Enter the new position:\n",(pos) => {
+                        driver.update_pos(pos,ID)
+                        callback()
+                    })
+                    break;
+                case '6':
+                    rl.question("Enter the new bio:\n",(bio) => {
+                        driver.update_bio(bio,ID)
                         callback()
                     })
                     break;
