@@ -35,5 +35,5 @@
 ### What you accomplished
 * Worked on profile page - Mostly set-up: there is a blank profile photo, header bar, added footer, set-up where user edit information will go
 * Created login page - Set up to accept email and password, there is a message that displays where it says to fill all the fields (will need to fix this), added header and footer
-* Worked on style guide - Set up colors, certain margins
+* Worked on style guide - Set up official UT colors, certain margins for colunmns for profile page, pulled from existing guide and recofigured some of the settings - also renamed it to Dynprog while giving credit to the original creators
 * Navigate between pages (Home -> Login -> Profile -> Home) - Can navigate to login from home and once on login can navigate to profile page. If user clicks welcome user it takes them to profile page again and log out displays message and takes user back to home page
