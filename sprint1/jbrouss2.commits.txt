@@ -1,0 +1,224 @@
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500   1) <!--Actual Profile Page-->
+81dac8cc (Juliana Broussard 2023-03-03 21:05:15 -0500   2) <!--Currentl have the ability to navigate to other pages and navigate to here from login & register-->
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500   3) <!DOCTYPE html>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500   4) <html>
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500   5)     <!--CSS style guide link!-->
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500   6)     <link rel="stylesheet" href="Dynprog.css">  
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500   7)
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500   8)     <!--Log out and Welcome message that are in 
+top right
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500   9)     When user clicks, welcom name should take them to profile page-->
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  10)     <head>
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  11)         <A HREF="index.html">
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  12)             <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  13)         </A>
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500  14)         <A HREF="profile.html">
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500  15)             <button class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500  16)         </A>
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  17)     </head>
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  18)
+168451cf (Juliana Broussard 2023-02-28 08:46:18 -0500  19)     <!--This is the home bar-->
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500  20)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500  21)         <a href="index.html" class="dynprog-bar-item dynprog-button">Home</a>
+233ee1d3 (Juliana Broussard 2023-02-28 07:48:40 -0500  22)         <a href="#" class="dynprog-bar-item dynprog-button">Team Builder</a>
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  23)         <div class="dynprog-dropdown-hover">    
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  24)             <button class ="dynprog-button">Sports</button>
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  25)             <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  26)                 <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  27)                 <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  28)                 <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  29)             </div>
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  30)         </div>
+bf884489 (Juliana Broussard 2023-02-27 20:45:51 -0500  31)        <!-- <a href="#" class="dynprog-bar-item 
+dynprog-button"> Profile</a> -->
+6bc9bda5 (Juliana Broussard 2023-02-27 20:43:02 -0500  32)     </div>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  33)
+81dac8cc (Juliana Broussard 2023-03-03 21:05:15 -0500  34) <section class="dynprog-column">
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500  35) <section class="dynprog-parent-column">
+311a77a0 (Juliana Broussard 2023-03-01 18:11:51 -0500  36)     <div class="dynprog-panel dynprog-padding-24"></div>
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500  37) <section class="dynprog-child-column">
+168451cf (Juliana Broussard 2023-02-28 08:46:18 -0500  38)     <!--This is the body of the page with the profile info-->
+c7c747e1 (Juliana Broussard 2023-02-28 09:29:19 -0500  39)     <div class= "dynprog-card-4 dynprog-left dynprog-gray">
+c7c747e1 (Juliana Broussard 2023-02-28 09:29:19 -0500  40)         <div class="dynprog-container dynprog-center">
+55686288 (Juliana Broussard 2023-02-28 17:02:04 -0500  41)             <img src="blank.jpg" alt="blank person" style="width:50%">
+55686288 (Juliana Broussard 2023-02-28 17:02:04 -0500  42)             <h5>For placement only image will go here</h5>
+c7c747e1 (Juliana Broussard 2023-02-28 09:29:19 -0500  43)         </div>
+c7c747e1 (Juliana Broussard 2023-02-28 09:29:19 -0500  44)     </div>
+311a77a0 (Juliana Broussard 2023-03-01 18:11:51 -0500  45) </section>
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  46)
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  47) <!--This is the name, email, and sports associated with a user-->
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  48) <!--Not working<ul id="userInfo">-->
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500  49) <section class="dynprog-child-column">
+311a77a0 (Juliana Broussard 2023-03-01 18:11:51 -0500  50)     <div class="dynprog-panel dynprog-center dynprog-white">
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  51)
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  52)         <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Name">Name: </h4>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  53)         <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Email">Email: </h4>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  54)         <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Sports">My Sports</h4>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  55)         <div class="dynprog-panel dynprog-padding-12"></div>
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500  56)         <button class="dynprog-button dynprog-gray dynprog-text-white" id="Edit">Edit my information</button>
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  57)
+168451cf (Juliana Broussard 2023-02-28 08:46:18 -0500  58)     </div>
+311a77a0 (Juliana Broussard 2023-03-01 18:11:51 -0500  59) </section>
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  60) </ul>
+81dac8cc (Juliana Broussard 2023-03-03 21:05:15 -0500  61) </section>
+311a77a0 (Juliana Broussard 2023-03-01 18:11:51 -0500  62) </section>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  63)
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  64) <div class="dynprog-panel dynprog-padding-16"></div>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  65)
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  66) <!--This is more information for the user will fill in in the future-->
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  67) <section>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  68)     <h3 class="dynprog-text-black dynprog-center dynprog-monospace" id="Stats">My Stats</h3>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  69)     <table class="dynprog-table  dynprog-striped dynprog-orange dynprog-bordered">
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  70)         <tr>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  71)             <th>Game</th>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  72)             <th>Total Points</th>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  73)             <th>Blocks</th>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  74)             <th>Assists</th>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  75)             <th>Fouls</th>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  76)         </tr>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  77)         <tr>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  78)             <td>1</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  79)             <td>9</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  80)             <td>4</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  81)             <td>3</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  82)             <td>2</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  83)         </tr>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  84)         <tr>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  85)             <td>2</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  86)             <td>18</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  87)             <td>2</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  88)             <td>2</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  89)             <td>1</td>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  90)         </tr>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  91)
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  92)     </table>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  93) </section>
+61857654 (Juliana Broussard 2023-03-06 22:20:54 -0500  94)
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  95) <!--This is the footer!-->
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500  96) <footer>
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500  97)     <div class="dynprog-center dynprog-padding-24">
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500  98)    <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog</p>
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500  99)     </div>
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 100) </footer>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500 101)
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500 102)
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500 103)
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500 104) <!--Script code for allowing users edit access-->
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 105)
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 106) <script src="profile.js"></script>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500 107)
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500 108) </html>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  1) <!--Login page - this is what the login button goes to-->
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500  2) <!--From here it will go to the profile page-->  
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  3)
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  4) <!DOCTYPE html>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  5) <html>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  6)     <link rel="stylesheet" href="Dynprog.css">   
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  7)
+55686288 (Juliana Broussard 2023-02-28 17:02:04 -0500  8)     <div class="dynprog-panel dynprog-padding-12"></div>
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500  9)
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500 10)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+5168b5da (Juliana Broussard 2023-02-28 16:39:45 -0500 11)         <a href="index.html" class="dynprog-bar-item dynprog-button">Home</a>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 12)         <div class="dynprog-dropdown-hover">     
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 13)             <button class ="dynprog-button">Sports</button>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 14)             <div class="dynprog-dropdown-content 
+dynprog-bar-block dynprog-card-4">
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 15)                 <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 16)                 <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 17)                 <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 18)             </div>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 19)         </div>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 20)     </div>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 21)
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 22) <body>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 23)     <div class="dynprog-card-4 dynprog-padding-24">
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 24)         <div class="dynprog-container dynprog-center dynprog-gray">
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 25)             <h2 class="dynprog-text-white">Hi, please login!</h2>
+510a9760 (Juliana Broussard 2023-03-02 14:28:23 -0500 26)         </div>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 27)
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 28)     <form id= sign-in class="dynprog-container dynprog-margin">
+510a9760 (Juliana Broussard 2023-03-02 14:28:23 -0500 29)                 <label for="Email">Email</label> 
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 30)                 <input class="dynprog-input" type="text" name="email">
+510a9760 (Juliana Broussard 2023-03-02 14:28:23 -0500 31)
+510a9760 (Juliana Broussard 2023-03-02 14:28:23 -0500 32)                 <label for="Password">Password</label>
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 33)                 <input class="dynprog-input" type="text" name="password" required>
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 34)
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 35)             </form>
+510a9760 (Juliana Broussard 2023-03-02 14:28:23 -0500 36)
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 37)     <div class="dynprog-margin-left dynprog-hover-text-orange">
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 38)         <p>Forgot password?</p>
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 39)     </div>
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 40)
+77b09eed (Juliana Broussard 2023-02-27 20:34:08 -0500 41)     <div class="dynprog-center dynprog-padding-24">
+168451cf (Juliana Broussard 2023-02-28 08:46:18 -0500 42)         <A HREF="profile.html">
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 43)             <button id="Login" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Login</button>
+168451cf (Juliana Broussard 2023-02-28 08:46:18 -0500 44)         </A>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 45)     </div>
+77b09eed (Juliana Broussard 2023-02-27 20:34:08 -0500 46)
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 47)     <div class="dynprog-center dynprog-padding-16 dynprog-hover-text-orange">
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 48)         <p>Don't have an account with us yet? </p><A HREF="Registry.html"> <p>Create one here!</A></p>
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 49)     </div>
+77b09eed (Juliana Broussard 2023-02-27 20:34:08 -0500 50)
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 51) </body>
+b802753f (Juliana Broussard 2023-02-27 20:18:06 -0500 52)
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 53) <!--This is the footer!-->
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 54) <footer>
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 55)     <div class="dynprog-center dynprog-padding-24">
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 56)    <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog</p>
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 57)     </div>
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 58) </footer>
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 59)
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 60) <script src="login.js"></script>
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 61)
+0424c615 (Juliana Broussard 2023-02-27 18:20:23 -0500 62) </html>
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  1) /*Login JS to make users complete all fields have to fix functionality
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  2) still moves on even if fields aren't actually filled*/
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  3) document.getElementById("Login").onclick = function() {
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  4)     let allAreFilled = true;
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  5)     document.getElementById("sign-in").querySelectorAll("[required]").forEach(function(i) {
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  6)     if (!allAreFilled) return;
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  7)     if (i.type === "radio") {
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  8)     let radioValueCheck = false;
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  9)     document.getElementById("sign-in").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 10)     if (r.checked) radioValueCheck = true;       
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 11)     })
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 12)       allAreFilled = radioValueCheck;
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 13)       return;
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 14)     }
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 15)     if (!i.value) { allAreFilled = false;  return; }
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 16)   })
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 17)   if (!allAreFilled) {
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 18)     alert('Fill all the fields');
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 19)   }
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 20) };
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  8) /*If user selects log out, a message says they have been logged out
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500  9) then they return back to the home page*/
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 10) document.querySelector("#Log-Out").onclick = function(){
+4c4edd18 (Juliana Broussard 2023-03-04 12:28:08 -0500 11)     alert("You have been logged out");
+9bea34ee (Juliana Broussard 2023-03-03 22:14:31 -0500 12) }
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 158) .dynprog-white,.dynprog-hover-white:hover{color:#000!important;background-color:#fff!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 159) .dynprog-black,.dynprog-hover-black:hover{color:#fff!important;background-color:#000!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 160) .dynprog-gray,.dynprog-hover-grey:hover,.dynprog-gray,.dynprog-hover-gray:hover{color:#000!important;background-color:#58595B!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 161) /* Will see if need these colors
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 162) .dynprog-light-grey,.dynprog-hover-light-grey:hover,.dynprog-light-gray,.dynprog-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 163) .dynprog-dark-grey,.dynprog-hover-dark-grey:hover,.dynprog-dark-gray,.dynprog-hover-dark-gray:hover{color:#fff!important;background-color:#616161!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 164) */
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 165) .dynprog-orange,.dynprog-hover-orange:hover{color:#000!important;background-color:#ff8200!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 166)
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 167) .dynprog-text-black,.dynprog-hover-text-black:hover{color:#000!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 168) .dynprog-text-white,.dynprog-hover-text-white:hover{color:#fff!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 169) .dynprog-text-gray,.dynprog-hover-text-grey:hover,.dynprog-text-gray,.dynprog-hover-text-gray:hover{color:#58595B!important}
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 198) .active, .dynprog-dot:hover {background-color: #717171;}
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 199)
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 200) /*Making columns within a page - this will let you have columns side by side*/
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 201) .dynprog-column {box-sizing:border-box}
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 202) .dynprog-child-column{ border:5px solid white}  
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 203) .dynprog-parent-column{ display:flex}
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 204)
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500  31) html, body{font-family:monospace; font-size:14px; line-height:1.5}html{overflow-x:hidden}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500  32) h1{font-size:36px;}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500  33) h1,h2,h3,h4,h5,h6{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight:400;margin:10px 0} .dynprog-wide{letter-spacing:4px}
+9b544417 (Juliana Broussard 2023-03-03 20:02:27 -0500 145) .dynprog-margin-left{margin-left:30px!important}.dynprog-margin-right{margin-right:16px!important}
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 147) .dynprog-padding-16{padding-top:16px!important;padding-bottom:16px!important}.dynprog-padding-24{padding-top:24px!important;padding-bottom:24px!important} 
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 148) .dynprog-padding-32{padding-top:32px!important;padding-bottom:32px!important}.dynprog-padding-48{padding-top:48px!important;padding-bottom:48px!important} 
+90e21c63 (Juliana Broussard 2023-02-27 11:31:48 -0500 149) .dynprog-padding-64{padding-top:64px!important;padding-bottom:64px!important}
