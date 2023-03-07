@@ -1,5 +1,7 @@
-# Dean Longmire Commits
-## global_users.js
+Dean Longmire Commits
+
+global_users.js
+------------------------------
 5d68a85e DreamTeam/Databases/Users/global_users.js (jlongmi9 2023-02-21 09:44:21 -0500   1) //Requires
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500   2) const sqlite3 = require('sqlite3').verbose()
 5d68a85e DreamTeam/Databases/Users/global_users.js (jlongmi9 2023-02-21 09:44:21 -0500   3)
@@ -30,8 +32,7 @@ e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32
 19dbeb2b DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 18:54:53 -0500  28)
 96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  29)     insert(un, email, password, fn, ln, bio, pos, pp){        
 96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  30)         this.db.serialize(() => {
-96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  31)             this.db.get('SELECT * FROM Users ORDER BY ID DESC 
-LIMIT 1', (err, row) => {
+96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  31)             this.db.get('SELECT * FROM Users ORDER BY ID DESC LIMIT 1', (err, row) => {
 96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  32)                 if(err)
 96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  33)                 {
 96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500  34)                   console.error(err.message);
@@ -62,8 +63,7 @@ LIMIT 1', (err, row) => {
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  59)         })
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  60)     }
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  61)
-42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  62)     /* SACRED CODE. DO NOT TOUCH. I HAVE NO IDEA HOW IT WORKS 
-*/
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500  62)     /* SACRED CODE. DO NOT TOUCH. I HAVE NO IDEA HOW IT WORKS */
 d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  63)     get_ID(user_name, callback) {
 d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  64)         this.sql = 'SELECT password, ID FROM Users WHERE user_name = ?';
 d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10 -0500  65)         this.db.get(this.sql, [user_name], (err, row) => {    
@@ -183,8 +183,7 @@ d2d7ce39 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 22:10:10
 96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 181)     }
 96e80e75 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-06 21:50:52 -0500 182)
 bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 183)     update_user_name(new_user_name, ID){
-42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 184)         this.sql = "UPDATE Users SET user_name = ? WHERE ID = 
-?"
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 184)         this.sql = "UPDATE Users SET user_name = ? WHERE ID = ?"
 bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 185)         this.db.run(this.sql, [new_user_name, ID], (err)=>{   
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 186)             if(err){return console.log(err.message)}
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 187)         })
@@ -198,8 +197,7 @@ bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 195)     }
 bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 196)
 bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 197)     update_last_name(new_ln, ID){
-42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 198)         this.sql = "UPDATE Users SET last_name = ? WHERE ID = 
-?"
+42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 198)         this.sql = "UPDATE Users SET last_name = ? WHERE ID = ?"
 bb7fb7df DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-28 08:30:34 -0500 199)         this.db.run(this.sql, [new_ln, ID], (err)=>{
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 200)             if(err){return console.log(err.message)}
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 201)         })
@@ -253,7 +251,8 @@ e6e945c4 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-02-27 16:17:32
 5d68a85e DreamTeam/Databases/Users/global_users.js (jlongmi9 2023-02-21 09:44:21 -0500 249)
 42e7838c DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-02 21:27:32 -0500 250) module.exports.users_dbmanager = users_dbmanager
 
-## test.js
+test.js
+-----------------------
 c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   1) const global_users = require("./global_users")
 c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   2) const readline = require('readline');
 c5ccd203 (jlongmi9 2023-03-03 01:41:24 -0500   3)
@@ -349,8 +348,7 @@ e8dfba8b (jlongmi9 2023-03-06 22:06:45 -0500  65)                 rl.close()
 96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  93) function get_data(callback) {
 96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  94)     rl.question("What User's data would you like to get (ID)?\n",(answer) => {
 96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  95)         let ID = answer
-96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  96)         rl.question("What would you like to read?\n0 Username\n1 First Name\n2 Last Name\n3 Password\n4 
-Email\n5 Position\n6 Bio\n",(answer) => {
+96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  96)         rl.question("What would you like to read?\n0 Username\n1 First Name\n2 Last Name\n3 Password\n4 Email\n5 Position\n6 Bio\n",(answer) => {
 96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  97)             switch(answer) {
 96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  98)                 case '0':
 96e80e75 (jlongmi9 2023-03-06 21:50:52 -0500  99)                     driver.get_user_name(ID, (us) => {
