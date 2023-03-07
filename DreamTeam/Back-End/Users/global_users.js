@@ -184,7 +184,6 @@ class users_dbmanager{
         this.sql = "UPDATE Users SET user_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_user_name, ID], (err)=>{
             if(err){return console.log(err.message)}
-            console.log('User Name updated')
         })
     }
 
@@ -192,7 +191,6 @@ class users_dbmanager{
         this.sql = "UPDATE Users SET first_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_fn, ID], (err)=>{
             if(err){return console.log(err.message)}
-            console.log('First Name updated')
         })
     }
 
@@ -200,7 +198,6 @@ class users_dbmanager{
         this.sql = "UPDATE Users SET last_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_ln, ID], (err)=>{
             if(err){return console.log(err.message)}
-            console.log('Last Name updated')
         })
     }
 
@@ -208,7 +205,6 @@ class users_dbmanager{
         this.sql = "UPDATE Users SET email = ? WHERE ID = ?"
         this.db.run(this.sql, [new_email, ID], (err)=>{
             if(err){return console.log(err.message)}
-            console.log('Email updated')
         })
     }
 
@@ -216,7 +212,6 @@ class users_dbmanager{
         this.sql = "UPDATE Users SET pos = ? WHERE ID = ?"
         this.db.run(this.sql, [new_pos, ID], (err)=>{
             if(err){return console.log(err.message)}
-            console.log('Position updated')
         })
     }
 
@@ -224,7 +219,6 @@ class users_dbmanager{
         this.sql = "UPDATE Users SET bio = ? WHERE ID = ?"
         this.db.run(this.sql, [new_bio, ID], (err)=>{
             if(err){return console.log(err.message)}
-            console.log('Bio updated')
         })
     }
 
@@ -232,7 +226,6 @@ class users_dbmanager{
         this.sql = "UPDATE Users SET password = ? WHERE ID = ?"
         this.db.run(this.sql, [new_password, ID], (err)=>{
             if(err){return console.log(err.message)}
-            console.log('Password updated')
         })
     }
 
