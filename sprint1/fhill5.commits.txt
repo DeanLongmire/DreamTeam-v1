@@ -1,0 +1,269 @@
+index.html
+
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500   3) <html class = "no-js">
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500   4) <title> DreamTeam - Intermural Team Builder for UTK</title>
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500   5) <meta charset="utf-8">
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500   7) <body>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500   8)cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500   9)     <div class = "dynprog-navbar">eae5369d DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-02 21:14:31 -0500  10)         <a href="Registry.html"> <button class ="dynprog-button dynprog-text-black dynprog-right">Create Account</button></a>
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500  11)         <a href="login.html">    <button class ="dynprog-button dynprog-text-black dynprog-right">Login</button></a>
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500  12)         <div style = "padding-left: 15px; font-size: 25px; font-family: Fantasy">
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500  13)         <p>DreamTeam</p>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  16)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  17)     <div style=" padding-top:80px ;"> <!---important to make sure its not hidden by navbar-->
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  18)     </div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  19)
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500  20)     <div class="dynprog-card-4 dynprog-padding-24">
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  21)       <div class="dynprog-container dynprog-center dynprog-orange">
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  22)       <h2 class="dynprog-text-white">Welcome to DreamTeam, your all-in-one team builder</h2>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  23)     </div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  24)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  25)     <div class = "dynprog-cell-row dynprog-padding-24 dynprog-round-small"> 
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  26)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  27)       <div class="dynprog-container dynprog-black dynprog-cell">
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  28)         <h2>Intramural Sports</h2>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  29)       </div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  30)     </div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  31)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  32) <!--heres what actually puts it to the website -->
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  33)
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  34) <div class="dynprog-slideshow-container">
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  35)
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  36)   <div class="dynprog-fade">
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  37)     <div class="dynprog-numbertext">1 / 3</div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  38)     <img src="Flag Football.jpg" style="width:100%">
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  39)     <div class="dynprog-uitext">Flag Football</div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  40)   </div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  41)
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  42)   <div class="dynprog-fade">
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  43)     <div class="dynprog-numbertext">2 / 3</div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  44)     <img src="5v5.jpg" style="width:100%">
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  45)     <div class="dynprog-uitext">5v5 Soccer</div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  46)   </div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  47)
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  48)   <div class="dynprog-fade">
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  49)     <div class="dynprog-numbertext">3 / 3</div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  50)     <img src="Softball.jpg" style="width:100%">
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  51)     <div class="dynprog-uitext">Softball</div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  52)   </div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  53)
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  54)   <a class="dynprog-prev" onclick="plusSlides(-1)">❮</a>
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  55)   <a class="dynprog-next" onclick="plusSlides(1)">❯</a>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  56)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  57)   </div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  58)   <br>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  59)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  60)   <div style="text-align:center">
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  61)     <span class="dynprog-dot" onclick="currentSlide(1)"></span> 
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  62)     <span class="dynprog-dot" onclick="currentSlide(2)"></span>
+cb4d97b2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-03 01:01:51 -0500  63)     <span class="dynprog-dot" onclick="currentSlide(3)"></span>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  64)   </div>
+eae5369d DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-02 21:14:31 -0500  65)
+eae5369d DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-02 21:14:31 -0500  66)   <div style = "padding-bottom: 1500px;"></div>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  67)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  68)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  69) <!--heres the code that works the slideshow---->
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  70)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  71) <script>
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  72) let slideIndex = 1;
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  73) showSlides(slideIndex);
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  74)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  75) function plusSlides(n) {
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  76)   showSlides(slideIndex += n);
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  77) }
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  78)
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  79) function currentSlide(n) {
+b68f01f2 DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 18:26:56 -0500  80)   showSlides(slideIndex = n);
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500 106) function scrollFunction() {
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500 106) function scrollFunction() {
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500 107)   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500 108)     document.getElementById("navbar").style.top = "0";
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500 109)   }
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500 110) }
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500 111) </script>
+e6ef30cf DreamTeam/Front-End/index.html   (Finli-Hill        2023-03-01 14:36:46 -0500 112) </body>
+
+Registry.html
+
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  1) <!--Registration Page of Website-->
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  2) <!DOCTYPE html>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  3) <html>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  4)     <link rel="stylesheet" href="Dynprog.css">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500  5)     <title> DreamTeam - Create Account</title>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  6) 
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  7)     <head>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500  8)         <div class="dynprog-panel dynprog-padding-12"></div> 
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  9)     </head>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 10) 
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 11)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 12)         <a href="index.html" class="dynprog-bar-item dynprog-button">Home</a>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 13)         <div class="dynprog-dropdown-hover">
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 14)             <button class ="dynprog-button">Sports</button>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 15)             <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 16)                 <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 17)                 <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 18)                 <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 19)             </div>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 20)         </div>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 21)     </div>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 22)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 23)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 24)     <!--insipration from W3.css register form-->
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 25)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 26)     <div class="dynprog-card-4 dynprog-padding-24">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 27)         <div class="dynprog-container dynprog-center dynprog-gray">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 28)             <h2 class="dynprog-text-white">Register Account</h2>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 29)         </div>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 30)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 31)     <form id = regform class="dynprog-container dynprog-margin">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 32)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 33)         <label>Name</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 34)         <input class="dynprog-input" type="text" placeholder="Enter Name" name="name">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 35)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 36)         <label>UT Student ID</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 37)         <input class="dynprog-input" type="text" placeholder="Enter ID#" name="id#">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 38)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 39)         <label>Email</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 40)         <input class="dynprog-input" type="text" placeholder="Enter Email" name="email"  >
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 41)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 42)         <label>Password</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 43)         <input class="dynprog-input" type="text" placeholder="Enter Password" name="psw">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 44)         <label>Confirm Password</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 45)         <input class="dynprog-input" type="text" placeholder="Re-Enter Password" name="psw-repeat" id="psw-repeat" required>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 46)     </form>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 47)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 48)     <!--takes user to profile-->
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 49)     <div class="dynprog-center dynprog-padding-24">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 50)         <A HREF="profile.html">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 51)         <button id="create_account" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create Account</button>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 52)         </A>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 53)         <!--Takes user to login-->
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 54)         <div class="dynprog-hover-text-orange">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 55)             <p>Already have an account? <a href="login.html">Sign in</a>.</p>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 56)         </div>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 57)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 58)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 59)    <script>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 60)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 61)     document.getElementById("create_account").onclick = function() {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 62)     let allAreFilled = true;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 63)     document.getElementById("regform").querySelectorAll("[required]").forEach(function(i) {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 64)     if (!allAreFilled) return;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 65)     if (i.type === "radio") {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 66)     let radioValueCheck = false;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 67)     document.getElementById("regform").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 68)     if (r.checked) radioValueCheck = true;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 69)     })
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 70)       allAreFilled = radioValueCheck;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 71)       return;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 72)     }
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 73)     if (!i.value) { allAreFilled = false;  return; }
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 74)   })
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 75)   if (!allAreFilled) {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 76)     alert('Fill all the fields');
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 77)   }
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 78) };
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 79)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 80)    </script>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 81)
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 82) </html>
+
+Dynprog.css
+
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  1) <!--Registration Page of Website-->
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  2) <!DOCTYPE html>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  3) <html>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  4)     <link rel="stylesheet" href="Dynprog.css">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500  5)     <title> DreamTeam - Create Account</title>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  6) 
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  7)     <head>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500  8)         <div class="dynprog-panel dynprog-padding-12"></div> 
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500  9)     </head>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 10) 
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 11)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 12)         <a href="index.html" class="dynprog-bar-item dynprog-button">Home</a>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 13)         <div class="dynprog-dropdown-hover">
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 14)             <button class ="dynprog-button">Sports</button>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 15)             <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 16)                 <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 17)                 <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 18)                 <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 19)             </div>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 20)         </div>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 21)     </div>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 22)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 23)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 24)     <!--insipration from W3.css register form-->
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 25)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 26)     <div class="dynprog-card-4 dynprog-padding-24">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 27)         <div class="dynprog-container dynprog-center dynprog-gray">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 28)             <h2 class="dynprog-text-white">Register Account</h2>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 29)         </div>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 30)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 31)     <form id = regform class="dynprog-container dynprog-margin">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 32)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 33)         <label>Name</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 34)         <input class="dynprog-input" type="text" placeholder="Enter Name" name="name">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 35)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 36)         <label>UT Student ID</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 37)         <input class="dynprog-input" type="text" placeholder="Enter ID#" name="id#">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 38)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 39)         <label>Email</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 40)         <input class="dynprog-input" type="text" placeholder="Enter Email" name="email"  >
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 41)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 42)         <label>Password</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 43)         <input class="dynprog-input" type="text" placeholder="Enter Password" name="psw">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 44)         <label>Confirm Password</label>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 45)         <input class="dynprog-input" type="text" placeholder="Re-Enter Password" name="psw-repeat" id="psw-repeat" required>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 46)     </form>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 47)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 48)     <!--takes user to profile-->
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 49)     <div class="dynprog-center dynprog-padding-24">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 50)         <A HREF="profile.html">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 51)         <button id="create_account" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create Account</button>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 52)         </A>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 53)         <!--Takes user to login-->
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 54)         <div class="dynprog-hover-text-orange">
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 55)             <p>Already have an account? <a href="login.html">Sign in</a>.</p>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 56)         </div>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 57)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 58)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 59)    <script>
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 60)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 61)     document.getElementById("create_account").onclick = function() {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 62)     let allAreFilled = true;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 63)     document.getElementById("regform").querySelectorAll("[required]").forEach(function(i) {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 64)     if (!allAreFilled) return;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 65)     if (i.type === "radio") {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 66)     let radioValueCheck = false;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 67)     document.getElementById("regform").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 68)     if (r.checked) radioValueCheck = true;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 69)     })
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 70)       allAreFilled = radioValueCheck;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 71)       return;
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 72)     }
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 73)     if (!i.value) { allAreFilled = false;  return; }
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 74)   })
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 75)   if (!allAreFilled) {
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 76)     alert('Fill all the fields');
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 77)   }
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 78) };
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 79)
+eae5369d (Finli-Hill 2023-03-02 21:14:31 -0500 80)    </script>
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 81)
+7369d981 (Finli-Hill 2023-02-28 08:51:22 -0500 82) </html>
+
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 183) .dynprog-border-orange,.dynprog-hover-border-orange:hover{border-color:#ff8200!important}
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 184)
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 185) /* making a navbar css template*/
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 186) .dynprog-navbar{background-color: #ff8200; position: fixed; width: 100%; transition: top 0.3s}
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 187) /*slideshow container*/
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 188) .dynprog-slideshow-container {max-width: 450px;margin: auto;}
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 189) /*making a prev and next button*/
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 190) .dynprog-prev,.dynprog-next{cursor: pointer;width: auto;padding: 16px;margin-top: -22px;color: #333;font-weight: bold;font-size: 18px;transition: 0.6s ease;border-radius: 0 3px 3px 0;user-select: none;}
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 191) /*fade*/
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 192) .dynprog-fade{ animation-name: fade; animation-duration: 1.5s;}@keyframes fade {from {opacity: .4} to {opacity: 1}}
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 193) .dynprog-uitext{ color: #ff8200;font-size: 15px;padding: 8px 12px;bottom: 8px;width: 100%;text-align: center;}
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 194) /* Number text (1/3 etc) */
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 195) .dynprog-numbertext {color: #333;font-size: 12px;padding: 8px 12px;top: 0;}
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 196) /* The dots/bullets/indicators */
+cb4d97b2 (Finli-Hill        2023-03-03 01:01:51 -0500 197) .dynprog-dot {cursor: pointer;height: 15px;width: 15px;margin: 0 2px;background-color: #bbb;border-radius: 50%;display: inline-block;transition: background-color 0.6s ease;}
