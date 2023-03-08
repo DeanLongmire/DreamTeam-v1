@@ -1,0 +1,250 @@
+67a0822a (Ryan-Carnes-01 2023-02-27 15:57:27 -0500  1) /*This is the V1 test file for creating, updating, and deleting Leagues from
+67a0822a (Ryan-Carnes-01 2023-02-27 15:57:27 -0500  2) the SQLite3 ../database.db
+67a0822a (Ryan-Carnes-01 2023-02-27 15:57:27 -0500  3) see links-to-resources 1, 2, & 4*/
+4bbf4adb (Ryan-Carnes-01 2023-02-26 14:52:26 -0500  4) const sqlite3 = require('sqlite3').verbose();
+4bbf4adb (Ryan-Carnes-01 2023-02-26 14:52:26 -0500  5)
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500  6) class league_dbmanager{
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500  7)     constructor(db, sql, data){}
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500  8)     open(){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  9)         this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 10)             if (err){
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 11)                 return console.error(err.message);
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 12)             }
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 13)             console.log('Connected to SQLite database.db');
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 14)         });
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 15)     }
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 16)     create(){
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 17)         this.db.run('CREATE TABLE Leagues(name, ID, sport)', (err)=>{
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 18)             if(err){return console.error(err.message);}
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 19)             console.log('Created league table');
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 20)         });
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 21)     }
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 22)     drop(){
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 23)         this.db.run('DROP TABLE Leagues', (err)=>{
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 24)             if(err){return console.error(err.message);}
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 25)             console.log('Dropped league table')
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 26)         });
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 27)     }
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 28)     insert(name, ID, sport){
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 29)         this.sql = 'INSERT INTO Leagues (name, ID, sport) VALUES(?,?,?)';
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 30)         this.db.run(this.sql, [name, ID, sport], (err)=>{
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 31)             if(err) {return console.error(err.message);}
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 32)             console.log("New row created in League table");
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 33)         });
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 34)     }
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 35)     display_all(){
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 36)         this.sql = 'SELECT * FROM Leagues';
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 37)         this.db.all(this.sql, [], (err,rows)=>{
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 38)             if(err) {
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 39)                 return console.error(err.message);
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 40)             }
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 41)             rows.forEach((row)=>{
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 42)                 console.log(row);
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 43)             });
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 44)         });
+4bbf4adb (Ryan-Carnes-01 2023-02-26 14:52:26 -0500 45)     }
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 46)     update_sport(name, new_sport){
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 47)         this.data = [new_sport, name];
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 48)         this.sql = 'UPDATE Leagues SET sport = ? WHERE name = ?';
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 49)         this.db.run(this.sql, this.data, (err)=>{
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 50)             if(err){return console.log(err.message);}
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 51)             console.log('Row(s) sport updated');
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 52)         });
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 53)     }
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 54)     update_name(name, new_name){
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 55)         this.data = [new_name, name];
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 56)         this.sql = 'UPDATE Leagues SET name = ? WHERE name = ?';
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 57)         this.db.run(this.sql, this.data, (err)=>{
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 58)             if(err){return console.log(err.message);}
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 59)             console.log('Row(s) name updated');
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 60)         });
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 61)     }
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 62)     delete(name){
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 63)         this.data = [name];
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500 64)         this.sql = 'DELETE FROM Leagues WHERE name = ?';
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 65)         this.db.run(this.sql, this.data, (err)=>{
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 66)             if(err){return console.log(err.message);}
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 67)             console.log('Row(s) deleted')
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 68)         });
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 69)     }
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 70)     close(){
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 71)         this.db.close((err) => {
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 72)             if(err){
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 73)                 return console.error(err.message);
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 74)             }
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 75)             console.log('Database Closed.');
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 76)         });
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 77)     }
+45b96b86 (Ryan-Carnes-01 2023-02-27 10:35:04 -0500 78) }
+4bbf4adb (Ryan-Carnes-01 2023-02-26 14:52:26 -0500 79)
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 80) module.exports.league_dbmanager = league_dbmanager;
+
+
+67a0822a (Ryan-Carnes-01 2023-02-27 15:57:27 -0500  1) /*This is the V1 test file for creating, updating, and deleting Teams from
+67a0822a (Ryan-Carnes-01 2023-02-27 15:57:27 -0500  2) the SQLite3 ../database.db
+67a0822a (Ryan-Carnes-01 2023-02-27 15:57:27 -0500  3) see links-to-resources 1, 2, & 4*/
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500  4) const sqlite3 = require('sqlite3').verbose();
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500  5)
+a53ea337 (Ryan-Carnes-01 2023-02-27 11:16:09 -0500  6) class team_dbmanager{
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500  7)     constructor(db, sql, data){};
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500  8)     open(){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  9)         this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 10)             if (err){
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 11)                 return console.error(err.message);
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 12)             }
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 13)             console.log('Connected to SQLite database.db');
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 14)         });
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 15)     };
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 16)     create(){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 17)         this.db.run('CREATE TABLE Teams(name, ID, P_ID, sport, num_players)', (err)=>{
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 18)             if(err){return console.error(err.message);}
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 19)             console.log('Created team table');
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 20)         });
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 21)     };
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 22)     drop(){
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 23)         this.db.run('DROP TABLE Teams', (err)=>{
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 24)             if(err){return console.error(err.message);}
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 25)             console.log('Dropped team table')
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 26)         });
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 27)     };
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 28)     insert(name, ID, P_ID, sport, num_players){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 29)         this.sql = 'INSERT INTO Teams (name, ID, P_ID, sport, num_players) VALUES(?, ?, ?, ?, ?)';
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 30)         this.db.run(this.sql, [name, ID, P_ID, sport, num_players], (err)=>{       
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 31)             if(err){return console.error(err.message);}
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 32)             console.log('New row created in Team table')
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 33)         });
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 34)     };
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 35)     display_all(){
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 36)         this.sql = 'SELECT * FROM Teams';
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 37)         this.db.all(this.sql, [], (err,rows)=>{
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 38)             if(err) {
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 39)                 return console.error(err.message);
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 40)             }
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 41)             rows.forEach((row)=>{
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 42)                 console.log(row);
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 43)             });
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 44)         });
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 45)     };
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 46)     update_name(name, new_name){
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 47)         this.data = [new_name, name];
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 48)         this.sql = 'UPDATE Teams SET name = ? WHERE name = ?';
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 49)         this.db.run(this.sql, this.data, (err)=>{
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 50)             if(err){return console.log(err.message);}
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 51)             console.log('Row(s) name updated');
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 52)         });
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 53)     };
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 54)     update_sport(name, new_sport){
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 55)         this.data = [new_sport, name];
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 56)         this.sql = 'UPDATE Teams SET sport = ? WHERE name = ?';
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 57)         this.db.run(this.sql, this.data, (err)=>{
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 58)             if(err){return console.log(err.message);}
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 59)             console.log('Row(s) sport updated');
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 60)         });
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 61)     };
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 62)     update_num_players(name, new_num_players){
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 63)         this.data = [new_num_players, name];
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 64)         this.sql = 'UPDATE Teams SET num_players = ? WHERE name = ?';
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 65)         this.db.run(this.sql, this.data, (err)=>{
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 66)             if(err){return console.log(err.message);}
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 67)             console.log('Row(s) sport updated');
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 68)         });
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 69)     };
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 70)     delete(name){
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 71)         this.data = [name];
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 72)         this.sql = 'DELETE FROM Teams WHERE name = ?';
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 73)         this.db.run(this.sql, this.data, (err)=>{
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 74)             if(err){return console.log(err.message);}
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 75)             console.log('Row(s) deleted')
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 76)         });
+4ca72b22 (Ryan-Carnes-01 2023-02-27 15:46:45 -0500 77)     };
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 78)     close(){
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 79)         this.db.close((err) => {
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 80)             if(err){
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 81)                 return console.error(err.message);
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 82)             }
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 83)             console.log('Database Closed.');
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 84)         });
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 85)     };
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 86) }
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 87)
+bedb5c21 (Ryan-Carnes-01 2023-02-27 14:42:54 -0500 88) module.exports.team_dbmanager = team_dbmanager;
+
+
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  1) const sqlite3 = require('sqlite3').verbose();
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  2)
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  3) class player_dbmanager{
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  4)     constructor(db, sql, data){}
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  5)     open(){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  6)         this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  7)             if (err){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  8)                 return console.error(err.message);
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500  9)             }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 10)             console.log('Connected to SQLite database.db');
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 11)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 12)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 13)     create(){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 14)         this.db.run('CREATE TABLE Players(name, username, ID, P_ID, position)', (err)=>{
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 15)             if(err){return console.error(err.message);}
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 16)             console.log('Created player table');
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 17)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 18)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 19)     drop(){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 20)         this.db.run('DROP TABLE Players', (err)=>{
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 21)             if(err){return console.error(err.message);}
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 22)             console.log('Dropped player table')
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 23)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 24)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 25)     insert(name, username, ID, P_ID, position){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 26)         this.sql = 'INSERT INTO Players (name, username, ID, P_ID, position) VALUES(?,?,?,?,?)';
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 27)         this.db.run(this.sql, [name, username, ID, P_ID, position], (err)=>{       
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 28)             if(err) {return console.error(err.message);}
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 29)             console.log("New row created in Player table");
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 30)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 31)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 32)     display_all(){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 33)         this.sql = 'SELECT * FROM Players';
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 34)         this.db.all(this.sql, [], (err,rows)=>{
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 35)             if(err) {
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 36)                 return console.error(err.message);
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 37)             }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 38)             rows.forEach((row)=>{
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 39)                 console.log(row);
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 40)             });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 41)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 42)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 43)     update_position(name, new_position){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 44)         this.data = [new_position, name];
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 45)         this.sql = 'UPDATE Players SET position = ? WHERE name = ?';
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 46)         this.db.run(this.sql, this.data, (err)=>{
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 47)             if(err){return console.log(err.message);}
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 48)             console.log('Row(s) position updated');
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 49)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 50)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 51)     update_name(name, new_name){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 52)         this.data = [new_name, name];
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 53)         this.sql = 'UPDATE Players SET name = ? WHERE name = ?';
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 54)         this.db.run(this.sql, this.data, (err)=>{
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 55)             if(err){return console.log(err.message);}
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 56)             console.log('Row(s) name updated');
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 57)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 58)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 59)     delete(name){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 60)         this.data = [name];
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 61)         this.sql = 'DELETE FROM Players WHERE name = ?';
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 62)         this.db.run(this.sql, this.data, (err)=>{
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 63)             if(err){return console.log(err.message);}
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 64)             console.log('Row(s) deleted')
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 65)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 66)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 67)     close(){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 68)         this.db.close((err) => {
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 69)             if(err){
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 70)                 return console.error(err.message);
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 71)             }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 72)             console.log('Database Closed.');
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 73)         });
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 74)     }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 75) }
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 76)
+dad40662 (Ryan-Carnes-01 2023-03-06 22:32:22 -0500 77) module.exports.player_dbmanager = player_dbmanager;
+
