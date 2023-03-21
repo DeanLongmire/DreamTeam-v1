@@ -7,3 +7,6 @@
 7. Node.js asynchronous handling reference: https://blog.risingstack.com/node-hero-async-programming-in-node-js/#:~:text=asynchronous%20programming%20model.-
 8. W3 CSS Guide: https://www.w3schools.com/w3css/default.asp
 9. Store HTML from Data to MYSQL Database: https://www.youtube.com/watch?v=qm4Eih_2p-M (IDK if we need this but... dosesn't hurt to have)
+10. Convert JSON into SQL Database using SQLite & PERL: https://codeburst.io/convert-raw-json-data-into-an-sql-database-using-sqlite-and-perl-489c921b8868
+11. Convert JSON to SQLite Database: https://stackoverflow.com/questions/46407770/how-to-convert-a-json-file-to-an-sqlite-database
+12. JSON Syntax: https://www.w3schools.com/js/js_json_syntax.asp
