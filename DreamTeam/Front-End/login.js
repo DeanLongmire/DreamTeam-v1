@@ -21,7 +21,8 @@ still moves on even if fields aren't actually filled*/
   }
 };*/
 
-
+/*New way to login, still have to work out bug of letting it
+ go through with no pw*/
 let input = document.querySelector(".dynprog-input");
 let button = document.querySelector(".Login");
 Login.disabled = true;
