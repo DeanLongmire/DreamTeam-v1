@@ -9,6 +9,7 @@ app.post('/store-data', function(req, res) {
   const name = req.body.name;
 
   // Store the name in your database here
+  console.log(name);
 
   res.status(200).send('Data stored successfully');
 });
