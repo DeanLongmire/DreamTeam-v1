@@ -186,7 +186,7 @@
     "nodemon": "^2.0.21"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon DreamTeam/Back-End/index.js"
   },
   "keywords": [],
   "author": "",
