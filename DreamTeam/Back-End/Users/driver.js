@@ -1,4 +1,4 @@
-const global_users = require("./global_users")
+const global_users = require("./global_users_db")
 const readline = require('readline');
 
 const rl = readline.createInterface({
