@@ -23,16 +23,22 @@ still moves on even if fields aren't actually filled*/
 
 /*New way to login, still have to work out bug of letting it
  go through with no pw*/
-let input = document.querySelector(".dynprog-input");
+ /*
+let email = document.querySelector("email");
+let password = document.querySelector("password")
 let button = document.querySelector(".Login");
 Login.disabled = true;
 input.addEventListener("change", stateHandle);
 
 function stateHandle(){
-  if(document.querySelector(".dynprog-input").value === ""){
+  if(document.querySelector("email").value === ""){
+    Login.disabled = true;
+  }
+  if(document.querySelector("password").value === ""){
     Login.disabled = true;
   }
   else{
     Login.disabled = false;
   }
 }
+*/
