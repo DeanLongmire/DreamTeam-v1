@@ -23,9 +23,6 @@ let create_button = document.getElementById("create_league_button");
 
 let saveLeague = () => {
     //Get data from each element
-    var sport = document.getElementById("sport");
-    var leagueName = document.getElementById("league_name");
-
     const sportRadios = document.getElementsByName("sport");
     let selectedSport;
 
@@ -33,13 +30,16 @@ let saveLeague = () => {
       if (sport.checked) {
       selectedSport = sport.value;
       break;
+      }
     }
-}
+
+    const leagueInput = document.getElementById("leageue_input");
+    const leagueName = leagueInput.value;
+    console.log(leagueName);
 
     //This variable stores all the data
     //let data = "\r Sport: " + sport.value + " \r \n" 
     //    + "League Name: " + leagueName.value;
-    console.log(selectedSport);
 }
 
 create_button.addEventListener("click", saveLeague);
