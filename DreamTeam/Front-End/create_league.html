@@ -34,13 +34,14 @@
 
         <div class="dynprog-panel dynprog-padding-12"></div>
 
+        
         <label for="league_name">Choose your League Name</label>
-        <input class="dynprog-input" type="text" name="league_name" required>
+        <input class="dynprog-input dynprog-border" type="text" name="league_name" required>
     
     </form>
 
     <div class="dynprog-center dynprog-padding-16">
-            <button id="create_league"  class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create my league now</button>
+            <button id="create_league" onclick="saveLeague()" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create my league now</button>
     </div>
 
 <!--This is the footer!-->
@@ -50,5 +51,5 @@
     </div>
 </footer>
 
-    <!--<script src="create_league.js"></script>!-->
+    <script src="create_league.js"></script>
 </html>
