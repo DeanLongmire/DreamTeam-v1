@@ -27,7 +27,7 @@
     //This variable stores all the data
     let data = "\r Sport: " + sport.value + " \r \n" 
         + "League Name: " + leagueName.value;
-
+    console.log(data);
  }
 
 
