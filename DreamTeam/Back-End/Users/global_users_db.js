@@ -5,7 +5,7 @@ class users_dbmanager{
     constructor(db, sql, data){}
 
     open(){
-        this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
+        this.db = new sqlite3.Database('C:/Users/deanl/Desktop/GitHub Repositories/COSC 340/DynProg/DreamTeam/Back-End/database.db', sqlite3.OPEN_READWRITE, (err) => {
             if (err){
                 return console.error(err.message)
             }
@@ -26,21 +26,13 @@ class users_dbmanager{
         })
     }
 
-    insert(un, email, password, fn, ln, bio, pos, pp){
+    insert(id, un, email, password, fn, ln, bio, pos, pp, callback){
         this.db.serialize(() => {
-            this.db.get('SELECT * FROM Users ORDER BY ID DESC LIMIT 1', (err, row) => {
-                if(err)
-                {
-                  console.error(err.message);
-                }
-                else
-                {
-                    this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
-                    this.db.run(this.sql, [row.ID+1, un, email, password, fn, ln, bio, pos, pp], (err)=>{
-                        if(err){return console.log(err.message)}
-                    })
-                }
-            })
+          this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
+          this.db.run(this.sql, [id, un, email, password, fn, ln, bio, pos, pp], (err)=>{
+            if(err){return console.log(err.message)}
+          })
+          callback()
         })
     }
 
