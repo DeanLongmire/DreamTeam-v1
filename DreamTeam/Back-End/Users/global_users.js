@@ -5,6 +5,8 @@ const { v4: uuidv4 } = require('uuid');
 
 const router = express.Router();
 
+router.use(bodyParser.json());
+
 router.get('/', (req, res) => {
   res.send("Test");
 });
