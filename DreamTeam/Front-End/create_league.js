@@ -32,7 +32,7 @@
 
 
 /*This is starting to set up how to send the data back to 
-the nodejs server using fetch and catch in order to do this*/
+the nodejs server using fetch and catch in order to do this
  fetch(url, {
     method: 'POST',
     headers: {
@@ -42,4 +42,4 @@ the nodejs server using fetch and catch in order to do this*/
  })
  .then(response => response.json())
  .then(data => console.log(data))
- .catch(error => console.error(error));
+ .catch(error => console.error(error));*/
