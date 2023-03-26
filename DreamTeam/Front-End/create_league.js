@@ -35,9 +35,14 @@ let saveLeague = () => {
 
     const leagueInput = document.getElementById("leageue_input");
     const leagueName = leagueInput.value;
-    console.log(leagueName);
+    //console.log(leagueName);
 
-    let data = selectedSport + leagueName; 
+    const data = { 
+      sport: selectedSport, 
+      leagueName: leagueName 
+    };
+
+    console.log(data);
 
     fetch(url, {
         method: 'POST',
@@ -46,8 +51,9 @@ let saveLeague = () => {
         },
         body: JSON.stringify(data)
      })
-     .then(response => response.json())
-     .then(data => console.log(data))
+     //.then(response => console.log(response))
+     //.then(data => console.log(data))
+     .then(console.log("Responded"))
      .catch(error => console.error(error));
     
 }
