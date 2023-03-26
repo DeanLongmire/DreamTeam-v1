@@ -30,6 +30,8 @@
     console.log(data);
  }
 
+ create_league.addEventListener("click", saveLeague);
+
 
 /*This is starting to set up how to send the data back to 
 the nodejs server using fetch and catch in order to do this
