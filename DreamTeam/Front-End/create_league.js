@@ -17,22 +17,32 @@
  /*Take the sport that is selected & the league name and 
  put them in a json object*/
 
- const url = 'http://localhost:5000/leagues' ;
+const url = 'http://localhost:5000/leagues' ;
 
-let create_button = document.getElementById("create_league");
+let create_button = document.getElementById("create_league_button");
 
- let saveLeague = () => {
+let saveLeague = () => {
     //Get data from each element
     var sport = document.getElementById("sport");
     var leagueName = document.getElementById("league_name");
 
-    //This variable stores all the data
-    let data = "\r Sport: " + sport.value + " \r \n" 
-        + "League Name: " + leagueName.value;
-    console.log(data);
- }
+    const sportRadios = document.getElementsByName("sport");
+    let selectedSport;
 
- create_button.addEventListener("click", saveLeague);
+    for (const sport of sportRadios) {
+      if (sport.checked) {
+      selectedSport = sport.value;
+      break;
+    }
+}
+
+    //This variable stores all the data
+    //let data = "\r Sport: " + sport.value + " \r \n" 
+    //    + "League Name: " + leagueName.value;
+    console.log(selectedSport);
+}
+
+create_button.addEventListener("click", saveLeague);
 
 
 /*This is starting to set up how to send the data back to 
