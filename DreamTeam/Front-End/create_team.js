@@ -30,6 +30,7 @@ let saveTeam = () => {
 
     console.log(data);
 
+    //This is the fetch and catch stuff to send it back to the server
     fetch(url, {
         method: 'POST',
         headers: {
