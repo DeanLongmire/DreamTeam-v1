@@ -37,9 +37,19 @@ let saveLeague = () => {
     const leagueName = leagueInput.value;
     console.log(leagueName);
 
-    //This variable stores all the data
-    //let data = "\r Sport: " + sport.value + " \r \n" 
-    //    + "League Name: " + leagueName.value;
+    let data = selectedSport + leagueName; 
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+     })
+     .then(response => response.json())
+     .then(data => console.log(data))
+     .catch(error => console.error(error));
+    
 }
 
 create_button.addEventListener("click", saveLeague);
