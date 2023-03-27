@@ -1,57 +1,75 @@
+//First section is just for form checking
+var form = document.getElementById("regform");
+var registerButton = document.getElementById("create_account");
+var passwordInput = document.getElementById("psw");
+var confirmPasswordInput = document.getElementById("psw-repeat");
 
-/*
-document.getElementById("create_account").onclick = function() {
-let allAreFilled = true;
-document.getElementById("regform").querySelectorAll("[required]").forEach(function(i) {
-if (!allAreFilled) return;
-if (i.type === "radio") {
-let radioValueCheck = false;
-document.getElementById("regform").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
-if (r.checked) radioValueCheck = true;
-})
-  allAreFilled = radioValueCheck;
-  return;
+function checkFormInputs() {
+  var inputs = form.querySelectorAll("input");
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].value === "") {
+      return false; // Input is empty, return false
+    }
+  }
+  if (passwordInput.value !== confirmPasswordInput.value) {
+    return false; // Passwords do not match, return false
+  }
+  return true; // All inputs are filled, return true
 }
-if (!i.value) { allAreFilled = false;  return; }
-})
-if (!allAreFilled) {
-alert('Fill all the fields');
+
+function handleButtonState() {
+  if (checkFormInputs()) {
+    registerButton.removeAttribute("disabled");
+  } else {
+    registerButton.setAttribute("disabled", "disabled");
+  }
 }
-};
-*/
 
-//attempting to print the data
-const form = document.querySelector('#myForm');
-
-// Get the input values from the form
-const name = form.querySelector('#username').value;
-const email = form.querySelector('#email').value;
-const password = form.querySelector('#password').value;
-const repassword = form.querySelector('#repassword').value;
-
-// Create the JSON object
-const data = {
-  username: username,
-  email: email,
-  password: password,
-  repassword: repassword
-};
-
-// Convert the JSON object to a string
-const jsonString = JSON.stringify(data);
-
-// Print the JSON string
-console.log(jsonString);
-
-// Parse the JSON string back into an object
-const jsonObject = JSON.parse(jsonString);
-
-// Print the JSON object
-console.log(jsonObject);
+// Add event listeners to form inputs
+var inputs = form.querySelectorAll("input");
+for (var i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener("input", handleButtonState);
+}
 
 
+//this section is for passing information to the back-end
 
+const url = 'http://localhost:5000/users';
 
+let create_button = document.getElementById("");
+let saveUser = () => {
+  const nameInput = document.getElementById("");
+  const username = nameInput.value;
 
+  const emailInput = document.getElementsId("");
+  const email = emailInput.value;
+  
+  const passwordInput = document.getElementById("");
+  const password = passwordInput.value;
 
+  console.log(username);
+  console.log(email);
+  console.log(password);
+  console.log(`User: ${username} has email: ${email} and password ${password}`);
 
+  const data = { 
+    Name: username,
+    email: email,
+    password: password
+  };
+  console.log(data);
+
+    //This is the fetch and catch stuff to send it back to the server
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+     })
+     .then(console.log("Responded"))
+     .catch(error => console.error(error));
+    
+}
+
+create_button.addEventListener("click", saveUser);
