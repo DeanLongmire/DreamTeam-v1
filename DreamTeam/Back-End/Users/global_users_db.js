@@ -6,7 +6,7 @@ class users_dbmanager{
 
     open(path){
         console.log("opening " + path);
-        this.db = new sqlite3.Database('C:/Users/deanl/Desktop/GitHub Repositories/COSC 340/DynProg/DreamTeam/Back-End/database.db', sqlite3.OPEN_READWRITE, (err) => {
+        this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
             if (err){
                 return console.error(err.message)
             }

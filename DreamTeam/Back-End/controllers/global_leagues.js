@@ -4,11 +4,11 @@ const { v4: uuidv4 } = require('uuid');
 
 let db = new global_leagues.league_dbmanager;
 
-const pwd = process.cwd();
-let db_path = pwd.slice(0, -12);
-db_path = db_path +"\\database.db";
+/*const pwd = process.cwd();
+let db_path = pwd.slice(0,-12);
+db_path = db_path + "\\database.db";
 db_path = db_path.replace(/\\/g,"/");
-console.log(db_path);
+console.log(db_path);*/
 
 const get_league = (req, res) => {
     const { id } = req.params;

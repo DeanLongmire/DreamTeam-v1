@@ -10,7 +10,7 @@ router.use(bodyParser.json());
 router.get('/', show_all);
 
 //Create a User
-router.post('/', create_user)
+router.post('/', create_user);
 
 //Get a User's Info
 router.get('/:id', get_user);
