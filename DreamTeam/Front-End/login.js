@@ -57,7 +57,7 @@ const loginUser = () => {
 email.addEventListener("change", loginUser);
 password.addEventListener("change", loginUser);
 */
-
+/*
 let login_button = document.getElementById("Login_button");
 login_button.disabled = true;
 
@@ -75,6 +75,58 @@ let login = () => {
   else{
     login_button.disabled = false;
   }
+}*/
+/*
+const form = document.querySelector("sign-in");
+let loginBT = document.getElementById("login_button");
+loginBT.disabled = true;
+
+form.addEventListener("login_button", function(event){
+  event.preventDefault();
+
+  const email = form.elements["email"].value;
+  const password = form.elements["password"].value;
+
+  const userData = {
+    email: email,
+    password: password
+  };
+
+  console.log(userData);
+
+  form.reset();
+
+  loginBT.disabeled = true;
+});
+
+form.elements["email"].addEventListener("input", toggleLoginButton);
+form.elements["password"].addEventListener("input", toggleLoginButton);
+
+function toggleLoginButton(){
+  if(form.elements["email"].value.trim() !== "" && form.elements["password"].value.trim() !== ""){
+    loginBT.disabled = false;
+  }
+  else{
+    loginBT.disabled = true;
+  }
+}*/
+
+const emailField = document.querySelector('input[name="email"]');
+const passwordField = document.querySelector('input[name="password"]');
+const loginBT = document.querySelector('#login_button');
+
+loginBT.disabled = true;
+
+emailField.addEventListener('input', toggleLoginBt);
+passwordField.addEventListener('input', toggleLoginBt);
+
+function toggleLoginBt() {
+  if(emailField.value.trim() !== '' && passwordField.value.trim() !== ''){
+    loginBT.disabled = false;
+  }
+  else{
+    loginBT.disabled = true;
+  }
 }
 
-const form = document.querySelector('#sign-in');
+
