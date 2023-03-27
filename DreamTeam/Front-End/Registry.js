@@ -4,6 +4,8 @@ var registerButton = document.getElementById("create_account");
 var passwordInput = document.getElementById("psw");
 var confirmPasswordInput = document.getElementById("psw-repeat");
 
+registerButton.setAttribute("disabled", "disabled");
+
 function checkFormInputs() {
   var inputs = form.querySelectorAll("input");
   for (var i = 0; i < inputs.length; i++) {
@@ -36,15 +38,15 @@ for (var i = 0; i < inputs.length; i++) {
 
 const url = 'http://localhost:5000/users';
 
-let create_button = document.getElementById("");
+let create_button = document.getElementById("create_account");
 let saveUser = () => {
-  const nameInput = document.getElementById("");
+  const nameInput = document.getElementById("name");
   const username = nameInput.value;
 
-  const emailInput = document.getElementsId("");
+  const emailInput = document.getElementsId("email");
   const email = emailInput.value;
   
-  const passwordInput = document.getElementById("");
+  const passwordInput = document.getElementById("psw");
   const password = passwordInput.value;
 
   console.log(username);
