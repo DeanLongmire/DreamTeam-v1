@@ -85,9 +85,4 @@ class team_dbmanager{
     };
 }
 
-let db = new team_dbmanager
-
-db.open()
-db.create()
-
 module.exports.team_dbmanager = team_dbmanager;
