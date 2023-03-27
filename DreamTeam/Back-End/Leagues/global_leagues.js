@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { get_league, show_all, create_league, update_name, update_sport } = require('../controllers/global_leagues.js');
 
 const router = express.Router();
 
