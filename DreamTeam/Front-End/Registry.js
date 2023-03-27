@@ -55,7 +55,7 @@ let saveUser = () => {
   console.log(`User: ${username} has email: ${email} and password ${password}`);
 
   const data = { 
-    Name: username,
+    username: username,
     email: email,
     password: password
   };
