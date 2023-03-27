@@ -172,11 +172,12 @@ class users_dbmanager{
         });
     }
 
-    update_user_name(new_user_name, ID){
+    update_user_name(new_user_name, ID, callback){
         this.sql = "UPDATE Users SET user_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_user_name, ID], (err)=>{
             if(err){return console.log(err.message)}
         })
+        callback();
     }
 
     update_first_name(new_fn, ID){
@@ -193,11 +194,12 @@ class users_dbmanager{
         })
     }
 
-    update_email(new_email, ID){
+    update_email(new_email, ID, callback){
         this.sql = "UPDATE Users SET email = ? WHERE ID = ?"
         this.db.run(this.sql, [new_email, ID], (err)=>{
             if(err){return console.log(err.message)}
         })
+        callback();
     }
 
     update_pos(new_pos, ID){

@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 
 let db = new global_users.users_dbmanager;
 
-const getUser = (req, res) => {
+const get_user = (req, res) => {
     const { id } = req.params;
 
     driver.get_user_name(ID, (us) => {
@@ -15,19 +15,48 @@ const getUser = (req, res) => {
     res.send();
 }
 
-const createUser = (req, res) => {
+const create_user = (req, res) => {
     const user = req.body;
     const userID = uuidv4();
   
-    const userWithId = { ... user, id: userID}
+    //adds unique ID to the user
+    const uwid = { ... user, id: userID}
 
-    console.log(userWithId);
+    console.log(uwid);
 
     db.open();
-    db.insert(userWithId.id,null,null,null,userWithId.firstName,userWithId.lastName,null,null,null, () => {
+    db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
         db.close();
-        res.send(`User with the name ${userWithId.firstName} added to the database`);
+        res.send(`User with the name ${uwid.firstName} added to the database`);
     });
 }
 
-module.exports = { getUser, createUser }
+const update_username = (req, res) => {
+    const { id } = req.params;
+    const new_username = req.body.newUsername;
+
+    console.log(new_username + " " + id);
+
+    db.open();
+    db.update_user_name(new_username,id, () => {
+        db.close();
+    });
+
+    res.send('Username updated');
+}
+
+const update_email = (req, res) => {
+    const { id } = req.params;
+    const new_email = req.body.newEmail;
+
+    console.log(new_email + " " + id);
+
+    db.open();
+    db.update_email(new_email,id, () => {
+        db.close();
+    });
+
+    res.send('Email updated');
+}
+
+module.exports = { get_user, create_user, update_username, update_email }
