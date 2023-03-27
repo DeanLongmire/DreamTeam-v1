@@ -20,6 +20,9 @@
 const url = 'http://localhost:5000/leagues' ;
 
 let create_button = document.getElementById("create_league_button");
+//const create_button = document.getElementById("create_league_button");
+
+//create_button.disabled = true;
 
 let saveLeague = () => {
     //Get data from each element
@@ -41,7 +44,15 @@ let saveLeague = () => {
       sport: selectedSport, 
       leagueName: leagueName 
     };
-
+    
+    /*
+    if(leagueName !== ''){
+        create_button.disabled = false;
+    }
+    else{
+        create_button.disabled = true;
+    }
+*/
     console.log(data);
 
     fetch(url, {

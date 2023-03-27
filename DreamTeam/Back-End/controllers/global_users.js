@@ -18,9 +18,11 @@ const get_user = (req, res) => {
 
 const show_all = (req, res) => {
     db.open();
-    db.display_all( () => {
+    const output = (db.display_all( () => {
         db.close();
-    });
+    }));
+
+    res.send(output);
 }
 
 const create_user = (req, res) => {
