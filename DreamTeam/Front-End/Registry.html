@@ -52,29 +52,6 @@
         <div class="dynprog-hover-text-orange">
             <p>Already have an account? <a href="login.html">Sign in</a>.</p>
         </div> 
-
-
-   <script>
-   
-    document.getElementById("create_account").onclick = function() {
-    let allAreFilled = true;
-    document.getElementById("regform").querySelectorAll("[required]").forEach(function(i) {
-    if (!allAreFilled) return;
-    if (i.type === "radio") {
-    let radioValueCheck = false;
-    document.getElementById("regform").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
-    if (r.checked) radioValueCheck = true;
-    })
-      allAreFilled = radioValueCheck;
-      return;
-    }
-    if (!i.value) { allAreFilled = false;  return; }
-  })
-  if (!allAreFilled) {
-    alert('Fill all the fields');
-  }
-};
-   
-   </script>
+<script src="Registry.js"></script>
 
 </html>

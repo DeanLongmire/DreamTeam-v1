@@ -9,6 +9,7 @@
     <div class = "dynprog-navbar">
         <a href="Registry.html"> <button class ="dynprog-button dynprog-text-black dynprog-right">Create Account</button></a>
         <a href="login.html">    <button class ="dynprog-button dynprog-text-black dynprog-right">Login</button></a>
+        <a href="view_teams.html">    <button class ="dynprog-button dynprog-text-black dynprog-right">Teams</button></a>
         <div style = "padding-left: 15px; font-size: 25px; font-family: Fantasy">
         <p>DreamTeam</p>
         </div>
@@ -64,9 +65,33 @@
     <span class="dynprog-dot" onclick="currentSlide(3)"></span> 
   </div>
   
-  <div style = "padding-bottom: 1500px;"></div>
+  <div style = "padding-bottom: 1000px;"></div>
 
 
+  <div class = "dynprog-foot">
+    <div class = "dynprog-foot-container">
+      <div class = "dynprog-profile-small">
+        <img src = "Chad.jpg" alt="Profile Picture">
+        <p style = "font-family: Fantasy;"> Finli Hill </p>
+      </div>
+      <div class = "dynprog-profile-small">
+        <img src = "Chad.jpg" alt="Profile Picture">
+        <p style="font-family: Fantasy;">Logan Bowers</p>
+      </div>
+      <div class = "dynprog-profile-small">
+        <img src = "Chad.jpg" alt="Profile Picture">
+        <p style="font-family: Fantasy;"> Dean Longmire </p>
+      </div>
+      <div class = "dynprog-profile-small">
+        <img src = "Chad.jpg" alt="Profile Picture">
+        <p style ="font-family: Fantasy;"> Ryan Carnes </p>
+      </div>
+      <div class = "dynprog-profile-small">
+        <img src = "Chad Girl.jpg" alt="Profile Picture">
+        <p style = "font-family: Fantasy;"> Juliana Brussard </p>
+      </div>
+    </div>
+  </div>
 <!--heres the code that works the slideshow---->
 
 <script> 
@@ -110,5 +135,20 @@ function scrollFunction() {
   }
 }
 </script>
+
+<script>
+window.addEventListener('scroll', () => {
+      const footer = document.querySelector('.dynprog');
+      const containerHeight = document.querySelector('.container').offsetHeight;
+      const currentScroll = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      if (currentScroll + windowHeight >= containerHeight) {
+        footer.classList.add('show');
+      } else {
+        footer.classList.remove('show');
+      }
+    });
+</script>
+
 </body>
 </html>
