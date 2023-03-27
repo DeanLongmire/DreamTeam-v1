@@ -43,7 +43,7 @@ let saveUser = () => {
   const nameInput = document.getElementById("name");
   const username = nameInput.value;
 
-  const emailInput = document.getElementsId("email");
+  const emailInput = document.getElementsById("email");
   const email = emailInput.value;
   
   const passwordInput = document.getElementById("psw");
