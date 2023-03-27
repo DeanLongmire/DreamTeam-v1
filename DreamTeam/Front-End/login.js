@@ -42,3 +42,39 @@ function stateHandle(){
   }
 }
 */
+
+/*const login=document.getElementById("Login_button");
+
+const email=document.getElementById("email");
+const password=document.getElementById("password");
+
+const loginUser = () => {
+  login.disable = !(
+    email.value && password.value !== ""
+  )
+}
+
+email.addEventListener("change", loginUser);
+password.addEventListener("change", loginUser);
+*/
+
+let login_button = document.getElementById("Login_button");
+login_button.disabled = true;
+
+let login = () => {
+  if(email.value === ""){
+    alert("Please fil out the email field.");
+    const email = document.getElementById("email");
+    login_button.disabled = true;
+  }
+  else if(password.value === ""){
+    alert("Please enter your password.");
+    const password = document.getElementById("password");
+    login_button.disabled = true;
+  }
+  else{
+    login_button.disabled = false;
+  }
+}
+
+const form = document.querySelector('#sign-in');
