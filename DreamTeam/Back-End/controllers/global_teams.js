@@ -7,25 +7,40 @@ const { v4: uuidv4 } = require('uuid');
 
 let db = new global_teams.team_dbmanager;
 
+
+const get_path = (callback) => {
+    const pwd = process.cwd();
+    let db_path = pwd;
+    db_path = db_path + "\\DreamTeam\\Back-End\\database.db";
+    db_path = db_path.replace(/\\/g,"/");
+
+    callback(db_path);
+}
+
 // Get team information
 const get_team = (req, res) => {
     const { id } = req.params;
 
-    db.open();
-    db.get_all(id, (name, ID, P_ID, sport, num_players) => {
-        console.log(name + " " + ID + " " + P_ID + " " + sport + " " + num_players)
-        db.close();
+    get_path( (path) => {
+        db.open(path);
+        db.get_all(id, (name, ID, P_ID, sport, num_players) => {
+            console.log(name + " " + ID + " " + P_ID + " " + sport + " " + num_players)
+            db.close();
+        });
     });
-
     res.send("Got a Teams's info");
 }
 
 // Diplay all teams in DB
 const show_all = (req, res) => {
-    db.open();
-    db.display_all( () => {
-        db.close();
+    get_path( (path) => {
+        db.open(path);
+        db.display_all( () => {
+            db.close();
+        });
     });
+
+    res.send("Read all teams");
 }
 
 // create a team
@@ -38,7 +53,7 @@ const create_team = (req, res) => {
 
     console.log(teamWid);
 
-    db.open();
+    db.open(db_path);
     db.insert(teamWid.name, teamWid.ID, teamWid.P_ID, teamWid.sport, teamWid.num_players,() =>{
         db.close();
         res.send(`Team with the name ${uwid.name} added to the Teams database`);
@@ -52,7 +67,7 @@ const update_team_name = (req, res) => {
 
     console.log(new_name + " " + id);
 
-    db.open();
+    db.open(db_path);
     db.update_name(new_name, id.name, () => {
         db.close();
     });
@@ -68,7 +83,7 @@ const update_team_sport = (req, res) => {
 
     console.log(new_sport + " " + id);
 
-    db.open();
+    db.open(db_path);
     db.update_sport(new_sport, id.sport, () => {
         db.close();
     });
@@ -82,13 +97,11 @@ const updatePlayerCount = (req, res) => {
     console.log(`Team with id: ${id} had ${id.num_players - new_num_players}`);
     console.log(`Team with id: ${id} NOW has new player count of ${new_num_players}`);
 
-    db.open();
+    db.open(db_path);
     db.update_num_players(id.name, newPcount, () => {
         db.close();
     });
     
 }
-
-
 
 module.exports = { get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount }

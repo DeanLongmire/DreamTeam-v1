@@ -144,6 +144,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .dynprog-margin{margin:16px!important}.dynprog-margin-top{margin-top:16px!important}.dynprog-margin-bottom{margin-bottom:16px!important}.dynprog-margin-more{margin:32px!important}
 .dynprog-margin-left{margin-left:30px!important}.dynprog-margin-right{margin-right:16px!important}
 .dynprog-padding-small{padding:4px 8px!important}.dynprog-padding{padding:8px 16px!important}.dynprog-padding-large{padding:12px 24px!important}
+.dynprog-padding-12{padding-top:6px!important;padding-bottom:6px!important}
 .dynprog-padding-16{padding-top:16px!important;padding-bottom:16px!important}.dynprog-padding-24{padding-top:24px!important;padding-bottom:24px!important}
 .dynprog-padding-32{padding-top:32px!important;padding-bottom:32px!important}.dynprog-padding-48{padding-top:48px!important;padding-bottom:48px!important}
 .dynprog-padding-64{padding-top:64px!important;padding-bottom:64px!important}
@@ -167,9 +168,9 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .dynprog-text-black,.dynprog-hover-text-black:hover{color:#000!important}
 .dynprog-text-white,.dynprog-hover-text-white:hover{color:#fff!important}
 .dynprog-text-gray,.dynprog-hover-text-grey:hover,.dynprog-text-gray,.dynprog-hover-text-gray:hover{color:#58595B!important}
-/* Will see if need these colors
+ Will see if need these colors
 .dynprog-text-light-grey,.dynprog-hover-text-light-grey:hover,.dynprog-text-light-gray,.dynprog-hover-text-light-gray:hover{color:#f1f1f1!important}
-.dynprog-text-dark-grey,.dynprog-hover-text-dark-grey:hover,.dynprog-text-dark-gray,.dynprog-hover-text-dark-gray:hover{color:#3a3a3a!important}
+/*.dynprog-text-dark-grey,.dynprog-hover-text-dark-grey:hover,.dynprog-text-dark-gray,.dynprog-hover-text-dark-gray:hover{color:#3a3a3a!important}
 */
 .dynprog-text-orange,.dynprog-hover-text-orange:hover{color:#ff8200!important}
 
@@ -204,6 +205,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 /*Making a better box for forms*/
 .dynprog-better-box{padding:25px; background-color: #d3d3d3;}
+.dynprog-better-box2{padding:25px; background-color: #58595B;}
 
 /*Custom DreamTeam Font*/
 h7{font-size: 32px; font-family: Fantasy;}
@@ -223,3 +225,10 @@ h7{font-size: 32px; font-family: Fantasy;}
 .dynprog-vt-dropdown:hover .dynprog-vt-dropdown-content {display: block;}
 .dynprog-vt-dropdown-content a {display: block;color: black;padding: 5px;text-decoration: none;cursor: pointer;}
 .dynprog-vt-dropdown-content a:hover {background-color: #f2f2f2;}
+
+/*Background gradients*/
+.dynprog-gradient-background-orange{background: rgb(255,130,0);
+    background: linear-gradient(90deg, rgba(255,130,0,1) 35%, rgba(255,213,128,1) 100%);}
+
+.dynprog-gradient-background-gray{background: rgb(88,89,91);
+    background: linear-gradient(90deg, rgba(88,89,91,1) 35%, rgba(211,211,211,1) 100%);}
