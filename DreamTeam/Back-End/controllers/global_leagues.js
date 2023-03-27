@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 
 let db = new global_leagues.league_dbmanager;
 
-const pwd = process.cwd();
+/*const pwd = process.cwd();
 let db_path = pwd.slice(0, -12);
 db_path = db_path +"\\database.db";
 db_path = db_path.replace(/\\/g,"/");
@@ -13,7 +13,7 @@ console.log(db_path);*/
 const get_league = (req, res) => {
     const { id } = req.params;
 
-    db.open(db_path);
+    db.open();
     db.get_all(id, () => {
         console.log();
         db.close();
@@ -23,7 +23,7 @@ const get_league = (req, res) => {
 }
 
 const show_all = (req, res) => {
-    db.open(db_path);
+    db.open();
     db.display_all( () => {
         db.close();
     });
@@ -37,7 +37,7 @@ const create_league = (req, res) => {
 
     console.log(uwid);
 
-    db.open(db_path);
+    db.open();
     db.insert(uwid.name,uwid.id,uwid.sport, () =>{
         db.close();
         res.send('League with the name ${uwid.name} added to the database');
