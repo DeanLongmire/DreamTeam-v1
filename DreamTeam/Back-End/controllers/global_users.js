@@ -41,18 +41,20 @@ const show_all = (req, res) => {
 }
 
 const create_user = (req, res) => {
-    const user = req.body;
-    const userID = uuidv4();
+    get_path( (path) => {
+        const user = req.body;
+        const userID = uuidv4();
   
-    //adds unique ID to the user
-    const uwid = { ... user, id: userID}
+        //adds unique ID to the user
+        const uwid = { ... user, id: userID}
 
-    console.log(uwid);
+        console.log(uwid);
 
-    db.open(db_path);
-    db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
-        db.close();
-        res.send(`User with the name ${uwid.firstName} added to the database`);
+        db.open(path);
+        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
+            db.close();
+            res.send(`User with the name ${uwid.firstName} added to the database`);
+        });
     });
 }
 
