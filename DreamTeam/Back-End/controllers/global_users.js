@@ -81,4 +81,18 @@ const update_bio = (req, res) => {
     res.send('Bio updated');
 }
 
-module.exports = { get_user, show_all, create_user, update_username, update_email, update_bio }
+const update_lastname = (req, res) => {
+    const { id } = req.params;
+    const new_lastname = req.body.newLastname;
+
+    console.log(new_lastname + " " + id);
+
+    db.open();
+    db.update_last_name(new_lastname,id, () => {
+        db.close();
+    });
+
+    res.send('Lastname updated');
+}
+
+module.exports = { get_user, show_all, create_user, update_lastname, update_username, update_email, update_bio }

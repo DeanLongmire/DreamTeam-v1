@@ -202,11 +202,12 @@ class users_dbmanager{
         })
     }
 
-    update_last_name(new_ln, ID){
+    update_last_name(new_ln, ID, callback){
         this.sql = "UPDATE Users SET last_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_ln, ID], (err)=>{
             if(err){return console.log(err.message)}
         })
+        callback();
     }
 
     update_email(new_email, ID, callback){
