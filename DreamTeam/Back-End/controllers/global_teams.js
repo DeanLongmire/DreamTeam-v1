@@ -48,7 +48,7 @@ const create_team = (req, res) => {
 // updating only name for a team
 const update_team_name = (req, res) => {
     const { id } = req.params;
-    const newTeamName = req.body.new_name;
+    const new_name = req.body.new_name;
 
     console.log(new_name + " " + id);
 
@@ -64,12 +64,12 @@ const update_team_name = (req, res) => {
 // updating only the sport that the team plays\
 const update_team_sport = (req, res) => {
     const { id } = req.params;
-    const newTeamSport = req.body.new_sport;
+    const new_sport = req.body.new_sport;
 
-    console.log(newTeamSport + " " + id);
+    console.log(new_sport + " " + id);
 
     db.open();
-    db.update_sport(newTeamSport, id.sport, () => {
+    db.update_sport(new_sport, id.sport, () => {
         db.close();
     });
 }
@@ -77,9 +77,10 @@ const update_team_sport = (req, res) => {
 // Updating amount of players on a given team in this function
 const updatePlayerCount = (req, res) => {
     const { id } = req.params;
-    const newPcount = req.body.new_pCount;
+    const new_num_players = req.body.new_num_players;
 
-    console.log(`Team with id: ${id} has new player count of ${newPcount}`);
+    console.log(`Team with id: ${id} had ${id.num_players - new_num_players}`);
+    console.log(`Team with id: ${id} NOW has new player count of ${new_num_players}`);
 
     db.open();
     db.update_num_players(id.name, newPcount, () => {
@@ -90,4 +91,4 @@ const updatePlayerCount = (req, res) => {
 
 
 
-module.exports = { get_team, show_all, create_team, update_team }
+module.exports = { get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount }
