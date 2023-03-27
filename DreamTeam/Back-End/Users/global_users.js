@@ -9,11 +9,11 @@ router.use(bodyParser.json());
 //list all Users to the console
 router.get('/', show_all);
 
-//Get a User's Info
-router.get('/:id', get_user);
-
 //Create a User
 router.post('/', create_user)
+
+//Get a User's Info
+router.get('/:id', get_user);
 
 //Update User Info
 router.patch('/update_username/:id', update_username)
