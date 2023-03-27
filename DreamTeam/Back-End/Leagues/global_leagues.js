@@ -6,17 +6,17 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-//list all leagues to console
-router.get('/', show_all);
+router.post('/', (req, res) => {
+    const userData = req.body;
+    console.log(userData); 
 
-//create league
-router.post('/', create_league);
+    // Do something with userData, such as saving it to a database
 
-//get league info
-router.get('/:id'. get_league);
+    res.send('User created');
+  });
 
-//update league info
-router.patch('/update_name/:id', update_name)
-router.patch('/update_name/:id'. update_sport)
+router.get('/', (req, res) => {
+    res.send("Test");
+  });
 
 module.exports = router;
