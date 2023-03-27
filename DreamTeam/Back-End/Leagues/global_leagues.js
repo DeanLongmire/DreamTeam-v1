@@ -13,10 +13,10 @@ router.get('/', show_all);
 router.post('/', create_league);
 
 //get league info
-router.get('/:id'. get_league);
+router.get('/:id', get_league);
 
 //update league info
 router.patch('/update_name/:id', update_name)
-router.patch('/update_name/:id'. update_sport)
+router.patch('/update_name/:id', update_sport)
 
 module.exports = router;
