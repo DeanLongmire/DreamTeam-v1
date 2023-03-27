@@ -4,8 +4,8 @@
 
 const global_teams = require("../Teams/global_teams_db.js");
 
-let teamDb = new global_teams.team_dbmanager;
+let db = new global_teams.team_dbmanager;
 
-const getTeam = (req, res) => {
-    
+const get_team = (req, res) => {
+
 }

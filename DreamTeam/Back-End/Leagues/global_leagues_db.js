@@ -25,46 +25,57 @@ class league_dbmanager{
             console.log('Dropped league table')
         });
     }
-    insert(name, ID, sport){
-        this.sql = 'INSERT INTO Leagues (name, ID, sport) VALUES(?,?,?)';
-        this.db.run(this.sql, [name, ID, sport], (err)=>{
-            if(err) {return console.error(err.message);}
-            console.log("New row created in League table");
+    insert(name, ID, sport, callback){
+        this.db.serialize(() => {
+            this.sql = 'INSERT INTO Leagues (name, ID, sport) VALUES(?,?,?)';
+            this.db.run(this.sql, [name, ID, sport], (err)=>{
+                if(err) {return console.error(err.message);}
+                console.log("New row created in League table");
+            });
+            callback();
         });
     }
-    display_all(){
+    display_all(callback){
         this.sql = 'SELECT * FROM Leagues';
         this.db.all(this.sql, [], (err,rows)=>{
-            if(err) {
-                return console.error(err.message);
-            }
+            if(err) {return console.error(err.message);}
+            console.log("");
             rows.forEach((row)=>{
                 console.log(row);
             });
+            console.log("");
+            console.log('End of League Table');
+            callback();
         });
     }
-    update_sport(name, new_sport){
-        this.data = [new_sport, name];
-        this.sql = 'UPDATE Leagues SET sport = ? WHERE name = ?';
-        this.db.run(this.sql, this.data, (err)=>{
+    get_all(ID, callback){
+        this.sql = 'SELECT * FROM Leagues WHERE ID = ?';
+        this.db.get(this.sql, [ID], (err, row) =>{
+            if(err){return console.error(err.message);}
+            if(row){callback(row.name,row.sport);}
+            else{console.log("error");}
+        });
+    }
+    update_sport(new_sport, ID, callback){
+        this.sql = 'UPDATE Leagues SET sport = ? WHERE ID = ?';
+        this.db.run(this.sql, [new_sport, ID], (err)=>{
             if(err){return console.log(err.message);}
-            console.log('Row(s) sport updated');
         });
+        callback();
     }
-    update_name(name, new_name){
-        this.data = [new_name, name];
-        this.sql = 'UPDATE Leagues SET name = ? WHERE name = ?';
-        this.db.run(this.sql, this.data, (err)=>{
+    update_name(new_name, ID, callback){
+        this.sql = 'UPDATE Leagues SET name = ? WHERE ID = ?';
+        this.db.run(this.sql, [new_name, ID], (err)=>{
             if(err){return console.log(err.message);}
             console.log('Row(s) name updated');
         });
+        callback();
     }
-    delete(name){
-        this.data = [name];
-        this.sql = 'DELETE FROM Leagues WHERE name = ?';
-        this.db.run(this.sql, this.data, (err)=>{
+    delete(ID){
+        this.sql = 'DELETE FROM Leagues WHERE ID = ?';
+        this.db.run(this.sql, [ID], (err)=>{
             if(err){return console.log(err.message);}
-            console.log('Row(s) deleted')
+            console.log('League Row(s) deleted')
         });
     }
     close(){
