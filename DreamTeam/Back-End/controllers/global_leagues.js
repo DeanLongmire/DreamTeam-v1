@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 let db = new global_leagues.league_dbmanager;
 
 const pwd = process.cwd();
-let db_path = pwd/SecurityPolicyViolationEvent(0, -12);
+let db_path = pwd.slice(0, -12);
 db_path = db_path +"\\database.db";
 db_path = db_path.replace(/\\/g,"/");
 console.log(db_path);
