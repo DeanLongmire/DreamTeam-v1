@@ -1,10 +1,3 @@
-/*Working with the profile page to edit user information*/
-/*document.querySelector("#Edit").onclick = function(){
-    const h4 = document.querySelector("#Name");
-    h4.innerText = "Dynprog"; 
-
-}*/
-
 /*If user selects log out, a message says they have been logged out
 then they return back to the home page*/
 document.querySelector("#Log-Out").onclick = function(){
@@ -43,3 +36,4 @@ function createLi() {
         }
     }
 });*/
+

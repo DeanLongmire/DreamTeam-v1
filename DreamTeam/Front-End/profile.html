@@ -55,12 +55,14 @@
 <!--Not working<ul id="userInfo">-->
 <section class="dynprog-child-column">
     <div class="dynprog-panel dynprog-center dynprog-white">
-       
-        <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Name">Name: </h4>
-        <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Email">Email: </h4>
-        <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Sports">My Sports</h4>
+       <div id ="edit" contenteditable="true">
+            <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Name">Name: </h4>
+            <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Email">Email: </h4>
+            <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Sports">My Sports</h4>
+        </div>
         <div class="dynprog-panel dynprog-padding-12"></div>
-        <button class="dynprog-button dynprog-gray dynprog-text-white" id="Edit">Edit my information</button>
+        <input type="button" value="save_edits" onclick="saveEdits()"/>
+        <button class="dynprog-button dynprog-gray dynprog-text-white">Edit my information</button>
         
     </div>
 </section>
