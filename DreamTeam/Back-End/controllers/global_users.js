@@ -4,30 +4,40 @@ const { v4: uuidv4 } = require('uuid');
 
 let db = new global_users.users_dbmanager;
 
-/*const pwd = process.cwd();
-let db_path = pwd.slice(0,-12);
-db_path = db_path + "\\database.db";
-db_path = db_path.replace(/\\/g,"/");*/
+const get_path = (callback) => {
+    const pwd = process.cwd();
+    let db_path = pwd;
+    db_path = db_path + "\\DreamTeam\\Back-End\\database.db";
+    db_path = db_path.replace(/\\/g,"/");
+
+    callback(db_path);
+}
 
 const get_user = (req, res) => {
     const { id } = req.params;
 
-    db.open();
-    db.get_all(id, (username,first_name,last_name,email,bio,pos) => {
-        console.log(username + " " + first_name + " " + last_name + " " + email + " " + bio + " " + pos)
-        db.close();
+    get_path( (path) => {
+        db.open(path);
+        db.get_all(id, (username,first_name,last_name,email,bio,pos) => {
+            console.log(username + " " + first_name + " " + last_name + " " + email + " " + bio + " " + pos)
+            db.close();
+        });
     });
 
     res.send("Got a user's info");
 }
 
 const show_all = (req, res) => {
-    db.open();
-    const output = (db.display_all( () => {
-        db.close();
-    }));
 
-    res.send(output);
+    get_path( (path) => {
+        db.open(path);
+        db.display_all( () => {
+            console.log("in controllers: " + path)
+            db.close();
+        });
+    });
+
+    res.send("read all");
 }
 
 const create_user = (req, res) => {
@@ -39,7 +49,7 @@ const create_user = (req, res) => {
 
     console.log(uwid);
 
-    db.open();
+    db.open(db_path);
     db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
         db.close();
         res.send(`User with the name ${uwid.firstName} added to the database`);
@@ -52,7 +62,7 @@ const update_username = (req, res) => {
 
     console.log(new_username + " " + id);
 
-    db.open();
+    db.open(db_path);
     db.update_user_name(new_username,id, () => {
         db.close();
     });
@@ -66,7 +76,7 @@ const update_email = (req, res) => {
 
     console.log(new_email + " " + id);
 
-    db.open();
+    db.open(db_path);
     db.update_email(new_email,id, () => {
         db.close();
     });
@@ -80,7 +90,7 @@ const update_bio = (req, res) => {
 
     console.log(new_bio + " " + id);
 
-    db.open();
+    db.open(db_path);
     db.update_bio(new_bio,id, () => {
         db.close();
     });
@@ -94,7 +104,7 @@ const update_lastname = (req, res) => {
 
     console.log(new_lastname + " " + id);
 
-    db.open();
+    db.open(db_path);
     db.update_last_name(new_lastname,id, () => {
         db.close();
     });
