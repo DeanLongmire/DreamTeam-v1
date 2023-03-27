@@ -32,7 +32,7 @@ class users_dbmanager{
           this.db.run(this.sql, [id, un, email, password, fn, ln, bio, pos, pp], (err)=>{
             if(err){return console.log(err.message)}
           })
-          callback()
+          callback();
         })
     }
 
@@ -172,6 +172,21 @@ class users_dbmanager{
         });
     }
 
+    get_all(ID, callback) {
+      this.sql = 'SELECT * FROM Users WHERE ID = ?';
+      this.db.get(this.sql, [ID], (err, row) => {
+        if(err) {
+          return console.error(err.message);
+        }
+        if(row) {
+          callback(row.user_name,row.first_name,row.last_name,row.email,row.bio,row.pos);
+        } 
+        else {
+          console.log("error");
+          }
+      });
+    }
+
     update_user_name(new_user_name, ID, callback){
         this.sql = "UPDATE Users SET user_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_user_name, ID], (err)=>{
@@ -209,11 +224,12 @@ class users_dbmanager{
         })
     }
 
-    update_bio(new_bio, ID){
+    update_bio(new_bio, ID, callback){
         this.sql = "UPDATE Users SET bio = ? WHERE ID = ?"
         this.db.run(this.sql, [new_bio, ID], (err)=>{
             if(err){return console.log(err.message)}
         })
+        callback();
     }
 
     update_password(new_password, ID){

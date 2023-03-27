@@ -7,12 +7,20 @@ let db = new global_users.users_dbmanager;
 const get_user = (req, res) => {
     const { id } = req.params;
 
-    driver.get_user_name(ID, (us) => {
-        console.log(`User ${ID}'s username is ${us}\n`)
-        callback()
-    })
+    db.open();
+    db.get_all(id, (username,first_name,last_name,email,bio,pos) => {
+        console.log(username + " " + first_name + " " + last_name + " " + email + " " + bio + " " + pos)
+        db.close();
+    });
 
-    res.send();
+    res.send("Got a user's info");
+}
+
+const show_all = (req, res) => {
+    db.open();
+    db.display_all( () => {
+        db.close();
+    });
 }
 
 const create_user = (req, res) => {
@@ -59,4 +67,18 @@ const update_email = (req, res) => {
     res.send('Email updated');
 }
 
-module.exports = { get_user, create_user, update_username, update_email }
+const update_bio = (req, res) => {
+    const { id } = req.params;
+    const new_bio = req.body.newBio;
+
+    console.log(new_bio + " " + id);
+
+    db.open();
+    db.update_bio(new_bio,id, () => {
+        db.close();
+    });
+
+    res.send('Bio updated');
+}
+
+module.exports = { get_user, show_all, create_user, update_username, update_email, update_bio }
