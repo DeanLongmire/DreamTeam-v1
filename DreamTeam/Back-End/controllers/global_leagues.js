@@ -3,30 +3,37 @@ const global_leagues = require("../Leagues/global_leagues_db.js")
 const { v4: uuidv4 } = require('uuid');
 
 let db = new global_leagues.league_dbmanager;
+const get_path = (callback) => {
+    const pwd = process.cwd();
+    let db_path = pwd;
+    db_path = db_path + "\\DreamTeam\\Back-End\\database.db"
+    db_path = db_path.replace(/\\/g, "/");
 
-/*const pwd = process.cwd();
-let db_path = pwd.slice(0, -12);
-db_path = db_path +"\\database.db";
-db_path = db_path.replace(/\\/g,"/");
-console.log(db_path);*/
+    callback(db_path);
+}
 
 const get_league = (req, res) => {
     const { id } = req.params;
 
-    db.open();
-    db.get_all(id, () => {
-        console.log();
-        db.close();
+    get_path( (path) =>{
+        db.open(path);
+        db.get_all(id, (name, sport) => {
+            console.log(name + " " + sport);
+            db.close();
+         });
     });
 
     res.send("Got a league's info");
-}
+};
 
 const show_all = (req, res) => {
-    db.open();
-    db.display_all( () => {
-        db.close();
+    get_path( (path) => {
+        db.open(path);
+        db.display_all( () => {
+            db.close();
+        });
     });
+    res.send("read all");
 }
 
 const create_league = (req, res) => {
@@ -36,11 +43,12 @@ const create_league = (req, res) => {
     const uwid = { ... league, id: leagueID}
 
     console.log(uwid);
-
-    db.open();
-    db.insert(uwid.name,uwid.id,uwid.sport, () =>{
-        db.close();
-        res.send('League with the name ${uwid.name} added to the database');
+    get_path( (path) => {
+      db.open(path);
+      db.insert(uwid.name,uwid.id,uwid.sport, () =>{
+          db.close();
+          res.send('League with the name ${uwid.name} added to the database');
+        });
     });
 }
 
