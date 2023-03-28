@@ -28,9 +28,9 @@ legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}t
 
 /*Begin Dynprog css style with reference to W3 CSS guide - Used what they had but edited to our needs*/
 /*BODY & HEADING SIZES, fonts, etc*/
-html, body{font-family:monospace; font-size:14px; line-height:1.5}html{overflow-x:hidden}
+html, body{font-family:Georgia; font-size:14px; line-height:1.5}html{overflow-x:hidden}
 h1{font-size:36px;}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
-h1,h2,h3,h4,h5,h6{font:monospace; font-weight:400;margin:10px 0} .dynprog-wide{letter-spacing:4px}
+h1,h2,h3,h4,h5,h6{font:Georgia; font-weight:400;margin:10px 0} .dynprog-wide{letter-spacing:4px}
 hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 /*Fun features like images, tables, borders, buttons, etc.*/
