@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { get_user, show_all, create_user, update_lastname, update_username, update_email, update_bio } = require('../controllers/global_users.js');
+const { get_user, show_all, create_user, delete_user, update_lastname, update_username, update_email, update_bio } = require('../controllers/global_users.js');
 
 const router = express.Router();
 
@@ -14,6 +14,7 @@ router.post('/', create_user);
 
 //Get a User's Info
 router.get('/:id', get_user);
+router.delete('/:id', delete_user);
 
 //Update User Info
 router.patch('/update_username/:id', update_username)

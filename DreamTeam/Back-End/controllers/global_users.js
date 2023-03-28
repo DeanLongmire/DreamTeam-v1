@@ -58,6 +58,18 @@ const create_user = (req, res) => {
     });
 }
 
+const delete_user =  (req, res) => {
+    const { id } = req.params;
+
+    get_path( (path) => {
+        db.open(path);
+        db.delete_user(id, () => {
+            db.close();
+            res.send(`User with the id ${id} deleted`);
+        });
+    });
+}
+
 const update_username = (req, res) => {
     const { id } = req.params;
     const new_username = req.body.newUsername;
@@ -114,4 +126,4 @@ const update_lastname = (req, res) => {
     res.send('Lastname updated');
 }
 
-module.exports = { get_user, show_all, create_user, update_lastname, update_username, update_email, update_bio }
+module.exports = { get_user, show_all, create_user, delete_user, update_lastname, update_username, update_email, update_bio }

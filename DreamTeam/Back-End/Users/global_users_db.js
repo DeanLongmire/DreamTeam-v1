@@ -242,12 +242,13 @@ class users_dbmanager{
         })
     }
 
-    delete_user(ID){
+    delete_user(ID, callback){
         this.sql = 'DELETE FROM Users WHERE ID = ?'
 
         this.db.run(this.sql, [ID], (err)=>{
             if(err){return console.log(err.message)}
         })
+        callback();
     }
     
     close(){
