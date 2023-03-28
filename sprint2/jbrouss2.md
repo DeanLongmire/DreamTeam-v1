@@ -10,6 +10,7 @@
 * Set-up Create Players Page - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/23)
 * Profile Page View - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/1)
 * Profile Page User Edit - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/2)
+* View Leagues Page - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/26)
 
 ## What you did not do
 * User can not edit profile page
@@ -27,6 +28,7 @@
 * Set-up Create Players Page - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/23)
 * Profile Page View - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/1)
 * Profile Page User Edit - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/2)
+* Create View Team Page - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/26)
 
 ## Files you worked on
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Dynprog.css
@@ -39,6 +41,7 @@
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/create_league.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/create_league.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/create_player.html
+* utk-cs340-spring23/Dynprog/DreamTeam/Front-End/view_leagues.html
 
 ## What you accomplished
 * League/Teams page - Set-up these pages and created forms. Wrote Javascript (for Create Teams page in entirety) (Added on to JS for create leagues page) that 

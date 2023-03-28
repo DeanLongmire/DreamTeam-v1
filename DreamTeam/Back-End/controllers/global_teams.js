@@ -45,18 +45,20 @@ const show_all = (req, res) => {
 
 // create a team
 const create_team = (req, res) => {
-    const team = req.body;
-    const teamId = uuidv4();
+    get_path( (path) => {
+        const team = req.body;
+        const teamId = uuidv4();
   
-    //adds unique ID to the team (team W/ ID)
-    const teamWid = { ... team, id: teamId}
+        //adds unique ID to the team (team W/ ID)
+        const teamWid = { ... team, id: teamId}
 
-    console.log(teamWid);
-
-    db.open(db_path);
-    db.insert(teamWid.name, teamWid.ID, teamWid.P_ID, teamWid.sport, teamWid.num_players,() =>{
-        db.close();
-        res.send(`Team with the name ${uwid.name} added to the Teams database`);
+        console.log(teamWid);
+    
+        db.open(path);
+        db.insert(teamWid.teamName, teamWid.id, teamWid.P_ID, teamWid.sport, teamWid.size, () =>{
+            db.close();
+            res.send(`Team with the name ${uwid.name} added to the Teams database`);
+        });
     });
 }
 
