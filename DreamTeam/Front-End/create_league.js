@@ -52,7 +52,7 @@ let saveLeague = () => {
      .then(console.log("Responded"))
      .catch(error => console.error(error));
 
-     
+     create_button.reset();
     
 }
 

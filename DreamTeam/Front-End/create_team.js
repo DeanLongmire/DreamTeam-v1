@@ -43,6 +43,8 @@ let saveTeam = () => {
      .then(console.log("Responded"))
      .catch(error => console.error(error));
     
+     create_button.reset();
+
 }
 
 create_button.addEventListener("click", saveTeam);
