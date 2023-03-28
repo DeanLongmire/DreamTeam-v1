@@ -209,6 +209,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 /*Custom DreamTeam Font*/
 h7{font-size: 32px; font-family: Fantasy;}
+h8{font-size: 20px; font-family:Fantasy;}
 
 /*Fixed (static) Footer template*/
 .dynprog-foot{height: 140px; position: sticky; bottom: -140px; width: 100%; background-color: #ff8200; transition: bottom 0.5s ease-in-out;}
