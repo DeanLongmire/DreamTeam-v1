@@ -31,9 +31,12 @@
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/index.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Registry.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Registry.html
+* utk-cs340-spring23/Dynprog/DreamTeam/Front-End/view_teams.html
 
 
 ### What you accomplished
-* Developed a home page for the website consisting of: a picture slideshow, a scrolling navbar, navigation buttons to login and registry
-* Developed a registry page that takes new user data, and made some code to flag if they did not fill out all fields
-* Added some of the CSS I used to the Dynprog.css style guide so it would look better and be reusable
+* Created a footer for the homepage, made some small changes to other pages.
+* Created a view teams page for when we can actually take that from the building
+* Added some CSS to the Dynprog.css for the pages
+* made code to check and see if all the fields had been filled out, and made code to check if the passwords matched
+* made code that passes the registry info to the back end via a JSON object 
