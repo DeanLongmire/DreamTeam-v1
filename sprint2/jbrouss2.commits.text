@@ -1,0 +1,433 @@
+View_leagues HTML Page
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  1) <!DOCTYPE html>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  2) <html>     
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  3)     <link rel="stylesheet" href="Dynprog.css">
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  4)
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  5)     <div class="dynprog-padding-12"></div>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  6)
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  7)     <div class="dynprog-center">
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  8)         <h7>DreamTeam</h7>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400  9)     </div> 
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 10)
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 11)     <div class="dynprog-padding-12"></div>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 12)
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 13)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 14)         <a href="index.html" class="dynprog-bar-item dynprog-button">Home</a>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 15)         <div class="dynprog-dropdown-hover">
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 16) <button class ="dynprog-button">Sports</button>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 17) <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 18) <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 19) <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 20) <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 21) </div>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 22)         </div>
+e618f289 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:28:46 -0400 23)         <a href="create_league.html" class="dynprog-bar-item dynprog-button">Create League</a>
+e618f289 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:28:46 -0400 24)         <a href="create_team.html" class="dynprog-bar-item dynprog-button"> Create Team</a>
+e618f289 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:28:46 -0400 25)         <a href="view_teams.html" class="dynprog-bar-item dynprog-button">View Teams</a>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 26)     </div> 
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 27)
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 28)     <div class="dynprog-padding-12"></div>
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 29)
+48318eee DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:33:03 -0400 30)     <div class="dynprog-gradient-background-gray dynprog-padding-24">
+48318eee DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:33:03 -0400 31)
+b89048ce DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-28 07:46:08 -0400 32)         <div class="dynprog-panel dynprog-orange dynprog-center dynprog-margin-more dynprog-better-box dynprog-text-black">
+48318eee DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:33:03 -0400 33) <h2>View Leagues</h2>
+b89048ce DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-28 07:46:08 -0400 34) <p>Eventually this page will have the various leagues available to View
+b89048ce DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-28 07:46:08 -0400 35) We have not decided whethere it will be this user's specific league and
+b89048ce DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-28 07:46:08 -0400 36) every other team in the league or if it will be all the leagues and the user's
+b89048ce DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-28 07:46:08 -0400 37) specific one will be indicated in a different way.
+b89048ce DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-28 07:46:08 -0400 38) </p>
+48318eee DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:33:03 -0400 39) </div>
+48318eee DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:33:03 -0400 40)
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 41)
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 42)     <!--This is the footer!-->
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 43) <footer>   
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 44)     <div class="dynprog-center dynprog-text-white dynprog-padding-24">
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 45)    <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog.</p>
+48318eee DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:33:03 -0400 46)     </div> 
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 47) </footer>  
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 48) 
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 49) </div>     
+5eeccead DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:39:54 -0400 50)
+0806f3d7 DreamTeam/Front-End/view_leagues.html (Juliana Broussard 2023-03-27 23:17:11 -0400 51) </html>
+
+Create_League HTML Page
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400  1) <!DOCTYPE html>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400  2) <html>    
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400  3)     <link rel="stylesheet" href="Dynprog.css">
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400  4)
+e291524a DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 22:36:45 -0400  5)     <div class="dynprog-padding-12"></div>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400  6)
+1e9b5f31 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 17:24:22 -0400  7)     <div class="dynprog-center">
+1e9b5f31 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 17:24:22 -0400  8)         <h7>DreamTeam</h7>
+1e9b5f31 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 17:24:22 -0400  9)     </div>1e9b5f31 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 17:24:22 -0400 10)
+e291524a DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 22:36:45 -0400 11)     <div class="dynprog-padding-12"></div>
+1e9b5f31 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 17:24:22 -0400 12)
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 13)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 14)         <a href="index.html" class="dynprog-bar-item dynprog-button">Home</a>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 15)         <div class="dynprog-dropdown-hover">
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 16) <button class ="dynprog-button">Sports</button>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 17) <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 18) <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 19) <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 20) <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 21) </div>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 22)         </div>
+e618f289 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 23:28:46 -0400 23)         <a href="view_teams.html" class="dynprog-bar-item dynprog-button">View Teams</a>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 24)         <a href="create_team.html" class="dynprog-bar-tem dynprog-button">Create Team</a>
+e618f289 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 23:28:46 -0400 25)         <a href="view_leagues.html" class="dynprog-bar-item dynprog-button">View Leagues</a>
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 26)
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 27)     </div>0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 28)
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 29)     <div class="dynprog-padding-12"></div>
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 30)
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 31)     <div class="dynprog-gradient-background-gray dynprog-padding-24">
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 32)
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 33)     <form id= create_league class="dynprog-container dynprog-better-box dynprog-margin-more dynprog-center dyprog-card-4  dynprog-orange">
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 34)         <h2>Let's create a league</h2>
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 35)         <div class="dynprog-padding-12"></div>
+eb28c125 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 22:20:17 -0400 36)
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 37)         <h4>Choose a sport</h4>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 38)         <input class="dynprog-radio" type="radio" name="sport" value="Flag_football" checked>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 39)         <label>Flag Football</label>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 40)
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 41)         <input class="dynprog-radio" type="radio" name="sport" value="Men_soccer" checked>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 42)         <label>Men's Soccer</label>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 43)
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 44)         <input class="dynprog-radio" type="radio" name="sport" value="Softball" checked>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 45)         <label>Softball</label>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 46)
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 47)         <div class="dynprog-panel dynprog-padding-12"></div>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 48)
+159db75f DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-25 21:06:38 -0400 49)
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 50)         <label for="league_name">Choose your League Name</label>
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 51)         <div class="dynprog-padding-12"></div>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 53)
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 54)     </form>
+554cae44 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 21:25:55 -0400 55)
+88dd7429 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 22:02:50 -0400 56)     <div class="dynprog-center dynprog-padding-16">
+0806f3d7 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 23:17:11 -0400 57)         <A HREF="view_leagues.html">
+0806f3d7 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 23:17:11 -0400 59)         </A>
+88dd7429 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 22:02:50 -0400 60)     </div>88dd7429 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 22:02:50 -0400 61)
+88dd7429 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 22:02:50 -0400 62) <!--This is the footer!-->
+88dd7429 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 22:02:50 -0400 63) <footer>  
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 64)     <div class="dynprog-center dynprog-text-white dynprog-padding-24">
+5eeccead DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 23:39:54 -0400 65)    <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog.</p>
+88dd7429 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 22:02:50 -0400 66)     </div>88dd7429 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-24 22:02:50 -0400 67) </footer> 
+e4aa0279 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-27 18:51:50 -0400 68) </div>    
+159db75f DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-25 21:06:38 -0400 69)     <script src="create_league.js"></script>
+0f74abd9 DreamTeam/Front-End/create_league.html (Juliana Broussard 2023-03-21 08:27:53 -0400 70) </html>
+
+Create_team HTML Page
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400  1) <!DOCTYPE html>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400  2) <html>      
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400  3)     <link rel="stylesheet" href="Dynprog.css">
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400  4)
+e291524a DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 22:36:45 -0400  5)     <div class="dynprog-padding-12"></div>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400  6)
+1e9b5f31 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 17:24:22 -0400  7)     <div class="dynprog-center">
+1e9b5f31 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 17:24:22 -0400  8)         <h7>DreamTeam</h7>
+1e9b5f31 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 17:24:22 -0400  9)     </div>  
+1e9b5f31 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 17:24:22 -0400 10)
+e291524a DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 22:36:45 -0400 11)     <div class="dynprog-padding-12"></div>
+1e9b5f31 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 17:24:22 -0400 12)
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 13)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 14)         <a href="index.html" class="dynprog-bar-item dynprog-button">Home</a>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 15)         <div class="dynprog-dropdown-hover">
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 16) <button class ="dynprog-button">Sports</button>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 17) <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 18) <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 19) <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 20) <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 21) </div>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 22)         </div>
+e618f289 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:28:46 -0400 23)         <a href="view_teams.html" class="dynprog-bar-item dynprog-button">View Teams</a>
+b101744a DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:37:12 -0400 24)         <a href="create_league.html" class="dynprog-bar-tem dynprog-button">Create League</a>
+e618f289 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:28:46 -0400 25)         <a href="view_leagues.html" class="dynprog-bar-item dynprog-button">View Leagues</a>
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 26)     </div>  
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 27)
+a5caa07e DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 21:40:39 -0400 28)     <div class="dynprog-padding-12"></div>
+a5caa07e DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 21:40:39 -0400 29)
+a5caa07e DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 21:40:39 -0400 30)     <div class="dynprog-gradient-background-gray dynprog-padding-24">
+a5caa07e DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 21:40:39 -0400 31)
+48aa525e DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:01:57 -0400 32)     <form id= create_team class="dynprog-better-box dynprog-margin-more dynprog-container dynprog-orange dynprog-center dyprog-card-4 dynprog-margin">
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 33)         <h2>Let's create a team</h2>
+48aa525e DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:01:57 -0400 34)         <div class=" dynprog-padding-12"></div>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 35)
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 36)         <h4>How many players will you have?</h4>
+48318eee DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:33:03 -0400 37)         <input class="dynprog-radio" type="radio" name="num_players" value="5" checked>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 38)         <label>Five</label>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 39)
+48318eee DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:33:03 -0400 40)         <input class="dynprog-radio" type="radio" name="num_players" value="6" checked>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 41)         <label>Six</label>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 42)
+48318eee DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:33:03 -0400 43)         <input class="dynprog-radio" type="radio" name="num_players" value="7" checked>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 44)         <label>Seven</label>
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 45)
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 46)         <div class="dynprog-panel dynprog-padding-12"></div>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 47)
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 48)         <label for="team_name">Choose your team name</label>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 49)         <input id="team_input" class="dynprog-input dynprog-border" type="text" name="team_name" required>
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 50)
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 51)         <div class="dynprog-panel dynprog-padding-12"></div>
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 52)
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 53)     </form> 
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 54)
+eb28c125 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:20:17 -0400 55)     <div class="dynprog-center dynprog-padding-16">
+cb3f456b DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:09:23 -0400 56)         <A HREF="view_teams.html">
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 57)         <button id="create_team_button"  class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create my team now</button>
+cb3f456b DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:09:23 -0400 58)         </A>cb3f456b DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:09:23 -0400 59)     </div>  
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 60)
+88dd7429 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:02:50 -0400 61) <!--This is the footer!-->
+88dd7429 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:02:50 -0400 62) <footer>
+a5caa07e DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 21:40:39 -0400 63)     <div class="dynprog-center dynprog-text-white dynprog-padding-24">
+5eeccead DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 23:39:54 -0400 64)    <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog.</p>
+88dd7429 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:02:50 -0400 65)     </div>
+88dd7429 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-24 22:02:50 -0400 66) </footer>   
+a5caa07e DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-27 21:40:39 -0400 67) </div>      
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 68) <script src="create_team.js"></script>
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 69) 
+a05dbd22 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-26 00:06:24 -0400 70)
+0f74abd9 DreamTeam/Front-End/create_team.html (Juliana Broussard 2023-03-21 08:27:53 -0400 71) </html> 
+
+Create_team JS Page
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  1) //Essentially the same js as create league but this is for create team
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  2) const url = 'http://localhost:5000/teams' ;
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  3)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  4) let create_button = document.getElementById("create_team_button");
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  5)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  6) //How the data is able to be receieved that the user selects, inputs
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  7) let saveTeam = () => {
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  8)     //Get data from each element
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400  9)     const numPlayerRadios = document.getElementsByName("num_players");
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 10)     let selectedSize;
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 11)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 12)     for (const size of numPlayerRadios) {
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 13)       if (size.checked) {
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 14)       selectedSize = size.value;
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 15)       break;  
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 16)       }
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 17)     }
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 18)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 19)     //console.log(selectedSize);
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 20)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 21)     const teamInput = document.getElementById("team_input");
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 22)     const teamName = teamInput.value;
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 23)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 24)     //console.log(teamName);
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 25)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 26)     const data = {
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 27)       size: selectedSize,
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 28)       teamName: teamName
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 29)     };        
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 30)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 31)     console.log(data);
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 32) 
+19c7c6c3 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:09:25 -0400 33)     //This is the fetch and catch stuff to send it back to the server
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 34)     fetch(url, {
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 35)         method: 'POST',
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 36)         headers: {
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 37)             'Content-Type': 'application/json'
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 38)         },
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 39)         body: JSON.stringify(data)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 40)      })       
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 43)      .then(console.log("Responded"))
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 44)      .catch(error => console.error(error));
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 45)
+47988d7a DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-27 23:11:47 -0400 46)      create_button.reset();
+47988d7a DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-27 23:11:47 -0400 47)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 48) }
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 49)
+a05dbd22 DreamTeam/Front-End/create_team.js (Juliana Broussard 2023-03-26 00:06:24 -0400 50) create_button.addEventListener("click", saveTeam);
+
+Create_League JS Page
+6cd55595 DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-27 22:28:20 -0400 42)     //How data is sent back to database
+5aea83bb DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-25 23:06:06 -0400 43)     fetch(url, {
+5aea83bb DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-25 23:06:06 -0400 44)         method: 'POST',
+5aea83bb DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-25 23:06:06 -0400 45)         headers: {
+5aea83bb DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-25 23:06:06 -0400 46)'Content-Type': 'application/json'
+5aea83bb DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-25 23:06:06 -0400 47)         },  
+5aea83bb DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-25 23:06:06 -0400 48)         body: JSON.stringify(data)
+5aea83bb DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-25 23:06:06 -0400 49)      })     
+5aea83bb DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-25 23:06:06 -0400 53)      .catch(error => console.error(error));
+cb3f456b DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-27 23:09:23 -0400 54)
+47988d7a DreamTeam/Front-End/create_league.js (Juliana Broussard 2023-03-27 23:11:47 -0400 55)      create_button.reset();
+
+Create_player HTML Page
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400  1) <!DOCTYPE html>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400  2) <html>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400  3)     <link rel="stylesheet" href="Dynprog.css">
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400  4)
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400  5)     <div class="dynprog-padding-12"></div>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400  6)
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400  7)     <div class="dynprog-center">
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400  8)         <h7>DreamTeam</h7>
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400  9)     </div>db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 10)
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 11)     <div class="dynprog-padding-12"></div>
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 12)
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 13)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 14)         <a href="index.html" class="dynprog-bar-item dynprog-button">Home</a>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 15)         <div class="dynprog-dropdown-hover">
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 16) <button class ="dynprog-button">Sports</button>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 17) <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 18) <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 19) <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 20) <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 21) </div>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 22)         </div>
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 23)
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 24)     </div>db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 25)
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 26)
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 27)     <div class="dynprog-padding-12"></div>
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 28)
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 29)     <div class="dynprog-gradient-background-gray dynprog-padding-24">
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 30)
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 31)         <form id= create_player class="dynprog-container dynprog-better-box dynprog-margin-more dynprog-center dyprog-card-4  dynprog-orange">
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 32) <h2>Let's create a player</h2>
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 33)         <div class="dynprog-panel dynprog-padding-12"></div>
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 34)
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 35)         <label for="player_name">What is your name?</label>
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 36)         <input class="dynprog-input" type="text" name="player_name">
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 37)
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 38)         <div class="dynprog-panel dynprog-padding-12"></div>
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 39)
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 40)         <label for="player_position">What is your player's position?</label>
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 41)         <input class="dynprog-input" type="text" name="player_position" required>
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 42)
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 43)     </form>
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 44)
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 45)     <div class="dynprog-center dynprog-padding-16">
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 46)         <button id="create_player"  class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create my player now</button>
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 47) </div>    
+eb28c125 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:20:17 -0400 48)
+88dd7429 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:02:50 -0400 49) <!--This is the footer!-->
+88dd7429 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:02:50 -0400 50) <footer>  
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 51)     <div class="dynprog-center dynprog-text-white dynprog-padding-24">
+88dd7429 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:02:50 -0400 52)    <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog</p>
+88dd7429 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:02:50 -0400 53)     </div>88dd7429 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:02:50 -0400 54) </footer> 
+88dd7429 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 22:02:50 -0400 55)
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 56) </div>    
+e291524a DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-27 22:36:45 -0400 57)
+db1a74e7 DreamTeam/Front-End/create_player.html (Juliana Broussard 2023-03-24 20:57:01 -0400 60) </html> 
+
+Login HTML Page
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 11)     <div class="dynprog-center">
+e291524a DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 22:36:45 -0400 12)         <h7>DreamTeam</h7>
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 13)     </div>        
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 14)
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 15)     <head>        
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 16)         <A HREF="login.html">
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 17)             <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Login</button>
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 18)         </A>      
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 19)         <A HREF="Registry.html">
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 20)             <button class ="dynprog-button dynprog-text-black dynprog-right">Create Account</button>
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 21)         </A>      
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 22)     </head>  
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 36)     <div class="dynprog-padding-12"></div>
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 37)
+b802753f DreamTeam/Front-End/login.html (Juliana Broussard 2023-02-27 20:18:06 -0500 38) <body>
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 39)     <div class="dynprog-card-4 dynprog-gradient-background-orange dynprog-padding-24">
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 40)         <div class="dynprog-container dynprog-center dynprog-better-box2 dynprog-margin-more">
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 41)             <h2 class="dynprog-text-white">Hi, welcome back!</h2>
+85ea6aa1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 22:54:06 -0400 42)             <h4 class="dynprog-text-white">Time to check on your <h8>DreamTeam</h8></h4>
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 45)     <form id= sign-in class="dynprog-container dynprog-better-box dynprog-margin-more">
+bce1f8f6 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:31:32 -0400 47)                 <input class="dynprog-input dynprog-border" type="text" name="email">
+12fe78d1 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:16:13 -0400 48)                 <div class="dynprog-panel dynprog-padding-12"></div>
+bce1f8f6 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 13:31:32 -0400 50)                 <input class="dynprog-input dynprog-border" type="text" name="password">
+773267cc DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-25 22:54:01 -0400 52)     </form>       
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 54)     <div class="dynprog-margin-left dynprog-hover-text-light-gray">
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 60)             <button id="login_button" class="dynprog-button dynprog-round-large dynprog-text-gray dynprog-white">Login</button>
+6f7d9b5a DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-26 23:38:26 -0400 64)
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 65)     <div class="dynprog-center dynprog-padding-16 dynprog-hover-text-light-gray">
+5eeccead DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 23:39:54 -0400 74)    <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog.</p>
+e4aa0279 DreamTeam/Front-End/login.html (Juliana Broussard 2023-03-27 18:51:50 -0400 78)
+
+Login JS Page
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400  1) //For JSON passing
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400  2) const url = 'http://localhost:5000/login'
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400  3) 
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400  4) //Make the email, password fields and the login bt itself
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400  5) const emailField = document.querySelector('input[name="email"]');
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400  6) const passwordField = document.querySelector('input[name="password"]');
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400  7) const loginBT = document.querySelector('#login_button');
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400  8)
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400  9) //Disable it in the beginning
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 10) loginBT.disabled = true;
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 11)
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 12) //Add evenet listeners for the email and password fields
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 13) emailField.addEventListener('input', toggleLoginBt);
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 14) passwordField.addEventListener('input', toggleLoginBt);
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 15)
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 16) //Function to make button enable or disabled
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 17) function toggleLoginBt() {
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 18)   //Check if they aren't
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 19)   if(emailField.value.trim() !== '' && passwordField.value.trim() !== ''){
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 20)
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 21)     const userData = {
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 22)       emailField: emailField.value,
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 23)       passwordField: passwordField.value
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 24)     };
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 25)
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 26)     fetch(url, {    
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 27)       method: 'POST',
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 28)       headers: {    
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 29)           'Content-Type': 'application/json'
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 30)       },
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 31)       body: JSON.stringify(userData)
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 32)    })
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 33)    .then(console.log("Responded"))
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 34)    .catch(error => console.error(error));
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 35)
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 36)    loginBT.disabled = false;
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 37)   }
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 38)
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 39)   else{
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 40)     loginBT.disabled = true;
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 41)   }
+eea998ab DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 15:11:35 -0400 42)
+6f7d9b5a DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-26 23:38:26 -0400 43) }
+6f7d9b5a DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-26 23:38:26 -0400 44)
+89d36e20 DreamTeam/Front-End/login.js (Juliana Broussard 2023-03-27 14:22:58 -0400 45)
+
+Profile HTML Page
+e291524a DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 22:36:45 -0400   9)
+bce1f8f6 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-26 13:31:32 -0400  10)     <div class="dynprog-center">
+bce1f8f6 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-26 13:31:32 -0400  11)         <h7>DreamTeam</h7>
+bce1f8f6 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-26 13:31:32 -0400  12)     </div>     
+bce1f8f6 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-26 13:31:32 -0400  13)
+0f74abd9 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-21 08:27:53 -0400  38)         <a href="create_team.html" class="dynprog-bar-item dynprog-button">Create Team</a>
+554cae44 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-24 21:25:55 -0400  39)         <a href="create_player.html" class="dynprog-bar-item dynprog-button">Create Player</a>
+0f74abd9 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-21 08:27:53 -0400  40)         <!-- <a href="#" class="dynprog-bar-item dynprog-button"> Profile</a> -->
+1ae774d5 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 18:58:51 -0400  43)     <div class="dynprog-padding-12"></div>
+1ae774d5 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 18:58:51 -0400  44)     <div class="dynprog-gradient-background-orange dynprog-padding-24">
+1ae774d5 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 18:58:51 -0400  45)
+eea998ab DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 15:11:35 -0400  63)        <div id 
+="edit" contenteditable="true">
+eea998ab DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 15:11:35 -0400  64)             <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Name">Name: </h4>
+eea998ab DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 15:11:35 -0400  65)             <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Email">Email: </h4>
+eea998ab DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 15:11:35 -0400  66)             <h4 class="dynprog-text-orange dynprog-padding-12 dynprog-monospace" id="Sports">My Sports</h4>
+eea998ab DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 15:11:35 -0400  67)         </div> 
+85ea6aa1 DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 22:54:06 -0400  69)         <!--<input type="button" value="save_edits" onclick="saveEdits()"/>-->
+eea998ab DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 15:11:35 -0400  70)         <button class="dynprog-button dynprog-gray dynprog-text-white">Edit my information</button>
+5eeccead DreamTeam/Front-End/profile.html (Juliana Broussard 2023-03-27 23:39:54 -0400 112)    <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog.</p>
+
+Dynprog CSS Page
+bcc3062a DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 22:59:03 -0400  33) h1,h2,h3,h4,h5,h6{font:Georgia; font-weight:400;margin:10px 0} .dynprog-wide{letter-spacing:4px}
+88dd7429 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-24 22:02:50 -0400  60) .dynprog-check,.dynprog-radio{width:24px;height:24px;position:relative;top:6px;font-family:monospace}
+12fe78d1 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-26 13:16:13 -0400 144) .dynprog-margin{margin:16px!important}.dynprog-margin-top{margin-top:16px!important}.dynprog-margin-bottom{margin-bottom:16px!important}.dynprog-margin-more{margin:32px!important}
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 173) /*.dynprog-text-dark-grey,.dynprog-hover-text-dark-grey:hover,.dynprog-text-dark-gray,.dynprog-hover-text-dark-gray:hover{color:#3a3a3a!important}
+12fe78d1 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-26 13:16:13 -0400 206) /*Making a better box for forms*/
+12fe78d1 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-26 13:16:13 -0400 207) .dynprog-better-box{padding:25px; background-color: #d3d3d3;}
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 208) .dynprog-better-box2{padding:25px; background-color: #58595B;}
+12fe78d1 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-26 13:16:13 -0400 209)
+12fe78d1 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-26 13:16:13 -0400 210) /*Custom DreamTeam Font*/
+85ea6aa1 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 22:54:06 -0400 212) h8{font-size: 20px; font-family:Fantasy;}
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 228) .dynprog-vt-dropdown-content a:hover {background-color: #f2f2f2;}
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 229)
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 230) /*Background gradients*/
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 231) .dynprog-gradient-background-orange{background: rgb(255,130,0);
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 232)     background: 
+linear-gradient(90deg, rgba(255,130,0,1) 35%, rgba(255,213,128,1) 100%);}
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 233)
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 234) .dynprog-gradient-background-gray{background: rgb(88,89,91);
+e4aa0279 DreamTeam/Front-End/Dynprog.css (Juliana Broussard 2023-03-27 18:51:50 -0400 235)     background: 
+linear-gradient(90deg, rgba(88,89,91,1) 35%, rgba(211,211,211,1) 100%);}
