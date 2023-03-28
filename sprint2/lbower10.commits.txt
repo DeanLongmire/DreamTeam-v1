@@ -1,0 +1,183 @@
+586537f9 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-26 11:47:53 -0400   1) /*
+586537f9 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-26 11:47:53 -0400   2)     Controller for creating teams
+586537f9 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-26 11:47:53 -0400   3) */
+586537f9 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-26 11:47:53 -0400   4) 
+586537f9 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-26 11:47:53 -0400   5) const global_teams = require("../Teams/global_teams_db.js");
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400   6) const { v4: uuidv4 } = require('uuid');
+586537f9 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-26 11:47:53 -0400   7) 
+586537f9 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-26 11:47:53 -0400   9) 
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  10) 
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  11) const get_path = (callback) => {
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  12)     const pwd = process.cwd();
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  13)     let db_path = pwd;
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  14)     db_path = db_path + "\\DreamTeam\\Back-End\\database.db";
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  15)     db_path = db_path.replace(/\\/g,"/");
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  16) 
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  17)     callback(db_path);
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  18) }
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  19) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  20) // Get team information
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  22)     const { id } = req.params;
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  23) 
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  24)     get_path( (path) => {
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  25)         db.open(path);
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  26)         db.get_all(id, (name, ID, P_ID, sport, num_players) => {
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  27)             console.log(name + " " + ID + " " + P_ID + " " + sport + " " + num_players)
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  28)             db.close();
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  29)         });
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  30)     });
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  31)     res.send("Got a Teams's info");
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  33) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  34) // Diplay all teams in DB
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  35) const show_all = (req, res) => {
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  36)     get_path( (path) => {
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  37)         db.open(path);
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  38)         db.display_all( () => {
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  39)             db.close();
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  40)         });
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  41)     });
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  42) 
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  43)     res.send("Read all teams");
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  44) }
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  45) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  46) // create a team
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  47) const create_team = (req, res) => {
+258e0820 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:21:10 -0400  48)     get_path( (path) => {
+258e0820 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:21:10 -0400  49)         const team = req.body;
+258e0820 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:21:10 -0400  50)         const teamId = uuidv4();
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  51)   
+258e0820 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:21:10 -0400  52)         //adds unique ID to the team (team W/ ID)
+258e0820 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:21:10 -0400  53)         const teamWid = { ... team, id: teamId}
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  54) 
+258e0820 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:21:10 -0400  55)         console.log(teamWid);
+258e0820 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:21:10 -0400  56)     
+2ebe2acc DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:16:29 -0400  57)         db.open(path);
+b5eef75f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:30:47 -0400  58)         db.insert(teamWid.teamName, teamWid.id, teamWid.P_ID, teamWid.sport, teamWid.size, () =>{
+2ebe2acc DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:16:29 -0400  59)             db.close();
+2ebe2acc DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:16:29 -0400  60)             res.send(`Team with the name ${uwid.name} added to the Teams database`);
+2ebe2acc DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 23:16:29 -0400  61)         });
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  62)     });
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  63) }
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  64) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  65) // updating only name for a team
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  66) const update_team_name = (req, res) => {
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  67)     const { id } = req.params;
+75ce3a3f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 17:50:32 -0400  68)     const new_name = req.body.new_name;
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  69) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  70)     console.log(new_name + " " + id);
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  71) 
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  72)     db.open(db_path);
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  73)     db.update_name(new_name, id.name, () => {
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  74)         db.close();
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  75)     });
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  76) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  77) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  78)     res.send('Team name updated');
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  79) }
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400  80) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  81) // updating only the sport that the team plays\
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  82) const update_team_sport = (req, res) => {
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  83)     const { id } = req.params;
+75ce3a3f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 17:50:32 -0400  84)     const new_sport = req.body.new_sport;
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  85) 
+75ce3a3f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 17:50:32 -0400  86)     console.log(new_sport + " " + id);
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  87) 
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400  88)     db.open(db_path);
+75ce3a3f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 17:50:32 -0400  89)     db.update_sport(new_sport, id.sport, () => {
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  90)         db.close();
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  91)     });
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  92) }
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  93) 
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  94) // Updating amount of players on a given team in this function
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  95) const updatePlayerCount = (req, res) => {
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  96)     const { id } = req.params;
+75ce3a3f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 17:50:32 -0400  97)     const new_num_players = req.body.new_num_players;
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400  98) 
+75ce3a3f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 17:50:32 -0400  99)     console.log(`Team with id: ${id} had ${id.num_players - new_num_players}`);
+75ce3a3f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 17:50:32 -0400 100)     console.log(`Team with id: ${id} NOW has new player count of ${new_num_players}`);
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400 101) 
+c9db5829 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 18:53:53 -0400 102)     db.open(db_path);
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400 103)     db.update_num_players(id.name, newPcount, () => {
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400 104)         db.close();
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400 105)     });
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400 106)     
+e8cc593b DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 15:58:58 -0400 107) }
+793a271a DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 14:09:52 -0400 108) 
+75ce3a3f DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-03-27 17:50:32 -0400 109) module.exports = { get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount }
+d86c0921 DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-03-27 23:25:37 -0400  8)     open(path){
+9bfa003d DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-03-27 23:27:09 -0400  9)         this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400  1) /*
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400  2)     Handling get, post, patch, etc requests for creating teams
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400  3)         in this file.
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400  4) */
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400  5) 
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400  6) const express = require('express');
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400  7) const bodyParser = require('body-parser');
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400  8) const { get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount } = require('../controllers/global_teams.js');
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400  9) 
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 10) const router = express.Router();
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 11) 
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 12) router.use(bodyParser.json());
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 13) 
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 14) //list all Teams to the console
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 15) router.get('/', show_all);
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 16) 
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 17) //Get a Team's name
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 18) router.get('/:id', get_team);
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 19) 
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400 20) //Create a team
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400 21) router.post('/', create_team);
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 22) 
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 23) //Update team name
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400 24) router.patch('/update_team_name/:id', update_team_name);
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 25) 
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400 26) // update what sport a team plays
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400 27) router.patch('/update_team_sport/:id', update_team_sport);
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400 28) 
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400 29) // update a team's num of players
+75ce3a3f DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 17:50:32 -0400 30) router.patch('/updatePlayerCount/:id', updatePlayerCount);
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 31) 
+793a271a DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-03-27 14:09:52 -0400 32) module.exports = router;
+d86c0921 DreamTeam/Back-End/Users/global_users_db.js (Logan Bowers 2023-03-27 23:25:37 -0400  13)             console.log("Connected to database.db");
+1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  1) // Essentially the same js as create league/team but this is for creating the player on a team
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  2) const url = 'http://localhost:5000/players' ;
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  3) 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  4) let create_button = document.getElementById("create_player");
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  5) 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  6) //How the data is able to be receieved that the user selects, inputs
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  7) let savePlayer = () => {
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  8)     const playerInput = document.getElementByName("player_name");
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400  9)     const playerName = playerInput.value;
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 10) 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 11)     const positionInput = document.getElementsByName("player_position");
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 12)     const playerPosition = positionInput.value;
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 13)     
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 14)     console.log(playerName);
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 15)     console.log(playerPosition);
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 16)     console.log(`Player: ${playerName} has position: ${playerPosition}`);
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 17) 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 18)     const data = { 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 19)       player: playerName,
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 20)       position: playerPosition 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 21)     };
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 22) 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 23)     console.log(data);
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 24) 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 25)     //This is the fetch and catch stuff to send it back to the server
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 26)     fetch(url, {
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 27)         method: 'POST',
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 28)         headers: {
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 29)             'Content-Type': 'application/json'
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 30)         },
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 31)         body: JSON.stringify(data)
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 32)      })
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 33)      //.then(response => console.log(response))
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 34)      //.then(data => console.log(data))
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 35)      .then(console.log("Responded"))
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 36)      .catch(error => console.error(error));
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 37)     
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 38) }
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 39) 
+a1221789 DreamTeam/Front-End/create_player.js (Logan Bowers 2023-03-26 16:46:06 -0400 40) create_button.addEventListener("click", savePlayer);
+a1221789 DreamTeam/Front-End/create_player.html (Logan Bowers      2023-03-26 16:46:06 -0400 58) <script src="create_player.js"></script>
+a1221789 DreamTeam/Front-End/create_player.html (Logan Bowers      2023-03-26 16:46:06 -0400 59)
