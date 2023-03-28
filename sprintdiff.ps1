@@ -62,6 +62,4 @@ Select-String -Path "output.txt" -Pattern "Ryan-Carnes-01" | Select-Object -Expa
 Select-String -Path "output.txt" -Pattern "Logan Bowers" | Select-Object -ExpandProperty Line | Out-File -FilePath "lbower10.txt" 
 Select-String -Path "output.txt" -Pattern "Juliana" | Select-Object -ExpandProperty Line | Out-File -FilePath "jbrouss2.txt" 
 Select-String -Path "output.txt" -Pattern "Finli-Hill" | Select-Object -ExpandProperty Line | Out-File -FilePath "fhill5.txt" 
-
-
-
+Remove-Item "output.txt"

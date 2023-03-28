@@ -45,9 +45,9 @@ const create_league = (req, res) => {
     console.log(uwid);
     get_path( (path) => {
       db.open(path);
-      db.insert(uwid.name,uwid.id,uwid.sport, () =>{
+      db.insert(uwid.leagueName,uwid.id,uwid.sport, () =>{
           db.close();
-          res.send('League with the name ${uwid.name} added to the database');
+          res.send('League with the name ${uwid.leagueName} added to the database');
         });
     });
 }
