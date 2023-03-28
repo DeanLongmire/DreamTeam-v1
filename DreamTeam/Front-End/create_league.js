@@ -1,20 +1,4 @@
-/*New way to login, still have to work out bug of letting it
- go through with no pw*/
- /*let input = document.querySelector(".dynprog-input");
- let button = document.querySelector(".create_league");
- create_league.disabled = true;
- input.addEventListener("change", stateHandle);
- 
- function stateHandle(){
-   if(document.querySelector(".dynprog-input").value === ""){
-     create_league.disabled = true;
-   }
-   else{
-     create_league.disabled = false;
-   }
- }*/
-
- /*Take the sport that is selected & the league name and 
+/*Take the sport that is selected & the league name and 
  put them in a json object*/
 
 const url = 'http://localhost:5000/leagues' ;
@@ -55,6 +39,7 @@ let saveLeague = () => {
 */
     console.log(data);
 
+    //How data is sent back to database
     fetch(url, {
         method: 'POST',
         headers: {
@@ -70,17 +55,3 @@ let saveLeague = () => {
 }
 
 create_button.addEventListener("click", saveLeague);
-
-
-/*This is starting to set up how to send the data back to 
-the nodejs server using fetch and catch in order to do this
- fetch(url, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
- })
- .then(response => response.json())
- .then(data => console.log(data))
- .catch(error => console.error(error));*/
