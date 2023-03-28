@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3').verbose();
 class team_dbmanager{
     constructor(db, sql, data){};
     open(path){
-        this.db = new sqlite3.Database('../database.db', sqlite3.OPEN_READWRITE, (err) => {
+        this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
             if (err){
                 return console.error(err.message);
             }
