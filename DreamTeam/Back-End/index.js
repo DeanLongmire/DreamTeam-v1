@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const usersRoutes = require('./Users/global_users.js');
 const leagues = require('./Leagues/global_leagues.js')
+const teams = require('./Teams/teams.js')
 const cors = require('cors');
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 app.use('/users', usersRoutes);
 app.use('/leagues', leagues);
+app.use('/teams', teams)
 
 
 app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`))
