@@ -43,7 +43,7 @@
 ## What you accomplished
 * League/Teams page - Set-up these pages and created forms. Wrote Javascript (for Create Teams page in entirety) (Added on to JS for create leagues page) that 
 actually sends information back to the database using JSON fetch and catch. Created a custom gradient background in CSS. Added our special font to the CSS style 
-guide to use across the various pages.
+guide to use across the various pages. Link create team to view teams page.
 * Login button is disabled when no information or only one field is filled out and enabled for when both fields are filled out. Will still need to error check and 
 eventually talk with database to verify user. Wrote JS to do this. Wrote custom background gradient for this page on the CSS style guide.
 * Profile Page - Changed the view a little by adding the custom gradient to the background and some padding to make it look better
