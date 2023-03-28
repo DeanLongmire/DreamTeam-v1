@@ -10,6 +10,7 @@ class users_dbmanager{
             if (err){
                 return console.error(err.message)
             }
+            console.log("Connected to database.db");
         })
     }
 
