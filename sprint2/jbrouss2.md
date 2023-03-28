@@ -18,7 +18,7 @@
 
 ## What problems you encountered
 * How to allow users to edit profile page - still working on this - main issue for next sprint
-* Issue with enable/disable create
+* Issue with enable/disable on the create team and create league pages
 
 ## Issues you worked on
 * Disable/Enable Login button - Issue (https://github.com/utk-cs340-spring23/DynProg/issues/8)
