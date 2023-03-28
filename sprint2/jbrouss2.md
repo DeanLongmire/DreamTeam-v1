@@ -34,7 +34,6 @@
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Dynprog.css
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/login.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/profile.html
-* utk-cs340-spring23/Dynprog/DreamTeam/Front-End/profile.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/login.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/create_team.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/create_team.js
@@ -49,6 +48,6 @@ actually sends information back to the database using JSON fetch and catch. Crea
 guide to use across the various pages. Link create team to view teams page.
 * Login button is disabled when no information or only one field is filled out and enabled for when both fields are filled out. Will still need to error check and 
 eventually talk with database to verify user. Wrote JS to do this. Wrote custom background gradient for this page on the CSS style guide.
-* Profile Page - Changed the view a little by adding the custom gradient to the background and some padding to make it look better
+* Profile Page - Changed the view a little by adding the custom gradient to the background and some padding to make it look better. 
 * Create player - Set-up this page and added a form for the information that was requested. Did not write any JS for this page as we might not be using it. It is a 
 bare bones page at the moment.
