@@ -1,0 +1,237 @@
+Registry.js
+
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400  1) //First section is just for form checking
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400  2) var form = document.getElementById("regform");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400  3) var registerButton = document.getElementById("create_account");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400  4) var passwordInput = document.getElementById("psw");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400  5) var confirmPasswordInput = document.getElementById("psw-repeat");
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  6) 
+cdf2af1a (Finli-Hill 2023-03-27 18:58:11 -0400  7) registerButton.setAttribute("disabled", "disabled");
+cdf2af1a (Finli-Hill 2023-03-27 18:58:11 -0400  8) 
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400  9) function checkFormInputs() {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 10)   var inputs = form.querySelectorAll("input");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 11)   for (var i = 0; i < inputs.length; i++) {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 12)     if (inputs[i].value === "") {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 13)       return false; // Input is empty, return false
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 14)     }
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 15)   }
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 16)   if (passwordInput.value !== confirmPasswordInput.value) {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 17)     return false; // Passwords do not match, return false
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 18)   }
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 19)   return true; // All inputs are filled, return true
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 20) }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 21) 
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 22) function handleButtonState() {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 23)   if (checkFormInputs()) {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 24)     registerButton.removeAttribute("disabled");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 25)   } else {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 26)     registerButton.setAttribute("disabled", "disabled");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 27)   }
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 28) }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 29)
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 30) // Add event listeners to form inputs     
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 31) var inputs = form.querySelectorAll("input");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 32) for (var i = 0; i < inputs.length; i++) {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 33)   inputs[i].addEventListener("input", handleButtonState);
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 34) }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 35)
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 44)   const username = nameInput.value;
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 45)
+0cd52010 (Finli-Hill 2023-03-27 19:09:15 -0400 46)   const emailInput = document.getElementById("email");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 47)   const email = emailInput.value;
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 48)
+cdf2af1a (Finli-Hill 2023-03-27 18:58:11 -0400 49)   const passwordInput = document.getElementById("psw");
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 50)   const password = passwordInput.value;
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 51)
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 52)   console.log(username);
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 53)   console.log(email);
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 54)   console.log(password);
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 55)   console.log(`User: ${username} has email: ${email} and password ${password}`);
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 56)
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 57)   const data = {
+590df8c4 (Finli-Hill 2023-03-27 19:13:02 -0400 58)     username: username,
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 59)     email: email,
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 60)     password: password
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 61)   };
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 62)   console.log(data);
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 63)
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 64)     //This is the fetch and catch stuff to send it back to the server
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 65)     fetch(url, {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 66)         method: 'POST',
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 67)         headers: {
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 68)             'Content-Type': 'application/json'
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 69)         },
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 70)         body: JSON.stringify(data)
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 71)      })
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 72)      .then(console.log("Responded"))
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 73)      .catch(error => console.error(error));
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 74)
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 75) }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 76)
+2f3367c1 (Finli-Hill 2023-03-27 18:50:24 -0400 77) create_button.addEventListener("click", saveUser);
+
+Registry.html
+
+27501d5a (Finli-Hill        2023-03-26 23:27:32 -0400 25)     <!--make a json object store data in it and print it out-->        
+2f3367c1 (Finli-Hill        2023-03-27 18:50:24 -0400 35)         <input class="dynprog-input" type="text" placeholder="Enter Name" name="name" id="name">
+2f3367c1 (Finli-Hill        2023-03-27 18:50:24 -0400 38)         <input class="dynprog-input" type="text" placeholder="Enter Email" name="email" id="email" >
+2f3367c1 (Finli-Hill        2023-03-27 18:50:24 -0400 41)         <input class="dynprog-input" type="text" placeholder="Enter Password" name="psw" id = "psw">
+17605b7a (Finli-Hill        2023-03-27 23:15:40 -0400 49)       <A HREF="profile.html">
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 56)
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 57)         <footer>
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 58)             <div class="dynprog-center dynprog-padding-24">
+8b0ceab2 (Finli-Hill        2023-03-27 23:42:53 -0400 59)            <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog.</p>
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 60)             </div>
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 61)         </footer>
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 62)
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 63) <script src="Registry.js"></script>
+
+index.js
+
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  1) //script code for the home page
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  2) 
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  3) 
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  4) let slideIndex = 1;
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  5) showSlides(slideIndex);
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  6) 
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  7) function plusSlides(n) {
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  8)   showSlides(slideIndex += n);
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400  9) }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 10) 
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 11) function currentSlide(n) {
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 12)   showSlides(slideIndex = n);
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 13) }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 14) 
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 15) function showSlides(n) {
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 16)   let i;
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 17)   let slides = document.getElementsByClassName("dynprog-fade");
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 18)   let dots = document.getElementsByClassName("dynprog-dot");
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 19)   if (n > slides.length) {slideIndex = 1}    
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 20)   if (n < 1) {slideIndex = slides.length}   /*sets it back to one*/
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 21)   for (i = 0; i < slides.length; i++) {
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 22)     slides[i].style.display = "none";  
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 23)   }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 24)   for (i = 0; i < dots.length; i++) {
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 25)     dots[i].className = dots[i].className.replace(" active", "");
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 26)   }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 27)   slides[slideIndex-1].style.display = "block";  /*makes it so the slides loop*/
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 28)   dots[slideIndex-1].className += " active";
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 29) }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 30) 
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 31) 
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 32) window.onscroll = function() {scrollFunction()};
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 33) 
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 34) function scrollFunction() {
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 35)   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 36)     document.getElementById("navbar").style.top = "0";
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 37)   }
+dc5a75be (Finli-Hill 2023-03-27 15:14:40 -0400 38) }
+
+index.html
+
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  71)   <div class = "dynprog-foot">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  72)     <div class = "dynprog-foot-container">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  73)       <div class = "dynprog-profile-small">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  74)         <img src = "Chad.jpg" alt="Profile Picture">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  75)         <p style = "font-family: Fantasy;"> Finli Hill </p>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  76)       </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  77)       <div class = "dynprog-profile-small">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  78)         <img src = "Chad.jpg" alt="Profile Picture">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  79)         <p style="font-family: Fantasy;">Logan Bowers</p>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  80)       </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  81)       <div class = "dynprog-profile-small">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  82)         <img src = "Chad.jpg" alt="Profile Picture">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  83)         <p style="font-family: Fantasy;"> Dean Longmire </p>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  84)       </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  85)       <div class = "dynprog-profile-small">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  86)         <img src = "Chad.jpg" alt="Profile Picture">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  87)         <p style ="font-family: Fantasy;"> Ryan Carnes </p>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  88)       </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  89)       <div class = "dynprog-profile-small">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  90)         <img src = "Chad Girl.jpg" alt="Profile Picture">
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400  91)         <p style = "font-family: Fantasy;"> Juliana Broussard </p>    
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  92)       </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  93)     </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400  94)   </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 138)
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 139) <script>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 140) window.addEventListener('scroll', () => {
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 141)       const footer = document.querySelector('.dynprog');
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 142)       const containerHeight = document.querySelector('.container').offsetHeight;
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 143)       const currentScroll = window.pageYOffset;
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 144)       const windowHeight = window.innerHeight;
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 145)       if (currentScroll + windowHeight >= containerHeight) {
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 146)         footer.classList.add('show');
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 147)       } else {
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 148)         footer.classList.remove('show');
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 149)       }
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 150)     });
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 151) </script>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 152)
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 153)
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 155)
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 156) <footer>
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 157)   <div class="dynprog-center dynprog-padding-24">
+8b0ceab2 (Finli-Hill        2023-03-27 23:42:53 -0400 158)  <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog.</p>
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 159)   </div>
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 160) </footer>
+ac4554dd (Finli-Hill        2023-03-27 17:26:03 -0400 161)
+
+view_teams.html
+
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 18) 
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 19)     <body>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 20)         <div class="dynprog-vt-header">Find Teams Here!</div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 21)         <div class="dynprog-vt-container">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 22)             <div class="dynprog-vt-tab dynprog-vt-dropdown">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 23)                 <span>Flag Football</span>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 24)                 <div class="dynprog-vt-dropdown-content">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 25)                     <a href="#">Team A</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 26)                     <a href="#">Team B</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 27)                     <a href="#">Team C</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 28)                 </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 29)             </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 30)             <div class="dynprog-vt-tab dynprog-vt-dropdown">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 31)                 <span>5v5 Soccer</span>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 32)                 <div class="dynprog-vt-dropdown-content">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 33)                     <a href="#">Team D</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 34)                     <a href="#">Team E</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 35)                     <a href="#">Team F</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 36)                 </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 37)             </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 38)             <div class="dynprog-vt-tab dynprog-vt-dropdown">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 39)                 <span>Softball</span>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 40)                 <div class="dynprog-vt-dropdown-content">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 41)                     <a href="#">Team G</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 42)                     <a href="#">Team H</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 43)                     <a href="#">Team I</a>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 44)                 </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 45)             </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 46)         </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 47)     </body>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 48)     <footer>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 49)         <div class="dynprog-center dynprog-padding-24">
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 50)        <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog</p>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 51)         </div>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 52)     </footer>
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 53)
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 54)
+
+Dynprog.css
+
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 211) h7{font-size: 32px; font-family: Fantasy;}
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 213)
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 214) /*Fixed (static) Footer template*/
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 215) .dynprog-foot{height: 140px; position: sticky; bottom: -140px; width: 100%; background-color: #ff8200; transition: bottom 0.5s ease-in-out;}
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 216) /*profile image for devs (us)*/
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 217) .dynprog-foot-container{display: flex;justify-content: space-evenly;align-items: center; height: 100%;}  
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 218) .dynprog-profile-small{display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 1px;}
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 219) .dynprog-profile-small img{width: 50px;height: 50px;object-fit: cover;border-radius: 50%;margin-bottom: 1px;}
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 220)
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 221) /*for the view teams page*/
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 222) .dynprog-vt-header{  text-align: center; font-family: Fantasy; font-size: 24px;margin-top: 20px;}        
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 223) .dynprog-vt-container {display: flex;flex-wrap: wrap;justify-content: space-evenly;align-items: center;height: 200px;background-color: #f2f2f2;padding: 30px;margin: 30px;}
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 224) .dynprog-vt-tab {margin: 10px;padding: 20px;background-color: #ddd;border: 2px solid #ccc;border-radius: 10px;cursor: pointer;}
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 225) .dynprog-vt-dropdown-content {display: none;position: absolute;z-index: 1;background-color: #f9f9f9;min-width: 320px; box-shadow: 0px 16px 24px 0px rgba(0,0,0,0.2);padding: 24px 32px;border-radius: 10px;border: 2px solid #ccc;}
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 226) .dynprog-vt-dropdown:hover .dynprog-vt-dropdown-content {display: block;}
+dc5a75be (Finli-Hill        2023-03-27 15:14:40 -0400 227) .dynprog-vt-dropdown-content a {display: block;color: black;padding: 5px;text-decoration: none;cursor: pointer;}
