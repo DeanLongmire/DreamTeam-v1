@@ -14,6 +14,8 @@ router.post('/', create_user);
 
 //Get a User's Info
 router.get('/:id', get_user);
+
+//Delete a User
 router.delete('/:id', delete_user);
 
 //Update User Info
