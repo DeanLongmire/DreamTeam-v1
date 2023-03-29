@@ -36,7 +36,7 @@ for (var i = 0; i < inputs.length; i++) {
 
 //this section is for passing information to the back-end
 
-const url = 'http://localhost:5000/users';
+const url = 'https://localhost:5000/users';
 
 let create_button = document.getElementById("create_account");
 let saveUser = () => {
