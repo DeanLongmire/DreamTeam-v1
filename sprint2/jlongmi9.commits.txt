@@ -1,0 +1,255 @@
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400  1) const express = require('express');
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400  2) const bodyParser = require('body-parser');
+2949d0b1 DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 23:40:23 -0400  3) const usersRoutes = require('./Users/global_users.js');
+65358288 DreamTeam/Back-End/index.js (jlongmi9 2023-03-25 20:52:20 -0400  4) const leagues = require('./Leagues/global_leagues.js')
+6c3d7d18 DreamTeam/Back-End/index.js (jlongmi9 2023-03-27 23:14:07 -0400  5) const teams = require('./Teams/teams.js')
+4249eef9 DreamTeam/Back-End/index.js (jlongmi9 2023-03-25 23:21:01 -0400  6) const cors = require('cors');
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400  7) 
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400  8) const app = express();
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400  9) const PORT = 5000;
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400 10) 
+4249eef9 DreamTeam/Back-End/index.js (jlongmi9 2023-03-25 23:21:01 -0400 11) app.use(cors({
+4249eef9 DreamTeam/Back-End/index.js (jlongmi9 2023-03-25 23:21:01 -0400 12)     origin: 'http://127.0.0.1:5500'
+4249eef9 DreamTeam/Back-End/index.js (jlongmi9 2023-03-25 23:21:01 -0400 13) }));
+4249eef9 DreamTeam/Back-End/index.js (jlongmi9 2023-03-25 23:21:01 -0400 14) 
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400 15) app.use(bodyParser.json());
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400 16) 
+2949d0b1 DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 23:40:23 -0400 17) app.use('/users', usersRoutes);
+65358288 DreamTeam/Back-End/index.js (jlongmi9 2023-03-25 20:52:20 -0400 18) app.use('/leagues', leagues);
+6c3d7d18 DreamTeam/Back-End/index.js (jlongmi9 2023-03-27 23:14:07 -0400 19) app.use('/teams', teams)
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400 20) 
+3ca1709d DreamTeam/Back-End/index.js (jlongmi9 2023-03-25 22:57:01 -0400 21) 
+ed4dd0ab DreamTeam/Back-End/index.js (jlongmi9 2023-03-24 22:41:12 -0400 22) app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`))
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400   1) const global_users = require("../Users/global_users_db.js")
+49ac07a0 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 01:21:23 -0400   2) 
+3ca1709d DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-25 22:57:01 -0400   3) const { v4: uuidv4 } = require('uuid');
+3ca1709d DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-25 22:57:01 -0400   4) 
+49ac07a0 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 01:21:23 -0400   5) let db = new global_users.users_dbmanager;
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400   6) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400   7) const get_path = (callback) => {
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400   8)     const pwd = process.cwd();
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400   9)     let db_path = pwd;
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  10)     db_path = db_path + "\\DreamTeam\\Back-End\\database.db";
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  11)     db_path = db_path.replace(/\\/g,"/");
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  12) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  13)     callback(db_path);
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  14) }
+0d10ff83 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 15:40:24 -0400  15) 
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  16) const get_user = (req, res) => {
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400  17)     const { id } = req.params;
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400  18) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  19)     get_path( (path) => {
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  20)         db.open(path);
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  21)         db.get_all(id, (username,first_name,last_name,email,bio,pos) => {
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  22)             console.log(username + " " + first_name + " " + last_name + " " + email + " " + bio + " " + pos)
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  23)             db.close();
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  24)         });
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400  25)     });
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400  26) 
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400  27)     res.send("Got a user's info");
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400  28) }
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400  29) 
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400  30) const show_all = (req, res) => {
+958145c5 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 14:53:04 -0400  31) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  32)     get_path( (path) => {
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  33)         db.open(path);
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  34)         db.display_all( () => {
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  35)             console.log("in controllers: " + path)
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  36)             db.close();
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  37)         });
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  38)     });
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  39) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  40)     res.send("read all");
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400  41) }
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400  42) 
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  43) const create_user = (req, res) => {
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  44)     get_path( (path) => {
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  45)         const user = req.body;
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  46)         const userID = uuidv4();
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400  47)   
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  48)         //adds unique ID to the user
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  49)         const uwid = { ... user, id: userID}
+3ca1709d DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-25 22:57:01 -0400  50) 
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  51)         console.log(uwid);
+49ac07a0 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 01:21:23 -0400  52) 
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  53)         db.open(path);
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  54)         db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  55)             db.close();
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  56)             res.send(`User with the name ${uwid.firstName} added to the database`);
+043e507a DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 19:24:33 -0400  57)         });
+49ac07a0 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 01:21:23 -0400  58)     });
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400  59) }
+2949d0b1 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-24 23:40:23 -0400  60) 
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  61) const delete_user =  (req, res) => {
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  62)     const { id } = req.params;
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  63) 
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  64)     get_path( (path) => {
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  65)         db.open(path);
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  66)         db.delete_user(id, () => {
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  67)             db.close();
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  68)             res.send(`User with the id ${id} deleted`);
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  69)         });
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  70)     });
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  71) }
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400  72) 
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  73) const update_username = (req, res) => {
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  74)     const { id } = req.params;
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  75)     const new_username = req.body.newUsername;
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  76) 
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  77)     console.log(new_username + " " + id);
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  78) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  79)     db.open(db_path);
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  80)     db.update_user_name(new_username,id, () => {
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  81)         db.close();
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  82)     });
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  83) 
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  84)     res.send('Username updated');
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  85) }
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  86) 
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  87) const update_email = (req, res) => {
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  88)     const { id } = req.params;
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  89)     const new_email = req.body.newEmail;
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  90) 
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  91)     console.log(new_email + " " + id);
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  92) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400  93)     db.open(db_path);
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  94)     db.update_email(new_email,id, () => {
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  95)         db.close();
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  96)     });
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  97) 
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  98)     res.send('Email updated');
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400  99) }
+f9b41c97 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-26 23:37:50 -0400 100) 
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 101) const update_bio = (req, res) => {
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 102)     const { id } = req.params;
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 103)     const new_bio = req.body.newBio;
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 104) 
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 105)     console.log(new_bio + " " + id);
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 106) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400 107)     db.open(db_path);
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 108)     db.update_bio(new_bio,id, () => {
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 109)         db.close();
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 110)     });
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 111) 
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 112)     res.send('Bio updated');
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 113) }
+541992a9 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 02:48:44 -0400 114) 
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 115) const update_lastname = (req, res) => {
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 116)     const { id } = req.params;
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 117)     const new_lastname = req.body.newLastname;
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 118) 
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 119)     console.log(new_lastname + " " + id);
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 120) 
+3d5572b4 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 18:44:01 -0400 121)     db.open(db_path);
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 122)     db.update_last_name(new_lastname,id, () => {
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 123)         db.close();
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 124)     });
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 125) 
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 126)     res.send('Lastname updated');
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 127) }
+1bd9ee18 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-27 10:04:12 -0400 128) 
+2e792a74 DreamTeam/Back-End/controllers/global_users.js (jlongmi9 2023-03-28 15:59:07 -0400 129) module.exports = { get_user, show_all, create_user, delete_user, update_lastname, update_username, update_email, update_bio }
+65358288 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-25 20:52:20 -0400  1) const express = require('express');
+65358288 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-25 20:52:20 -0400  2) const bodyParser = require('body-parser');
+65358288 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-25 20:52:20 -0400  5) const router = express.Router();
+65358288 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-25 20:52:20 -0400  7) router.use(bodyParser.json());
+65358288 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-25 20:52:20 -0400  8) 
+6e6a0454 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 17:59:12 -0400  9) //list all leagues to console
+6e6a0454 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 17:59:12 -0400 10) router.get('/', show_all);
+49ac07a0 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-26 01:21:23 -0400 11) 
+6e6a0454 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 17:59:12 -0400 12) //create league
+6e6a0454 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 17:59:12 -0400 13) router.post('/', create_league);
+49ac07a0 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-26 01:21:23 -0400 14) 
+6e6a0454 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 17:59:12 -0400 15) //get league info
+c1271031 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 18:07:24 -0400 16) router.get('/:id', get_league);
+65358288 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-25 20:52:20 -0400 17) 
+6e6a0454 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 17:59:12 -0400 18) //update league info
+6e6a0454 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 17:59:12 -0400 19) router.patch('/update_name/:id', update_name)
+c1271031 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-27 18:07:24 -0400 20) router.patch('/update_name/:id', update_sport)
+65358288 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-25 20:52:20 -0400 21) 
+65358288 DreamTeam/Back-End/Leagues/global_leagues.js (jlongmi9       2023-03-25 20:52:20 -0400 22) module.exports = router;
+2949d0b1 DreamTeam/Back-End/Users/driver.js (jlongmi9 2023-03-24 23:40:23 -0400   1) const global_users = require("./global_users_db")
+2949d0b1 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-24 23:40:23 -0400  1) const express = require('express');
+2949d0b1 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-24 23:40:23 -0400  2) const bodyParser = require('body-parser');
+2e792a74 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-28 15:59:07 -0400  3) const { get_user, show_all, create_user, delete_user, update_lastname, update_username, update_email, update_bio } = require('../controllers/global_users.js');
+2949d0b1 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-24 23:40:23 -0400  5) const router = express.Router();
+65358288 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-25 20:52:20 -0400  7) router.use(bodyParser.json());
+65358288 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-25 20:52:20 -0400  8) 
+541992a9 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 02:48:44 -0400  9) //list all Users to the console
+541992a9 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 02:48:44 -0400 10) router.get('/', show_all);
+541992a9 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 02:48:44 -0400 12) //Create a User
+8a30f013 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 17:58:12 -0400 13) router.post('/', create_user);
+541992a9 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 02:48:44 -0400 14) 
+958145c5 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 14:53:04 -0400 15) //Get a User's Info
+958145c5 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 14:53:04 -0400 16) router.get('/:id', get_user);
+35e90939 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-28 21:31:18 -0400 17) 
+35e90939 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-28 21:31:18 -0400 18) //Delete a User
+2e792a74 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-28 15:59:07 -0400 19) router.delete('/:id', delete_user);
+958145c5 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 14:53:04 -0400 20) 
+541992a9 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 02:48:44 -0400 21) //Update User Info
+f9b41c97 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-26 23:37:50 -0400 22) router.patch('/update_username/:id', update_username)
+f9b41c97 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-26 23:37:50 -0400 23) router.patch('/update_email/:id', update_email)
+541992a9 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 02:48:44 -0400 24) router.patch('/update_bio/:id', update_bio)
+1bd9ee18 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-27 10:04:12 -0400 25) router.patch('/update_lastname/:id', update_lastname)
+2949d0b1 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-03-24 23:40:23 -0400 27) module.exports = router;
+0d10ff83 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 15:40:24 -0400   7)     open(path){
+0d10ff83 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 15:40:24 -0400   8)         console.log("opening " + path);
+8a30f013 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 17:58:12 -0400   9)         this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
+49ac07a0 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 01:21:23 -0400  31)     insert(id, un, email, password, fn, ln, bio, pos, pp, callback){
+49ac07a0 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 01:21:23 -0400  33)           this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
+49ac07a0 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 01:21:23 -0400  34)           this.db.run(this.sql, [id, un, email, password, fn, ln, bio, pos, pp], (err)=>{
+49ac07a0 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 01:21:23 -0400  35)             if(err){return console.log(err.message)}
+49ac07a0 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 01:21:23 -0400  36)           })
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400  37)           callback();
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 177)     get_all(ID, callback) {
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 178)       this.sql = 'SELECT * FROM Users WHERE ID = ?';
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 179)       this.db.get(this.sql, [ID], (err, row) => {
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 180)         if(err) {
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 181)           return console.error(err.message);
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 182)         }
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 183)         if(row) {
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 184)           callback(row.user_name,row.first_name,row.last_name,row.email,row.bio,row.pos);
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 185)         } 
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 186)         else {
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 187)           console.log("error");
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 188)           }
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 189)       });
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 190)     }
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 191) 
+f9b41c97 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 23:37:50 -0400 192)     update_user_name(new_user_name, ID, callback){
+f9b41c97 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 23:37:50 -0400 197)         callback();
+1bd9ee18 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 10:04:12 -0400 207)     update_last_name(new_ln, ID, callback){
+1bd9ee18 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 10:04:12 -0400 212)         callback();
+f9b41c97 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 23:37:50 -0400 215)     update_email(new_email, ID, callback){
+f9b41c97 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-26 23:37:50 -0400 220)         callback();
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 230)     update_bio(new_bio, ID, callback){
+541992a9 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-27 02:48:44 -0400 235)         callback();
+2e792a74 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-28 15:59:07 -0400 245)     delete_user(ID, callback){
+2e792a74 DreamTeam/Back-End/Users/global_users_db.js (jlongmi9     2023-03-28 15:59:07 -0400 251)         callback();
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  1) const bcrypt = require('bcrypt')
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  2) 
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  3) const saltRounds = 10;
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  4) const inputString = 'mypassword'
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  5) const storedString = 'mypassword'
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  6) const hash1 = '$2b$10$Vnm3oJlyQUrmg4vVukl0YujX4opFsN9FJacI.TGbJeu7bxiBp2F5W'
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  7) 
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  8) bcrypt.genSalt(saltRounds, (err, salt) => {
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500  9)   bcrypt.hash(inputString, salt, (err, hash) => {
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 10)     // Handle errors or use hash value in the next step
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 11)     const hash2 = hash
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 12)     console.log(hash)
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 13)     bcrypt.compare(hash1, hash2, function(err, result) {
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 14)         if (err) {
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 15)           // Handle error
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 16)         } else {
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 17)           if (result === true) {
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 18)             // Hashes match
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 19)             console.log('Hashes match!');
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 20)           } else {
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 21)             // Hashes don't match
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 22)             console.log('Hashes do not match!');
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 23)           }
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 24)         }
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 25)       });
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 26)   });
+0edaf30a DreamTeam/Back-End/Users/hash.js (jlongmi9 2023-03-07 22:20:40 -0500 27) });
