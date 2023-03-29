@@ -69,7 +69,15 @@ let saveUser = () => {
         },
         body: JSON.stringify(data)
      })
-     .then(console.log("Responded"))
+     .then(response => {
+      if (response.ok) {
+        // Redirect user to profile page after successful POST request
+        window.location.replace('profile.html');
+      } else {
+        // Handle error response
+        throw new Error('Unable to create user account');
+      }
+     })
      .catch(error => console.error(error));
     
 }

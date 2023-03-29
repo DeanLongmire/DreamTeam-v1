@@ -1,7 +1,7 @@
 /*Take the sport that is selected & the league name and 
  put them in a json object*/
 
-const url = 'http://localhost:5000/leagues' ;
+const url = 'https://localhost:5000/leagues' ;
 
 let create_button = document.getElementById("create_league_button");
 //const create_button = document.getElementById("create_league_button");
@@ -49,7 +49,16 @@ let saveLeague = () => {
      })
      //.then(response => console.log(response))
      //.then(data => console.log(data))
-     .then(console.log("Responded"))
+     .then(response => {
+        if (response.ok) {
+          // Redirect user to profile page after successful POST request
+          console.log("Responded");
+          window.location.replace('view_leagues.html');
+        } else {
+          // Handle error response
+          throw new Error('Unable to create user account');
+        }
+      })
      .catch(error => console.error(error));
 
      create_button.reset();

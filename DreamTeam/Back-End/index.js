@@ -9,6 +9,17 @@ const usersRoutes = require('./Users/global_users.js');
 const leagues = require('./Leagues/global_leagues.js');
 const teams = require('./Teams/teams.js');
 
+//get certs path
+const get_path_key = (callback) => {
+    const pwd = process.cwd();
+    let key = pwd + "/DreamTeam/Back-End/certs/myCA.key";
+    let pem = pwd + "/DreamTeam/Back-End/certs/myCA.pem";
+    key = key.replace(/\\/g,"/");
+    pem = pem.replace(/\\/g,"/");
+
+    callback(key, pem);
+}
+
 const app = express();
 const PORT = 5000;
 
@@ -25,19 +36,21 @@ app.use('/users', usersRoutes);
 app.use('/leagues', leagues);
 app.use('/teams', teams)
 
-https
-  .createServer(
-    {
-      key: fs.readFileSync('C:/Users/deanl/Desktop/GitHub-Repositories/Software-Engineering/DynProg/DreamTeam/Back-End/certs/myCA.key'),
-      cert: fs.readFileSync('C:/Users/deanl/Desktop/GitHub-Repositories/Software-Engineering/DynProg/DreamTeam/Back-End/certs/myCA.pem'),
-      passphrase: 'dinoProgramming'
-    },
-    app
-  )
-  .listen(5000, function () {
-    console.log(
-        `Server Running on port: https://localhost:${PORT}`
-    );
+get_path_key( (key, pem) => {
+    https
+    .createServer(
+        {
+            key: fs.readFileSync(key),
+            cert: fs.readFileSync(pem),
+            passphrase: 'dinoProgramming'
+        },
+        app
+        )
+        .listen(5000, function () {
+            console.log(
+            `Server Running on port: https://localhost:${PORT}`
+        );
+    });
 });
 
 //app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`))
