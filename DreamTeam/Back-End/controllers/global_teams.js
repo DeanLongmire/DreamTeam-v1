@@ -57,7 +57,8 @@ const create_team = (req, res) => {
         db.open(path);
         db.insert(teamWid.teamName, teamWid.id, teamWid.P_ID, teamWid.sport, teamWid.size, () =>{
             db.close();
-            res.send(`Team with the name ${uwid.name} added to the Teams database`);
+            console.log("HERE")
+            res.status(200).send(`Team with the name ${teamWid.name} added to the Teams database`);
         });
     });
 }

@@ -25,7 +25,7 @@ class team_dbmanager{
             console.log('Dropped team table')
         });
     };
-    insert(name, ID, P_ID, sport, num_players){
+    insert(name, ID, P_ID, sport, num_players,){
         this.sql = 'INSERT INTO Teams (name, ID, P_ID, sport, num_players) VALUES(?, ?, ?, ?, ?)';
         this.db.run(this.sql, [name, ID, P_ID, sport, num_players], (err)=>{
             if(err){return console.error(err.message);}

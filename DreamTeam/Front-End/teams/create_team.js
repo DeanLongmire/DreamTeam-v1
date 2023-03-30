@@ -34,17 +34,25 @@ let saveTeam = () => {
     fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-     })
-     //.then(response => console.log(response))
-     //.then(data => console.log(data))
-     .then(console.log("Responded"))
-     .catch(error => console.error(error));
-    
-     create_button.reset();
-
+    })
+    .then(response => {
+      console.log(response.body);
+      console.log(response.type);
+      if (response.ok) {
+        console.log("Check");
+        window.location.replace('view_teams.html');
+      } else {
+        console.log("Error");
+        throw new Error('Unable to create user account');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      console.log("Catch block executed");
+    });
 }
 
 create_button.addEventListener("click", saveTeam);
