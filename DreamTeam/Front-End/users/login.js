@@ -14,6 +14,7 @@ loginBT.disabled = true;
 emailField.addEventListener('input', toggleLoginBt);
 passwordField.addEventListener('input', toggleLoginBt);
 
+//Toggles the view of password
 passwordToggle.addEventListener('click', ()=>{
   const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
   passwordField.setAttribute('type', type);
