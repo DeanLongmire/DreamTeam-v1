@@ -68,13 +68,14 @@ class team_dbmanager{
             console.log('Row(s) sport updated');
         });
     };
-    delete(name){
-        this.data = [name];
-        this.sql = 'DELETE FROM Teams WHERE name = ?';
+    delete(id, callback){
+        this.data = [id];
+        this.sql = 'DELETE FROM Teams WHERE id  = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
             console.log('Row(s) deleted')
         });
+        callback();
     };
     close(){
         this.db.close((err) => {
