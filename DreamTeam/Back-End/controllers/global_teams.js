@@ -106,4 +106,17 @@ const updatePlayerCount = (req, res) => {
     
 }
 
-module.exports = { get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount }
+// Deletes a team from the database
+const DeleteTeam = (req, res) => {
+    const { id } = req.params;
+
+    get_path( (path) => {
+        db.open(path);
+        db.delete(id, () => {
+            db.close();
+            res.send(`Team with the id ${id} deleted`);
+        });
+    });
+}
+
+module.exports = { get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount, DeleteTeam }

@@ -5,7 +5,10 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const { get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount } = require('../controllers/global_teams.js');
+const { 
+    get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount,
+    DeleteTeam
+} = require('../controllers/global_teams.js');
 
 const router = express.Router();
 
@@ -28,5 +31,8 @@ router.patch('/update_team_sport/:id', update_team_sport);
 
 // update a team's num of players
 router.patch('/updatePlayerCount/:id', updatePlayerCount);
+
+// Delete a team from the database
+router.patch('deleteteam/:id', DeleteTeam);
 
 module.exports = router;
