@@ -28,10 +28,10 @@ class team_dbmanager{
     insert(name, ID, P_ID, sport, num_players, callback){
         this.sql = 'INSERT INTO Teams (name, ID, P_ID, sport, num_players) VALUES(?, ?, ?, ?, ?)';
         this.db.run(this.sql, [name, ID, P_ID, sport, num_players], (err)=>{
-            callback();
             if(err){return console.error(err.message);}
             console.log('New row created in Team table')
         });
+        callback();
     };
     display_all(){
         this.sql = 'SELECT * FROM Teams';
