@@ -52,15 +52,44 @@ const create_league = (req, res) => {
     });
 }
 
-//figure out where variables for new stuff comes from
+const delete_league = (req, res) => {
+    const { id } = req.params;
+
+    get_path( (path) => {
+        db.open(path);
+        db.delete_league(id, () =>{
+            db.close();
+            res.send('League with the id ${id} deleted');
+        });
+    });
+}
+
 const update_name = (req, res) => {
     const { id } = req.params;
-    //const new_name = req.body.newName
+    const new_name = req.body.newName; //newName not real yet
+
+    console.log(new_name + " " + id);
+    get_path( (path) => {
+         db.open(path);
+         db.update_name(new_name,id, () =>{
+            db.close();
+         });
+    });
+    res.send('Sport name updated');
 }
 
 const update_sport = (req, res) => {
     const { id } = req.params;
-    //const new_sport = req.body.newSport
+    const new_sport = req.body.newSport; //newSport not real yet
+
+    console.log(new_sport + " " + id);
+    get_path( (path) => {
+        db.open(path);
+        db.update_sport(new_sport,id, () =>{
+            db.close();
+        });
+    });
+    res.send('Sport updated');
 }
 
-module.exports = {get_league, show_all, create_league, update_name, update_sport}
+module.exports = {get_league, show_all, create_league, delete_league, update_name, update_sport}

@@ -1,6 +1,11 @@
 #right now this script just prints out each person's full git blame history in to their own files 
 #make sure to run from DynProg directory by right clicking and doing "run code"
 #all of our formats for out sprint1.commits.txt are different so I am not sure how we will be able to diff them in one script yet
+Remove-Item "fhill5.txt"
+Remove-Item "jbrouss2.txt"
+Remove-Item "jlongmi9.txt"
+Remove-Item "lbower10.txt"
+Remove-Item "Ryan-Carnes-01.txt"
 $outputFile = "output.txt"
 Get-ChildItem -Path ".\DreamTeam\Back-End" -Filter "*.js" | ForEach-Object {
     $filename = $_.FullName
