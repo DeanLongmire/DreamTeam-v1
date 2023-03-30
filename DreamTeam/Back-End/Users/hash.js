@@ -1,27 +1,13 @@
-const bcrypt = require('bcrypt')
+const { createHash } = require('crypto')
 
-const saltRounds = 10;
-const inputString = 'mypassword'
-const storedString = 'mypassword'
-const hash1 = '$2b$10$Vnm3oJlyQUrmg4vVukl0YujX4opFsN9FJacI.TGbJeu7bxiBp2F5W'
+const salt = "hyt68998#@ba"
 
-bcrypt.genSalt(saltRounds, (err, salt) => {
-  bcrypt.hash(inputString, salt, (err, hash) => {
-    // Handle errors or use hash value in the next step
-    const hash2 = hash
-    console.log(hash)
-    bcrypt.compare(hash1, hash2, function(err, result) {
-        if (err) {
-          // Handle error
-        } else {
-          if (result === true) {
-            // Hashes match
-            console.log('Hashes match!');
-          } else {
-            // Hashes don't match
-            console.log('Hashes do not match!');
-          }
-        }
-      });
-  });
-});
+const hash_data = (data) => {
+  let hashed_data = createHash("sha256")
+    .update(data)
+    .update(createHash("sha256").update(salt, "utf8").digest("hex"))
+    .digest("hex")
+  return hashed_data;
+};
+
+module.exports = { hash_data }

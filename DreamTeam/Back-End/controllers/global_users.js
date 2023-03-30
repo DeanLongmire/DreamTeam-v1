@@ -1,4 +1,5 @@
-const global_users = require("../Users/global_users_db.js")
+const global_users = require("../Users/global_users_db.js");
+const { hash_data } = require("../Users/hash.js");
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -49,6 +50,12 @@ const create_user = (req, res) => {
         const uwid = { ... user, id: userID}
 
         console.log(uwid);
+
+        let hash_pass = hash_data(uwid.password);
+        uwid.password = hash_pass;
+
+        //let hash_email = hash_data(uwid.email);
+        //uwid.email = hash_email;
 
         db.open(path);
         db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
