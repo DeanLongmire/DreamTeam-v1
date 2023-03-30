@@ -33,6 +33,6 @@ router.patch('/update_team_sport/:id', update_team_sport);
 router.patch('/updatePlayerCount/:id', updatePlayerCount);
 
 // Delete a team from the database
-router.patch('deleteteam/:id', DeleteTeam);
+router.delete('/:id', DeleteTeam);
 
 module.exports = router;
