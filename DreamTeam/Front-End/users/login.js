@@ -1,5 +1,5 @@
 //For JSON passing
-const url = 'http://localhost:5000/login'
+const url = 'https://localhost:5000/login'
 
 //Make the email, password fields and the login bt itself
 const emailField = document.querySelector('input[name="email"]');
