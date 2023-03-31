@@ -17,8 +17,8 @@ const get_league = (req, res) => {
 
     get_path( (path) =>{
         db.open(path);
-        db.get_all(id, (name, sport) => {
-            console.log(name + " " + sport);
+        db.get_all(id, (name, ID, sport) => {
+            console.log(name + " " + ID + " " + sport);
             db.close();
          });
     });
@@ -33,7 +33,7 @@ const show_all = (req, res) => {
             db.close();
         });
     });
-    res.send("read all");
+    res.send("show all leagues");
 }
 
 const create_league = (req, res) => {
@@ -47,7 +47,7 @@ const create_league = (req, res) => {
       db.open(path);
       db.insert(uwid.leagueName,uwid.id,uwid.sport, () =>{
           db.close();
-          res.send('League with the name ${uwid.leagueName} added to the database');
+          res.send('League added to database');
         });
     });
 }
@@ -59,14 +59,14 @@ const delete_league = (req, res) => {
         db.open(path);
         db.delete_league(id, () =>{
             db.close();
-            res.send('League with the id ${id} deleted');
+            res.send('League deleted');
         });
     });
 }
 
 const update_name = (req, res) => {
     const { id } = req.params;
-    const new_name = req.body.newName; //newName not real yet
+    const new_name = req.body.newName;
 
     console.log(new_name + " " + id);
     get_path( (path) => {

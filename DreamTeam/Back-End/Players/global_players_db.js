@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-class league_dbmanager{
+class player_dbmanager{
     constructor(db, sql, data){}
     open(path){
         this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
@@ -11,30 +11,30 @@ class league_dbmanager{
         });
     }
     create(){
-        this.db.run('CREATE TABLE Leagues(name, ID, sport)', (err)=>{
+        this.db.run('CREATE TABLE Players(name, username, ID, P_ID, position)', (err)=>{
             if(err){return console.error(err.message);}
-            console.log('Created league table');
+            console.log('Created player table');
         }); 
     }
     drop(){
-        this.db.run('DROP TABLE Leagues', (err)=>{
+        this.db.run('DROP TABLE Players', (err)=>{
             if(err){return console.error(err.message);}
-            console.log('Dropped league table')
+            console.log('Dropped player table')
         });
     }
-    insert(name, ID, sport, callback){
+    insert(name, username, ID, Team_ID, position, callback){
         this.db.serialize(() => {
-            this.sql = 'INSERT INTO Leagues (name, ID, sport) VALUES(?,?,?)';
-            this.db.run(this.sql, [name, ID, sport], (err)=>{
+            this.sql = 'INSERT INTO Players (name, username, ID, Team_ID, position) VALUES(?,?,?,?,?)';
+            this.db.run(this.sql, [name, username, ID, Team_ID, position], (err)=>{
                 if(err) {return console.error(err.message);}
-                console.log("New row created in League table");
+                console.log("New row created in Player table");
             });
             callback();
         });
     }
     display_all(callback){
-        this.db.serialize(()=>{ 
-            this.sql = 'SELECT * FROM Leagues';
+        this.db.serialize(()=>{
+            this.sql = 'SELECT * FROM Players';
             this.db.all(this.sql, [], (err,rows)=>{
                 if(err) {return console.error(err.message);}
                 rows.forEach((row)=>{
@@ -46,40 +46,43 @@ class league_dbmanager{
     }
     get_all(ID, callback){
         this.db.serialize(()=>{
-            this.sql = 'SELECT * FROM Leagues WHERE ID = ?';
-            this.db.get(this.sql, [ID], (err, row) =>{
+            this.sql = 'SELECT * FROM Players WHERE ID = ?';
+            this.db.get(this.sql, [ID], (err, row) => {
                 if(err){return console.error(err.message);}
-                if(row){callback(row.name,row.ID,row.sport);}
+                if(row){callback(row.name,row.username,row.ID,row.Team_ID,row.position);}
                 else{console.log("error");}
-            });
-            callback();
-        });
-    }
-    update_sport(new_sport, ID, callback){
-        this.db.serialize(()=>{ 
-            this.sql = 'UPDATE Leagues SET sport = ? WHERE ID = ?';
-            this.db.run(this.sql, [new_sport, ID], (err)=>{
-                if(err){return console.log(err.message);}
             });
             callback();
         });
     }
     update_name(new_name, ID, callback){
         this.db.serialize(()=>{ 
-            this.sql = 'UPDATE Leagues SET name = ? WHERE ID = ?';
-            this.db.run(this.sql, [new_name, ID], (err)=>{
+            this.data = [new_name, ID];
+            this.sql = 'UPDATE Players SET name = ? WHERE ID = ?';
+            this.db.run(this.sql, this.data, (err)=>{
                 if(err){return console.log(err.message);}
                 console.log('Row(s) name updated');
             });
             callback();
         });
     }
+    update_position(new_position, ID, callback){
+        this.db.serialize(()=>{ 
+            this.data = [new_position, ID];
+            this.sql = 'UPDATE Players SET position = ? WHERE ID = ?';
+            this.db.run(this.sql, this.data, (err)=>{
+                if(err){return console.log(err.message);}
+                console.log('Row(s) position updated');
+            });
+            callback();
+        });
+    }
     delete(ID, callback){
         this.db.serialize(()=>{ 
-            this.sql = 'DELETE FROM Leagues WHERE ID = ?';
+            this.sql = 'DELETE FROM Players WHERE ID = ?';
             this.db.run(this.sql, [ID], (err)=>{
                 if(err){return console.log(err.message);}
-                console.log('League Row(s) deleted')
+                console.log('Row(s) deleted')
             });
             callback();
         });
@@ -94,4 +97,4 @@ class league_dbmanager{
     }
 }
 
-module.exports.league_dbmanager = league_dbmanager;
+module.exports.player_dbmanager = player_dbmanager;
