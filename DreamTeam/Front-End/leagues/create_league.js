@@ -1,7 +1,8 @@
 /*Take the sport that is selected & the league name and 
  put them in a json object*/
 
-const url = 'https://localhost:5000/leagues' ;
+//const url = 'https://localhost:5000/leagues';
+const url = 'http://localhost:5000/leagues';
 
 let create_button = document.getElementById("create_league_button");
 //const create_button = document.getElementById("create_league_button");

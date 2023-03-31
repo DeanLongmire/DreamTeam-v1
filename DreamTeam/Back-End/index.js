@@ -36,7 +36,7 @@ app.use('/users', usersRoutes);
 app.use('/leagues', leagues);
 app.use('/teams', teams)
 
-get_path_key( (key, pem) => {
+/*get_path_key( (key, pem) => {
     https
     .createServer(
         {
@@ -51,6 +51,6 @@ get_path_key( (key, pem) => {
             `Server Running on port: https://localhost:${PORT}`
         );
     });
-});
+});*/
 
-//app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`))
+app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`))

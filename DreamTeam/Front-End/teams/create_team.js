@@ -1,5 +1,6 @@
 //Essentially the same js as create league but this is for create team
-const url = 'https://localhost:5000/teams' ;
+//const url = 'https://localhost:5000/teams';
+const url = 'http://localhost:5000/teams';
 
 let create_button = document.getElementById("create_team_button");
 
