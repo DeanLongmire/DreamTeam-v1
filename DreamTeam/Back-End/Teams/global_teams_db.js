@@ -14,7 +14,7 @@ class team_dbmanager{
         });
     };
     create(){
-        this.db.run('CREATE TABLE Teams(name, ID, P_ID, sport, num_players)', (err)=>{
+        this.db.run('CREATE TABLE Teams(name, ID, P_ID, sport, num_players, W, L)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created team table');
         });
@@ -26,8 +26,8 @@ class team_dbmanager{
         });
     };
     insert(name, ID, P_ID, sport, num_players, callback){
-        this.sql = 'INSERT INTO Teams (name, ID, P_ID, sport, num_players) VALUES(?, ?, ?, ?, ?)';
-        this.db.run(this.sql, [name, ID, P_ID, sport, num_players], (err)=>{
+        this.sql = 'INSERT INTO Teams (name, ID, P_ID, sport, num_players) VALUES(?, ?, ?, ?, ?, ?, ?)';
+        this.db.run(this.sql, [name, ID, P_ID, sport, num_players, W, L], (err)=>{
             if(err){return console.error(err.message);}
             console.log('New row created in Team table')
         });
