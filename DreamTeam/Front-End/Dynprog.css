@@ -233,3 +233,6 @@ h8{font-size: 20px; font-family:Fantasy;}
 
 .dynprog-gradient-background-gray{background: rgb(88,89,91);
     background: linear-gradient(90deg, rgba(88,89,91,1) 35%, rgba(211,211,211,1) 100%);}
+
+/*Spacing for between the buttons NOT WORKING FML*/
+.dynprog-padding-button{padding-left:100px; padding-right:100px; padding-top:0px; padding-bottom:0px;}
