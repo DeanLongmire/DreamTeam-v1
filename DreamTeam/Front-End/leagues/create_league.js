@@ -89,6 +89,7 @@ function toggleCreateButton(){
     const sportRadios = document.getElementsByName("sport");
     let selectedSport;
 
+    //Checking if a sport is checked
     for (const sport of sportRadios) {
       if (sport.checked) {
       selectedSport = sport.value;
@@ -96,6 +97,7 @@ function toggleCreateButton(){
       }
     }
 
+    //How to disable/enable the create button so that users can't not put any input
     if(leagueInput.value.trim !== ''){
         const leagueName = leagueInput.value;
 
