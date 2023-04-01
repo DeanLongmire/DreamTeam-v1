@@ -16,6 +16,7 @@
 * Login Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/8)
 * Set-up Profile Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/38)
 * Create League - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/19)
+* League Admin Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/41)
 
 ## Files you worked on
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Dynprog.css
@@ -27,6 +28,7 @@
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/create_league.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leaguescreate_league.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/view_leagues.html
+* utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/league_admin.html
 
 ## What you accomplished
 * Login Page: User's passwords are hidden and can be shown when they click the "show" button
