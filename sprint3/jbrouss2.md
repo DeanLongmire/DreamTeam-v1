@@ -15,12 +15,14 @@
 ## Issues you worked on
 * Login Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/8)
 * Set-up Profile Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/38)
+* Create League - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/19)
 
 ## Files you worked on
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Dynprog.css
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/login.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/profile.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/login.js
+* utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/registry.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/set_up_profile.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/create_league.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leaguescreate_league.js
