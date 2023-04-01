@@ -38,7 +38,15 @@ function toggleLoginBt() {
       },
       body: JSON.stringify(userData)
    })
-   .then(console.log("Responded"))
+   .then(response => {
+      if(response.ok){
+        (console.log("Responded"));
+        //Redirect to profile if account found
+        window.location.replace("profile.html");
+      }else{
+        throw new Error('Account not found');
+      }
+   })
    .catch(error => console.error(error));
 
    loginBT.disabled = false;
