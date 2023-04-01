@@ -120,7 +120,7 @@ function toggleCreateButton(){
               if (response.ok) {
                 // Redirect user to view their league page after successful POST request
                 console.log("Responded");
-                window.location.replace('view_leagues.html');
+                window.location.replace('league_admin.html');
               } else {
                 // Handle error response
                 throw new Error('Unable to create user account');
