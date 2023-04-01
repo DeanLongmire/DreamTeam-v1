@@ -12,8 +12,8 @@ const teams = require('./Teams/teams.js');
 //get certs path
 const get_path_key = (callback) => {
     const pwd = process.cwd();
-    let key = pwd + "/DreamTeam/Back-End/certs/myCA.key";
-    let pem = pwd + "/DreamTeam/Back-End/certs/myCA.pem";
+    let key = pwd + "/DreamTeam/Back-End/certs/private-key.pem";
+    let pem = pwd + "/DreamTeam/Back-End/certs/certificate.pem";
     key = key.replace(/\\/g,"/");
     pem = pem.replace(/\\/g,"/");
 

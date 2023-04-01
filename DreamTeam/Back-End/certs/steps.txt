@@ -1,0 +1,9 @@
+openssl genpkey -algorithm RSA -des3 -out private-key.pem -pkeyopt rsa_keygen_bits:4096
+
+Enter password 
+
+openssl req -new -config certificate.conf -key private-key.pem -out csr.pem
+
+Enter password
+
+openssl x509 -in csr.pem -out certificate.pem -req -signkey private-key.pem -days 3650 -extfile certificate-ext.conf
