@@ -199,8 +199,8 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .active, .dynprog-dot:hover {background-color: #717171;}
 
 /*Making columns within a page - this will let you have columns side by side*/
-.dynprog-column {box-sizing:border-box; column-gap:40px;}
-.dynprog-child-column{border: 10px solid white}
+.dynprog-column {box-sizing:border-box;}
+.dynprog-child-column{padding:5px;flex:1; flex-wrap:wrap;}
 .dynprog-parent-column{display:flex}
 
 /*Making a better box for forms*/
