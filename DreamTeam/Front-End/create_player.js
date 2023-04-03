@@ -5,7 +5,7 @@ let create_button = document.getElementById("create_player");
 
 //How the data is able to be receieved that the user selects, inputs
 let savePlayer = () => {
-    const playerInput = document.getElementByName("player_name");
+    const playerInput = document.getElementsByName("player_name");
     const playerName = playerInput.value;
 
     const positionInput = document.getElementsByName("player_position");

@@ -8,6 +8,7 @@ const fs = require('fs');
 const usersRoutes = require('./Users/global_users.js');
 const leagues = require('./Leagues/global_leagues.js');
 const teams = require('./Teams/teams.js');
+const players = require('./Players/global_players.js');
 
 //get certs path
 const get_path_key = (callback) => {
@@ -35,6 +36,7 @@ app.use(bodyParser.json());
 app.use('/users', usersRoutes);
 app.use('/leagues', leagues);
 app.use('/teams', teams)
+app.use('/players', players)
 
 /*get_path_key( (key, pem) => {
     https

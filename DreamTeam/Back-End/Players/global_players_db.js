@@ -11,7 +11,7 @@ class player_dbmanager{
         });
     }
     create(){
-        this.db.run('CREATE TABLE Players(name, username, ID, P_ID, position)', (err)=>{
+        this.db.run('CREATE TABLE Players(name, username, ID, Team_ID, position)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created player table');
         }); 
@@ -96,5 +96,11 @@ class player_dbmanager{
         });
     }
 }
+
+//let db = new player_dbmanager;
+//db.open('../database.db');
+//db.drop();
+//db.create();
+//db.close();
 
 module.exports.player_dbmanager = player_dbmanager;
