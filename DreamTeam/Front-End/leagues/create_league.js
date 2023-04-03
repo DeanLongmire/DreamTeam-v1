@@ -76,7 +76,7 @@ const url = 'http://localhost:5000/leagues'
 
 //Make the fields and create button itself
 const create_button = document.querySelector('#create_league_button');
-const leagueInput = document.getElementById("leageue_input");
+const leagueInput = document.getElementById("league_input");
 
 //Disable the button in the beginning
 create_button.disabled = true;
