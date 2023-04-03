@@ -1,5 +1,5 @@
 // Essentially the same js as create league/team but this is for creating the player on a team
-const url = 'http://localhost:5000/players' ;
+const url = 'http://localhost:5000/players' 
 
 let create_button = document.getElementById("create_player");
 
@@ -30,11 +30,16 @@ let savePlayer = () => {
         },
         body: JSON.stringify(data)
      })
-     //.then(response => console.log(response))
+     .then(response => {
+      if(response.ok) {
+        console.log("responded")
+      } else {
+        throw new Error('unable to create player account');
+      }
+    })
      //.then(data => console.log(data))
-     .then(console.log("Responded"))
-     .catch(error => console.error(error));
-    
+     //.then(console.log("Responded"))
+     .catch(error => console.error(error)); 
 }
 
 create_button.addEventListener("click", savePlayer);
