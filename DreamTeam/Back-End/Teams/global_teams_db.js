@@ -85,6 +85,22 @@ class team_dbmanager{
             console.log('Database Closed.');
         });
     };
+    update_num_wins(name, newNumWins){
+        this.data = [newNumWins, name];
+        this.sql = 'UPDATE Teams SET W = ? WHERE name = ?';
+        this.db.run(this.sql, this.data, (err)=>{
+            if(err){return console.log(err.message);}
+            console.log('Row(s) wins updated');
+        });
+    };
+    update_num_losses(name, newNumLosses){
+        this.data = [newNumLosses, name];
+        this.sql = 'UPDATE Teams SET L = ? WHERE name = ?';
+        this.db.run(this.sql, this.data, (err)=>{
+            if(err){return console.log(err.message);}
+            console.log('Row(s) losses updated');
+        });
+    }
 }
 
 module.exports.team_dbmanager = team_dbmanager;

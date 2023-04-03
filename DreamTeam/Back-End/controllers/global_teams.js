@@ -97,7 +97,7 @@ const updatePlayerCount = (req, res) => {
     const { id } = req.params;
     const new_num_players = req.body.new_num_players;
 
-    console.log(`Team with id: ${id} had ${id.num_players - new_num_players}`);
+    console.log(`Team with id: ${id} had ${new_num_players - id.num_players}`);
     console.log(`Team with id: ${id} NOW has new player count of ${new_num_players}`);
 
     db.open(db_path);
@@ -120,4 +120,28 @@ const DeleteTeam = (req, res) => {
     });
 }
 
-module.exports = { get_team, show_all, create_team, update_team_name, update_team_sport, updatePlayerCount, DeleteTeam }
+const UpdateWins = (req, res) => {
+    const team = req.body;
+    const wins = team.W;
+    
+    console.log(`Team: ${team.teamName} has ${wins} wins`);
+    db.open(db_path);
+    db.UpdateWins(team.teamName, wins, ()=> {
+        db.close();
+    });
+}
+
+const UpdateLosses = (req, res) => {
+    const team = req.body;
+    const losses = team.L;
+    console.log(`Team ${team.teamName} has ${losses} losses`);
+    db.open(db_path);
+    db.UpdateLosses(team.teamName, losses, () => {
+        db.close();
+    });
+}
+
+module.exports = { 
+    get_team, show_all, create_team, update_team_name,
+    update_team_sport, updatePlayerCount, DeleteTeam, UpdateWins, UpdateLosses,
+}
