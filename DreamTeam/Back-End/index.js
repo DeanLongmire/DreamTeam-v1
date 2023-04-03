@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const https = require('https');
@@ -24,8 +25,14 @@ const get_path_key = (callback) => {
 const app = express();
 const PORT = 5000;
 
+app.use(session({
+    secret: 'my secret key',
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use(cors({
-    origin: 'http://127.0.0.1:5500',
+    origin: 'http://127.0.0.1:5500', //configured to accept connection from html pages launched with live server
     optionsSuccessStatus: 200,
     allowedHeaders: ['Content-Type', 'Authorization'],
     allowedMethods: ['GET', 'POST', 'PUT', 'DELETE']

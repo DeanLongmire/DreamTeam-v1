@@ -54,9 +54,9 @@ class users_dbmanager{
     }
 
     /* SACRED CODE. DO NOT TOUCH. I HAVE NO IDEA HOW IT WORKS */
-    get_ID(user_name, callback) {
-        this.sql = 'SELECT password, ID FROM Users WHERE user_name = ?';
-        this.db.get(this.sql, [user_name], (err, row) => {
+    get_ID(email, callback) {
+        this.sql = 'SELECT password, ID FROM Users WHERE email = ?';
+        this.db.get(this.sql, [email], (err, row) => {
           if(err) {
             return console.error(err.message);
           }
@@ -64,7 +64,7 @@ class users_dbmanager{
             callback(row.password,row.ID);
           }
           else {
-            callback(null, new Error('User not found'));
+            callback(null, null);
           }
         });
     }
@@ -112,6 +112,7 @@ class users_dbmanager{
             console.log("error");
           }
         });
+        callback();
     }
 
     get_user_name(ID, callback) {

@@ -28,6 +28,44 @@ const get_user = (req, res) => {
     res.send("Got a user's info");
 }
 
+const login = (req, res) => {
+    //authenticate user
+
+    const user = req.body;
+
+    let hash_pass = hash_data(user.passwordField);
+    user.passwordField = hash_pass;
+
+    console.log(user.emailField + " " + user.passwordField);
+
+    get_path( (path) => {
+        db.open(path);
+        db.get_ID(user.emailField, (password, id) => {
+            console.log("Got password: "+ password + " from id " + id);
+            if(password == null)
+            {
+                res.send("Email is not found");
+            }
+            else
+            {
+                console.log(hash_pass + "\n" + password);
+                if(hash_pass == password)
+                {
+                    res.send("Passwords Match! Logged in")
+                }
+                else
+                {
+                    res.send("Invalid password");
+                }
+            }
+        });
+    })
+
+    
+    //req.session.user = { name: 'John Doe', email: 'johndoe@example.com' };
+    //res.send('Logged in successfully');
+}
+
 const show_all = (req, res) => {
 
     get_path( (path) => {
@@ -133,4 +171,4 @@ const update_lastname = (req, res) => {
     res.send('Lastname updated');
 }
 
-module.exports = { get_user, show_all, create_user, delete_user, update_lastname, update_username, update_email, update_bio }
+module.exports = { get_user, login, show_all, create_user, delete_user, update_lastname, update_username, update_email, update_bio }
