@@ -124,6 +124,7 @@ function toggleCreateButton(){
               } else {
                 // Handle error response
                 throw new Error('Unable to create user account');
+                window.location.replace('../error.html');
               }
             })
            .catch(error => console.error(error));
