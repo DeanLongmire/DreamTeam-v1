@@ -100,7 +100,15 @@ function toggleCreateButton(){
     //How to disable/enable the create button so that users can't not put any input
     if(leagueInput.value.trim !== ''){
         const leagueName = leagueInput.value;
+        create_button.disabled = false;
+    }
+    else{
+        create_button.disabled = true;
+    }
+}
 
+//Function to create a league on click
+function createLeague(){
         const data = { 
             sport: selectedSport, 
             leagueName: leagueName 
@@ -128,10 +136,9 @@ function toggleCreateButton(){
               }
             })
            .catch(error => console.error(error));
+    }
 
-           create_button.disabled = false;
-    }
-    else{
-        create_button.disabled = true;
-    }
-}
+//Event listener for when user clicks the button
+  create_button.addEventListener('click', () =>{
+    createLeague();
+  });
