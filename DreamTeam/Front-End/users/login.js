@@ -26,6 +26,17 @@ function toggleLoginBt() {
   //Check if they aren't
   if(emailField.value.trim() !== '' && passwordField.value.trim() !== ''){
 
+    loginBT.disabled = false;
+  }
+  
+  else{
+    loginBT.disabled = true;
+  }
+}
+
+//Function to login user that puts the user data into file to send
+//back via fetch and catch
+function loginUser(){
     const userData = {
       emailField: emailField.value,
       passwordField: passwordField.value
@@ -48,14 +59,9 @@ function toggleLoginBt() {
       }
    })
    .catch(error => console.error(error));
-
-   loginBT.disabled = false;
-  }
-  
-  else{
-    loginBT.disabled = true;
   }
 
-}
-
-
+  //Event listener for when user clicks the button
+  loginBT.addEventListener('click', () =>{
+    loginUser();
+  });
