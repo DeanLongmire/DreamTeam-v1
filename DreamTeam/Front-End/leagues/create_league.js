@@ -81,7 +81,7 @@ const leagueInput = document.getElementById("league_input");
 //Disable the button in the beginning
 create_button.disabled = true;
 
-//Add event listerners for league name field
+//Add event listeners for league name field
 leagueInput.addEventListener("input", toggleCreateButton)
 
 function toggleCreateButton(){
