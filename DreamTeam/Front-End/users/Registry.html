@@ -32,13 +32,13 @@
     <form id = regform class="dynprog-container dynprog-margin">
         
         <label>Name</label>
-        <input class="dynprog-input" type="text" placeholder="Enter Name" name="name" id="name"> 
+        <input class="dynprog-input" type="text" placeholder="Name" name="name" id="name"> 
         
         <label>Email</label>
-        <input class="dynprog-input" type="text" placeholder="Enter Email" name="email" id="email" >
+        <input class="dynprog-input" type="text" placeholder="something@email.com" name="email" id="email" >
 
         <label>Password</label>
-        <input class="dynprog-input" type="text" placeholder="Enter Password" name="psw" id = "psw">
+        <input class="dynprog-input" type="text" placeholder="Enter Password (must be at least 8 characters and have at least one number)" name="psw" id = "psw">
 
         <label>Confirm Password</label>
         <input class="dynprog-input" type="text" placeholder="Re-Enter Password" name="psw-repeat" id="psw-repeat" required>
@@ -46,9 +46,12 @@
     
     <!--takes user to profile-->
     <div class="dynprog-center dynprog-padding-24">
-      <!-- <A HREF="profile.html"> -->
+
+        <div id="password-error-message" class="dynprog-password-error-message">
+        </div>
+
         <button id="create_account" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create Account</button>
-        <!-- </A> -->
+
         <!--Takes user to login-->
         <div class="dynprog-hover-text-orange">
             <p>Already have an account? <a href="login.html">Sign in</a>.</p>
@@ -59,7 +62,8 @@
                 <p> &copy; Copyright Spring 2023 DynProg Team. All rights reserved. Developed by DynProg.</p>
             </div>
         </footer>
-        
+
+    </div>  
 <script src="Registry.js"></script>
 
 </html>
