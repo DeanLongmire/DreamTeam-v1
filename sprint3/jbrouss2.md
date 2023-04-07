@@ -12,6 +12,7 @@
 ## What problems you encountered
 * Login/create league JS need another function so had to rewrite that
 * Issues with disbaling create league button so had to fix that JS
+* Had to figure out how to center a smaller box on Join League page
 
 ## Issues you worked on
 * Login Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/8)
