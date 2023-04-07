@@ -10,14 +10,7 @@
 
     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
         <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
-        <div class="dynprog-dropdown-hover">
-            <button class ="dynprog-button">Sports</button>
-            <div class="dynprog-dropdown-content dynprog-bar-block dynprog-card-4">
-                <a href="#" class="dynprog-bar-item dynprog-button">Flag Football</a>
-                <a href="#" class="dynprog-bar-item dynprog-button">Men's Soccer</a>
-                <a href="#" class="dynprog-bar-item dynprog-button">Softball</a>
-            </div>
-        </div>
+        <a href="login.html" class="dynprog-bar-item dynprog-button">Login</a>
     </div>
 
 
@@ -28,11 +21,14 @@
         <div class="dynprog-container dynprog-center dynprog-gray">
             <h2 class="dynprog-text-white">Register Account</h2>
         </div>
-
-    <form id = regform class="dynprog-container dynprog-margin">
         
+        <div class="dynprog-center dynprog dynprog-padding-16">
+        <button id="password-toggle" class="dynprog-button dynprog-round-small dynprog-text-white dynprog-orange">Show Password</button>
+        </div>
+
+    <form id = regform class="dynprog-container dynprog-margin"> 
         <label>Name</label>
-        <input class="dynprog-input" type="text" placeholder="Name" name="name" id="name"> 
+        <input class="dynprog-input" type="text" placeholder="Name" name="name" id="name"></input>
         
         <label>Email</label>
         <input class="dynprog-input" type="text" placeholder="something@email.com" name="email" id="email" >
@@ -47,8 +43,7 @@
     <!--takes user to profile-->
     <div class="dynprog-center dynprog-padding-24">
 
-        <div id="password-error-message" class="dynprog-password-error-message">
-        </div>
+        <div id="password-error-message" class="dynprog-password-error-message"></div>
 
         <button id="create_account" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create Account</button>
 

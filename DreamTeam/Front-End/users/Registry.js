@@ -69,6 +69,7 @@ const registerButton = document.getElementById("create_account");
 const passwordInput = document.getElementById("psw");
 const confirmPasswordInput = document.getElementById("psw-repeat");
 const errorElement = document.getElementById("password-error-message");
+const passwordToggle = document.getElementById("password-toggle");
 
 registerButton.setAttribute("disabled", "disabled");
 
@@ -108,18 +109,18 @@ for (const input of inputs) {
   input.addEventListener("input", handleButtonState);
 }
 
-// Add event listener to password input field, this masks the inputs with '*'
-passwordInput.addEventListener("input", function() {
-  const password = passwordInput.value;
-  const maskedPassword = '*'.repeat(password.length - 1) + password.charAt(password.length - 1);
-  passwordInput.value = maskedPassword;
-});
+let isPasswordVisible = false;
 
-// Same for password repeat
-confirmPasswordInput.addEventListener("input", function() {
-  const confirmPassword = confirmPasswordInput.value;
-  const confirmMaskedPassword = '*'.repeat(confirmPassword.length - 1) + confirmPassword.charAt(confirmPassword.length - 1);
-  confirmPasswordInput.value = confirmMaskedPassword;
+passwordToggle.addEventListener("click", () => {
+  if (isPasswordVisible) {
+    passwordInput.setAttribute("type", "password");
+    confirmPasswordInput.setAttribute("type", "password");
+    isPasswordVisible = false;
+  } else {
+    passwordInput.setAttribute("type", "text");
+    confirmPasswordInput.setAttribute("type", "text");
+    isPasswordVisible = true;
+  }
 });
 
 
