@@ -207,7 +207,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .dynprog-better-box{padding:25px; background-color: #d3d3d3;}
 .dynprog-better-box2{padding:25px; background-color: #58595B;}
 .dynprog-better-box3{padding:25px; background-color: #ff8200}
-.dynprog-tiny-box{padding:5px; height:150px; width:300px; background-color: #ff8200;}
+.dynprog-tiny-box{padding:5px; height:150px; width:350px; background-color: #ff8200; text-align:center; margin:auto;}
 
 /*Custom DreamTeam Font*/
 h7{font-size: 32px; font-family: Fantasy;}
