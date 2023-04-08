@@ -58,7 +58,7 @@ function loginUser(){
         throw new Error('Account not found');
         //if status = 500 : could not find email
         //if status = 400 : Wrong password
-        window.location.replace('../error.html');
+        window.location.replace('../error.html'); //probably dont want to send them to a new page, just let them know the credintials are wrong
       }
    })
    .catch(error => console.error(error));

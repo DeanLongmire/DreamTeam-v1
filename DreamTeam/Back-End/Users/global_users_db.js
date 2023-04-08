@@ -1,9 +1,11 @@
 //Requires
 const sqlite3 = require('sqlite3').verbose()
 
+//DB class - use for interacting with database
 class users_dbmanager{
     constructor(db, sql, data){}
 
+    //opens the database
     open(path){
         console.log("opening " + path);
         this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
@@ -14,6 +16,7 @@ class users_dbmanager{
         })
     }
 
+    //creates the table 'Users'
     create(){
         this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
             if(err){return console.error(err.message)}
@@ -21,6 +24,7 @@ class users_dbmanager{
         })
     }
 
+    //deletes the table 'Users'
     drop(){
         this.db.run('DROP TABLE Users', (err)=>{
             if(err){return console.error(err.message)}
@@ -28,6 +32,7 @@ class users_dbmanager{
         })
     }
 
+    //inserts into the table
     insert(id, un, email, password, fn, ln, bio, pos, pp, callback){
         this.db.serialize(() => {
           this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
@@ -38,6 +43,7 @@ class users_dbmanager{
         })
     }
 
+    //displays all users in database to the console
     display_all(callback){
         this.sql = 'SELECT * FROM Users'
 
@@ -53,7 +59,7 @@ class users_dbmanager{
         })
     }
 
-    /* SACRED CODE. DO NOT TOUCH. I HAVE NO IDEA HOW IT WORKS */
+    //gets a user's ID
     get_ID(email, callback) {
         this.sql = 'SELECT password, ID FROM Users WHERE email = ?';
         this.db.get(this.sql, [email], (err, row) => {
@@ -69,6 +75,7 @@ class users_dbmanager{
         });
     }
 
+    //gets a user's first name
     get_fn(ID, callback) {
         this.sql = 'SELECT first_name FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
@@ -84,6 +91,7 @@ class users_dbmanager{
         });
     }
 
+    //gets a user's last name
     get_ln(ID, callback) {
         this.sql = 'SELECT last_name FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
@@ -99,6 +107,7 @@ class users_dbmanager{
         });
     }
 
+    //gets a user's email
     get_email(ID, callback) {
         this.sql = 'SELECT email FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
@@ -115,6 +124,7 @@ class users_dbmanager{
         callback();
     }
 
+    //gets a user's username
     get_user_name(ID, callback) {
         this.sql = 'SELECT user_name FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
@@ -130,6 +140,7 @@ class users_dbmanager{
         });
     }
 
+    //gets a user's password
     get_password(ID, callback) {
         this.sql = 'SELECT password FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
@@ -145,6 +156,7 @@ class users_dbmanager{
         });
     }
 
+    //gets a user's position
     get_position(ID, callback) {
         this.sql = 'SELECT pos FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
@@ -160,6 +172,7 @@ class users_dbmanager{
         });
     }
 
+    //gets a user's bio
     get_bio(ID, callback) {
         this.sql = 'SELECT bio FROM Users WHERE ID = ?';
         this.db.get(this.sql, [ID], (err, row) => {
@@ -175,6 +188,7 @@ class users_dbmanager{
         });
     }
 
+    //gets all of a user's information
     get_all(ID, callback) {
       this.sql = 'SELECT * FROM Users WHERE ID = ?';
       this.db.get(this.sql, [ID], (err, row) => {
@@ -190,6 +204,7 @@ class users_dbmanager{
       });
     }
 
+    //updates a user's username
     update_user_name(new_user_name, ID, callback){
         this.sql = "UPDATE Users SET user_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_user_name, ID], (err)=>{
@@ -198,6 +213,7 @@ class users_dbmanager{
         callback();
     }
 
+    //updates a user's firstname
     update_first_name(new_fn, ID){
         this.sql = "UPDATE Users SET first_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_fn, ID], (err)=>{
@@ -205,6 +221,7 @@ class users_dbmanager{
         })
     }
 
+    //updates a user's lastname
     update_last_name(new_ln, ID, callback){
         this.sql = "UPDATE Users SET last_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_ln, ID], (err)=>{
@@ -213,6 +230,7 @@ class users_dbmanager{
         callback();
     }
 
+    //updates a user's email
     update_email(new_email, ID, callback){
         this.sql = "UPDATE Users SET email = ? WHERE ID = ?"
         this.db.run(this.sql, [new_email, ID], (err)=>{
@@ -221,6 +239,7 @@ class users_dbmanager{
         callback();
     }
 
+    //updates a user's position
     update_pos(new_pos, ID){
         this.sql = "UPDATE Users SET pos = ? WHERE ID = ?"
         this.db.run(this.sql, [new_pos, ID], (err)=>{
@@ -228,6 +247,7 @@ class users_dbmanager{
         })
     }
 
+    //updates a user's bio
     update_bio(new_bio, ID, callback){
         this.sql = "UPDATE Users SET bio = ? WHERE ID = ?"
         this.db.run(this.sql, [new_bio, ID], (err)=>{
@@ -236,6 +256,7 @@ class users_dbmanager{
         callback();
     }
 
+    //updates a user's password
     update_password(new_password, ID){
         this.sql = "UPDATE Users SET password = ? WHERE ID = ?"
         this.db.run(this.sql, [new_password, ID], (err)=>{
@@ -243,6 +264,7 @@ class users_dbmanager{
         })
     }
 
+    //deletes a user from table 'Users'
     delete_user(ID, callback){
         this.sql = 'DELETE FROM Users WHERE ID = ?'
 
@@ -252,6 +274,7 @@ class users_dbmanager{
         callback();
     }
     
+    //closes the database
     close(){
         this.db.close((err) => {
             if(err){

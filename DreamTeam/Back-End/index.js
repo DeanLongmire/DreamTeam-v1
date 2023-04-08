@@ -25,12 +25,14 @@ const players = require('./Players/global_players.js');
 const app = express();
 const PORT = 5000;
 
+//sets up user sessions
 app.use(session({
     secret: 'my secret key',
     resave: false,
     saveUninitialized: false
 }));
 
+//allows connections 
 app.use(cors({
     origin: 'http://127.0.0.1:5500', //configured to accept connection from html pages launched with live server
     optionsSuccessStatus: 200,
@@ -38,8 +40,10 @@ app.use(cors({
     allowedMethods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
+//used for REST API data transfer
 app.use(bodyParser.json());
 
+//adds a route to the url
 app.use('/users', usersRoutes);
 app.use('/leagues', leagues);
 app.use('/teams', teams);

@@ -12,7 +12,7 @@ router.get('/', show_all);
 //Create a User
 router.post('/', create_user);
 
-//login user
+//login user (User Authentication)
 router.post('/login', login);
 
 //Get a User's Info

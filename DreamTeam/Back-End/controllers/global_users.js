@@ -1,10 +1,11 @@
 const global_users = require("../Users/global_users_db.js");
 const { hash_data } = require("../Users/hash.js");
-
 const { v4: uuidv4 } = require('uuid');
 
 let db = new global_users.users_dbmanager;
 
+//needed for getting the path to the database on any machine
+//Gotta use whenever you open the database
 const get_path = (callback) => {
     const pwd = process.cwd();
     let db_path = pwd;
@@ -14,6 +15,7 @@ const get_path = (callback) => {
     callback(db_path);
 }
 
+//gets all of a users info
 const get_user = (req, res) => {
     const { id } = req.params;
 
@@ -28,12 +30,11 @@ const get_user = (req, res) => {
     res.send("Got a user's info");
 }
 
+//user authentication
 const login = (req, res) => {
-    //authenticate user
-
     const user = req.body;
 
-    let hash_pass = hash_data(user.passwordField);
+    let hash_pass = hash_data(user.passwordField); //hash password
     user.passwordField = hash_pass;
 
     console.log(user.emailField + " " + user.passwordField);
@@ -42,7 +43,7 @@ const login = (req, res) => {
         db.open(path);
         db.get_ID(user.emailField, (password, id) => {
             console.log("Got password: "+ password + " from id " + id);
-            if(password == null)
+            if(password == null) //can't find email in database
             {
                 console.log("Email is not found")
                 res.status(500).send("Email is not found");
@@ -50,12 +51,12 @@ const login = (req, res) => {
             else
             {
                 console.log(hash_pass + "\n" + password);
-                if(hash_pass == password)
+                if(hash_pass == password) //password match
                 {
                     console.log("Logged in");
-                    //create a user session
                     db.get_all(id, (un,fn,ln,email,bio,pos) => {
                         const user = {
+                            id: id,
                             username: un,
                             firstName: fn,
                             lastName: ln,
@@ -64,12 +65,12 @@ const login = (req, res) => {
                             pos: pos
                         };
 
-                        create_session(req, user, () => {
+                        create_session(req, user, () => { //create the session 
                             res.status(200).send("Passwords Match! Logged in");
                         });
                     });
                 }
-                else
+                else //incorrect password
                 {
                     console.log("Wrong");
                     res.status(400).send("Invalid password");
@@ -77,11 +78,13 @@ const login = (req, res) => {
             }
             db.close();
         });
-    })
-}
+    });
+};
 
+//fucntion that creates the session with all the user's data
 const create_session = (req, userJSON, callback) => {
     req.session.user = { 
+        id: userJSON.id,
         username: userJSON.username, 
         firstName: userJSON.firstName,
         lastName: userJSON.lastName,
@@ -91,10 +94,10 @@ const create_session = (req, userJSON, callback) => {
     };
     console.log(`Session created for ${req.session.user.username}`);
     callback();
-}
+};
 
+//shows all users in the database
 const show_all = (req, res) => {
-
     get_path( (path) => {
         db.open(path);
         db.display_all( () => {
@@ -104,8 +107,9 @@ const show_all = (req, res) => {
     });
 
     res.send("read all");
-}
+};
 
+//creates a new user
 const create_user = (req, res) => {
     get_path( (path) => {
         const user = req.body;
@@ -119,17 +123,15 @@ const create_user = (req, res) => {
         let hash_pass = hash_data(uwid.password);
         uwid.password = hash_pass;
 
-        //let hash_email = hash_data(uwid.email);
-        //uwid.email = hash_email;
-
         db.open(path);
         db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
             db.close();
             res.send(`User with the name ${uwid.firstName} added to the database`);
         });
     });
-}
+};
 
+//deletes a user
 const delete_user =  (req, res) => {
     const { id } = req.params;
 
@@ -140,8 +142,9 @@ const delete_user =  (req, res) => {
             res.send(`User with the id ${id} deleted`);
         });
     });
-}
+};
 
+//updates username
 const update_username = (req, res) => {
     const { id } = req.params;
     const new_username = req.body.newUsername;
@@ -156,6 +159,7 @@ const update_username = (req, res) => {
     res.send('Username updated');
 }
 
+//updates email
 const update_email = (req, res) => {
     const { id } = req.params;
     const new_email = req.body.newEmail;
@@ -170,6 +174,7 @@ const update_email = (req, res) => {
     res.send('Email updated');
 }
 
+//updates bio
 const update_bio = (req, res) => {
     const { id } = req.params;
     const new_bio = req.body.newBio;
@@ -184,6 +189,7 @@ const update_bio = (req, res) => {
     res.send('Bio updated');
 }
 
+//updates lastname
 const update_lastname = (req, res) => {
     const { id } = req.params;
     const new_lastname = req.body.newLastname;
