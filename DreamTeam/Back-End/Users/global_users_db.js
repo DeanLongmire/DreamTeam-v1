@@ -214,11 +214,12 @@ class users_dbmanager{
     }
 
     //updates a user's firstname
-    update_first_name(new_fn, ID){
+    update_first_name(new_fn, ID, callback){
         this.sql = "UPDATE Users SET first_name = ? WHERE ID = ?"
         this.db.run(this.sql, [new_fn, ID], (err)=>{
             if(err){return console.log(err.message)}
         })
+        callback();
     }
 
     //updates a user's lastname
@@ -235,16 +236,17 @@ class users_dbmanager{
         this.sql = "UPDATE Users SET email = ? WHERE ID = ?"
         this.db.run(this.sql, [new_email, ID], (err)=>{
             if(err){return console.log(err.message)}
-        })
+        });
         callback();
     }
 
     //updates a user's position
-    update_pos(new_pos, ID){
+    update_pos(new_pos, ID, callback){
         this.sql = "UPDATE Users SET pos = ? WHERE ID = ?"
         this.db.run(this.sql, [new_pos, ID], (err)=>{
             if(err){return console.log(err.message)}
-        })
+        });
+        callback();
     }
 
     //updates a user's bio
@@ -257,11 +259,12 @@ class users_dbmanager{
     }
 
     //updates a user's password
-    update_password(new_password, ID){
+    update_password(new_password, ID, callback){
         this.sql = "UPDATE Users SET password = ? WHERE ID = ?"
         this.db.run(this.sql, [new_password, ID], (err)=>{
             if(err){return console.log(err.message)}
-        })
+        });
+        callback();
     }
 
     //deletes a user from table 'Users'

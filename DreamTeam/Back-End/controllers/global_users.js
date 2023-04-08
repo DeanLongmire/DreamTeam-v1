@@ -151,12 +151,14 @@ const update_username = (req, res) => {
 
     console.log(new_username + " " + id);
 
-    db.open(db_path);
-    db.update_user_name(new_username,id, () => {
-        db.close();
-    });
+    get_path( (path) => {
+        db.open(path);
+        db.update_user_name(new_username,id, () => {
+            db.close();
+        });
 
-    res.send('Username updated');
+        res.send('Username updated');
+    });
 }
 
 //updates email
@@ -166,12 +168,14 @@ const update_email = (req, res) => {
 
     console.log(new_email + " " + id);
 
-    db.open(db_path);
-    db.update_email(new_email,id, () => {
-        db.close();
-    });
+    get_path( (path) => {
+        db.open(path);
+        db.update_email(new_email,id, () => {
+            db.close();
+        });
 
-    res.send('Email updated');
+        res.send('Email updated');
+    });
 }
 
 //updates bio
@@ -181,12 +185,31 @@ const update_bio = (req, res) => {
 
     console.log(new_bio + " " + id);
 
-    db.open(db_path);
-    db.update_bio(new_bio,id, () => {
-        db.close();
-    });
+    get_path( (path) => {
+        db.open(path);
+        db.update_bio(new_bio,id, () => {
+            db.close();
+        });
 
-    res.send('Bio updated');
+        res.send('Bio updated');
+    });
+}
+
+//updates firstname
+const update_firstname = (req, res) => {
+    const { id } = req.params;
+    const new_first_name = req.body.newFirstname;
+
+    console.log(new_first_name + " " + id);
+
+    get_path( (path) => {
+        db.open(path);
+        db.update_first_name(new_first_name,id, () => {
+            db.close();
+        });
+
+        res.send('First Name updated');
+    });
 }
 
 //updates lastname
@@ -196,12 +219,50 @@ const update_lastname = (req, res) => {
 
     console.log(new_lastname + " " + id);
 
-    db.open(db_path);
-    db.update_last_name(new_lastname,id, () => {
-        db.close();
-    });
+    get_path( (path) => {
+        db.open(path);
+        db.update_last_name(new_lastname,id, () => {
+            db.close();
+        });
 
-    res.send('Lastname updated');
+        res.send('Lastname updated');
+    });
 }
 
-module.exports = { get_user, login, show_all, create_user, delete_user, update_lastname, update_username, update_email, update_bio }
+//updates position
+const update_position = (req, res) => {
+    const { id } = req.params;
+    const new_position = req.body.newPosition;
+
+    console.log(new_position + " " + id);
+
+    get_path( (path) => {
+        db.open(path);
+        db.update_pos(new_position,id, () => {
+            db.close();
+        });
+
+        res.send('Position updated');
+    });
+}
+
+//updates password
+const update_password = (req, res) => {
+    const { id } = req.params;
+    const new_password = req.body.newPassword;
+
+    console.log(new_password + " " + id);
+
+    let hash_pass = hash_data(new_password);
+
+    get_path( (path) => {
+        db.open(path);
+        db.update_password(hash_pass,id, () => {
+            db.close();
+        });
+
+        res.send('Password updated');
+    });
+}
+
+module.exports = { get_user, login, show_all, create_user, delete_user, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position }
