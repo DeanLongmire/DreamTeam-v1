@@ -85,12 +85,27 @@ function checkFormInputs() {
     errorElement.style.display = "block";
     return false; // Passwords do not match, return false
   }
-  const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{8,}$/; // Regex to match passwords containing at least one digit and being at least 8 characters long
-  if (!passwordRegex.test(passwordInput.value)) {
-    errorElement.innerText = "*Password must be at least 8 characters long and contain at least one number.*";
+  const password = passwordInput.value;
+  if (password.length < 8) {
+    errorElement.innerText = "*Password must be at least 8 characters long.*";
     errorElement.style.display = "block";
-    return false; //Password does not meet the requirements, return false
+    return false; // Password is too short, return false
   }
+
+  const containsNumber = /\d/.test(password);
+  if (!containsNumber) {
+    errorElement.innerText = "*Password must contain at least one number.*";
+    errorElement.style.display = "block";
+    return false; // Password does not contain a number, return false
+  }
+
+  const containsSymbol = /[\[\]{}()<>?|`~!@#$%^&*+=,_\-;:'"\\]/.test(password);
+  if (!containsSymbol) {
+    errorElement.innerText = "*Password must contain at least one symbol.*";
+    errorElement.style.display = "block";
+    return false; // Password does not contain a symbol, return false
+  }
+  
   return true; // All inputs are filled, return true
 }
 
