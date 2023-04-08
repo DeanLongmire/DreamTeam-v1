@@ -125,8 +125,22 @@ const create_user = (req, res) => {
 
         db.open(path);
         db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
-            db.close();
-            res.send(`User with the name ${uwid.firstName} added to the database`);
+            db.get_all(uwid.id, (un,fn,ln,email,bio,pos) => {
+                const user = {
+                    id: uwid.id,
+                    username: un,
+                    firstName: fn,
+                    lastName: ln,
+                    email: email,
+                    bio: bio,
+                    pos: pos
+                };
+
+                create_session(req, user, () => { //create the session 
+                    db.close();
+                    res.send(`User with the name ${uwid.firstName} added to the database`);
+                });
+            });
         });
     });
 };
