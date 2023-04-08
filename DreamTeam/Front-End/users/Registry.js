@@ -133,7 +133,7 @@ const url = 'http://localhost:5000/users';
 let create_button = document.getElementById("create_account");
 let saveUser = () => {
   const nameInput = document.getElementById("name");
-  const name = nameInput.value;
+  const username = nameInput.value;
 
   const emailInput = document.getElementById("email");
   const email = emailInput.value;
@@ -141,13 +141,13 @@ let saveUser = () => {
   const passwordInput = document.getElementById("psw");
   const password = passwordInput.value;
 
-  console.log(name);
+  console.log(username);
   console.log(email);
   console.log(password);
-  console.log(`User: ${name} has email: ${email} and password ${password}`);
+  console.log(`User: ${username} has email: ${email} and password ${password}`);
 
   const data = { 
-    name: name,
+    username: username,
     email: email,
     password: password
   };

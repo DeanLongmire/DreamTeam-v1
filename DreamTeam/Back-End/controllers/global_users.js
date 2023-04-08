@@ -44,18 +44,21 @@ const login = (req, res) => {
             console.log("Got password: "+ password + " from id " + id);
             if(password == null)
             {
-                res.send("Email is not found");
+                console.log("Email is not found")
+                res.status(400).send("Email is not found");
             }
             else
             {
                 console.log(hash_pass + "\n" + password);
                 if(hash_pass == password)
                 {
-                    res.send("Passwords Match! Logged in")
+                    console.log("Logged in");
+                    res.status(200).send("Passwords Match! Logged in");
                 }
                 else
                 {
-                    res.send("Invalid password");
+                    console.log("Wrong");
+                    res.status(400).send("Invalid password");
                 }
             }
         });
