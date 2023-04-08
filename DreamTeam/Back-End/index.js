@@ -2,8 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const https = require('https');
-const fs = require('fs');
+//const https = require('https');
+//const fs = require('fs');
 
 //Routes
 const usersRoutes = require('./Users/global_users.js');
@@ -12,7 +12,7 @@ const teams = require('./Teams/teams.js');
 const players = require('./Players/global_players.js');
 
 //get certs path
-const get_path_key = (callback) => {
+/*const get_path_key = (callback) => {
     const pwd = process.cwd();
     let key = pwd + "/DreamTeam/Back-End/certs/private-key.pem";
     let pem = pwd + "/DreamTeam/Back-End/certs/certificate.pem";
@@ -20,7 +20,7 @@ const get_path_key = (callback) => {
     pem = pem.replace(/\\/g,"/");
 
     callback(key, pem);
-}
+}*/
 
 const app = express();
 const PORT = 5000;
@@ -42,8 +42,8 @@ app.use(bodyParser.json());
 
 app.use('/users', usersRoutes);
 app.use('/leagues', leagues);
-app.use('/teams', teams)
-app.use('/players', players)
+app.use('/teams', teams);
+app.use('/players', players);
 
 /*get_path_key( (key, pem) => {
     https
@@ -62,4 +62,4 @@ app.use('/players', players)
     });
 });*/
 
-app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`))
+app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`));

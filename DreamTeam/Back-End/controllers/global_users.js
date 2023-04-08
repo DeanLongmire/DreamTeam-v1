@@ -45,7 +45,7 @@ const login = (req, res) => {
             if(password == null)
             {
                 console.log("Email is not found")
-                res.status(400).send("Email is not found");
+                res.status(500).send("Email is not found");
             }
             else
             {
@@ -53,7 +53,21 @@ const login = (req, res) => {
                 if(hash_pass == password)
                 {
                     console.log("Logged in");
-                    res.status(200).send("Passwords Match! Logged in");
+                    //create a user session
+                    db.get_all(id, (un,fn,ln,email,bio,pos) => {
+                        const user = {
+                            username: un,
+                            firstName: fn,
+                            lastName: ln,
+                            email: email,
+                            bio: bio,
+                            pos: pos
+                        };
+
+                        create_session(req, user, () => {
+                            res.status(200).send("Passwords Match! Logged in");
+                        });
+                    });
                 }
                 else
                 {
@@ -61,12 +75,22 @@ const login = (req, res) => {
                     res.status(400).send("Invalid password");
                 }
             }
+            db.close();
         });
     })
+}
 
-    
-    //req.session.user = { name: 'John Doe', email: 'johndoe@example.com' };
-    //res.send('Logged in successfully');
+const create_session = (req, userJSON, callback) => {
+    req.session.user = { 
+        username: userJSON.username, 
+        firstName: userJSON.firstName,
+        lastName: userJSON.lastName,
+        email: userJSON.email,
+        bio: userJSON.bio,
+        pos: userJSON.pos 
+    };
+    console.log(`Session created for ${req.session.user.username}`);
+    callback();
 }
 
 const show_all = (req, res) => {

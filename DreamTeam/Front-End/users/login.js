@@ -56,6 +56,8 @@ function loginUser(){
         window.location.replace("profile.html");
       }else{
         throw new Error('Account not found');
+        //if status = 500 : could not find email
+        //if status = 400 : Wrong password
         window.location.replace('../error.html');
       }
    })
