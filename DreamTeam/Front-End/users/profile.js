@@ -17,3 +17,13 @@ function myFunction(id) {
       x.className = x.className.replace(" dynprog-show", "");
     }
   }
+
+
+/* CODE FOR DISPLAYING PHOTOS */
+/*
+const imgElement = document.createElement('img');
+imgElement.src = encodedPhoto;
+
+const imageContainer = document.querySelector('#image-container');
+imageContainer.appendChild(imgElement);
+*/

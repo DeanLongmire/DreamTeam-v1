@@ -9,6 +9,7 @@ const bio = document.getElementById("bio");
 const position = document.getElementById("position");
 //Need to see if can get photo this way
 const profile_photo = document.getElementById("profile_photo");
+let encodedPhoto;
 
 //Add event listeners for the fields
 first_name.addEventListener("input", buildData);
@@ -16,33 +17,46 @@ last_name.addEventListener("input", buildData);
 username.addEventListener("input", buildData);
 bio.addEventListener("input", buildData);
 position.addEventListener("input", buildData);
-//first_name.addEventListener("input", buildData);
+profile_photo.addEventListener("input", buildData);
 
 
 function buildData(){
 
     //Check if there even is a value for all fields, if not data is NULL
     if(first_name.value.trim === ''){
-        first_name.value = NULL;
+        first_name.value = null;
     }
 
     if(last_name.value.trim === ''){
-        last_name.value = NULL;
+        last_name.value = null;
     }
 
     //Username
     if(username.value.trim === ''){
-        username.value = NULL;
+        username.value = null;
     }
 
     //Bio
     if(bio.value.trim === ''){
-        bio.value = NULL;
+        bio.value = null;
     }
 
     //Position
     if(position.value.trim !== ''){
-        position.value = NULL;
+        position.value = null;
+    }
+
+    //Picture
+    if(profile_photo.value.trim() === ''){
+        profile_photo.value = null;
+    }
+    else{
+        const pic = profile_photo.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(pic);
+        reader.onload = function() {
+            encodedPhoto = reader.result;
+        };
     }
 }
 
@@ -52,7 +66,8 @@ function SetUpUser(){
         last_name: last_name.value,
         username: username.value,
         bio: bio.value,
-        position: position.value
+        position: position.value,
+        profilePicture: encodedPhoto
     };
 
     fetch(url, {
@@ -78,4 +93,4 @@ function SetUpUser(){
 //Event listener for when user clicks the submit button
 update_profile_BT.addEventListener('click', () =>{
     SetUpUser();
-})
+});

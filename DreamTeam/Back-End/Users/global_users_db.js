@@ -267,6 +267,15 @@ class users_dbmanager{
         callback();
     }
 
+    //updates a user's profile picture
+    update_profile_picture(new_pp, ID, callback){
+      this.sql = "UPDATE Users SET pp = ? WHERE ID = ?"
+      this.db.run(this.sql, [new_pp, ID], (err)=>{
+          if(err){return console.log(err.message)}
+      })
+      callback();
+  }
+
     //deletes a user from table 'Users'
     delete_user(ID, callback){
         this.sql = 'DELETE FROM Users WHERE ID = ?'
