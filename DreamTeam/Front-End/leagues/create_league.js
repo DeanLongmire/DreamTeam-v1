@@ -77,6 +77,7 @@ const url = 'http://localhost:5000/leagues'
 //Make the fields and create button itself
 const create_button = document.querySelector('#create_league_button');
 const leagueInput = document.getElementById("league_input");
+let selectedSport = null; //Define outside function
 
 //Disable the button in the beginning
 create_button.disabled = true;
@@ -87,19 +88,17 @@ leagueInput.addEventListener("input", toggleCreateButton)
 function toggleCreateButton(){
     //Get data from each element
     const sportRadios = document.getElementsByName("sport");
-    let selectedSport;
 
     //Checking if a sport is checked
     for (const sport of sportRadios) {
       if (sport.checked) {
-      selectedSport = sport.value;
-      break;
+        selectedSport = sport.value; //Setting value of selectedSport
+        break;
       }
     }
 
     //How to disable/enable the create button so that users can't not put any input
     if(leagueInput.value.trim !== ''){
-        const leagueName = leagueInput.value;
         create_button.disabled = false;
     }
     else{
@@ -109,6 +108,7 @@ function toggleCreateButton(){
 
 //Function to create a league on click
 function createLeague(){
+        const leagueName = leagueInput.value; //Set leaguename
         const data = { 
             sport: selectedSport, 
             leagueName: leagueName 
