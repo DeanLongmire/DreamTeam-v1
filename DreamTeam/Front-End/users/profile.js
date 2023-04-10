@@ -5,10 +5,6 @@ document.querySelector("#Log-Out").onclick = function(){
     alert("You have been logged out");
 }
 
-function saveEdits(){
-    
-}
-
 function myFunction(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("dynprog-show") == -1) {
