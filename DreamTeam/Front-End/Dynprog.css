@@ -240,3 +240,6 @@ h8{font-size: 20px; font-family:Fantasy;}
 .dynprog-padding-button{padding-left:100px; padding-right:100px; padding-top:0px; padding-bottom:0px;}
 /*Error for dumb people who make bad password*/
 .dynprog-password-error-message {display: block; color: red;}
+/*new stuff for the card on view team page*/
+.dynprog-roww {display: flex;flex-wrap: wrap;margin: -10px;}
+.dynprog-crd {position: relative;z-index: 1;transition: all 0.3s ease;background-color: #fff;border-color: #ff8200; border-radius: 2px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);overflow: hidden;margin-bottom: 20px;}
