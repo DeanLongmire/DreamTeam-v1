@@ -20,6 +20,7 @@
 * Create League - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/19)
 * League Admin Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/41)
 * Create Team Button - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/39)
+* League and Login JS - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/48)
 
 ## Files you worked on
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Dynprog.css
