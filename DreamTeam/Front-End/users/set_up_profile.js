@@ -92,5 +92,6 @@ function SetUpUser(){
 
 //Event listener for when user clicks the submit button
 update_profile_BT.addEventListener('click', () =>{
+    console.log(encodedPhoto);
     SetUpUser();
 });

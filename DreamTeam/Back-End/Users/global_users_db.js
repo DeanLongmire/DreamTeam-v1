@@ -269,7 +269,7 @@ class users_dbmanager{
 
     //updates a user's profile picture
     update_profile_picture(new_pp, ID, callback){
-      this.sql = "UPDATE Users SET pp = ? WHERE ID = ?"
+      this.sql = "UPDATE Users SET profile_picture = ? WHERE ID = ?"
       this.db.run(this.sql, [new_pp, ID], (err)=>{
           if(err){return console.log(err.message)}
       })
