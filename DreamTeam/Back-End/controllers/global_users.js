@@ -65,7 +65,8 @@ const login = (req, res) => {
                             pos: pos
                         };
 
-                        create_session(req, user, () => { //create the session 
+                        create_session(req, res, user, () => { //create the session 
+                            console.log(`Session created for ${req.session.user.username} with ID ${req.session.id}`);
                             res.status(200).send("Passwords Match! Logged in");
                         });
                     });
@@ -82,7 +83,7 @@ const login = (req, res) => {
 };
 
 //fucntion that creates the session with all the user's data
-const create_session = (req, userJSON, callback) => {
+const create_session = (req, res, userJSON, callback) => {
     req.session.user = { 
         id: userJSON.id,
         username: userJSON.username, 
@@ -92,7 +93,7 @@ const create_session = (req, userJSON, callback) => {
         bio: userJSON.bio,
         pos: userJSON.pos 
     };
-    console.log(`Session created for ${req.session.user.username}`);
+    res.cookie('session_id', req.session.id);
     callback();
 };
 
@@ -277,6 +278,22 @@ const update_password = (req, res) => {
 
         res.send('Password updated');
     });
+};
+
+const update_profile_picture = (req, res) => {
+    const { id } = req.params;
+    const new_pp = req.body.newPp;
+
+    console.log(new_pp + " " + id);
+
+    get_path( (path) => {
+        db.open(path);
+        db.update_profile_picture(new_pp,id, () => {
+            db.close();
+        });
+
+        res.send('Picture updated');
+    });
 }
 
-module.exports = { get_user, login, show_all, create_user, delete_user, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position }
+module.exports = { get_user, login, show_all, create_user, delete_user, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_profile_picture };

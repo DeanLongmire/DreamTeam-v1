@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 //const https = require('https');
 //const fs = require('fs');
 
@@ -31,6 +32,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(cookieParser());
 
 //allows connections 
 app.use(cors({
