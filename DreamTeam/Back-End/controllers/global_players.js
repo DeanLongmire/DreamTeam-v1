@@ -57,7 +57,7 @@ const delete_player = (req, res) => {
 
     get_path( (path) =>{
         db.open(path);
-        db.delete_player(id, () =>{
+        db.delete(id, () =>{
             db.close();
             res.send('Player deleted');
         });

@@ -57,7 +57,7 @@ const delete_league = (req, res) => {
 
     get_path( (path) => {
         db.open(path);
-        db.delete_league(id, () =>{
+        db.delete(id, () =>{
             db.close();
             res.send('League deleted');
         });
