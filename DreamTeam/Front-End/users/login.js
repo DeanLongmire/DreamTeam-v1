@@ -6,6 +6,7 @@ const emailField = document.querySelector('input[name="email"]');
 const passwordField = document.querySelector('input[name="password"]');
 const passwordToggle = document.querySelector('.password-toggle');
 const loginBT = document.querySelector('#login_button');
+const errorElement = document.getElementById("error-message");
 
 //Disable it in the beginning
 loginBT.disabled = true;
@@ -23,6 +24,8 @@ passwordToggle.addEventListener('click', ()=>{
 
 //Function to make button enable or disabled
 function toggleLoginBt() {
+  errorElement.style.display = "none"; //Hide the error message
+
   //Check if they aren't
   if(emailField.value.trim() !== '' && passwordField.value.trim() !== ''){
 
@@ -64,8 +67,17 @@ function loginUser() {
     else
     {
       throw new Error('Account not found');
+      console.log(error.response.status);
       //if status = 500 : could not find email
+      if(error.response.status === 500){
+        errorElement.innerText = "*Invalid user email*";
+        errorElement.style.display = "block";
+      }
       //if status = 400 : Wrong password
+      else if(error.response.status === 400){
+        errorElement.innerText = "*Wrong Password*";
+        errorElement.style.display = "block";
+      }
       window.location.replace('../error.html'); //probably dont want to send them to a new page, just let them know the credintials are wrong
     }
   })
