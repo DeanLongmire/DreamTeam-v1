@@ -1,6 +1,6 @@
 //Essentially the same js as create league but this is for create team
 //const url = 'https://localhost:5000/teams';
-const url = 'http://localhost:5000/teams';
+/*const url = 'http://localhost:5000/teams';
 
 let create_button = document.getElementById("create_team_button");
 
@@ -57,3 +57,76 @@ let saveTeam = () => {
 }
 
 create_button.addEventListener("click", saveTeam);
+*/
+const url = 'http://localhost:5000/teams'
+
+//Make the fields and create button
+const create_button = document.querySelector('#create_team_button');
+const teamInput = document.getElementById("team_input");
+let selectedSize = null; //Define outside the function
+
+//Disable the button in the beginning
+create_button.disabled = true;
+
+//Add event listener for team name field
+teamInput.addEventListener("input", toggleCreateButton)
+
+//Controls the functionality of the create button
+function toggleCreateButton(){
+  //get data from each element
+  const numPlayerRadios = document.getElementsByName("num_players");
+
+  //Checking the amount of players checked
+  for (const num_players of numPlayerRadios){
+    if(num_players.checked){
+      selectedSize = num_players.value; //Setting value of selected size
+      break;
+    }
+  }
+
+  //How to disable/enable the create button so user forced to put input
+  if(teamInput.value.trim !== ''){
+    create_button.disabled = false;
+  }
+  else{
+    create_button.disabled = true;
+  }
+}
+
+//Function to create a team on click
+//Function to create a league on click
+function createTeam(){
+  const teamName= teamInput.value; //Set leaguename
+  const data = { 
+      num_players: selectedSize, 
+      teamName: teamName 
+    };
+    
+    console.log(data);
+
+    //How data is sent back to database
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+     })
+     .then(response => {
+        if (response.ok) {
+          // Redirect user to view their league page after successful POST request
+          console.log("Responded");
+          window.location.replace('lteam_admin.html');
+        } else {
+          // Handle error response
+          throw new Error('Unable to create user account');
+          window.location.replace('../error.html');
+        }
+      })
+     .catch(error => console.error(error));
+}
+
+//Event listener for when user clicks the button
+create_button.addEventListener('click', () =>{
+createTeam();
+});
