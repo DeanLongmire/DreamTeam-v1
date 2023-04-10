@@ -19,6 +19,7 @@
 * Set-up Profile Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/38)
 * Create League - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/19)
 * League Admin Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/41)
+* Create Team Button - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/39)
 
 ## Files you worked on
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Dynprog.css
@@ -33,8 +34,11 @@
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/join_league.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/league_admin.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/league_home.html
+* utk-cs340-spring23/Dynprog/DreamTeam/Front-End/teams/create_team.js
+
 
 ## What you accomplished
 * Login Page: User's passwords are hidden and can be shown when they click the "show" button
 * Set-up Profile Page: User can edit their account
 * Create League: 
+* Create Team:
