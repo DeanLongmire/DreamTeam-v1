@@ -66,13 +66,14 @@ const create_team = (req, res) => {
 // updating only name for a team
 const update_team_name = (req, res) => {
     const { id } = req.params;
-    const new_name = req.body.new_name;
+    const new_name = req.body.newName;
 
     console.log(new_name + " " + id);
-
-    db.open(db_path);
-    db.update_name(new_name, id.name, () => {
-        db.close();
+    get_path((path) => {
+        db.open(path);
+        db.update_name(new_name, id, () => {
+            db.close();
+        });
     });
 
 
@@ -121,27 +122,37 @@ const DeleteTeam = (req, res) => {
 }
 
 const UpdateWins = (req, res) => {
-    const team = req.body;
-    const wins = team.W;
+    const {id} = req.params;
+    const wins = req.body.W;
     
-    console.log(`Team: ${team.teamName} has ${wins} wins`);
-    db.open(db_path);
-    db.UpdateWins(team.teamName, wins, ()=> {
-        db.close();
+    console.log(`Team with id: ${id} now has ${wins} wins`);
+    get_path((path) => {
+        db.open(path);
+        db.update_num_wins(wins, id, ()=> {
+            db.close();
+        });
     });
+    res.send('Team wins updated');
 }
 
 const UpdateLosses = (req, res) => {
-    const team = req.body;
-    const losses = team.L;
-    console.log(`Team ${team.teamName} has ${losses} losses`);
-    db.open(db_path);
-    db.UpdateLosses(team.teamName, losses, () => {
-        db.close();
+    const {id} = req.params;
+    const losses = req.body.L;
+
+    console.log(`Team with id: ${id} now has ${losses} losses`);
+
+    get_path((path) => {
+        db.open(path);
+        db.update_num_losses(losses, id, () => {
+            db.close();
+        });
     });
+    res.send('Team losses updated');
 }
 
 module.exports = { 
-    get_team, show_all, create_team, update_team_name,
-    update_team_sport, updatePlayerCount, DeleteTeam, UpdateWins, UpdateLosses,
+    get_team, show_all, create_team, 
+    update_team_name, update_team_sport, 
+    updatePlayerCount, DeleteTeam,
+    UpdateWins, UpdateLosses
 }

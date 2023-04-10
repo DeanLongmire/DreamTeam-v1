@@ -1,3 +1,5 @@
+const { call } = require('function-bind');
+
 /*This is the V1 test file for creating, updating, and deleting Teams from
 the SQLite3 ../database.db 
 see links-to-resources 1, 2, & 4*/
@@ -44,13 +46,15 @@ class team_dbmanager{
             });
         });
     };
-    update_name(name, new_name){
-        this.data = [new_name, name];
-        this.sql = 'UPDATE Teams SET name = ? WHERE name = ?';
+    update_name(new_name, ID, callback){
+        this.data = [new_name, ID];
+        this.sql = 'UPDATE Teams SET name = ? WHERE id = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
+            console.log(new_name);
             console.log('Row(s) name updated');
         });
+        callback();
     };
     update_sport(name, new_sport){
         this.data = [new_sport, name];
@@ -85,21 +89,23 @@ class team_dbmanager{
             console.log('Database Closed.');
         });
     };
-    update_num_wins(name, newNumWins){
-        this.data = [newNumWins, name];
-        this.sql = 'UPDATE Teams SET W = ? WHERE name = ?';
+    update_num_wins(newNumWins, ID, callback){
+        this.data = [newNumWins, ID];
+        this.sql = 'UPDATE Teams SET W = ? WHERE ID = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
             console.log('Row(s) wins updated');
         });
+        callback();
     };
-    update_num_losses(name, newNumLosses){
-        this.data = [newNumLosses, name];
-        this.sql = 'UPDATE Teams SET L = ? WHERE name = ?';
+    update_num_losses(newNumLosses, ID, callback){
+        this.data = [newNumLosses, ID];
+        this.sql = 'UPDATE Teams SET L = ? WHERE ID = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
             console.log('Row(s) losses updated');
         });
+        callback();
     }
 }
 

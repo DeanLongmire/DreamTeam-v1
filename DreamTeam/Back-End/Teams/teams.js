@@ -35,10 +35,10 @@ router.patch('/update_team_sport/:id', update_team_sport);
 router.patch('/updatePlayerCount/:id', updatePlayerCount);
 
 // patch to update the amount of wins a team has
-router.patch('update_team_wins/:id', UpdateWins);
+router.patch('/update_team_wins/:id', UpdateWins);
 
 // patch to update the amount of losses a team has
-router.patch('update_team_losses/:id', UpdateLosses);
+router.patch('/update_team_losses/:id', UpdateLosses);
 
 // Delete a team from the database
 router.delete('/:id', DeleteTeam);
