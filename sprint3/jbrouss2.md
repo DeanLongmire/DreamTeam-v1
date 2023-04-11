@@ -8,6 +8,7 @@
 * Create Set-Up Profile Page
 * Work on League Pages: View Leagues, League Admin, Create league, & League Specific Page
 * Work on Profile Page
+* Work on Error Page
 
 ## What you did not do
 * Still working on League specific pages and fine-shaping them
@@ -49,3 +50,4 @@
 * League Admin Page: This is where the admin can change specific aspects about a league
 * View Leagues: This is how users can see what leagues already exist before they create a league
 * Profile Page: User can hopefully see their leagues and teams later on in the future but a spot for that exists now. Eventually a user will have stats they can view
+* Error Page: Created an error page that users can be redirected too when we catch an error
