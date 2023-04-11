@@ -73,6 +73,10 @@ const passwordToggle = document.getElementById("password-toggle");
 
 registerButton.setAttribute("disabled", "disabled");
 
+passwordInput.setAttribute("type", "password");
+confirmPasswordInput.setAttribute("type", "password");
+
+
 function checkFormInputs() {
   const inputs = form.querySelectorAll("input");
   for (const input of inputs) {
