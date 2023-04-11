@@ -63,26 +63,25 @@ function loginUser() {
     }
     else
     {
-      throw new Error('Account not found');
-      console.log(error.response.status);
-      //if status = 500 : could not find email
-      if(error.response.status === 500){
+      console.log(response.status)
+      if(response.status === 500){
         errorElement.innerText = "*Invalid user email*";
         errorElement.style.display = "block";
       }
-      //if status = 400 : Wrong password
-      else if(error.response.status === 400){
+      else if(response.status === 400){
         errorElement.innerText = "*Wrong Password*";
         errorElement.style.display = "block";
       }
-      window.location.replace('../error.html'); //probably dont want to send them to a new page, just let them know the credintials are wrong
+      throw new Error('Account not found');
     }
   })
   .then( () => {
     console.log(`Cookie set: ${document.cookie}`);
     window.location.replace("profile.html");
   })
-  .catch(error => console.error(error));
+  .catch(response => {
+    console.log("test");
+  });
 }
 
   //Event listener for when user clicks the button

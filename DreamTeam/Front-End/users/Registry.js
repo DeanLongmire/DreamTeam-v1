@@ -70,6 +70,8 @@ const passwordInput = document.getElementById("psw");
 const confirmPasswordInput = document.getElementById("psw-repeat");
 const errorElement = document.getElementById("password-error-message");
 const passwordToggle = document.getElementById("password-toggle");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
 
 registerButton.setAttribute("disabled", "disabled");
 
@@ -146,19 +148,15 @@ passwordToggle.addEventListener("click", () => {
 //---------------------------this section is for passing information to the back-end
 
 //const url = 'https://localhost:5000/users';
-const url = 'http://localhost:5000/users';
+const url = 'http://127.0.0.1:5000/users';
 
 
 let create_button = document.getElementById("create_account");
 let saveUser = () => {
-  const nameInput = document.getElementById("name");
   const username = nameInput.value;
-
-  const emailInput = document.getElementById("email");
   const email = emailInput.value;
-  
-  const passwordInput = document.getElementById("psw");
   const password = passwordInput.value;
+
 
   console.log(username);
   console.log(email);
@@ -184,11 +182,14 @@ let saveUser = () => {
      .then(response => {
       if (response.ok) {
         // Redirect user to profile page after successful POST request
-        window.location.replace('set_up_profile.html');
+        console.log("Test");
       } else {
         // Handle error response
         throw new Error('Unable to create user account');
       }
+     })
+     .then( () => {
+      window.location.replace('set_up_profile.html');
      })
      .catch(error => console.error(error));
     

@@ -138,10 +138,11 @@ const create_user = (req, res) => {
                 };
 
                 create_session(req, res, user, () => { //create the session 
-                    db.close();
+                    console.log(`Session created for ${req.session.user.username} with ID ${req.session.id}`);
                     res.send(`User with the name ${uwid.firstName} added to the database`);
                 });
             });
+            db.close();
         });
     });
 };
