@@ -137,7 +137,7 @@ const create_user = (req, res) => {
                     pos: pos
                 };
 
-                create_session(req, user, () => { //create the session 
+                create_session(req, res, user, () => { //create the session 
                     db.close();
                     res.send(`User with the name ${uwid.firstName} added to the database`);
                 });
