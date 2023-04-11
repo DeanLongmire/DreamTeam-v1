@@ -5,9 +5,14 @@
 
 ## What you planned to do
 * Hiding Passwords on login page
+* Create Set-Up Profile Page
+* Work on League Pages: View Leagues, League Admin, Create league, & League Specific Page
+* Work on Profile Page
 
 ## What you did not do
-* 
+* Still working on League specific pages and fine-shaping them
+* Still need to have info sent back from database to fill out the current pages for a specific user
+* Working on communicating with database to display the information on the pages
 
 ## What problems you encountered
 * Login/create league JS need another function so had to rewrite that
@@ -37,9 +42,10 @@
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/league_home.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/teams/create_team.js
 
-
 ## What you accomplished
 * Login Page: User's passwords are hidden and can be shown when they click the "show" button
-* Set-up Profile Page: User can edit their account
-* Create League: 
-* Create Team:
+* Set-up Profile Page: User can edit their account and this is the page user is redirected to when they initally create their account in order to fill out more information to pass to database
+* Create League: User can create a league and that information is sent to the database
+* League Admin Page: This is where the admin can change specific aspects about a league
+* View Leagues: This is how users can see what leagues already exist before they create a league
+* Profile Page: User can hopefully see their leagues and teams later on in the future but a spot for that exists now. Eventually a user will have stats they can view

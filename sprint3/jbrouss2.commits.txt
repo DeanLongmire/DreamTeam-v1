@@ -603,3 +603,17 @@ Create_team.js
 420a65eb DreamTeam/Front-End/teams/create_team.js (Juliana Broussard 2023-04-10 16:11:09 -0400 130) create_button.addEventListener('click', () =>{
 420a65eb DreamTeam/Front-End/teams/create_team.js (Juliana Broussard 2023-04-10 16:11:09 -0400 131) createTeam();
 420a65eb DreamTeam/Front-End/teams/create_team.js (Juliana Broussard 2023-04-10 16:11:09 -0400 132) });
+
+Registry.js
+82798a79 DreamTeam/Front-End/users/Registry.js (Juliana Broussard 2023-04-01 13:30:29 -0400 182) window.location.replace('set_up_profile.html');
+
+Dynprog.css
+9e8c8590 (Juliana Broussard 2023-04-01 22:46:35 -0400 202) .dynprog-column {box-sizing:border-box;}
+9e8c8590 (Juliana Broussard 2023-04-01 22:46:35 -0400 203) .dynprog-child-column{padding:5px;flex:1; flex-wrap:wrap;}
+87d99320 (Juliana Broussard 2023-04-01 16:13:07 -0400 204) .dynprog-parent-column{display:flex}
+87d99320 (Juliana Broussard 2023-04-01 16:13:07 -0400 209) .dynprog-better-box3{padding:25px; background-color: #ff8200}
+6c172d1d (Juliana Broussard 2023-04-06 23:37:26 -0400 210) .dynprog-tiny-box{padding:5px; height:150px; wid
+th:350px; background-color: #ff8200; text-align:center; margin:auto;}
+f0efb648 (Juliana Broussard 2023-04-01 13:17:00 -0400 237)     background: linear-gradient(90deg, rgba(88,8
+9,91,1) 35%, rgba(211,211,211,1) 100%);}
+f0efb648 (Juliana Broussard 2023-04-01 13:17:00 -0400 238)
