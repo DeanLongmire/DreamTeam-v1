@@ -85,16 +85,6 @@ function loginUser() {
   .catch(error => console.error(error));
 }
 
-  const getCookie = (callback) => {
-    const sessionIdCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('connect.sid='));
-    if (sessionIdCookie) {
-      const sessionId = sessionIdCookie.split('=')[1];
-      callback(sessionId);
-    } else {
-      console.error('No sessionId found');
-    }
-  }
-
   //Event listener for when user clicks the button
   loginBT.addEventListener('click', () =>{
     loginUser();
