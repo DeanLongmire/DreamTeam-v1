@@ -19,7 +19,7 @@
 * Login/create league JS needed another function so had to rewrite that
 * Issues with disbaling create league button so had to fix that JS
 * Had to figure out how to center a smaller box on Join League page
-* Had a few stylistic issues
+* Had a few stylistic issues - Centering stuff, figuring out accordian on profile page
 * Working to understand fetch/catch still
 
 ## Issues you worked on
