@@ -1,0 +1,88 @@
+DreamTeam/Back-End/Teams/global_teams_db.js:
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400   1) const { call } = require('function-bind');
+1c46704e (Logan Bowers   2023-03-30 15:27:03 -0400  36)         callback();
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  49)     update_name(new_name, ID, callback){
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  50)         this.data = [new_name, ID];
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  51)         this.sql = 'UPDATE Teams SET name = ? WHERE id = ?';
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  92)     update_num_wins(newNumWins, ID, callback){
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  93)         this.data = [newNumWins, ID];
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  94)         this.sql = 'UPDATE Teams SET W = ? WHERE ID = ?';
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400  95)         this.db.run(this.sql, this.data, (err)=>{
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400  96)             if(err){return console.log(err.message);}
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400  97)             console.log('Row(s) wins updated');
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400  98)         });
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  99)         callback();
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 100)     };
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 101)     update_num_losses(newNumLosses, ID, callback){
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 102)         this.data = [newNumLosses, ID];
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 103)         this.sql = 'UPDATE Teams SET L = ? WHERE ID = ?';
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 104)         this.db.run(this.sql, this.data, (err)=>{
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 105)             if(err){return console.log(err.message);}
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 106)             console.log('Row(s) losses updated');
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 107)         });
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 108)         callback();
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 109)     }
+
+DreamTeam/Back-End/Teams/teams.js:
+3ca136b0 (Logan Bowers 2023-04-03 16:56:25 -0400 37) // patch to update the amount of wins a team has
+6f7b5f37 (Logan Bowers 2023-04-10 17:14:55 -0400 38) router.patch('/update_team_wins/:id', UpdateWins);
+3ca136b0 (Logan Bowers 2023-04-03 16:56:25 -0400 39)
+3ca136b0 (Logan Bowers 2023-04-03 16:56:25 -0400 40) // patch to update the amount of losses a team has
+6f7b5f37 (Logan Bowers 2023-04-10 17:14:55 -0400 41) router.patch('/update_team_losses/:id', UpdateLosses);
+
+DreamTeam/Back-End/Teams/controllers/global_teams.js:
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  69)     const new_name = req.body.newName;
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  72)     get_path((path) => {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  73)         db.open(path);
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  74)         db.update_name(new_name, id, () => {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  75)             db.close();
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400  76)         });
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 101)     console.log(`Team with id: ${id} had ${new_num_players - id.num_players}`);
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 111) // Deletes a team from the database
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 112) const DeleteTeam = (req, res) => {
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 113)     const { id } = req.params;
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 114)
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 115)     get_path( (path) => {
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 116)         db.open(path);
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 117)         db.delete(id, () => {
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 118)             db.close();
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 119)             res.send(`Team with the id ${id} deleted`);
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 120)         });
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 121)     });
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 122) }
+29385d61 (Logan Bowers   2023-03-30 15:10:05 -0400 123)
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 124) const UpdateWins = (req, res) => {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 125)     const {id} = req.params;
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 126)     const wins = req.body.W;
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 127)
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 128)     console.log(`Team with id: ${id} now has ${wins} wins`);
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 129)     get_path((path) => {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 130)         db.open(path);
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 131)         db.update_num_wins(wins, id, ()=> {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 132)             db.close();
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 133)         });
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 134)     });
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 135)     res.send('Team wins updated');
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 136) }
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 137)
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 138) const UpdateLosses = (req, res) => {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 139)     const {id} = req.params;
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 140)     const losses = req.body.L;
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 141)
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 142)     console.log(`Team with id: ${id} now has ${losses} losses`);
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 143)
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 144)     get_path((path) => {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 145)         db.open(path);
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 146)         db.update_num_losses(losses, id, () => {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 147)             db.close();
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 148)         });
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 149)     });
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 150)     res.send('Team losses updated');
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 151) }
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 152)
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 153) module.exports = {
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 154)     get_team, show_all, create_team,
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 155)     update_team_name, update_team_sport,
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 156)     updatePlayerCount, DeleteTeam,
+6f7b5f37 (Logan Bowers   2023-04-10 17:14:55 -0400 157)     UpdateWins, UpdateLosses
+3ca136b0 (Logan Bowers   2023-04-03 16:56:25 -0400 158) }
