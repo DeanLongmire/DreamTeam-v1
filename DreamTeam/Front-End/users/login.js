@@ -1,5 +1,6 @@
 //For JSON passing
-const url = 'http://localhost:5000/users/login'
+//const url = 'http://localhost:5000/users/login'
+const url = 'http://127.0.0.1:5000/users/login'   //HOW WE NEED TO SET URLS FROM NOW ON
 
 //Make the email, password fields and the login bt itself
 const emailField = document.querySelector('input[name="email"]');
@@ -50,19 +51,14 @@ function loginUser() {
     headers: {
       'Content-Type': 'application/json'
     },
+    credentials: "include",
     body: JSON.stringify(userData)
   })
   .then(response => {
     if(response.ok){
-      console.log("Responded");
-      const sessionId = response.headers.get('session_id');
-      document.cookie = 'session_id=' + sessionId;
-      // wait for the cookie to be set
-      return new Promise(resolve => {
-        setTimeout(() => {
-          resolve(sessionId);
-        }, 0);
-      });
+      const headers = new Headers(response.headers);
+      const sessionCookie = headers.get('Set-Cookie');
+      console.log(sessionCookie);
     }
     else
     {
@@ -81,9 +77,9 @@ function loginUser() {
       window.location.replace('../error.html'); //probably dont want to send them to a new page, just let them know the credintials are wrong
     }
   })
-  .then(sessionId => {
-    console.log(`Set cookie: session_id=${sessionId}`);
-    //window.location.replace("profile.html");
+  .then( () => {
+    console.log(`Cookie set: ${document.cookie}`);
+    window.location.replace("profile.html");
   })
   .catch(error => console.error(error));
 }
