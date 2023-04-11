@@ -1,0 +1,221 @@
+Registry.html
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 25)         <div class="dynprog-center dynprog dynprog-padding-16">
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 26)         <button id="password-toggle" class="dynprog-button dynprog-round-small dynprog-text-white dynprog-orange">Show Password</button>
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 13)         <a href="login.html" class="dynprog-bar-item dynprog-button">Login</a>
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 46)         <div id="password-error-message" class="dynprog-password-error-message"></div>
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500 37)         <input class="dynprog-input" type="text" placeholder="Enter Password (must be at least 8 characters and have at least one number)" name="psw" id = "psw">
+
+
+Registry.js
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   1) /*//----------------------------------------------------First section is just for form checking
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   2) // var form = document.getElementById("regform");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   3) // var registerButton = document.getElementById("create_account");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   4) // var passwordInput = document.getElementById("psw");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   5) // var confirmPasswordInput = document.getElementById("psw-repeat");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   6) // var errorElement = document.getElementById("password-error-message");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   7) 
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   8) // registerButton.setAttribute("disabled", "disabled");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500   9) 
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  10) // function checkFormInputs() {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  11) //   var inputs = form.querySelectorAll("input");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  12) //   for (var i = 0; i < inputs.length; i++) {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  13) //     if (inputs[i].value === "") {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  14) //       return false; // Input is empty, return false
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  15) //     }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  16) //   }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  17) //   if( passwordInput.value !== confirmPasswordInput.value) {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  18) //     var errorMessage = "Passwords Do Not Match"; //error message for invalid password
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  19) //     errorElement.innerText = errorMessage;
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  20) //     errorElement.style.display = "block"
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  21) //     return false; // Passwords do not match, return false
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  22) //   }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  23) //   var passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{8,}$/;// Regex to match passwords containing at least one digit and being at least 8 characters long
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  24) //   if (!passwordRegex.test(passwordInput.value)) {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  25) //     var errorMessage = "Password must be at least 8 characters long and contain at least one number."; //error message for invalid password
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  26) //     errorElement.innerText = errorMessage;
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  27) //     errorElement.style.display = "block"
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  28) //     return false; //Password does not meet the requirements, return false
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  29) //   }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  30) //   return true; // All inputs are filled, return true
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  31) // }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  32)
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  33) // function handleButtonState() {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  34) //   if (checkFormInputs()) {778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  35) //     registerButton.removeAttribute("disabled");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  36) //     var errorElement = document.getElementById("password-error-message");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  37) //     errorElement.style.display = "none"; // Hide the error message
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  38) //   } else {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  39) //     registerButton.setAttribute("disabled", "disabled");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  40) //   }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  41) // }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  42)
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  43) // // Add event listeners to form inputs
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  44) // var inputs = form.querySelectorAll("input");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  45) // for (var i = 0; i < inputs.length; i++) {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  46) //   inputs[i].addEventListener("input", handleButtonState);
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  47) // }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  48)
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  49) // // Add event listener to password input field, this masks the inputs with '*'
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  50) // passwordInput.addEventListener("input", function() {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  51) //   const password = passwordInput.value;
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  52) //   const maskedPassword = '*'.repeat(password.length - 1) + password.charAt(password.length - 1);
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  53) //   passwordInput.value = maskedPassword;
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  54)
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  55) //   var passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{8,}$/;
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  56) //   if (passwordRegex.test(password)) {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  57) //     errorElement.style.display = "none"; // Hide the error message
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  58) //   }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  59) // });
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  60) // //same for password repeat778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  61) // confirmPasswordInput.addEventListener("input", function() {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  62) //   const confirmPassword = confirmPasswordInput.value;
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  63) //   const confirmMaskedPassword = '*'.repeat(confirmPassword.length - 1) + confirmPassword.charAt(confirmPassword.length - 1);
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  64) //   confirmPasswordInput.value = confirmMaskedPassword;
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  65) // });
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  66) */
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  67) const form = document.getElementById("regform");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  68) const registerButton = document.getElementById("create_account");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  69) const passwordInput = document.getElementById("psw");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  70) const confirmPasswordInput = document.getElementById("psw-repeat");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  71) const errorElement = document.getElementById("password-error-message");
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500  72) const passwordToggle = document.getElementById("password-toggle");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  81)   const inputs = form.querySelectorAll("input");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  82)   for (const input of inputs) {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  83)     if (input.value === "") {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  88)     errorElement.innerText = "*Passwords do not match*";
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  89)     errorElement.style.display = "block";
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500  92)   const password = passwordInput.value;
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500  93)   if (password.length < 8) { 
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500  94)     errorElement.innerText = "*Password must be at least 8 characters long.*";
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  95)     errorElement.style.display = "block";
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500  96)     return false; // Password is too short, return false
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500  97)   }
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500  98)
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500  99)   const containsNumber = /\d/.test(password);
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 100)   if (!containsNumber) {     
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 101)     errorElement.innerText = "*Password must contain at least one number.*";
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 102)     errorElement.style.display = "block";
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 103)     return false; // Password does not contain a number, return false
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 104)   }
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 105)
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 106)   const containsSymbol = /[\[\]{}()<>?|`~!@#$%^&*+=,_\-;:'"\\]/.test(password);
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 107)   if (!containsSymbol) {     
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 108)     errorElement.innerText = "*Password must contain at least one symbol.*";
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 109)     errorElement.style.display = "block";
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 110)     return false; // Password does not contain a symbol, return false
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 111)   }
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 112)
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 103)     return false; // Password does not contain a number, return false
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 104)   }
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 105)
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 106)   const containsSymbol = /[\[\]{}()<>?|`~!@#$%^&*+=,_\-;:'"\\]/.test(password);
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 107)   if (!containsSymbol) {     
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 108)     errorElement.innerText = "*Password must contain at least one symbol.*";
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 109)     errorElement.style.display = "block";
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 110)     return false; // Password does not contain a symbol, return false
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 111)   }
+84ea8848 (Finli-Hill 2023-04-08 10:03:55 -0500 112)
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500 119)     errorElement.style.display = "none"; //Hide the error message
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500 126) const inputs = form.querySelectorAll("input");
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500 127) for (const input of inputs) {
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500 128)   input.addEventListener("input", handleButtonState);
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 131) let isPasswordVisible = false;
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500 132)
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 133) passwordToggle.addEventListener("click", () => {
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 134)   if (isPasswordVisible) {   
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 135)     passwordInput.setAttribute("type", "password");
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 136)     confirmPasswordInput.setAttribute("type", "password");
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 137)     isPasswordVisible = false;
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 138)   } else {
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 139)     passwordInput.setAttribute("type", "text");
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 140)     confirmPasswordInput.setAttribute("type", "text");
+77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 141)     isPasswordVisible = true;77098297 (Finli-Hill 2023-04-07 17:08:58 -0500 142)   }
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500 143) });
+778ac6c3 (Finli-Hill 2023-04-06 20:49:33 -0500 144)
+
+Dynprog.css
+
+778ac6c3 (Finli-Hill        2023-04-06 20:49:33 -0500 240) .dynprog-padding-button{padding-left:100px; padding-right:100px; padding-top:0px; padding-bottom:0px;} 
+778ac6c3 (Finli-Hill        2023-04-06 20:49:33 -0500 241) /*Error for dumb people who make bad password*/
+5b28403c (Finli-Hill        2023-04-10 13:59:18 -0500 242) .dynprog-password-error-message {display: block; color: red;}
+5b28403c (Finli-Hill        2023-04-10 13:59:18 -0500 243) /*new stuff for the card on view team page*/
+5b28403c (Finli-Hill        2023-04-10 13:59:18 -0500 244) .dynprog-roww {display: flex;flex-wrap: wrap;margin: -10px;}
+5b28403c (Finli-Hill        2023-04-10 13:59:18 -0500 245) .dynprog-crd {position: relative;z-index: 1;transition: all 0.3s ease;background-color: #fff;border-color: #ff8200; border-radius: 2px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);overflow: hidden;margin-bottom: 20px;}
+
+view_teams.html
+
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  3)   <head>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  4)     <meta charset="UTF-8">
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  5)     <title>View Teams</title>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  7)   </head>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  8)   <body>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 12)       <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 16)       <h2 class="dynprog-center">View Teams</h2>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 17)       <div class="dynprog-row" id="team-container"></div>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 18)     </div>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 19)
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 20)     <!--div class="dynprog-vt-header">Find Teams Here!</div--->
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 21)
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 23)       <div class="dynprog-center dynprog-padding-24">
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 24)         <p>&copy; Spring 2023 DynProg Team. All rights reserved. Developed by DynProg.</p>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 28)     <script src="view_teams.js"></script>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 29)   </body>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 30) </html>
+
+view_teams.js
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  1) const teamList = document.getElementById('team-container');
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  2) 
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  3) const teams = [
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  4)   { name: 'Team A', sport: 'Flag Football', players: 10, wins: 5, losses: 2 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  5)   { name: 'Team B', sport: 'Men\'s Soccer', players: 11, wins: 7, losses: 3 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  6)   { name: 'Team C', sport: 'Softball', players: 9, wins: 3, losses: 4 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  7)   { name: 'Team D', sport: 'Flag Football', players: 10, wins: 5, losses: 2 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  8)   { name: 'Team E', sport: 'Men\'s Soccer', players: 11, wins: 7, losses: 3 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500  9)   { name: 'Team F', sport: 'Softball', players: 9, wins: 3, losses: 4 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 10)   { name: 'Team G', sport: 'Flag Football', players: 10, wins: 5, losses: 2 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 11)   { name: 'Team H', sport: 'Men\'s Soccer', players: 11, wins: 7, losses: 3 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 12)   { name: 'Team I', sport: 'Softball', players: 9, wins: 3, losses: 4 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 13)   { name: 'Team J', sport: 'Flag Football', players: 10, wins: 5, losses: 2 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 14)   { name: 'Team K', sport: 'Men\'s Soccer', players: 11, wins: 7, losses: 3 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 15)   { name: 'Team L', sport: 'Softball', players: 9, wins: 3, losses: 4 },
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 16)   // add more teams here
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 17) ];
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 18) 
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 19) //This should make it so the boxes don't jumble and get moved around when hoverd over
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 20) function expandBox(teamElement) {
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 21)     const card = teamElement.querySelector('.dynprog-crd');
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 22)     card.style.height = "200px";
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 23)   }
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 24)
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 25)   function collapseBox(teamElement) {
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 26)     const card = teamElement.querySelector('.dynprog-crd');
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 27)     card.style.height = "100px";
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 28)   }
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 29)
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 30) // Loop through teams and create elements for each one
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 31) for (let i = 0; i < teams.length; i++) {
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 32)   const team = teams[i];      
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 33)   const teamElement = document.createElement('div');
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 34)   teamElement.className = 'dynprog-col dynprog-third dynprog-margin-bottom';
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 35)   teamElement.innerHTML = `   
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 36)     <div class="dynprog-crd dynprog-hover-shadow">
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 37)       <div class="dynprog-container dynprog-center">
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 38)         <h4><b>${team.name}</b></h4>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 39)         <p>${team.sport}</p>  
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 40)         <p class="team-info" style="display: none;">Players: ${team.players}, Wins: ${team.wins}, Losses: ${team.losses}</p>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 41)       </div>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 42)     </div>
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 43)   `;
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 44)   teamList.appendChild(teamElement);
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 45)
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 46)   // Add event listener to show/hide team info on hover
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 47)   teamElement.addEventListener('mouseenter', () => {
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 48)     const teamInfo = teamElement.querySelector('.team-info');
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 49)     teamInfo.style.display = 'block';
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 50)   });
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 51)
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 52)   teamElement.addEventListener('mouseleave', () => {
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 53)     const teamInfo = teamElement.querySelector('.team-info');
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 54)     teamInfo.style.display = 'none';
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 55)   });
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 56) }
+5b28403c (Finli-Hill 2023-04-10 13:59:18 -0500 57)
+
