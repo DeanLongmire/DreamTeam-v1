@@ -56,9 +56,10 @@ function loginUser() {
   })
   .then(response => {
     if(response.ok){
-      const headers = new Headers(response.headers);
-      const sessionCookie = headers.get('Set-Cookie');
-      console.log(sessionCookie);
+      const cookies = document.cookie.split(';');
+      const cookie = cookies.find(c => c.trim().startsWith('myCookie='));
+      const value = cookie ? cookie.split('=')[1] : null;
+      console.log(value);
     }
     else
     {
