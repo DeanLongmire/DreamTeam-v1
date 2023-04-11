@@ -16,9 +16,11 @@
 * Working on communicating with database to display the information on the pages
 
 ## What problems you encountered
-* Login/create league JS need another function so had to rewrite that
+* Login/create league JS needed another function so had to rewrite that
 * Issues with disbaling create league button so had to fix that JS
 * Had to figure out how to center a smaller box on Join League page
+* Had a few stylistic issues
+* Working to understand fetch/catch still
 
 ## Issues you worked on
 * Login Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/8)
@@ -49,5 +51,5 @@
 * Create League: User can create a league and that information is sent to the database
 * League Admin Page: This is where the admin can change specific aspects about a league
 * View Leagues: This is how users can see what leagues already exist before they create a league
-* Profile Page: User can hopefully see their leagues and teams later on in the future but a spot for that exists now. Eventually a user will have stats they can view
-* Error Page: Created an error page that users can be redirected too when we catch an error
+* Profile Page: User can hopefully see their leagues and teams later on in the future but a spot for that exists now. Eventually a user will have stats they can view. The page is laid out to eventually receive all the appropriate information next sprint
+* Error Page: Created an error page that users can be redirected to when we catch an error
