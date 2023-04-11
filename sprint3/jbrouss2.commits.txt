@@ -617,3 +617,45 @@ th:350px; background-color: #ff8200; text-align:center; margin:auto;}
 f0efb648 (Juliana Broussard 2023-04-01 13:17:00 -0400 237)     background: linear-gradient(90deg, rgba(88,8
 9,91,1) 35%, rgba(211,211,211,1) 100%);}
 f0efb648 (Juliana Broussard 2023-04-01 13:17:00 -0400 238)
+
+Error.html
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  1) <!--This is the error page for when a post request cannot be completed-->
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  2) <!DOCTYPE html>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  3) <html>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  4)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  5) <link rel="stylesheet" href="Dynprog.css">       
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  6)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  7) <div class="dynprog-padding-12"></div>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  8)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400  9) <div class="dynprog-center">
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 10)     <h7>DreamTeam</h7>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 11) </div>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 12)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 13) <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 14)     <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 15) </div>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 16) 
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 17) <div class="dynprog-padding-12"></div>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 18)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 19) <body>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 20)     <div class="dynprog-card-4 dynprog-text-gray 
+dynprog-center dynprog-gradient-background-orange">
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 21)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 22)         <h1>DinoProg could not locate our servers</h1>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 23)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 24)         <div class="dynprog-container dynprog-center">
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 25)             <img src="photos/DynProg.jpg" alt="blank person" style="width:35%">
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 26)         </div>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 27)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 28) </body>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 29)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 30) <!--This is the footer!-->
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 31) <footer>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 32)     <div class="dynprog-center dynprog-padding-24">
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 33)         <p> &copy; Copyright Spring 2023 DynProg 
+Team. All rights reserved. Developed by DynProg.</p>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 34)     </div>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 35) </footer>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 36)
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 37) </div>
+f16986b3 (Juliana Broussard 2023-04-03 16:03:47 -0400 38) </html>
