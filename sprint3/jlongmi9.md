@@ -4,10 +4,10 @@
 * Dynprog
 
 ### What you planned to do
-* Issue 50 : Create User Sessions And Cookies https://github.com/utk-cs340-spring23/DynProg/issues/50
-* Issue 36 : Make Rest of Patch Functions For Users https://github.com/utk-cs340-spring23/DynProg/issues/36
-* Issue 21 : Store Pictures In Database https://github.com/utk-cs340-spring23/DynProg/issues/21
-* Issue 22 : Authenticate User Login https://github.com/utk-cs340-spring23/DynProg/issues/22
+* Issue [50](https://github.com/utk-cs340-spring23/DynProg/issues/50) : Create User Sessions And Cookies 
+* Issue [36](https://github.com/utk-cs340-spring23/DynProg/issues/36) : Make Rest of Patch Functions For Users 
+* Issue [21](https://github.com/utk-cs340-spring23/DynProg/issues/21) : Store Pictures In Database
+* Issue [22](https://github.com/utk-cs340-spring23/DynProg/issues/22) : Authenticate User Login
 
 ### What you did not do
 * Issue 22 is not fully done, we can store encoded strings that translate to images, but a better way to do it is to store references to images in the database
@@ -17,10 +17,10 @@
 * Trying to make website HTTPS was very complicated with getting certificates and allowing the browser to trust my CA. Ended up abandoning this as for demo and production purposes, it is not extremely neccessary
 
 ### Issues you worked on
-* Issue 50 : Create User Sessions And Cookies https://github.com/utk-cs340-spring23/DynProg/issues/50
-* Issue 36 : Make Rest of Patch Functions For Users https://github.com/utk-cs340-spring23/DynProg/issues/36
-* Issue 21 : Store Pictures In Database https://github.com/utk-cs340-spring23/DynProg/issues/21
-* Issue 22 : Authenticate User Login https://github.com/utk-cs340-spring23/DynProg/issues/22
+* Issue [50](https://github.com/utk-cs340-spring23/DynProg/issues/50) : Create User Sessions And Cookies 
+* Issue [36](https://github.com/utk-cs340-spring23/DynProg/issues/36) : Make Rest of Patch Functions For Users 
+* Issue [21](https://github.com/utk-cs340-spring23/DynProg/issues/21) : Store Pictures In Database
+* Issue [22](https://github.com/utk-cs340-spring23/DynProg/issues/22) : Authenticate User Login
 
 ### Files you worked on
 From my commits.txt
