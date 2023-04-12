@@ -144,7 +144,6 @@ passwordToggle.addEventListener("click", () => {
   }
 });
 
-
 //---------------------------this section is for passing information to the back-end
 
 //const url = 'https://localhost:5000/users';
@@ -156,7 +155,6 @@ let saveUser = () => {
   const username = nameInput.value;
   const email = emailInput.value;
   const password = passwordInput.value;
-
 
   console.log(username);
   console.log(email);
@@ -192,7 +190,6 @@ let saveUser = () => {
       window.location.replace('set_up_profile.html');
      })
      .catch(error => console.error(error));
-    
 }
 
 create_button.addEventListener("click", saveUser);
