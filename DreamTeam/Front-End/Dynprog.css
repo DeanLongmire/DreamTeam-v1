@@ -184,7 +184,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .dynprog-border-orange,.dynprog-hover-border-orange:hover{border-color:#ff8200!important}
 
 /* making a navbar css template*/
-.dynprog-navbar{background-color: #ff8200; position: fixed; width: 100%; transition: top 0.3s}
+.dynprog-navbar{background-color: #ff8200; position: fixed; width: 100%; transition: top 0.3s; padding: 10px;}
 /*slideshow container*/
 .dynprog-slideshow-container {max-width: 450px;margin: auto;}
 /*making a prev and next button*/
@@ -243,3 +243,16 @@ h8{font-size: 20px; font-family:Fantasy;}
 /*new stuff for the card on view team page*/
 .dynprog-roww {display: flex;flex-wrap: wrap;margin: -10px;}
 .dynprog-crd {position: relative;z-index: 1;transition: all 0.3s ease;background-color: #fff;border-color: #ff8200; border-radius: 2px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);overflow: hidden;margin-bottom: 20px;}
+/*new fancy buttons for home page*/
+.dynprog-homebutton {display: inline-block;background-color: #ff8200;color: #fff;border: none;border-radius: 133px;padding: 50px 150px;text-align: center;text-decoration: none;font-size: 16px;margin: 20px;cursor: pointer;transition: all 0.3s ease;}
+.dynprog-homebutton:hover {background-color: #fff;color: #ff8200;box-shadow: 0px 0px 20px rgba(255, 130, 0, 0.5);}
+.dynprog-clearfix::after {content: "";clear: both;display: table;}@media only screen and (max-width: 600px) {.dynprog-button {padding: 10px 20px;font-size: 14px;}}
+.dynprog-homebutton-container {display: flex;justify-content: center; text-align: center;  margin-top: 50px; /* adjust the margin as needed */}
+/* dynprog dino hehehehehe */
+.dino-container { position: relative;animation: moveDinos 5s linear infinite;}
+@keyframes moveDinos {0% {transform: translateX(0);}50% {transform: translateX(50%);}100% {transform: translateX(0);}}
+.dinosaur {position: absolute;top: 50%;transform: translateY(-50%);width: 100px;height: 100px;
+background-image: url('https://cdn.iconscout.com/icon/free/png-256/dinosaur-12-675533.png');
+background-size: cover;}
+.dinosaur:nth-child(1) {left: 0;}
+.dinosaur:nth-child(2) {left: 150px;}
