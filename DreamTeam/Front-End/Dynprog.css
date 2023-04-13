@@ -249,10 +249,29 @@ h8{font-size: 20px; font-family:Fantasy;}
 .dynprog-clearfix::after {content: "";clear: both;display: table;}@media only screen and (max-width: 600px) {.dynprog-button {padding: 10px 20px;font-size: 14px;}}
 .dynprog-homebutton-container {display: flex;justify-content: center; text-align: center;  margin-top: 50px; /* adjust the margin as needed */}
 /* dynprog dino hehehehehe */
-.dino-container { position: relative;animation: moveDinos 5s linear infinite;}
-@keyframes moveDinos {0% {transform: translateX(0);}50% {transform: translateX(50%);}100% {transform: translateX(0);}}
-.dinosaur {position: absolute;top: 50%;transform: translateY(-50%);width: 100px;height: 100px;
-background-image: url('https://cdn.iconscout.com/icon/free/png-256/dinosaur-12-675533.png');
-background-size: cover;}
-.dinosaur:nth-child(1) {left: 0;}
-.dinosaur:nth-child(2) {left: 150px;}
+.dino-container {
+    position: relative;
+    height: 100px; /* adjust height as needed */
+    overflow: hidden;
+  }
+  
+  .dinosaur {
+    position: absolute;
+    left: -100px; /* start offscreen on the left */
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+    background-image: url("photos/Dyno.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: runDino 30s linear infinite;
+  }
+  
+  @keyframes runDino {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(calc(100vw + 100px)); /* move across the screen */
+    }
+  }
