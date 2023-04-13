@@ -93,7 +93,7 @@ const create_session = (req, res, userJSON, callback) => {
         bio: userJSON.bio,
         pos: userJSON.pos 
     };
-    res.cookie('myCookie', req.session.id + userJSON.id);
+    res.cookie('myCookie' + userJSON.id.substring(0,5), req.session.id);
     callback();
 };
 
