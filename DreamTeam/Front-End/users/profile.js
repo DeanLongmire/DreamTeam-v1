@@ -35,7 +35,7 @@ const welcomeButton = document.querySelector("#welcome-button");
 // Retrieve the user's first name from cookies or elsewhere
 //const firstName = getFirstNameFromCookies();
 
-// Get a reference to the <h4> element
+// Get a reference to the <h4> element for each object
 const firstNameHeading = document.getElementById("first_name");
 const lastNameHeading = document.getElementById("last_name");
 const email = document.getElementById("email");
