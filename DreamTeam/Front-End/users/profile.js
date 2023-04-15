@@ -37,6 +37,11 @@ const welcomeButton = document.querySelector("#welcome-button");
 
 // Get a reference to the <h4> element
 const firstNameHeading = document.getElementById("first_name");
+const lastNameHeading = document.getElementById("last_name");
+const email = document.getElementById("email");
+const sports = document.getElementById("sports");
+const bio = document.getElementById("bio");
+
 
 // Update the text content of the <h4> element with the user's first name
 //firstNameHeading.textContent = firstName;
