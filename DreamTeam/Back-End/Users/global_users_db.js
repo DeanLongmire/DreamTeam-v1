@@ -298,10 +298,4 @@ class users_dbmanager{
     }
 }
 
-let driver = new  users_dbmanager
-driver.open("../database.db")
-driver.create( () => {
-  driver.close();
-})
-
 module.exports.users_dbmanager = users_dbmanager
