@@ -150,9 +150,33 @@ const UpdateLosses = (req, res) => {
     res.send('Team losses updated');
 }
 
-module.exports = { 
-    get_team, show_all, create_team, 
-    update_team_name, update_team_sport, 
-    updatePlayerCount, DeleteTeam,
-    UpdateWins, UpdateLosses
+// function that creates the session with all the teams data
+const createTeamSession = (req, res, teamJSON, callback) => {
+    console.log('made it here 1');
+    req.session.team = { 
+        teamName: teamJSON.name,
+        id: teamJSON.ID,
+        p_id: teamJSON.P_ID,
+        sport: teamJSON.sport,
+        num_players: teamJSON.num_players,
+        W: teamJSON.W,
+        L: teamJSON.L
+    };
+    console.log('made it here 2');
+    res.send('Showing Team Info');
+    res.cookie('teamCookie' + teamJSON.id.substring(0,5), req.session.id);
+    callback();
+};
+
+module.exports = {
+    get_team,
+    show_all,
+    create_team,
+    update_team_name,
+    update_team_sport,
+    updatePlayerCount,
+    DeleteTeam,
+    UpdateWins,
+    UpdateLosses,
+    createTeamSession
 }
