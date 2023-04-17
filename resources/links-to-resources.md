@@ -11,3 +11,4 @@
 11. Convert JSON to SQLite Database: https://stackoverflow.com/questions/46407770/how-to-convert-a-json-file-to-an-sqlite-database
 12. JSON Syntax: https://www.w3schools.com/js/js_json_syntax.asp
 13. REST API https://www.youtube.com/watch?v=l8WPWK9mS5M&t=397s&ab_channel=JavaScriptMastery
+14. Spinning Div https://www.geeksforgeeks.org/how-to-show-page-loading-div-until-the-page-has-finished-loading/
