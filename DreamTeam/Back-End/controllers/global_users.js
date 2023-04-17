@@ -15,9 +15,22 @@ const get_path = (callback) => {
     callback(db_path);
 }
 
+const get_path_session = (callback) => {
+    const pwd = process.cwd();
+    let db_path = pwd;
+    db_path = db_path + "\\DreamTeam\\Back-End\\sessions.db";
+    db_path = db_path.replace(/\\/g,"/");
+
+    callback(db_path);
+}
+
 //gets all of a users info
 const get_user = (req, res) => {
     const { id } = req.params;
+
+    /*get_path_sessions( (path) => {
+        
+    });*/
 
     get_path( (path) => {
         db.open(path);
@@ -91,6 +104,8 @@ const create_session = (req, res, userJSON, callback) => {
         username: userJSON.username, 
         firstName: userJSON.firstName,
         lastName: userJSON.lastName,
+        playerID: userJSON.playerID,
+        teamID: userJSON.teamID,
         email: userJSON.email,
         bio: userJSON.bio,
         pos: userJSON.pos 
