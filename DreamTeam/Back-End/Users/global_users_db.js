@@ -36,7 +36,7 @@ class users_dbmanager{
     //inserts into the table
     insert(id, un, email, password, fn, ln, pID, tID, bio, pos, pp, callback){
         this.db.serialize(() => {
-          this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, playerID, teamID, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
+          this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, playerID, teamID, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?,?,?)'
           this.db.run(this.sql, [id, un, email, password, fn, ln, pID, tID, bio, pos, pp], (err)=>{
             if(err){return console.log(err.message)}
           })
