@@ -53,4 +53,4 @@ class sessions_dbmanager{
     }
 }
 
-module.exports.users_dbmanager = users_dbmanager
+module.exports.sessions_dbmanager = sessions_dbmanager;
