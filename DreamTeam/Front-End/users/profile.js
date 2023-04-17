@@ -2,7 +2,7 @@
 
 //COOKIE INFO
 const cookies = document.cookie.split(';');
-const cookie = cookies.find(c => c.trim().startsWith('myCookie='));
+const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
 const userCookieId = cookie ? cookie.split('=')[1] : null;
 console.log(userCookieId);
 
