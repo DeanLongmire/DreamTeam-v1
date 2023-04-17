@@ -54,12 +54,14 @@ const login = (req, res) => {
                 if(hash_pass == password) //password match
                 {
                     console.log("Logged in");
-                    db.get_all(id, (un,fn,ln,email,bio,pos) => {
+                    db.get_all(id, (un,fn,ln,pID,tID,email,bio,pos) => {
                         const user = {
                             id: id,
                             username: un,
                             firstName: fn,
                             lastName: ln,
+                            playerID: pID,
+                            teamID: tID,
                             email: email,
                             bio: bio,
                             pos: pos
@@ -125,13 +127,15 @@ const create_user = (req, res) => {
         uwid.password = hash_pass;
 
         db.open(path);
-        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
-            db.get_all(uwid.id, (un,fn,ln,email,bio,pos) => {
+        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.playerID,uwid.teamID,uwid.bio,uwid.position,null, () => {
+            db.get_all(uwid.id, (un,fn,ln,pID,tID,email,bio,pos) => {
                 const user = {
                     id: uwid.id,
                     username: un,
                     firstName: fn,
                     lastName: ln,
+                    playerID: pID,
+                    teamID: tID,
                     email: email,
                     bio: bio,
                     pos: pos
