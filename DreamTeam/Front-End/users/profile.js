@@ -15,6 +15,22 @@ document.querySelector("#Log-Out").onclick = function(){
     alert("You have been logged out");
 }
 
+
+document.onreadystatechange = function() {
+	if (document.readyState !== "complete") {
+		document.querySelector(
+		"body").style.visibility = "hidden";
+		document.querySelector(
+		"#loader").style.visibility = "visible";
+        getData();
+	}/* else {
+		document.querySelector(
+		"#loader").style.display = "none";
+		document.querySelector(
+		"body").style.visibility = "visible";
+	}*/
+};
+
 function myFunction(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("dynprog-show") == -1) {
@@ -26,6 +42,23 @@ function myFunction(id) {
 
 //Working on making the elements change for specific user
 const welcomeButton = document.querySelector("#welcome-button");
+//const username;
+
+function getData(){
+    console.log("in the function get data");
+/*fetch(url,{
+    method: 'POST',
+    headers:{
+        'Content-Type': 'application/json'
+    },
+    credentials: "include",
+    body:JSON.stringify
+})
+*/
+}
+
+
+
 //const username = getCookie("username"); // Retrieve the value of the "username" cookie
 
 //if (username) {
