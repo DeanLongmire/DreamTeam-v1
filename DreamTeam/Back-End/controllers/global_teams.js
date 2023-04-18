@@ -23,12 +23,23 @@ const get_team = (req, res) => {
 
     get_path( (path) => {
         db.open(path);
-        db.get_all(id, (name, ID, P_ID, sport, num_players) => {
-            console.log(name + " " + ID + " " + P_ID + " " + sport + " " + num_players)
+        db.get_all(id, (name, ID, P_ID, sport, num_players, W, L) => {
+            console.log(`${name} ${ID} ${P_ID} ${sport} ${num_players} ${W} ${L}`);
+            const teamData = {
+                name: name,
+                id: ID,
+                p_id: P_ID,
+                sport: sport,
+                nPlayers: num_players,
+                w: W,
+                l: L
+            };
+            JSON.stringify(teamData);
+            res.send(teamData);
             db.close();
         });
     });
-    res.send("Got a Teams's info");
+    //res.send("Got a Teams's info");
 }
 
 // Diplay all teams in DB
@@ -178,5 +189,5 @@ module.exports = {
     DeleteTeam,
     UpdateWins,
     UpdateLosses,
-    createTeamSession
+    createTeamSession,
 }
