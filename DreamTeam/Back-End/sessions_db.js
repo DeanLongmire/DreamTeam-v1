@@ -29,17 +29,21 @@ class sessions_dbmanager{
     //gets a session and returns the sess data
     get_session(ID, callback){
         this.sql = 'SELECT * FROM sessions WHERE sid = ?';
+        console.log("Again, Looking for session " + ID);
         this.db.get(this.sql, [ID], (err, row) => {
             if(err) {
               return console.error(err.message);
             }
             if(row) {
-              callback(row.sess);
+                const sessObj = JSON.parse(row.sess);
+                callback(sessObj);
             } 
             else {
+              const errObj = JSON.parse(row.sess);
+              console.log(errObj);
               console.log("error");
-              }
-          });
+            }
+        });
     }
     
     //closes the database

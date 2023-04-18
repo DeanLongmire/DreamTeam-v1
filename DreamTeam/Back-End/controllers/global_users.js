@@ -1,8 +1,10 @@
 const global_users = require("../Users/global_users_db.js");
+const sessions = require("../sessions_db.js");
 const { hash_data } = require("../Users/hash.js");
 const { v4: uuidv4 } = require('uuid');
 
 let db = new global_users.users_dbmanager;
+let sess = new sessions.sessions_dbmanager;
 
 //needed for getting the path to the database on any machine
 //Gotta use whenever you open the database
@@ -26,17 +28,21 @@ const get_path_session = (callback) => {
 
 //gets all of a users info
 const get_user = (req, res) => {
-    const { id } = req.params;
+    const { sessId } = req.params;
 
-    /*get_path_sessions( (path) => {
-        
-    });*/
-
-    get_path( (path) => {
-        db.open(path);
-        db.get_all(id, (username,first_name,last_name,email,bio,pos) => {
-            console.log(username + " " + first_name + " " + last_name + " " + email + " " + bio + " " + pos)
-            db.close();
+    get_path_session( (path) => {
+        sess.open(path);
+        sess.get_session(sessId, (sessData) => {
+            console.log("Got " + sessData.user.id);
+            const id = sessData.user.id;
+            sess.close();
+            get_path( (path) => {
+                db.open(path);
+                db.get_all(id, (username,first_name,last_name,playerID, teamID, email,bio,pos) => {
+                    console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos)
+                    db.close();
+                });
+            });
         });
     });
 
