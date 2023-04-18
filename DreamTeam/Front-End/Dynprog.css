@@ -185,18 +185,6 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 /* making a navbar css template*/
 .dynprog-navbar{background-color: #ff8200; position: fixed; width: 100%; transition: top 0.3s; padding: 10px;}
-/*slideshow container*/
-.dynprog-slideshow-container {max-width: 450px;margin: auto;}
-/*making a prev and next button*/
-.dynprog-prev,.dynprog-next{cursor: pointer;width: auto;padding: 16px;margin-top: -22px;color: #333;font-weight: bold;font-size: 18px;transition: 0.6s ease;border-radius: 0 3px 3px 0;user-select: none;}
-/*fade*/
-.dynprog-fade{ animation-name: fade; animation-duration: 1.5s;}@keyframes fade {from {opacity: .4} to {opacity: 1}}
-.dynprog-uitext{ color: #ff8200;font-size: 15px;padding: 8px 12px;bottom: 8px;width: 100%;text-align: center;}
-/* Number text (1/3 etc) */
-.dynprog-numbertext {color: #333;font-size: 12px;padding: 8px 12px;top: 0;}
-/* The dots/bullets/indicators */
-.dynprog-dot {cursor: pointer;height: 15px;width: 15px;margin: 0 2px;background-color: #bbb;border-radius: 50%;display: inline-block;transition: background-color 0.6s ease;}
-.active, .dynprog-dot:hover {background-color: #717171;}
 
 /*Making columns within a page - this will let you have columns side by side*/
 .dynprog-column {box-sizing:border-box;}
@@ -244,34 +232,12 @@ h8{font-size: 20px; font-family:Fantasy;}
 .dynprog-roww {display: flex;flex-wrap: wrap;margin: -10px;}
 .dynprog-crd {position: relative;z-index: 1;transition: all 0.3s ease;background-color: #fff;border-color: #ff8200; border-radius: 2px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);overflow: hidden;margin-bottom: 20px;}
 /*new fancy buttons for home page*/
-.dynprog-homebutton {display: inline-block;background-color: #ff8200;color: #fff;border: none;border-radius: 133px;padding: 50px 150px;text-align: center;text-decoration: none;font-size: 16px;margin: 20px;cursor: pointer;transition: all 0.3s ease;}
+.dynprog-homebutton {display: inline-flex;align-items: center;justify-content: center;background-color: #ff8200;color: #fff;border: none;border-radius: 133px;padding: 0 50px;text-align: center;text-decoration: none;font-size: 16px;margin: 20px;cursor: pointer;transition: all 0.3s ease;width: 250px; /* adjust the width as needed */height: 150px; /* set the height to a fixed value */}
 .dynprog-homebutton:hover {background-color: #fff;color: #ff8200;box-shadow: 0px 0px 20px rgba(255, 130, 0, 0.5);}
-.dynprog-clearfix::after {content: "";clear: both;display: table;}@media only screen and (max-width: 600px) {.dynprog-button {padding: 10px 20px;font-size: 14px;}}
+.dynprog-clearfix::after {content: "";clear: both;display: table;}
+@media only screen and (max-width: 600px) {.dynprog-homebutton {width: 100%;height: auto;padding: 10px 20px;font-size: 14px;}}
 .dynprog-homebutton-container {display: flex;justify-content: center; text-align: center;  margin-top: 50px; /* adjust the margin as needed */}
 /* dynprog dino hehehehehe */
-.dino-container {
-    position: relative;
-    height: 100px; /* adjust height as needed */
-    overflow: hidden;
-  }
-  
-  .dinosaur {
-    position: absolute;
-    left: -100px; /* start offscreen on the left */
-    bottom: 0;
-    width: 100px;
-    height: 100px;
-    background-image: url("photos/Dyno-no-back.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    animation: runDino 30s linear infinite;
-  }
-  
-  @keyframes runDino {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(calc(100vw + 100px)); /* move across the screen */
-    }
-  }
+.dino-container {position: relative;height: 200px; /* adjust height as needed */overflow: hidden;}
+  .dinosaur{position: absolute;left: -100px; /* start offscreen on the left */bottom: 0; width: 200px;height: 200px;background-image: url("photos/Dyno-no-back.png");background-size: contain;background-repeat: no-repeat;animation: runDino 30s linear infinite;}
+  @keyframes runDino {0% {transform: translateX(-100%);}100% {transform: translateX(calc(100vw + 100px)); /* move across the screen */}}
