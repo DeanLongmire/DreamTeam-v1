@@ -40,14 +40,23 @@ const get_user = (req, res) => {
                 db.open(path);
                 db.get_all(id, (username,first_name,last_name,playerID, teamID, email,bio,pos) => {
                     console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos)
+                    const userData = {
+                        username: username,
+                        firstName: first_name,
+                        lastName: last_name,
+                        playerID: playerID,
+                        teamID: teamID,
+                        email: email,
+                        bio: bio,
+                        pos: pos
+                    };
+                    JSON.stringify(userData);
+                    res.send(userData);
                     db.close();
                 });
             });
         });
     });
-
-    res.setHeader('Content-Type', 'application/json');
-    res.send(sess.user);
 }
 
 //user authentication
