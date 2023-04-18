@@ -17,11 +17,12 @@ class users_dbmanager{
     }
 
     //creates the table 'Users'
-    create(){
-        this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
+    create(callback){
+        this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, playerID TEXT, teamID TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
             if(err){return console.error(err.message)}
             console.log('Created User table')
         })
+        callback();
     }
 
     //deletes the table 'Users'
@@ -33,10 +34,10 @@ class users_dbmanager{
     }
 
     //inserts into the table
-    insert(id, un, email, password, fn, ln, bio, pos, pp, callback){
+    insert(id, un, email, password, fn, ln, pID, tID, bio, pos, pp, callback){
         this.db.serialize(() => {
-          this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?)'
-          this.db.run(this.sql, [id, un, email, password, fn, ln, bio, pos, pp], (err)=>{
+          this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, playerID, teamID, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?,?,?)'
+          this.db.run(this.sql, [id, un, email, password, fn, ln, pID, tID, bio, pos, pp], (err)=>{
             if(err){return console.log(err.message)}
           })
           callback();
@@ -196,7 +197,7 @@ class users_dbmanager{
           return console.error(err.message);
         }
         if(row) {
-          callback(row.user_name,row.first_name,row.last_name,row.email,row.bio,row.pos);
+          callback(row.user_name,row.first_name,row.last_name,row.playerID,row.teamID,row.email,row.bio,row.pos);
         } 
         else {
           console.log("error");

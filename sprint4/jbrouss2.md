@@ -25,6 +25,7 @@
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/login.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/login.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/profile.html
+* utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/profile.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/set_up_profile.html
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/users/set_up_profile.js
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/create_league.html

@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { get_league, show_all, create_league, update_name, update_sport, delete_league } = require('../controllers/global_leagues.js');
+const { get_league, show_all, create_league, update_name, update_sport, delete_league, create_session } = require('../controllers/global_leagues.js');
 const router = express.Router();
 
 router.use(bodyParser.json());
@@ -13,6 +13,8 @@ router.post('/', create_league);
 
 //get league info
 router.get('/:id', get_league);
+//create session
+router.post('/session/:id', create_session);
 
 //delete league
 router.delete('/:id', delete_league);

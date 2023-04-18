@@ -1,8 +1,10 @@
 const global_users = require("../Users/global_users_db.js");
+const sessions = require("../sessions_db.js");
 const { hash_data } = require("../Users/hash.js");
 const { v4: uuidv4 } = require('uuid');
 
 let db = new global_users.users_dbmanager;
+let sess = new sessions.sessions_dbmanager;
 
 //needed for getting the path to the database on any machine
 //Gotta use whenever you open the database
@@ -15,19 +17,37 @@ const get_path = (callback) => {
     callback(db_path);
 }
 
+const get_path_session = (callback) => {
+    const pwd = process.cwd();
+    let db_path = pwd;
+    db_path = db_path + "\\DreamTeam\\Back-End\\sessions.db";
+    db_path = db_path.replace(/\\/g,"/");
+
+    callback(db_path);
+}
+
 //gets all of a users info
 const get_user = (req, res) => {
-    const { id } = req.params;
+    const { sessId } = req.params;
 
-    get_path( (path) => {
-        db.open(path);
-        db.get_all(id, (username,first_name,last_name,email,bio,pos) => {
-            console.log(username + " " + first_name + " " + last_name + " " + email + " " + bio + " " + pos)
-            db.close();
+    get_path_session( (path) => {
+        sess.open(path);
+        sess.get_session(sessId, (sessData) => {
+            console.log("Got " + sessData.user.id);
+            const id = sessData.user.id;
+            sess.close();
+            get_path( (path) => {
+                db.open(path);
+                db.get_all(id, (username,first_name,last_name,playerID, teamID, email,bio,pos) => {
+                    console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos)
+                    db.close();
+                });
+            });
         });
     });
 
-    res.send("Got a user's info");
+    res.setHeader('Content-Type', 'application/json');
+    res.send(sess.user);
 }
 
 //user authentication
@@ -54,12 +74,14 @@ const login = (req, res) => {
                 if(hash_pass == password) //password match
                 {
                     console.log("Logged in");
-                    db.get_all(id, (un,fn,ln,email,bio,pos) => {
+                    db.get_all(id, (un,fn,ln,pID,tID,email,bio,pos) => {
                         const user = {
                             id: id,
                             username: un,
                             firstName: fn,
                             lastName: ln,
+                            playerID: pID,
+                            teamID: tID,
                             email: email,
                             bio: bio,
                             pos: pos
@@ -89,11 +111,13 @@ const create_session = (req, res, userJSON, callback) => {
         username: userJSON.username, 
         firstName: userJSON.firstName,
         lastName: userJSON.lastName,
+        playerID: userJSON.playerID,
+        teamID: userJSON.teamID,
         email: userJSON.email,
         bio: userJSON.bio,
         pos: userJSON.pos 
     };
-    res.cookie('myCookie' + userJSON.id.substring(0,5), req.session.id);
+    res.cookie('UserCookie' + userJSON.id.substring(0,5), req.session.id);
     callback();
 };
 
@@ -125,13 +149,15 @@ const create_user = (req, res) => {
         uwid.password = hash_pass;
 
         db.open(path);
-        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.bio,uwid.position,null, () => {
-            db.get_all(uwid.id, (un,fn,ln,email,bio,pos) => {
+        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.playerID,uwid.teamID,uwid.bio,uwid.position,null, () => {
+            db.get_all(uwid.id, (un,fn,ln,pID,tID,email,bio,pos) => {
                 const user = {
                     id: uwid.id,
                     username: un,
                     firstName: fn,
                     lastName: ln,
+                    playerID: pID,
+                    teamID: tID,
                     email: email,
                     bio: bio,
                     pos: pos
