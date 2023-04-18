@@ -46,7 +46,8 @@ const get_user = (req, res) => {
         });
     });
 
-    res.send("Got a user's info");
+    res.setHeader('Content-Type', 'application/json');
+    res.send(sess.user);
 }
 
 //user authentication
