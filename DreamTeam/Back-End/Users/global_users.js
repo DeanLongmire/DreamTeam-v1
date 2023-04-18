@@ -16,7 +16,7 @@ router.post('/', create_user);
 router.post('/login', login);
 
 //Get a User's Info
-router.get('/:sessId', get_user);
+router.post('/:sessId', get_user);
 
 //Delete a User
 router.delete('/:id', delete_user);

@@ -1,10 +1,63 @@
-
-
 //COOKIE INFO
-const cookies = document.cookie.split(';');
-const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
-const userCookieId = cookie ? cookie.split('=')[1] : null;
-console.log(userCookieId);
+let getSessionId = function (callback) {
+  const cookies = document.cookie.split(';');
+  const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+  const userCookieId = cookie ? cookie.split('=')[1] : null;
+  console.log(userCookieId);
+
+  const sessionId = {
+    id: userCookieId
+  }
+
+  const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+
+  callback(sessionId,userURL);
+}
+
+let getUserData = function (sessionId,url,callback) {
+  console.log(url + " " + sessionId.id);
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: "include",
+    body: JSON.stringify(sessionId)
+  })
+  .then(response => {
+    console.log("Recieved");
+    document.cookie = "hasLoaded=1";
+  })
+  .then(data => {
+    //console.log(data.sess.user.id);
+    //callback(data.sess.user.id);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
+
+let start = function () {
+  const cookies = document.cookie.split(';');
+  const cookie = cookies.find(c => c.trim().startsWith('hasLoaded='));
+  const hasLoaded = cookie ? parseInt(cookie.split('=')[1]) : 0;
+  console.log(hasLoaded);
+  if(hasLoaded === 0)
+  {
+    loadData();
+  }
+}
+
+let loadData = function () {
+  getSessionId((sessID,userURL) => {
+    console.log("Sess ID: " + sessID.id + " URL: " + userURL);
+    getUserData(sessID,userURL,(user) => {
+      console.log(user);
+    })
+  })
+};
+
+start();
 
 //need to send this userCookieId to the client side, get the user's data, send it back to this page, and then display it appropriatly
 //Also need to probably halt the page from loading all its elements while this happens

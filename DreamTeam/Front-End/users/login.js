@@ -59,6 +59,7 @@ function loginUser() {
       const cookies = document.cookie.split(';');
       const cookie = cookies.find(c => c.trim().startsWith('myCookie='));
       const value = cookie ? cookie.split('=')[1] : null;
+      document.cookie = "hasLoaded=0";
       console.log(value);
     }
     else
