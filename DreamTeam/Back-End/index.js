@@ -31,7 +31,7 @@ app.use(session({
     secret: 'my secret key',
     resave: false,
     saveUninitialized: true,
-    store: sessionStore,
+    //store: sessionStore,
     cookie: {
         httpOnly: false,
         secure: false,

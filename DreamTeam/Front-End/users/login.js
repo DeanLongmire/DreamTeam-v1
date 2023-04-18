@@ -1,5 +1,4 @@
 //For JSON passing
-//const url = 'http://localhost:5000/users/login'
 const url = 'http://127.0.0.1:5000/users/login'   //HOW WE NEED TO SET URLS FROM NOW ON
 
 //Make the email, password fields and the login bt itself

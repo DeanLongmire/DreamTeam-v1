@@ -61,6 +61,7 @@ let getTeamData = function (teamURL, callback) {
   .then(response => {
     if (response.ok) {
       console.log("Responded");
+      document.cookie = `test=` + 4;
       callback();
     } 
     else {
