@@ -39,7 +39,6 @@ const get_team = (req, res) => {
             db.close();
         });
     });
-    //res.send("Got a Teams's info");
 }
 
 // Diplay all teams in DB
