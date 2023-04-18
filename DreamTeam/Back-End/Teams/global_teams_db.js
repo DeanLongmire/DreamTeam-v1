@@ -107,6 +107,20 @@ class team_dbmanager{
         });
         callback();
     }
+    get_all(ID, callback) {
+        this.sql = 'SELECT * FROM Teams WHERE ID = ?';
+        this.db.get(this.sql, [ID], (err, row) => {
+          if(err) {
+            return console.error(err.message);
+          }
+          if(row) {
+            callback(row.name,row.ID,row.P_ID,row.sport,row.num_players,row.W,row.L);
+          } 
+          else {
+            console.log("error");
+            }
+        });
+      }
 }
 
 module.exports.team_dbmanager = team_dbmanager;
