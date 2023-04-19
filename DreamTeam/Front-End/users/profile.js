@@ -14,12 +14,6 @@ let getSessionId = function (callback) {
   callback(userURL);
 }
 
-let setUserData = function (dataJson,callback) {
-  const ud = JSON.stringify(dataJson);
-  document.cookie = `userData=${ud}`
-  callback();
-}
-
 let getUserData = function (url,callback) {
   console.log(url);
   fetch(url, {
@@ -31,15 +25,13 @@ let getUserData = function (url,callback) {
   .then(response => {
     if (response.ok) {
       response.json().then(data => {
-        document.cookie = "hasLoaded=1";
         setUserData(data, () => {
-          getTeamUrl((teamURL) => {
+          console.log("User Data Set");
+          const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
             getTeamData(teamURL, () => {
-              console.log("TEST3");
-            })
-          })
+              callback();
+            });
         });
-        callback();
       });
     } 
     else {
@@ -60,9 +52,15 @@ let getTeamData = function (teamURL, callback) {
   })
   .then(response => {
     if (response.ok) {
-      console.log("Responded");
-      document.cookie = `test=` + 4;
-      callback();
+      response.json().then(data => {
+        setTeamData(data, () => {
+          console.log("Team Data Set");
+          const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+          getLeagueData(leagueURL, () => {
+            callback();
+          })
+        });
+      });
     } 
     else {
       console.error('Error: ' + response.statusText);
@@ -73,108 +71,60 @@ let getTeamData = function (teamURL, callback) {
   });
 }
 
-let getTeamUrl = function (callback) {
-  const cookies = document.cookie.split(';');
-  const cookie = cookies.find(c => c.trim().startsWith('userData='));
-  const userData = cookie ? JSON.parse(cookie.split('=')[1]) : null;
-
-  const teamURL = 'http://127.0.0.1:5000/teams/' + userData.teamID;
-  console.log(teamURL);
-
-  callback(teamURL);
-}
-
-let start = function () {
-  const cookies = document.cookie.split(';');
-  const cookie = cookies.find(c => c.trim().startsWith('hasLoaded='));
-  const hasLoaded = cookie ? parseInt(cookie.split('=')[1]) : 0;
-  console.log(hasLoaded);
-  if(hasLoaded === 0)
-  {
-    loadData();
-  }
-};
-
-let loadData = function () {
-  getSessionId((userURL) => {
-    console.log("URL: " + userURL);
-    getUserData(userURL,() => {
-      console.log("test2");
-      return false;
-    });
-  });
-};
-
-start();
-
-/*let getSessionId = function (callback) {
-  const cookies = document.cookie.split(';');
-  const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
-  const userCookieId = cookie ? cookie.split('=')[1] : null;
-  console.log(userCookieId);
-
-  const sessionId = {
-    id: userCookieId
-  }
-
-  const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
-
-  callback(userURL);
-}
-
-let getUserData = function (url,callback) {
-  console.log(url);
-  fetch(url, {
+let getLeagueData = function (leagueURL, callback) {
+  fetch(leagueURL, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
   }
   })
   .then(response => {
-    if(response.ok)
-    {
-      callback(true);
-    }
-    else
-    {
-      console.log('Error: ' + response.status);
-      callback(false);
+    if (response.ok) {
+      response.json().then(data => {
+        setLeagueData(data, () => {
+          console.log("League Data Set");
+          callback();
+        });
+      });
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
     }
   })
   .catch(error => {
-    console.log(error);
+    console.error(error);
   });
-}
-
-let start = function () {
-  const cookies = document.cookie.split(';');
-  const cookie = cookies.find(c => c.trim().startsWith('hasLoaded='));
-  const hasLoaded = cookie ? parseInt(cookie.split('=')[1]) : 0;
-  console.log(hasLoaded);
-  if(hasLoaded === 0)
-  {
-    loadData();
-  }
 }
 
 let loadData = function () {
   getSessionId((userURL) => {
     console.log("URL: " + userURL);
-    getUserData(userURL,(success) => {
-      console.log("Test2");
-      if(success){
-        // Data was retrieved successfully, so prevent page from reloading
-        console.log("Page reload prevented");
-      } else {
-        // Data retrieval failed, allow page to reload
-        console.log("Page reload allowed");
-      }
-    })
-  })
+    getUserData(userURL,() => {
+      console.log("All Data Set");
+      //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
+    });
+  });
 };
 
-start();*/
+let setUserData = function (userDataJSON,callback) {
+  console.log(userDataJSON.username);
+  //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+  callback();
+}
 
+let setTeamData = function (teamDataJSON, callback) {
+  console.log(teamDataJSON.name);
+  //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH TEAM DATA (USE THE 'teamDataJSON' OBJECT)
+  callback();
+}
+
+let setLeagueData = function (leagueDataJSON, callback) {
+  console.log(leagueDataJSON.name);
+  //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH LEAGUE DATA (USE THE 'leagueDataJSON' OBJECT)
+  callback();
+}
+
+loadData();
 
 //need to send this userCookieId to the client side, get the user's data, send it back to this page, and then display it appropriatly
 //Also need to probably halt the page from loading all its elements while this happens
