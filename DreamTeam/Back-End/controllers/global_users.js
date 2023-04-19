@@ -33,8 +33,8 @@ const get_user = (req, res) => {
     get_path_session( (path) => {
         sess.open(path);
         sess.get_session(sessId, (sessData) => {
-            console.log("Got " + sessData.user.id);
-            const id = sessData.user.id;
+            console.log("Got " + sessData.username);
+            const id = sessData.id;
             sess.close();
             get_path( (path) => {
                 db.open(path);
@@ -98,7 +98,14 @@ const login = (req, res) => {
 
                         create_session(req, res, user, () => { //create the session 
                             console.log(`Session created for ${req.session.user.username} with ID ${req.session.id}`);
-                            res.status(200).send("Passwords Match! Logged in");
+                            const sessionData = JSON.stringify(req.session.user);
+                            get_path_session( (sessPath) => {
+                                sess.open(sessPath);
+                                sess.create_session(req.session.id,sessionData, () => {
+                                    sess.close();
+                                })
+                                res.status(200).send("Passwords Match! Logged in");
+                            });
                         });
                     });
                 }
@@ -140,6 +147,12 @@ const show_all = (req, res) => {
         });
     });
 
+    sess = new sessions_dbmanager();
+    sess.open("sessions.db");
+    sess.create_session(5,"test", () => {
+        sess.close();
+    });
+
     res.send("read all");
 };
 
@@ -174,7 +187,14 @@ const create_user = (req, res) => {
 
                 create_session(req, res, user, () => { //create the session 
                     console.log(`Session created for ${req.session.user.username} with ID ${req.session.id}`);
-                    res.send(`User with the name ${uwid.firstName} added to the database`);
+                    const sessionData = JSON.stringify(req.session.user);
+                    get_path_session( (sessPath) => {
+                        sess.open(sessPath);
+                        sess.create_session(req.session.id,sessionData, () => {
+                            sess.close();
+                        });
+                        res.send(`User with the name ${uwid.firstName} added to the database`);
+                    });
                 });
             });
             db.close();
