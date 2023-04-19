@@ -21,7 +21,7 @@ for (let i = 0; i < leagues.length; i++) {
 
 for (const l of ls) {
     const div = document.createElement('div');
-    div.classList.add('.dynprog-better-box');
+    div.classList.add('.dynprog-card-4');
     div.innerHTML = `<h3>${l.name}</h3><p>$${l.team.toFixed(2)}</p>`;
     container.appendChild(div);
   }

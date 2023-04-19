@@ -84,7 +84,6 @@ function SetUpUser(){
           window.location.replace("profile.html");
         }else{
           throw new Error('Account not found');
-          window.location.replace('../error.html');
         }
      })
      .catch(error => console.error(error));
