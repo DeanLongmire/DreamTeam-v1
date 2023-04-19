@@ -106,18 +106,29 @@ let loadData = function () {
   });
 };
 
+
+const welcomeButton = document.querySelector("#welcome-button");
+
 // Get a reference to the <h4> element for each object
-const firstNameHeading = document.getElementById("first_name");
-const lastNameHeading = document.getElementById("last_name");
-const email = document.getElementById("email");
-const sports = document.getElementById("sports");
-const bio = document.getElementById("bio");
+let firstNameHeading = document.getElementById("first_name");
+let lastNameHeading = document.getElementById("last_name");
+let email = document.getElementById("email");
+let sports = document.getElementById("sports");
+let bio = document.getElementById("bio");
+let username = null;
 
 let setUserData = function (userDataJSON,callback) {
   console.log(userDataJSON.username);
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
-  //const firstname = userDataJSON.first_name;
-  //firstNameHeading.textContent = firstName;
+  if(userDataJSON.username){
+    username = userDataJSON.username;
+    welcomeButton.textContent = "Welcome, " + username + "!!!";
+  };
+  
+ // if(userData.firstname !== null){
+   // firstNameHeading.textContent = userData.firstName;
+ // };
+  
   callback();
 }
 
