@@ -110,12 +110,14 @@ let loadData = function () {
 const welcomeButton = document.querySelector("#welcome-button");
 
 // Get a reference to the <h4> element for each object
-let firstNameHeading = document.getElementById("first_name");
-let lastNameHeading = document.getElementById("last_name");
+let fullNameHeading = document.getElementById("full_name");
+let userNameHeading = document.getElementById("username");
 let email = document.getElementById("email");
-let sports = document.getElementById("sports");
+let position = document.getElementById("position");
 let bio = document.getElementById("bio");
 let username = null;
+let first = null;
+let last = null;
 
 let setUserData = function (userDataJSON,callback) {
   console.log(userDataJSON.username);
@@ -123,12 +125,33 @@ let setUserData = function (userDataJSON,callback) {
   if(userDataJSON.username){
     username = userDataJSON.username;
     welcomeButton.textContent = "Welcome, " + username + "!!!";
+    userNameHeading.textContent = "Username: " + username;
   };
   
- // if(userData.firstname !== null){
-   // firstNameHeading.textContent = userData.firstName;
- // };
-  
+  //NEED TO FIX FOR WHERE FIRST OR LAST IS NULL!
+  if(userDataJSON.firstName && userDataJSON.lastName){
+    first = userDataJSON.firstName;
+    last = userDataJSON.lastName;
+    fullNameHeading.textContent = "Name: " + first + " " + last;
+  } else if(userDataJSON.firstName && userDataJSON.lastName === null){
+      first = userDataJSON.firstName;
+      fullNameHeading.textContent = "Name: " + first;
+  }else if(userDataJSON.firstName = null && userDataJSON.lastName){
+      last = userDataJSON.lastName;
+      fullNameHeading.textContent = "Name: " + last;
+  };
+
+  if(userDataJSON.email){
+    email.textContent = "Email: " + userDataJSON.email;
+  };
+
+  if(userDataJSON.pos){
+    position.textContent = "My Position: " + userDataJSON.pos;
+  };
+
+  if(userDataJSON.bio){
+    bio.textContent = "Bio: " + userDataJSON.bio;
+  }
   callback();
 }
 
