@@ -90,7 +90,7 @@ const update_team_name = (req, res) => {
     res.send('Team name updated');
 }
 
-// updating only the sport that the team plays\
+// updating only the sport that the team plays
 const update_team_sport = (req, res) => {
     const { id } = req.params;
     const new_sport = req.body.new_sport;
@@ -101,6 +101,7 @@ const update_team_sport = (req, res) => {
     db.update_sport(new_sport, id.sport, () => {
         db.close();
     });
+    res.send('team sport updated');
 }
 
 // Updating amount of players on a given team in this function
@@ -115,7 +116,7 @@ const updatePlayerCount = (req, res) => {
     db.update_num_players(id.name, newPcount, () => {
         db.close();
     });
-    
+    res.send('player count updated');
 }
 
 // Deletes a team from the database
