@@ -106,9 +106,18 @@ let loadData = function () {
   });
 };
 
+// Get a reference to the <h4> element for each object
+const firstNameHeading = document.getElementById("first_name");
+const lastNameHeading = document.getElementById("last_name");
+const email = document.getElementById("email");
+const sports = document.getElementById("sports");
+const bio = document.getElementById("bio");
+
 let setUserData = function (userDataJSON,callback) {
   console.log(userDataJSON.username);
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+  //const firstname = userDataJSON.first_name;
+  //firstNameHeading.textContent = firstName;
   callback();
 }
 
@@ -131,9 +140,9 @@ loadData();
 
 /*If user selects log out, a message says they have been logged out
 then they return back to the home page*/
-/*document.querySelector("#Log-Out").onclick = function(){
+document.querySelector("#Log-Out").onclick = function(){
     alert("You have been logged out");
-}*/
+}
 
 
 /*document.onreadystatechange = function() {
@@ -142,7 +151,7 @@ then they return back to the home page*/
 		"body").style.visibility = "hidden";
 		document.querySelector(
 		"#loader").style.visibility = "visible";
-        getData();
+        loadData();
 	} else {
 		document.querySelector(
 		"#loader").style.display = "none";
@@ -151,14 +160,15 @@ then they return back to the home page*/
 	}
 };*/
 
-/*function myFunction(id) {
+//Function for the acordian!
+function myFunction(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("dynprog-show") == -1) {
       x.className += " dynprog-show";
     } else { 
       x.className = x.className.replace(" dynprog-show", "");
     }
-  }*/
+  }
 
 //Working on making the elements change for specific user
 //const welcomeButton = document.querySelector("#welcome-button");
