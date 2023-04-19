@@ -14,16 +14,23 @@ const get_path = (callback) => {
 
 const get_league = (req, res) => {
     const { id } = req.params;
+    console.log(id);
 
     get_path( (path) =>{
-        db.open(path);
-        db.get_all(id, (name, ID, sport) => {
-            console.log(name + " " + ID + " " + sport);
-            db.close();
-         });
+        db.open(path, () => {
+            db.get_all(id, (name, ID, sport) => {
+                console.log(name + " " + ID + " " + sport);
+                const leagueData = {
+                    ID: ID,
+                    name: name,
+                    sport: sport
+                };
+            
+                res.send(leagueData);
+                db.close();
+             });
+        });
     });
-
-    res.send("Got a league's info");
 };
 
 //making cookies res.cookie(something)

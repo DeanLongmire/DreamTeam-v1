@@ -2,12 +2,13 @@ const sqlite3 = require('sqlite3').verbose();
 
 class league_dbmanager{
     constructor(db, sql, data){}
-    open(path){
+    open(path, callback){
         this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
             if (err){
                 return console.error(err.message);
             }
-            console.log('Connected to SQLite database.db');
+            console.log('Connected to Leagues SQLite database.db');
+            if(callback) callback();
         });
     }
     create(){
@@ -49,10 +50,12 @@ class league_dbmanager{
             this.sql = 'SELECT * FROM Leagues WHERE ID = ?';
             this.db.get(this.sql, [ID], (err, row) =>{
                 if(err){return console.error(err.message);}
-                if(row){callback(row.name,row.ID,row.sport);}
+                if(row){
+                    callback(row.name,row.ID,row.sport);
+                    console.log("HERE");
+                }
                 else{console.log("error");}
             });
-            callback();
         });
     }
     update_sport(new_sport, ID, callback){
