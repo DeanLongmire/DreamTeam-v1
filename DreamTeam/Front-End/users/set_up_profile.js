@@ -1,5 +1,3 @@
-const url = 'http://localhost:5000/set-up-profile'
-
 //Make the fields and button
 const update_profile_BT = document.querySelector('#update_profile_button');
 const first_name = document.getElementById("first_name");
@@ -18,7 +16,6 @@ username.addEventListener("input", buildData);
 bio.addEventListener("input", buildData);
 position.addEventListener("input", buildData);
 profile_photo.addEventListener("input", buildData);
-
 
 function buildData(){
 
@@ -42,7 +39,7 @@ function buildData(){
     }
 
     //Position
-    if(position.value.trim !== ''){
+    if(position.value.trim === ''){
         position.value = null;
     }
 
@@ -60,28 +57,97 @@ function buildData(){
     }
 }
 
-function SetUpUser(){
-    const userData ={
-        first_name: first_name.value,
-        last_name: last_name.value,
-        username: username.value,
-        bio: bio.value,
-        position: position.value,
-        profilePicture: encodedPhoto
-    };
+let getSessionId = function (callback) {
+    const cookies = document.cookie.split(';');
+    const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+    const userCookieId = cookie ? cookie.split('=')[1] : null;
+    console.log(userCookieId);
+  
+    const sessionId = {
+      id: userCookieId
+    }
+  
+    const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+  
+    callback(userURL);
+}
 
+let buttonSubmit = function () {
+    getSessionId((url) => {
+        getUserData(url, (id) => {
+            console.log(id);
+            SetUpUser(id,() => {
+                console.log("Updated");
+                window.location.replace("profile.html");               
+            });
+        });
+    });
+};
+
+function SetUpUser(userID, callback){
+    if(first_name.value !== "")
+    {
+        const fn = {
+            fn: first_name.value
+        }
+        const updateFNUrl = 'http://127.0.0.1:5000/users/update_firstname/' + userID;
+        makeRequest(fn,updateFNUrl);
+    }
+    if(last_name.value !== "")
+    {
+        const ln = {
+            ln: last_name.value
+        }
+        const updateLNUrl = 'http://127.0.0.1:5000/users/update_lastname/' + userID;
+        makeRequest(ln,updateLNUrl);
+    }
+    if(username.value !== "")
+    {
+        const un = {
+            un: username.value
+        }
+        const updateUNUrl = 'http://127.0.0.1:5000/users/update_username/' + userID;
+        makeRequest(un,updateUNUrl);
+    }
+    if(bio.value !== "")
+    {
+        const bioJSON = {
+            bio: bio.value
+        }
+        const updateBUrl = 'http://127.0.0.1:5000/users/update_bio/' + userID;
+        makeRequest(bioJSON,updateBUrl);
+    }
+    if(position.value !== "")
+    {
+        const pos = {
+            pos: position.value
+        }
+        const updatePOSUrl = 'http://127.0.0.1:5000/users/update_position/' + userID;
+        makeRequest(pos,updatePOSUrl);
+    }
+    if(profile_photo.value !== "")
+    {
+        const pp = {
+            pp: profile_photo.value
+        }
+        const updatePPUrl = 'http://127.0.0.1:5000/users/update_picture/' + userID;
+        makeRequest(pp,updatePPUrl);
+    }
+    callback();
+}
+
+let makeRequest = function (dataToBeUpdated, url) {
     fetch(url, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(dataToBeUpdated)
      })
      .then(response => {
         if(response.ok){
           (console.log("Responded"));
           //Redirect to profile if account found
-          window.location.replace("profile.html");
         }else{
           throw new Error('Account not found');
         }
@@ -89,8 +155,33 @@ function SetUpUser(){
      .catch(error => console.error(error));
 }
 
+let getUserData = function (url,callback) {
+    console.log(url);
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+    }
+    })
+    .then(response => {
+      if (response.ok) {
+        response.json().then(data => {
+          console.log(data.id);
+          callback(data.id);
+        });
+      } 
+      else {
+        console.error('Error: ' + response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
 //Event listener for when user clicks the submit button
-update_profile_BT.addEventListener('click', () =>{
-    console.log(encodedPhoto);
-    SetUpUser();
+update_profile_BT.addEventListener('click', (event) =>{
+    event.preventDefault();
+    //console.log(encodedPhoto);
+    buttonSubmit();
 });

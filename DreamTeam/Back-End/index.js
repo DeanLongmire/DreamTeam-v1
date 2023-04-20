@@ -28,7 +28,7 @@ app.use(cors({
     origin: 'http://127.0.0.1:5500', //configured to accept connection from html pages launched with live server
     optionsSuccessStatus: 200,
     allowedHeaders: ['Content-Type', 'Authorization'],
-    allowedMethods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true
 }));
 

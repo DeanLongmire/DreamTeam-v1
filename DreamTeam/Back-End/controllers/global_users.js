@@ -41,6 +41,7 @@ const get_user = (req, res) => {
                 db.get_all(id, (username,first_name,last_name,playerID, teamID, email,bio,pos) => {
                     console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos)
                     const userData = {
+                        id: id,
                         username: username,
                         firstName: first_name,
                         lastName: last_name,
@@ -218,7 +219,7 @@ const delete_user =  (req, res) => {
 //updates username
 const update_username = (req, res) => {
     const { id } = req.params;
-    const new_username = req.body.newUsername;
+    const new_username = req.body.un;
 
     console.log(new_username + " " + id);
 
@@ -235,7 +236,7 @@ const update_username = (req, res) => {
 //updates email
 const update_email = (req, res) => {
     const { id } = req.params;
-    const new_email = req.body.newEmail;
+    const new_email = req.body;
 
     console.log(new_email + " " + id);
 
@@ -252,7 +253,7 @@ const update_email = (req, res) => {
 //updates bio
 const update_bio = (req, res) => {
     const { id } = req.params;
-    const new_bio = req.body.newBio;
+    const new_bio = req.body.bio;
 
     console.log(new_bio + " " + id);
 
@@ -269,7 +270,7 @@ const update_bio = (req, res) => {
 //updates firstname
 const update_firstname = (req, res) => {
     const { id } = req.params;
-    const new_first_name = req.body.newFirstname;
+    const new_first_name = req.body.fn;
 
     console.log(new_first_name + " " + id);
 
@@ -286,7 +287,7 @@ const update_firstname = (req, res) => {
 //updates lastname
 const update_lastname = (req, res) => {
     const { id } = req.params;
-    const new_lastname = req.body.newLastname;
+    const new_lastname = req.body.ln;
 
     console.log(new_lastname + " " + id);
 
@@ -303,7 +304,7 @@ const update_lastname = (req, res) => {
 //updates position
 const update_position = (req, res) => {
     const { id } = req.params;
-    const new_position = req.body.newPosition;
+    const new_position = req.body.pos;
 
     console.log(new_position + " " + id);
 
@@ -320,7 +321,7 @@ const update_position = (req, res) => {
 //updates password
 const update_password = (req, res) => {
     const { id } = req.params;
-    const new_password = req.body.newPassword;
+    const new_password = req.body;
 
     console.log(new_password + " " + id);
 
@@ -338,7 +339,7 @@ const update_password = (req, res) => {
 
 const update_profile_picture = (req, res) => {
     const { id } = req.params;
-    const new_pp = req.body.newPp;
+    const new_pp = req.body.pp;
 
     console.log(new_pp + " " + id);
 

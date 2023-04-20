@@ -20,7 +20,7 @@ let getUserData = function (url,callback) {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
-  }
+    }
   })
   .then(response => {
     if (response.ok) {
@@ -28,9 +28,16 @@ let getUserData = function (url,callback) {
         setUserData(data, () => {
           console.log("User Data Set");
           const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
-            getTeamData(teamURL, () => {
+            if(data.teamID !== null) 
+            {
+              getTeamData(teamURL, () => {
+                callback();
+              });
+            }
+            else
+            {
               callback();
-            });
+            }
         });
       });
     } 
@@ -58,7 +65,7 @@ let getTeamData = function (teamURL, callback) {
           const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
           getLeagueData(leagueURL, () => {
             callback();
-          })
+          });
         });
       });
     } 
