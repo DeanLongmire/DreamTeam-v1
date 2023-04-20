@@ -13,8 +13,6 @@ router.post('/', create_league);
 
 //get league info
 router.get('/:id', get_league);
-//create session
-router.post('/session/:id', create_session);
 
 //delete league
 router.delete('/:id', delete_league);

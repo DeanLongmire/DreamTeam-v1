@@ -36,16 +36,6 @@ const get_league = (req, res) => {
 //making cookies res.cookie(something)
 //will
 //create_session -- reference users
-const create_session = (req, res, leagueJSON, callback) =>{
-    console.log("creating session")
-    req.session.league = {
-        id: leagueJSON.id,
-        name: leagueJSON.name,
-        sport: leagueJSON.sport
-    }
-    res.cookie('myCookie' + leagueJSON.id.substring(0,5), req.session.id);
-    callback();
-}
 
 const show_all = (req, res) => {
     get_path( (path) => {
@@ -113,4 +103,4 @@ const update_sport = (req, res) => {
     res.send('Sport updated');
 }
 
-module.exports = {get_league, create_session, show_all, create_league, delete_league, update_name, update_sport}
+module.exports = {get_league, show_all, create_league, delete_league, update_name, update_sport}
