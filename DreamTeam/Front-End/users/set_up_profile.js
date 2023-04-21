@@ -77,13 +77,8 @@ let buttonSubmit = function () {
     getSessionId((url) => {
         getUserData(url, (id) => {
             console.log(id);
-            /*SetUpUser(id,() => {
-                console.log("Updated");
-                window.location.replace("profile.html");               
-            });*/
             waitOnRequest(numOfInputs,id).then(() => {
                 window.location.replace("profile.html");
-                console.log("Set some stuff");
             })
             .catch(error => {
                 console.log(error);
@@ -91,58 +86,6 @@ let buttonSubmit = function () {
         });
     });
 };
-
-/*function SetUpUser(userID, callback){
-    if(first_name.value !== "")
-    {
-        const fn = {
-            fn: first_name.value
-        }
-        const updateFNUrl = 'http://127.0.0.1:5000/users/update_firstname/' + userID;
-        makeRequest(fn,updateFNUrl);
-    }
-    if(last_name.value !== "")
-    {
-        const ln = {
-            ln: last_name.value
-        }
-        const updateLNUrl = 'http://127.0.0.1:5000/users/update_lastname/' + userID;
-        makeRequest(ln,updateLNUrl);
-    }
-    if(username.value !== "")
-    {
-        const un = {
-            un: username.value
-        }
-        const updateUNUrl = 'http://127.0.0.1:5000/users/update_username/' + userID;
-        makeRequest(un,updateUNUrl);
-    }
-    if(bio.value !== "")
-    {
-        const bioJSON = {
-            bio: bio.value
-        }
-        const updateBUrl = 'http://127.0.0.1:5000/users/update_bio/' + userID;
-        makeRequest(bioJSON,updateBUrl);
-    }
-    if(position.value !== "")
-    {
-        const pos = {
-            pos: position.value
-        }
-        const updatePOSUrl = 'http://127.0.0.1:5000/users/update_position/' + userID;
-        makeRequest(pos,updatePOSUrl);
-    }
-    if(profile_photo.value !== "")
-    {
-        const pp = {
-            pp: profile_photo.value
-        }
-        const updatePPUrl = 'http://127.0.0.1:5000/users/update_picture/' + userID;
-        makeRequest(pp,updatePPUrl);
-    }
-    callback();
-}*/
 
 let makeRequest = function (dataToBeUpdated, url, callback) {
     fetch(url, {
@@ -190,6 +133,7 @@ let getUserData = function (url,callback) {
 const waitOnRequest = function (numOfInputs, userID,) {
     return new Promise((resolve,reject) => {
         let proccessed = 0;
+        if(numOfInputs === proccessed) resolve();
         if(first_name.value !== "")
         {
             const fn = {
