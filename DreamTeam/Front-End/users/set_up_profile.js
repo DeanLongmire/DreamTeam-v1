@@ -73,18 +73,26 @@ let getSessionId = function (callback) {
 }
 
 let buttonSubmit = function () {
+    let numOfInputs = getNumOfInputs();
     getSessionId((url) => {
         getUserData(url, (id) => {
             console.log(id);
-            SetUpUser(id,() => {
+            /*SetUpUser(id,() => {
                 console.log("Updated");
                 window.location.replace("profile.html");               
-            });
+            });*/
+            waitOnRequest(numOfInputs,id).then(() => {
+                window.location.replace("profile.html");
+                console.log("Set some stuff");
+            })
+            .catch(error => {
+                console.log(error);
+            })
         });
     });
 };
 
-function SetUpUser(userID, callback){
+/*function SetUpUser(userID, callback){
     if(first_name.value !== "")
     {
         const fn = {
@@ -134,9 +142,9 @@ function SetUpUser(userID, callback){
         makeRequest(pp,updatePPUrl);
     }
     callback();
-}
+}*/
 
-let makeRequest = function (dataToBeUpdated, url) {
+let makeRequest = function (dataToBeUpdated, url, callback) {
     fetch(url, {
         method: 'PATCH',
         headers: {
@@ -147,7 +155,7 @@ let makeRequest = function (dataToBeUpdated, url) {
      .then(response => {
         if(response.ok){
           (console.log("Responded"));
-          //Redirect to profile if account found
+          callback();
         }else{
           throw new Error('Account not found');
         }
@@ -179,9 +187,95 @@ let getUserData = function (url,callback) {
     });
 }
 
+const waitOnRequest = function (numOfInputs, userID,) {
+    return new Promise((resolve,reject) => {
+        let proccessed = 0;
+        if(first_name.value !== "")
+        {
+            const fn = {
+                fn: first_name.value
+            }
+            const updateFNUrl = 'http://127.0.0.1:5000/users/update_firstname/' + userID;
+            makeRequest(fn,updateFNUrl, () => {
+                proccessed += 1;
+                if(proccessed === numOfInputs) resolve();
+            });
+        }
+        if(last_name.value !== "")
+        {
+            const ln = {
+                ln: last_name.value
+            }
+            const updateLNUrl = 'http://127.0.0.1:5000/users/update_lastname/' + userID;
+            makeRequest(ln,updateLNUrl, () => {
+                proccessed += 1;
+                if(proccessed === numOfInputs) resolve();
+            });
+        }
+        if(username.value !== "")
+        {
+            const un = {
+                un: username.value
+            }
+            const updateUNUrl = 'http://127.0.0.1:5000/users/update_username/' + userID;
+            makeRequest(un,updateUNUrl, () => {
+                proccessed += 1;
+                if(proccessed === numOfInputs) resolve();
+            });
+        }
+        if(bio.value !== "")
+        {
+            const bioJSON = {
+                bio: bio.value
+            }
+            const updateBUrl = 'http://127.0.0.1:5000/users/update_bio/' + userID;
+            makeRequest(bioJSON,updateBUrl, () => {
+                proccessed += 1;
+                if(proccessed === numOfInputs) resolve();
+            });
+        }
+        if(position.value !== "")
+        {
+            const pos = {
+                pos: position.value
+            }
+            const updatePOSUrl = 'http://127.0.0.1:5000/users/update_position/' + userID;
+            makeRequest(pos,updatePOSUrl, () => {
+                proccessed += 1;
+                if(proccessed === numOfInputs) resolve();
+            });
+        }
+        if(profile_photo.value !== "")
+        {
+            const pp = {
+                pp: profile_photo.value
+            }
+            const updatePPUrl = 'http://127.0.0.1:5000/users/update_picture/' + userID;
+            makeRequest(pp,updatePPUrl, () => {
+                proccessed += 1;
+                if(proccessed === numOfInputs) resolve();
+            });
+        }
+    });
+};
+
+let getNumOfInputs = function () {
+    let numOfInputs = 0;
+
+    if(first_name.value !== "")    numOfInputs += 1;
+    if(last_name.value !== "")     numOfInputs += 1;
+    if(username.value !== "")      numOfInputs += 1;
+    if(bio.value !== "")           numOfInputs += 1;
+    if(position.value !== "")      numOfInputs += 1;
+    if(profile_photo.value !== "") numOfInputs += 1;
+
+    return numOfInputs;
+}
+
 //Event listener for when user clicks the submit button
 update_profile_BT.addEventListener('click', (event) =>{
     event.preventDefault();
     //console.log(encodedPhoto);
     buttonSubmit();
+    return false;
 });

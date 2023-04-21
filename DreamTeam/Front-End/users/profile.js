@@ -113,7 +113,6 @@ let loadData = function () {
   });
 };
 
-
 const welcomeButton = document.querySelector("#welcome-button");
 
 // Get a reference to the <h4> element for each object
