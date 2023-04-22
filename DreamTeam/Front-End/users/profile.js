@@ -165,15 +165,30 @@ let setUserData = function (userDataJSON,callback) {
   callback();
 }
 
+let teamHeading = document.getElementById("team");
+let teamname = null;
+
 let setTeamData = function (teamDataJSON, callback) {
   console.log(teamDataJSON.name);
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH TEAM DATA (USE THE 'teamDataJSON' OBJECT)
+  if(teamDataJSON.name){
+    teamename = teamDataJSON.name;
+    teamHeading.textContent = teamname;
+  }
+
   callback();
 }
+
+let leagueHeading = document.getElementById("league");
+let leaguename = null;
 
 let setLeagueData = function (leagueDataJSON, callback) {
   console.log(leagueDataJSON.name);
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH LEAGUE DATA (USE THE 'leagueDataJSON' OBJECT)
+  if(leagueDataJSON.name){
+    leaguename = leagueDataJSON.name;
+    leagueHeading.textContent = leaguename;
+  }
   callback();
 }
 
