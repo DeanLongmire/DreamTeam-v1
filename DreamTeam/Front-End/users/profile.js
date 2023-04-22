@@ -133,18 +133,22 @@ let setUserData = function (userDataJSON,callback) {
     welcomeButton.textContent = "Welcome, " + username + "!!!";
     userNameHeading.textContent = "Username: " + username;
   };
-  
-  //NEED TO FIX FOR WHERE FIRST OR LAST IS NULL!
+    
   if(userDataJSON.firstName && userDataJSON.lastName){
     first = userDataJSON.firstName;
     last = userDataJSON.lastName;
     fullNameHeading.textContent = "Name: " + first + " " + last;
-  } else if(userDataJSON.firstName && userDataJSON.lastName === null){
-      first = userDataJSON.firstName;
-      fullNameHeading.textContent = "Name: " + first;
-  }else if(userDataJSON.firstName = null && userDataJSON.lastName){
-      last = userDataJSON.lastName;
-      fullNameHeading.textContent = "Name: " + last;
+  }
+  else if(userDataJSON.firstName){
+    first = userDataJSON.firstName;
+    fullNameHeading.textContent = "Name: " + first;
+  }
+  else if(userDataJSON.lastName){
+    last = userDataJSON.lastName;
+    fullNameHeading.textContent = "Name: " + last;
+  }
+  else{
+    fullNameHeading.textContent = "Name: N/A";
   };
 
   if(userDataJSON.email){
