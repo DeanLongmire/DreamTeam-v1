@@ -165,6 +165,7 @@ let setUserData = function (userDataJSON,callback) {
   callback();
 }
 
+
 let teamHeading = document.getElementById("team");
 let teamname = null;
 
@@ -174,8 +175,9 @@ let setTeamData = function (teamDataJSON, callback) {
   if(teamDataJSON.name){
     teamname = teamDataJSON.name;
     teamHeading.textContent = teamname;
-  }
+  //window.location.href = "../teams/team_home.html"
 
+  }
   callback();
 }
 
@@ -188,9 +190,12 @@ let setLeagueData = function (leagueDataJSON, callback) {
   if(leagueDataJSON.name){
     leaguename = leagueDataJSON.name;
     leagueHeading.textContent = leaguename;
+    //window.location.href = "../leagues/league_home.html"
   }
   callback();
 }
+
+loadData();
 
 let logout = function(callback) {
   const cookies = document.cookie.split(";");
