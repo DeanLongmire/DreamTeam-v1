@@ -86,7 +86,6 @@ const update_team_name = (req, res) => {
         });
     });
 
-
     res.send('Team name updated');
 }
 

@@ -13,10 +13,12 @@ let getSessionId = function (callback) {
   if(userCookieId === null)
   {
     loggedIn = 0; // not logged in
+    console.log("No User Logged in");
   }
   else
   {
     loggedIn = 1; //logged in
+    console.log("User Logged In");
   }
 
   const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;

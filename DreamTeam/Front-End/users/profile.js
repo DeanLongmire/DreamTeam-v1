@@ -192,6 +192,29 @@ let setLeagueData = function (leagueDataJSON, callback) {
   callback();
 }
 
+/*
+  const cookies = document.cookie.split(';');
+  const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+  const userCookieId = cookie ? cookie.split('=')[1] : null;
+  console.log(userCookieId);
+*/
+
+let logout = function(callback) {
+  const cookies = document.cookie.split(";");
+
+  cookies.forEach(cookie => {
+    console.log(cookie)
+    if (cookie.trim().startsWith("UserCookie")) {
+      console.log("Test");
+      // Set the cookie's expiration date to a past date to delete it
+      document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      console.log(document.cookie)
+    }
+  });
+
+  callback();
+}
+
 loadData();
 
 //need to send this userCookieId to the client side, get the user's data, send it back to this page, and then display it appropriatly
@@ -200,7 +223,10 @@ loadData();
 /*If user selects log out, a message says they have been logged out
 then they return back to the home page*/
 document.querySelector("#Log-Out").onclick = function(){
-    alert("You have been logged out");
+    logout(() => {
+      window.location.replace("../home/index.html");
+    });
+    //alert("You have been logged out");
 }
 
 
