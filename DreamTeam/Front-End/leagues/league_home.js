@@ -116,7 +116,6 @@ let setUserData = function (userDataJSON,callback) {
     if(userDataJSON.username){
       username = userDataJSON.username;
       welcomeButton.textContent = "Welcome, " + username + "!!!";
-      userNameHeading.textContent = "Username: " + username;
     };
     callback();
 }

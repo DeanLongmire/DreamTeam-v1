@@ -188,8 +188,8 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 /*Making columns within a page - this will let you have columns side by side*/
 .dynprog-column {box-sizing:border-box;}
-.dynprog-child-column{padding:5px;flex:1; flex-wrap:wrap;}
-.dynprog-parent-column{display:flex}
+.dynprog-child-column{padding:20px;flex:1; flex-wrap:wrap}
+.dynprog-parent-column{display:flex; align-items:content}
 
 /*Making a better box for forms*/
 .dynprog-better-box{padding:25px; background-color: #d3d3d3;}
@@ -241,3 +241,5 @@ h8{font-size: 20px; font-family:Fantasy;}
 .dino-container {position: relative;height: 200px; /* adjust height as needed */overflow: hidden;}
   .dinosaur{position: absolute;left: -100px; /* start offscreen on the left */bottom: 0; width: 200px;height: 200px;background-image: url("photos/Dyno-no-back.png");background-size: contain;background-repeat: no-repeat;animation: runDino 30s linear infinite;}
   @keyframes runDino {0% {transform: translateX(-100%);}100% {transform: translateX(calc(100vw + 100px)); /* move across the screen */}}
+
+/*Stuff for the creat league page*/

@@ -23,7 +23,7 @@ for (const l of ls) {
     const div = document.createElement('div');
     div.classList.add('.dynprog-card-4');
     div.innerHTML = `<h3>${l.name}</h3><p>$${l.team.toFixed(2)}</p>`;
-    container.appendChild(div);
+    //container.appendChild(div);
   }
 
 
@@ -142,7 +142,6 @@ let setUserData = function (userDataJSON,callback) {
     if(userDataJSON.username){
       username = userDataJSON.username;
       welcomeButton.textContent = "Welcome, " + username + "!!!";
-      userNameHeading.textContent = "Username: " + username;
     };
     callback();
 }
