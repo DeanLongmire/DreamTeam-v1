@@ -96,11 +96,14 @@ const update_team_sport = (req, res) => {
 
     console.log(new_sport + " " + id);
 
-    db.open(db_path);
-    db.update_sport(new_sport, id.sport, () => {
-        db.close();
+    get_path((path) => {
+        db.open(path);
+        db.update_sport(new_sport, id, () => {
+            db.close();
+        });
     });
-    res.send('team sport updated');
+    res.send(`team sport updated. Their sport is now ${new_sport}`);
+    console.log(`sport is now: ${new_sport}`);
 }
 
 // Updating amount of players on a given team in this function
