@@ -4,13 +4,18 @@
 * Dynprog
 
 ## What you planned to do
-*
+* Display profile Information on the profile page
+* Work on View Leagues Page
+* Work on Create League Page to fix spacing issues
+* Work on the league pages to make them look better
 
 ## What you did not do
 * 
 
 ## What problems you encountered
-* 
+* Had to figure out proper syntax to ignore fields if user didn't have first and last name entered
+* Had to figure out how to add space between radio buttons on create league page
+* Still working on getting the profile page to center in the column but left align
 
 ## Issues you worked on
 * Login Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/8)
@@ -35,4 +40,5 @@
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/leagues/league_home.html
 
 ## What you accomplished
+* Information is displayed on profile html for user's specific information!
 * 
