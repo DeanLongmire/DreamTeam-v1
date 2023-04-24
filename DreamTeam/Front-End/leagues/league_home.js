@@ -105,10 +105,24 @@ let getLeagueData = function (leagueURL, callback) {
     console.error(error);
   });
 }
+let loadData = function () {
+  getSessionId((userURL) => {
+    console.log("URL: " + userURL);
+    getUserData(userURL,() => {
+      console.log("All Data Set");
+      //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
+    });
+  });
+};
+const welcomeButton = document.querySelector("#welcome-button");
 
 //Reference for username
 let userNameHeading = document.getElementById("username");
 let username = null;
+let userLeagueHeading = document.getElementById("league");
+let userleague = null;
+let userTeamHeading = document.getElementById("team");
+let userteam = null;
 
 let setUserData = function (userDataJSON,callback) {
   console.log(userDataJSON.username);
@@ -120,7 +134,16 @@ let setUserData = function (userDataJSON,callback) {
   callback();
 }
 
+let setLeagueData = function (leagueDataJSON,callback){
+  
+  callback();
+}
+let setTeamData = function (teamDataJSON,callback){
+  
+  callback();
+}
 //Need to add team and league after get it working on profile
+loadData();
 
 /*If user selects log out, a message says they have been logged out
 then they return back to the home page*/
