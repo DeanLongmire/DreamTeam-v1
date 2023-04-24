@@ -1,11 +1,2 @@
 4/17/23 - DynProg/DreamTeam/Back-End/controllers/global_leagues.js
 
-const create_session = (req, res, leagueJSON, callback) =>{
-    req.session.user = {
-        id: leagueJSON.id,
-        name: leagueJSON.name,
-        sport: leagueJSON.sport
-    }
-    res.cookie('myCookie' + leagueJSON.id.substring(0,5), req.session.id);
-    callback();
-}
