@@ -242,5 +242,6 @@ h9{font-size: 36px; font-family:Fantasy}
 .dino-container {position: relative;height: 200px; /* adjust height as needed */overflow: hidden;}
   .dinosaur{position: absolute;left: -100px; /* start offscreen on the left */bottom: 0; width: 200px;height: 200px;background-image: url("photos/Dyno-no-back.png");background-size: contain;background-repeat: no-repeat;animation: runDino 30s linear infinite;}
   @keyframes runDino {0% {transform: translateX(-100%);}100% {transform: translateX(calc(100vw + 100px)); /* move across the screen */}}
+/*about us*/
 
 /*Stuff for the creat league page*/
