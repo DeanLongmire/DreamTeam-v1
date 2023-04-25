@@ -1,0 +1,697 @@
+Profile.html
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400  21) <button id = "welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+ec95f29f (Juliana Broussard 2023-04-11 08:50:00 -0400  31)         <a href="../teams/view_teams.html" class="dynprog-bar-item dynprog-button">Team Builder</a>
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400  48)         <div class= "dynprog-left-align dynprog-text-black">
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400  49)             <h4 id="full_name">Name</h4>
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400  52)             <h4 id="email">Email </h4>
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400  55)             <h4 id="username">Username</h4>     
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400  58)             <h4 id="position">My Position</h4> 
+6166354a (Juliana Broussard 2023-04-22 17:13:49 -0400  84)     <h4 id = "league">League 1</h4>
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400  88)     <h4 id ="team">Team A</h4>
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400  91) <!--We aren't going to display stats
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400  95) </div> -->
+
+Profile.js
+3d413d5c (Juliana Broussard 2023-04-19 15:39:56 -0400 116) const welcomeButton = document.querySelector("#welcome-button");
+3d413d5c (Juliana Broussard 2023-04-19 15:39:56 -0400 117) 
+a9340463 (Juliana Broussard 2023-04-18 23:04:36 -0400 118) // Get a reference to the <h4> element for each object
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 119) let fullNameHeading = document.getElementById("full_name");
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 120) let userNameHeading = document.getElementById("username");
+3d413d5c (Juliana Broussard 2023-04-19 15:39:56 -0400 121) let email = document.getElementById("email");   
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 122) let position = document.getElementById("position");
+3d413d5c (Juliana Broussard 2023-04-19 15:39:56 -0400 123) let bio = document.getElementById("bio");       
+3d413d5c (Juliana Broussard 2023-04-19 15:39:56 -0400 124) let username = null;
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 125) let first = null;
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 126) let last = null;
+a9340463 (Juliana Broussard 2023-04-18 23:04:36 -0400 127)WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+3d413d5c (Juliana Broussard 2023-04-19 15:39:56 -0400 131)   if(userDataJSON.username){
+3d413d5c (Juliana Broussard 2023-04-19 15:39:56 -0400 132)     username = userDataJSON.username;
+a533ed01 (Juliana Broussard 2023-04-25 08:04:39 -0400 133)     welcomeButton.textContent = "Welcome, " + username + "!";
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 134)     userNameHeading.textContent = "Username: " + username;
+3d413d5c (Juliana Broussard 2023-04-19 15:39:56 -0400 135)   };
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 136)
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 137)   if(userDataJSON.firstName && userDataJSON.lastName){
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 138)     first = userDataJSON.firstName;
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 139)     last = userDataJSON.lastName;
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 140)     fullNameHeading.textContent = "Name: " + first + " " + last;
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 141)   }
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 142)   else if(userDataJSON.firstName){
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 143)     first = userDataJSON.firstName;
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 144)     fullNameHeading.textContent = "Name: " + first;
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 145)   }
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 146)   else if(userDataJSON.lastName){
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 147)     last = userDataJSON.lastName;
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 148)     fullNameHeading.textContent = "Name: " + last;
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 149)   }
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 150)   else{
+dccafdf7 (Juliana Broussard 2023-04-22 17:43:49 -0400 151)     fullNameHeading.textContent = "Name: N/A";  
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 152)   };
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 153)
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 154)   if(userDataJSON.email){
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 155)     email.textContent = "Email: " + userDataJSON.email;
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 156)   };
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 157)
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 158)   if(userDataJSON.pos){
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 159)     position.textContent = "My Position: " + userDataJSON.pos;
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 160)   };
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 161)
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 162)   if(userDataJSON.bio){
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 163)     bio.textContent = "Bio: " + userDataJSON.bio;
+bba0dd7a (Juliana Broussard 2023-04-19 17:16:12 -0400 164)   }
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400 168)
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 169) let teamHeading = document.getElementById("team");
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 170) let teamname = null;
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 171)WITH TEAM DATA (USE THE 'teamDataJSON' OBJECT)
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 175)   if(teamDataJSON.name){
+d919c918 (Juliana Broussard 2023-04-24 15:55:19 -0400 176)     teamname = teamDataJSON.name;
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 177)     teamHeading.textContent = teamname;
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400 178)   //window.location.href = "../teams/team_home.html"
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 179)
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400 180)   }
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 184) let leagueHeading = document.getElementById("league");
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 185) let leaguename = null;
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 186)llback) {WITH LEAGUE DATA (USE THE 'leagueDataJSON' OBJECT)
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 190)   if(leagueDataJSON.name){
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 191)     leaguename = leagueDataJSON.name;
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 192)     leagueHeading.textContent = leaguename;     
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400 193)     //window.location.href = "../leagues/league_home.html"
+7eb12f7e (Juliana Broussard 2023-04-22 17:54:38 -0400 194)   }
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400 198) loadData();
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400 199){
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 221) /*If user selects log out, a message says they have been logged out
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 222) then they return back to the home page*/        
+a9340463 (Juliana Broussard 2023-04-18 23:04:36 -0400 223) document.querySelector("#Log-Out").onclick = function(){
+a9340463 (Juliana Broussard 2023-04-18 23:04:36 -0400 227) }
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 229) 
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 231)      if (document.readyState !== "complete") {  
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 232)              document.querySelector(
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 233)              "body").style.visibility = "hidden";
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 234)              document.querySelector(
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 235)              "#loader").style.visibility = "visible";
+a9340463 (Juliana Broussard 2023-04-18 23:04:36 -0400 236)         loadData();
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 238)              document.querySelector(
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 239)              "#loader").style.display = "none"; 
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 240)              document.querySelector(
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 241)              "body").style.visibility = "visible";
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 244)
+a9340463 (Juliana Broussard 2023-04-18 23:04:36 -0400 245) //Function for the acordian!
+a9340463 (Juliana Broussard 2023-04-18 23:04:36 -0400 246) function myFunction(id) {
+a9340463 (Juliana Broussard 2023-04-18 23:04:36 -0400 253)   }
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 255) //Working on making the elements change for specific user
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 257) //const username;
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 258)
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 261) /*fetch(url,{
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 262)     method: 'POST',
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 263)     headers:{
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 264)         'Content-Type': 'application/json'      
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 265)     },
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 266)     credentials: "include",
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 267)     body:JSON.stringify
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 268) })
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 269) */
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 271)
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 272)
+c18a1a30 (Juliana Broussard 2023-04-17 16:29:26 -0400 273)
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 274) //const username = getCookie("username"); // Retrieve the value of the "username" cookie
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 275)
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 276) //if (username) {
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 278) //}
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 279)
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 280) // Retrieve the user's first name from cookies or elsewhere
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 281) //const firstName = getFirstNameFromCookies();  
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 282)
+40a406e3 (Juliana Broussard 2023-04-15 17:05:03 -0400 283) // Get a reference to the <h4> element for each object
+a307cba7 (Juliana Broussard 2023-04-15 11:49:20 -0400 285) const lastNameHeading = document.getElementById("last_name");
+a307cba7 (Juliana Broussard 2023-04-15 11:49:20 -0400 286) const email = document.getElementById("email"); 
+a307cba7 (Juliana Broussard 2023-04-15 11:49:20 -0400 287) const sports = document.getElementById("sports");
+a307cba7 (Juliana Broussard 2023-04-15 11:49:20 -0400 289) 
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 290)
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 291) // Update the text content of the <h4> element with the user's first name
+3e5d7c6e (Juliana Broussard 2023-04-13 21:40:07 -0400 292) //firstNameHeading.textContent = firstName;
+
+Dynprog.css
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400 191) .dynprog-child-column{padding:20px;flex:1; flex-wrap:wrap}
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400 192) .dynprog-parent-column{display:flex; align-items:content}
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 203) h9{font-size: 36px; font-family:Fantasy} 
+
+league_admin.html
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 19)         <button id="welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400 43)     <h4>Change League Name</h4>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 51)     <input id="league_sport" class="dynprog-input dynprog-border" type="text">-->
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 52)
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 53)     <h4>Change League Sport</h4>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 54)     <input class="dynprog-radio" type="radio" name="sport" value="Flag_football" checked>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 55)     <label style="margin-right: 15px">Flag Football</label>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 56)
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 57)     <input class="dynprog-radio" type="radio" name="sport" value="Men_soccer" checked>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 58)     <label style="margin-right: 15px">Men's Soccer</label>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 59)
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 60)     <input class="dynprog-radio" type="radio" name="sport" value="Softball" checked>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 61)     <label style="margin-right: 15px">Softball</label>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 62)
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 63)     <div class="dynprog-panel dynprog-padding-12"></div>
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400 65)     <h4>League Photo</h4>
+40a406e3 (Juliana Broussard 2023-04-15 17:05:03 -0400 75)     <div class="dynprog-center dynprog-padding-16">
+40a406e3 (Juliana Broussard 2023-04-15 17:05:03 -0400 76)             <button id="update_league_button" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Update my league now</button>    
+40a406e3 (Juliana Broussard 2023-04-15 17:05:03 -0400 77)     </div>
+40a406e3 (Juliana Broussard 2023-04-15 17:05:03 -0400 78)
+
+league_admin.js
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400   1) //League Admin JS form
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400   2) const url = 'http://127.0.0.1:5000/leagues/league_admin'   //HOW WE NEED TO SET URLS FROM NOW ON
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400   3)
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400   4) //Form stuff will go here
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400   5) const update_league_BT = document.querySelector('#update_league_button');
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400   6) const league_name = document.querySelector('#league_name');
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400   7) const league_photo = document.querySelector('league_photo');
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400   8) let selectedSport = null; //Define outside function
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400   9) const sportsRadios = document.getElementsByTagName("sport");
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  10)
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400  11) league_name.addEventListener("input", buildData);
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400  12) league_photo.addEventListener("input", buildData);
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400  13)
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400  14) function buildData(){
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400  15)
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400  16) }
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400  17)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  18) //COOKIE INFO
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  19) let getSessionId = function (callback) {        
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  20)     const cookies = document.cookie.split(';'); 
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  21)     const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  22)     const userCookieId = cookie ? cookie.split('=')[1] : null;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  23)     console.log(userCookieId);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  24)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  25)     const sessionId = {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  26)       id: userCookieId
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  27)     }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  28)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  29)     const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  30)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  31)     callback(userURL);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  32)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  33)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  34)   let getUserData = function (url,callback) {   
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  35)     console.log(url);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  36)     fetch(url, {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  37)       method: 'GET',
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  38)       headers: {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  39)         'Content-Type': 'application/json'      
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  40)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  41)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  42)     .then(response => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  43)       if (response.ok) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  44)         response.json().then(data => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  45)           setUserData(data, () => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  46)             console.log("User Data Set");       
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  47)             const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  48)               if(data.teamID !== null)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  49)               {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  50)                 getTeamData(teamURL, () => {    
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  51)                   callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  52)                 });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  53)               }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  54)               else
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  55)               {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  56)                 callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  57)               }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  58)           });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  59)         });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  60)       } 
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  61)       else {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  62)         console.error('Error: ' + response.statusText);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  63)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  64)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  65)     .catch(error => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  66)       console.error(error);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  67)     });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  68)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  69)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  70)   let getTeamData = function (teamURL, callback) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  71)     fetch(teamURL, {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  72)       method: 'GET',
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  73)       headers: {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  74)         'Content-Type': 'application/json'      
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  75)     }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  76)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  77)     .then(response => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  78)       if (response.ok) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  79)         response.json().then(data => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  80)           setTeamData(data, () => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  81)             console.log("Team Data Set");       
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  82)             const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  83)             getLeagueData(leagueURL, () => {    
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  84)               callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  85)             });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  86)           });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  87)         });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  88)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  89)       else {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  90)         console.error('Error: ' + response.statusText);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  91)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  92)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  93)     .catch(error => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  94)       console.error(error);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  95)     });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  96)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  97)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  98)   let getLeagueData = function (leagueURL, callback) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  99)     fetch(leagueURL, {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 100)       method: 'GET',
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 101)       headers: {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 102)         'Content-Type': 'application/json'      
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 103)     }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 104)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 105)     .then(response => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 106)       if (response.ok) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 107)         response.json().then(data => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 108)           setLeagueData(data, () => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 109)             console.log("League Data Set");     
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 110)             callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 111)           });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 112)         });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 113)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 114)       else {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 115)         console.error('Error: ' + response.statusText);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 116)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 117)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 118)     .catch(error => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 119)       console.error(error);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 120)     });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 121)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 122)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 123)   //Reference for username
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 124) const welcomeButton = document.querySelector("#welcome-button");
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 125) let userNameHeading = document.getElementById("username");
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 126) let username = null;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 127)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 128) let setUserData = function (userDataJSON,callback) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 129)     console.log(userDataJSON.username);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 130)     //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 131)     if(userDataJSON.username){
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 132)       username = userDataJSON.username;
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400 133)       welcomeButton.textContent = "Welcome, " + username + "!";
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 134)     };
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 135)     callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 136) }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 137)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 138) //Need to add team and league after get it working on profile
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 139) 
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 140) /*If user selects log out, a message says they have been logged out
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 141) then they return back to the home page*/        
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 142) document.querySelector("#Log-Out").onclick = function(){
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 143)   logout(() => {
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 144)     window.location.replace("../home/index.html");
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 145)   });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 146) }
+
+create_league.html
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 13)     <head>
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 14)         <A HREF="../home/index.html">
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 15)             <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 16)         </A>
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 17)         <A HREF="../users/profile.html">
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 18)             <button id = "welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 19)         </A>
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 20)     </head>
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 21)
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400 42)         <label style="margin-right: 15px">Flag Football</label>
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400 45)         <label style="margin-right: 15px">Men's Soccer</label>
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400 48)         <label style="margin-right: 15px">Softball</label>
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400 54)         <label for="league_name" style="font-size:20px">Choose your League Name</label>
+
+create_league.js
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 202) loadData();
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 203)
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 204) document.querySelector("#Log-Out").onclick = function(){
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 205)   logout(() => {
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 206)     window.location.replace("../home/index.html");
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 207)   });
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 208) }
+
+join_league.html
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400 34)             <div id="league_container"></div>    
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400 35)         </div>
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400 37)         <div id="l_container"></div>
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400 58) <script src="join_league.js"></script>
+
+join_league.js
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400   1) // Array of league names
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400   2) const leagues = ["League A", "League B", "League C"];
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400   3)
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400   4) const ls =[
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400   5)     {name: 'League 1', team: 1.99},
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400   6)     {name: 'League 2', team: 2.99},
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400   7)     {name: 'League 3', team: 3.99}
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400   8) ];
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400   9)
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  10) // Get the container element where the league names will be displayed
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  11) const leagueContainer = document.getElementById("league_container");
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400  12) const lContainer = document.getElementById("l_container");
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  13)
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  14) // Loop through the array of league names and create a new h4 element for each one
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  15) for (let i = 0; i < leagues.length; i++) {      
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  16)     const leagueName = leagues[i];
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  17)     const h4 = document.createElement("h4");    
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  18)     h4.textContent = leagueName;
+05fb02e8 (Juliana Broussard 2023-04-17 17:22:08 -0400  19)     leagueContainer.appendChild(h4);
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400  20) }
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400  21)
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400  22) for (const l of ls) {
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400  23)     const div = document.createElement('div');  
+20590574 (Juliana Broussard 2023-04-18 22:25:49 -0400  24)     div.classList.add('.dynprog-card-4');       
+2052caf2 (Juliana Broussard 2023-04-18 14:59:41 -0400  25)     div.innerHTML = `<h3>${l.name}</h3><p>$${l.team.toFixed(2)}</p>`;
+c237a498 (Juliana Broussard 2023-04-23 22:03:47 -0400  26)     //container.appendChild(div);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  27)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  28)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  29)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  30) //COOKIE INFO
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  31) let getSessionId = function (callback) {        
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  32)     const cookies = document.cookie.split(';'); 
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  33)     const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  34)     const userCookieId = cookie ? cookie.split('=')[1] : null;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  35)     console.log(userCookieId);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  36)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  37)     const sessionId = {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  38)       id: userCookieId
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  39)     }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  40)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  41)     const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  42)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  43)     callback(userURL);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  44)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  45)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  46)   let getUserData = function (url,callback) {   
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  47)     console.log(url);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  48)     fetch(url, {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  49)       method: 'GET',
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  50)       headers: {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  51)         'Content-Type': 'application/json'      
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  52)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  53)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  54)     .then(response => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  55)       if (response.ok) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  56)         response.json().then(data => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  57)           setUserData(data, () => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  58)             console.log("User Data Set");       
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  59)             const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  60)               if(data.teamID !== null)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  61)               {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  62)                 getTeamData(teamURL, () => {    
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  63)                   callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  64)                 });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  65)               }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  66)               else
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  67)               {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  68)                 callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  69)               }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  70)           });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  71)         });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  72)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  73)       else {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  74)         console.error('Error: ' + response.statusText);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  75)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  76)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  77)     .catch(error => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  78)       console.error(error);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  79)     });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  80)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  81)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  82)   let getTeamData = function (teamURL, callback){
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  83)     fetch(teamURL, {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  84)       method: 'GET',
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  85)       headers: {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  86)         'Content-Type': 'application/json'      
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  87)     }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  88)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  89)     .then(response => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  90)       if (response.ok) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  91)         response.json().then(data => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  92)           setTeamData(data, () => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  93)             console.log("Team Data Set");       
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  94)             const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  95)             getLeagueData(leagueURL, () => {    
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  96)               callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  97)             });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  98)           });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400  99)         });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 100)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 101)       else {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 102)         console.error('Error: ' + response.statusText);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 103)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 104)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 105)     .catch(error => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 106)       console.error(error);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 107)     });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 108)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 109)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 110)   let getLeagueData = function (leagueURL, callback) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 111)     fetch(leagueURL, {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 112)       method: 'GET',
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 113)       headers: {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 114)         'Content-Type': 'application/json'      
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 115)     }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 116)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 117)     .then(response => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 118)       if (response.ok) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 119)         response.json().then(data => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 120)           setLeagueData(data, () => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 121)             console.log("League Data Set");     
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 122)             callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 123)           });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 124)         });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 125)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 126)       else {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 127)         console.error('Error: ' + response.statusText);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 128)       }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 129)     })
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 130)     .catch(error => {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 131)       console.error(error);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 132)     });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 133)   }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 143)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 145)   //Reference for username
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 146) let userNameHeading = document.getElementById("username");
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 147) let username = null;
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 148)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 149) let setUserData = function (userDataJSON,callback) {
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 150)     console.log(userDataJSON.username);
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 151)     //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 152)     if(userDataJSON.username){
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 153)       username = userDataJSON.username;
+a533ed01 (Juliana Broussard 2023-04-25 08:04:39 -0400 154)       welcomeButton.textContent = "Welcome, " + username + "!";
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 155)     };
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 156)     callback();
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 157) }
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 158)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 161) //Need to add team and league after get it working on profile
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 162)
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 163) /*If user selects log out, a message says they have been logged out
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 164) then they return back to the home page*/        
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 165) document.querySelector("#Log-Out").onclick = function(){
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 166)   logout(() => {
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 167)     window.location.replace("../home/index.html");
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 168)   });
+b9862d08 (Juliana Broussard 2023-04-23 02:52:20 -0400 169) }
+
+league_home.html
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 34)             <h2 id="league">Welcome to your league - League name</h2>
+6f1d724c (Juliana Broussard 2023-04-24 16:17:03 -0400 41)             <h2 id="team">Team A</h2>
+
+league_home.js
+a533ed01 (Juliana Broussard 2023-04-25 08:04:39 -0400 132)     welcomeButton.textContent = "Welcome, " + username + "!";
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 151)   logout(() => {
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 152)     window.location.replace("../home/index.html");
+86862a99 (Juliana Broussard 2023-04-24 23:00:15 -0400 153)   });
+
+team_home.html
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400  1) <!DOCTYPE html>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400  2) <html>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400  3)     <link rel="stylesheet" href="../Dynprog.css">0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400  4)
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400  5) <div class="dynprog-padding-12"></div>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400  6)
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400  7) <div class="dynprog-center">
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400  8)     <h7>DreamTeam</h7>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400  9) </div>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 10)
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 11) <!--Log out and Welcome message that are in top right
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 12) When user clicks, welcom name should take them to profile page-->
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 13) <head>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 14)     <A HREF="../home/index.html">
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 15)         <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 16)     </A>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 17)     <A HREF="../users/profile.html">
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 18)         <button id="welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 19)     </A>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 20) </head>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 21)
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 22) <div class="dynprog-padding-12"></div>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 23)
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 24) <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 25)     <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 26) </div>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 27)
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 28) <div class="dynprog-padding-12"></div>
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 29)
+0a5bf524 (Juliana Broussard 2023-04-25 00:33:36 -0400 30) <div class="dynprog-gradient-background-orange dynprog-padding-24">
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400 31)     <h2>Team Home Page</h2>
+c8d4b4b3 (Juliana Broussard 2023-04-25 00:27:08 -0400 32)     <h4 id="team">Welcome to your team - team name</h4>
+6725e6d8 (Juliana Broussard 2023-04-25 08:09:25 -0400 33)     <p>This is page is where you can view all the information about your team.</p>
+3e4aed94 (Juliana Broussard 2023-04-24 17:08:20 -0400 34) </html>
+
+error.html
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 15)     <head>
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 16)         <A HREF="../home/index.html">
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 17)             <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 18)         </A>
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 19)         <A HREF="../users/profile.html">
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 20)             <button id = "welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 21)         </A>
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 22)     </head>
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 23)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 24)
+a307cba7 (Juliana Broussard 2023-04-15 11:49:20 -0400 25) <div class="dynprog-bar dynprog-border dynprog-xlarge dynprog-orange">
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 32)     <div class="dynprog-card-4 dynprog-text-black dynprog-center dynprog-gradient-background-orange">
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 34)         <h1><h9>DinoProg</h9> could not locate our servers</h1>
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 40)         <div class="dynprog-padding-12"></div>   
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 41) 
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 42)         <div class="dynpprog-margin-more dynprog-center">
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 43)         <h4><h8>DinoProg</h8> is searching for the servers as we speak! </h4>
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 44)         <h4>For now, please travel back to your p
+rofile by clicking your name in the top right corner.</h4>
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 45)         <h4>You can also travel back to the home page by selecting home.</h4>
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 46)         </div>
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 47)
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 48)         <div class="dynprog-padding-12"></div>   
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 49)
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 50)         <div class="dino-container">
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 51)             <div class="dinosaur"></div>
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 52)           </div>
+be3bf7ca (Juliana Broussard 2023-04-23 23:13:37 -0400 53)
+Team. All rights reserved. Developed by DynProg.</p>
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 63) <script src="error.js"></script>
+
+error.js
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   1) //COOKIE INFO
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   2) let getSessionId = function (callback) {        
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   3)     const cookies = document.cookie.split(';'); 
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   4)     const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   5)     const userCookieId = cookie ? cookie.split('=')[1] : null;
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   6)     console.log(userCookieId);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   7)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   8)     const sessionId = {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400   9)       id: userCookieId
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  10)     }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  11)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  12)     const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  13)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  14)     callback(userURL);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  15)   }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  16)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  17)   let getUserData = function (url,callback) {   
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  18)     console.log(url);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  19)     fetch(url, {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  20)       method: 'GET',
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  21)       headers: {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  22)         'Content-Type': 'application/json'      
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  23)       }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  24)     })
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  25)     .then(response => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  26)       if (response.ok) {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  27)         response.json().then(data => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  28)           setUserData(data, () => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  29)             console.log("User Data Set");       
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  30)             const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  31)               if(data.teamID !== null)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  32)               {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  33)                 getTeamData(teamURL, () => {    
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  34)                   callback();
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  35)                 });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  36)               }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  37)               else
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  38)               {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  39)                 callback();
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  40)               }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  41)           });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  42)         });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  43)       }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  44)       else {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  45)         console.error('Error: ' + response.statusText);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  46)       }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  47)     })
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  48)     .catch(error => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  49)       console.error(error);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  50)     });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  51)   }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  52)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  53)   let getTeamData = function (teamURL, callback) {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  54)     fetch(teamURL, {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  55)       method: 'GET',
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  56)       headers: {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  57)         'Content-Type': 'application/json'      
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  58)     }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  59)     })
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  60)     .then(response => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  61)       if (response.ok) {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  62)         response.json().then(data => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  63)           setTeamData(data, () => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  64)             console.log("Team Data Set");       
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  65)             const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  66)             getLeagueData(leagueURL, () => {    
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  67)               callback();
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  68)             });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  69)           });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  70)         });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  71)       }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  72)       else {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  73)         console.error('Error: ' + response.statusText);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  74)       }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  75)     })
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  76)     .catch(error => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  77)       console.error(error);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  78)     });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  79)   }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  80)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  81)   let getLeagueData = function (leagueURL, callback) {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  82)     fetch(leagueURL, {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  83)       method: 'GET',
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  84)       headers: {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  85)         'Content-Type': 'application/json'      
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  86)     }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  87)     })
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  88)     .then(response => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  89)       if (response.ok) {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  90)         response.json().then(data => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  91)           setLeagueData(data, () => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  92)             console.log("League Data Set");
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  93)             callback();
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  94)           });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  95)         });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  96)       }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  97)       else {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  98)         console.error('Error: ' + response.statusText);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400  99)       }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 100)     })
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 101)     .catch(error => {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 102)       console.error(error);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 103)     });
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 104)   }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 105)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 106)   //Reference for username
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 107) let userNameHeading = document.getElementById("username");
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 108) let username = null;
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 109)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 110) let setUserData = function (userDataJSON,callback) {
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 111)     console.log(userDataJSON.username);
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 112)     //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 113)     if(userDataJSON.username){
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 114)       username = userDataJSON.username;
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 115)       welcomeButton.textContent = "Welcome, " + username + "!!!";
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 116)     };
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 117)     callback();
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 118) }
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 119)
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 120) /*If user selects log out, a message says they have been logged out
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 121) then they return back to the home page*/        
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 122) document.querySelector("#Log-Out").onclick = function(){
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 123)     alert("You have been logged out");
+cab14f8c (Juliana Broussard 2023-04-23 23:19:21 -0400 124) }
