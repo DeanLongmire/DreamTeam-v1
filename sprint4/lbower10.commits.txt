@@ -1,0 +1,291 @@
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  26)         db.get_all(id, (name, ID, P_ID, sport, num_players, W, L) => {    
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  27)             console.log(`${name} ${ID} ${P_ID} ${sport} ${num_players} ${W} ${L}`);
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  28)             const teamData = {
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  29)                 name: name,
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  30)                 id: ID,
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  31)                 p_id: P_ID,
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  32)                 sport: sport,
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  33)                 nPlayers: num_players,
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  34)                 w: W,
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  35)                 l: L
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  36)             };
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  37)             JSON.stringify(teamData);
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400  38)             res.send(teamData);
+6f4df0fe DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-24 17:09:26 -0400  99)     get_path((path) => {
+6f4df0fe DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-24 17:09:26 -0400 100)         db.open(path);
+6f4df0fe DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-24 17:09:26 -0400 101)         db.update_sport(new_sport, id, () => {
+6f4df0fe DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-24 17:09:26 -0400 102)             db.close();
+6f4df0fe DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-24 17:09:26 -0400 103)         });
+6f4df0fe DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-24 17:09:26 -0400 105)     res.send(`team sport updated. Their sport is now ${new_sport}`);      
+6f4df0fe DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-24 17:09:26 -0400 106)     console.log(`sport is now: ${new_sport}`);
+a998d60d DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-19 15:19:43 -0400 121)     res.send('player count updated');
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 166) // function that creates the session with all the teams data
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 167) const createTeamSession = (req, res, teamJSON, callback) => {
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 168)     console.log('made it here 1');
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 169)     req.session.team = {
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 170)         teamName: teamJSON.name,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 171)         id: teamJSON.ID,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 172)         p_id: teamJSON.P_ID,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 173)         sport: teamJSON.sport,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 174)         num_players: teamJSON.num_players,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 175)         W: teamJSON.W,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 176)         L: teamJSON.L
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 177)     };
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 178)     console.log('made it here 2');
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 179)     res.send('Showing Team Info');
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 180)     res.cookie('teamCookie' + teamJSON.id.substring(0,5), req.session.id);
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 181)     callback();
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 182) };
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 183)
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 184) module.exports = {
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 185)     get_team,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 186)     show_all,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 187)     create_team,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 188)     update_team_name,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 189)     update_team_sport,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 190)     updatePlayerCount,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 191)     DeleteTeam,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 192)     UpdateWins,
+6b367fb1 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-17 17:19:09 -0400 193)     UpdateLosses,
+41fdef57 DreamTeam/Back-End/controllers/global_teams.js (Logan Bowers   2023-04-18 13:10:00 -0400 194)     createTeamSession,
+6f4df0fe DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-24 17:09:26 -0400  51)         this.sql = 'UPDATE Teams SET name = ? WHERE ID = ?';
+6f4df0fe DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-24 17:09:26 -0400  59)     update_sport(new_sport, ID, callback){
+6f4df0fe DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-24 17:09:26 -0400  60)         this.data = [new_sport, ID];
+6f4df0fe DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-24 17:09:26 -0400  61)         this.sql = 'UPDATE Teams SET sport = ? WHERE ID = ?';
+6f4df0fe DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-24 17:09:26 -0400  64)             console.log(`In teams_db.js: Sport is ${new_sport}`); 
+6f4df0fe DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-24 17:09:26 -0400  67)         callback();
+ba3cd08a DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-20 13:27:25 -0400 112)     get_all(ID, callback){
+0a8cd27f DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-18 12:56:58 -0400 113)         this.sql = 'SELECT * FROM Teams WHERE ID = ?';
+0a8cd27f DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-18 12:56:58 -0400 114)         this.db.get(this.sql, [ID], (err, row) => {
+ba3cd08a DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-20 13:27:25 -0400 115)         if(err){
+0a8cd27f DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-18 12:56:58 -0400 116)             return console.error(err.message);
+ba3cd08a DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-20 13:27:25 -0400 117)         }
+ba3cd08a DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-20 13:27:25 -0400 118)         if(row){
+0a8cd27f DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-18 12:56:58 -0400 119)             callback(row.name,row.ID,row.P_ID,row.sport,row.num_players,row.W,row.L);
+ba3cd08a DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-20 13:27:25 -0400 120)         }
+ba3cd08a DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-20 13:27:25 -0400 121)         else{
+0a8cd27f DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-18 12:56:58 -0400 122)             console.log("error");
+ba3cd08a DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-20 13:27:25 -0400 123)         }
+0a8cd27f DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-18 12:56:58 -0400 124)         });
+0a8cd27f DreamTeam/Back-End/Teams/global_teams_db.js (Logan Bowers   2023-04-18 12:56:58 -0400 125)       }
+6b367fb1 DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-04-17 17:19:09 -0400  9)     get_team, show_all,
+6b367fb1 DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-04-17 17:19:09 -0400 10)     create_team,
+6b367fb1 DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-04-17 17:19:09 -0400 11)     update_team_name,
+6b367fb1 DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-04-17 17:19:09 -0400 12)     update_team_sport,
+6b367fb1 DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-04-17 17:19:09 -0400 13)     updatePlayerCount,
+6b367fb1 DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-04-17 17:19:09 -0400 16)     UpdateLosses,
+6b367fb1 DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-04-17 17:19:09 -0400 17)     createTeamSession
+6b367fb1 DreamTeam/Back-End/Teams/teams.js (Logan Bowers 2023-04-17 17:19:09 -0400 51) router.get('/get_team_session/:id', createTeamSession);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  58)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  59)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  60) // Added by Logan
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  61) //COOKIE INFO
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  62) let getSessionId = function (callback) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  63)   const cookies = document.cookie.split(';');
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  64)   const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));       
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  65)   const userCookieId = cookie ? cookie.split('=')[1] : null;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  66)   console.log(userCookieId);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  67)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  68)   const sessionId = {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  69)     id: userCookieId
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  70)   }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  71)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  72)   const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  73)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  74)   callback(userURL);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  75) }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  76)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  77) let getUserData = function (url,callback) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  78)   console.log(url);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  79)   fetch(url, {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  80)     method: 'GET',
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  81)     headers: {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  82)       'Content-Type': 'application/json'
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  83)     }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  84)   })
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  85)   .then(response => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  86)     if (response.ok) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  87)       response.json().then(data => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  88)         setUserData(data, () => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  89)           console.log("User Data Set");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  90)           const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;      
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  91)             if(data.teamID !== null)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  92)             {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  93)               getTeamData(teamURL, () => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  94)                 callback();
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  95)               });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  96)             }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  97)             else
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  98)             {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400  99)               callback();
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 100)             }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 101)         });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 102)       });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 103)     }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 104)     else {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 105)       console.error('Error: ' + response.statusText);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 106)     }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 107)   })
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 108)   .catch(error => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 109)     console.error(error);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 110)   });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 111) }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 112)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 113) let getTeamData = function (teamURL, callback) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 114)   fetch(teamURL, {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 115)     method: 'GET',
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 116)     headers: {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 117)       'Content-Type': 'application/json'
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 118)   }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 119)   })
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 120)   .then(response => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 121)     if (response.ok) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 122)       response.json().then(data => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 123)         setTeamData(data, () => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 124)           console.log("Team Data Set");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 125)           const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id; 
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 126)           getLeagueData(leagueURL, () => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 127)             callback();
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 128)           });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 129)         });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 130)       });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 131)     }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 132)     else {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 133)       console.error('Error: ' + response.statusText);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 134)     }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 135)   })
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 136)   .catch(error => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 137)     console.error(error);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 138)   });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 139) }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 140)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 141) let getLeagueData = function (leagueURL, callback) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 142)   fetch(leagueURL, {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 143)     method: 'GET',
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 144)     headers: {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 145)       'Content-Type': 'application/json'
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 146)   }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 147)   })
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 148)   .then(response => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 149)     if (response.ok) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 150)       response.json().then(data => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 151)         setLeagueData(data, () => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 152)           console.log("League Data Set");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 153)           callback();
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 154)         });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 155)       });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 156)     }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 157)     else {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 158)       console.error('Error: ' + response.statusText);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 159)     }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 160)   })
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 161)   .catch(error => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 162)     console.error(error);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 163)   });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 164) }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 165)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 166) let loadData = function () {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 167)   getSessionId((userURL) => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 168)     console.log("URL: " + userURL);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 169)     getUserData(userURL,() => {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 170)       console.log("All Data Set");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 172)     });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 173)   });
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 174) };
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 175)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 176)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 177) const welcomeButton = document.querySelector("#welcome-button");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 178)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 179) // Get a reference to the <h4> element for each object
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 180) let fullNameHeading = document.getElementById("full_name");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 181) let userNameHeading = document.getElementById("username");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 182) let email = document.getElementById("email");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 183) let position = document.getElementById("position");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 184) let bio = document.getElementById("bio");
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 185) let username = null;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 186) let first = null;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 187) let last = null;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 188)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 189) let setUserData = function (userDataJSON,callback) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 190)   console.log(userDataJSON.username);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 191)   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 192)   if(userDataJSON.username){
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 193)     username = userDataJSON.username;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 194)     welcomeButton.textContent = "Welcome, " + username + "!!!";
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 195)     userNameHeading.textContent = "Username: " + username;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 196)   };
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 197)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 198)   //NEED TO FIX FOR WHERE FIRST OR LAST IS NULL!
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 199)   if(userDataJSON.firstName && userDataJSON.lastName){
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 200)     first = userDataJSON.firstName;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 201)     last = userDataJSON.lastName;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 202)     fullNameHeading.textContent = "Name: " + first + " " + last;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 203)   } else if(userDataJSON.firstName && userDataJSON.lastName === null){       
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 204)       first = userDataJSON.firstName;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 205)       fullNameHeading.textContent = "Name: " + first;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 206)   }else if(userDataJSON.firstName = null && userDataJSON.lastName){
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 207)       last = userDataJSON.lastName;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 208)       fullNameHeading.textContent = "Name: " + last;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 209)   };
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 210)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 211)   if(userDataJSON.email){
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 212)     email.textContent = "Email: " + userDataJSON.email;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 213)   };
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 214)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 215)   if(userDataJSON.pos){
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 216)     position.textContent = "My Position: " + userDataJSON.pos;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 217)   };
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 218)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 219)   if(userDataJSON.bio){
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 220)     bio.textContent = "Bio: " + userDataJSON.bio;
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 221)   }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 222)   callback();
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 223) }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 224)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 225) let setTeamData = function (teamDataJSON, callback) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 226)   console.log(teamDataJSON.name);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 227)   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH TEAM DATA (USE THE 'teamDataJSON' OBJECT)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 228)   callback();
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 229) }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 230)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 231) let setLeagueData = function (leagueDataJSON, callback) {
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 232)   console.log(leagueDataJSON.name);
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 233)   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH LEAGUE DATA (USE THE 'leagueDataJSON' OBJECT)
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 234)   callback();
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 235) }
+ba3cd08a DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-20 13:27:25 -0400 236)
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 237) loadData();
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 238)
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 240) var sqlite = require('sqlite3').verbose();
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 241) const { get_path } = require('../controllers/global_teams.js');
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 242) var db_path;
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 243) let teamNames = [];
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 244) function ExtractTeams(db, callback){
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 245)   db.all('SELECT * FROM Teams ORDER by ID', [], (err, rows)=>{
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 246)     if(err){
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 247)       return console.error(err.message);
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 248)     }
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 249)     else
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 250)     {
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 251)       rows.forEach((row)=>{
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 252)           teamNames.push(row.name);
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 253)        });
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 254)
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 255)       return callback(false, teamNames);
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 256)
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 257)     }
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 258)   });
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 259) }
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 260)
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 261) var db = new sqlite3.Database(get_path(db_path), (err) => {
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 262)   if(err){
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 263)     return console.error(err.message);
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 264)   }
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 265)   console.log('Connected');
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 266) })
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 267)
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 268) ExtractTeams(dtb, function(err, content){
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 269)   if(err) throw(err);
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 270)   extractedTeams = content;
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 271)   console.log("Teams", extractedTeams);
+6f4df0fe DreamTeam/Front-End/teams/view_teams.js (Logan Bowers 2023-04-24 17:09:26 -0400 272) })
