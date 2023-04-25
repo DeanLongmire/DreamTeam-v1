@@ -1,2 +1,296 @@
-4/17/23 - DynProg/DreamTeam/Back-End/controllers/global_leagues.js
+- DynProg/DreamTeam/Front-End/leagues/create_league.js
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  73) 
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  74) //COOKIESSTUFF
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  75)   let getSessionId = function (callback) {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  76)     const cookies = document.cookie.split(';');
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  77)     const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  78)     const userCookieId = cookie ? cookie.split('=')[1] : null;
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  79)     console.log(userCookieId);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  80)   
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  81)     const sessionId = {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  82)       id: userCookieId
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  83)     }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  84)   
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  85)     const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  86)   
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  87)     callback(userURL);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  88)   }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  89)   
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  90)   let getUserData = function (url,callback) 
+{
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  91)     console.log(url);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  92)     fetch(url, {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  93)       method: 'GET',
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  94)       headers: {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  95)         'Content-Type': 'application/json'
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  96)       }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  97)     })
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  98)     .then(response => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400  99)       if (response.ok) {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 100)         response.json().then(data => {      
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 101)           setUserData(data, () => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 102)             console.log("User Data Set");
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 103)             const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 104)               if(data.teamID !== null) 
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 105)               {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 106)                 getTeamData(teamURL, () => {67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 107)                   callback();
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 108)                 });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 109)               }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 110)               else
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 111)               {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 112)                 callback();
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 113)               }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 114)           });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 115)         });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 116)       } 
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 117)       else {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 118)         console.error('Error: ' + response.statusText);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 119)       }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 120)     })
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 121)     .catch(error => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 122)       console.error(error);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 123)     });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 124)   }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 125)
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 126)   let getTeamData = function (teamURL, callback) {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 127)     fetch(teamURL, {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 128)       method: 'GET',
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 129)       headers: {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 130)         'Content-Type': 'application/json'
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 131)     }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 132)     })
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 133)     .then(response => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 134)       if (response.ok) {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 135)         response.json().then(data => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 136)           setTeamData(data, () => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 137)             console.log("Team Data Set");
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 138)             const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 139)             getLeagueData(leagueURL, () => {67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 140)               callback();
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 141)             });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 142)           });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 143)         });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 144)       }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 145)       else {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 146)         console.error('Error: ' + response.statusText);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 147)       }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 148)     })
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 149)     .catch(error => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 150)       console.error(error);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 151)     });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 152)   }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 153)   
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 154)   let getLeagueData = function (leagueURL, callback) {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 155)     fetch(leagueURL, {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 156)       method: 'GET',
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 157)       headers: {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 158)         'Content-Type': 'application/json'
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 159)     }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 160)     })
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 161)     .then(response => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 162)       if (response.ok) {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 163)         response.json().then(data => {      
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 164)           setLeagueData(data, () => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 165)             console.log("League Data Set"); 
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 166)             callback();
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 167)           });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 168)         });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 169)       }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 170)       else {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 171)         console.error('Error: ' + response.statusText);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 172)       }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 173)     })
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 174)     .catch(error => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 175)       console.error(error);
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 176)     });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 177)   }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 178)   let loadData = function () {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 179)     getSessionId((userURL) => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 180)       console.log("URL: " + userURL);       
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 181)       getUserData(userURL,() => {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 182)         console.log("All Data Set");        
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 183)         //FOR JULIANA: ADD CODE OR FUNCTION 
+HERE TO DELETE LOADING ELEMENT
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 184)       });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 185)     });
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 186)   };
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 187)   const welcomeButton = document.querySelector("#welcome-button");
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 188)
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 189)   let userNameHeading = document.getElementById("username");
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 190)   let username = null;
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 191)
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 192)   let setUserData = function (userDataJSON,callback) {
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 193)   console.log(userDataJSON.username);       
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 194)   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 195)   if(userDataJSON.username){
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 196)     username = userDataJSON.username;       
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 197)     welcomeButton.textContent = "Welcome, " 
++ username + "!!!";
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 198)   };
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 199)   callback();
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 200) }
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 201)
+67c49045 DreamTeam/Front-End/leagues/create_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 202) loadData();
 
+- DynProg/DreamTeam/Front-End/leagues/join_league.js
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 134)   let loadData = function () {       
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 135)     getSessionId((userURL) => {      
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 136)       console.log("URL: " + userURL);
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 137)       getUserData(userURL,() => {   
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 138)         console.log("All Data Set");
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 139)         //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 140)       });
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 141)     });
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 142)   };
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 144) const welcomeButton = document.querySelector("#welcome-button");
+67c49045 DreamTeam/Front-End/leagues/join_league.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 159) loadData();
+
+- DynProg/DreamTeam/Front-End/leagues/league_home.js
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400   5) let getSessionId = function (callback) {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400   6)   const cookies = document.cookie.split(';');
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400   7)   const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400   8)   const userCookieId = cookie ? cookie.split('=')[1] : null;
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400   9)   console.log(userCookieId);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  10) 
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  11)   const sessionId = {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  12)     id: userCookieId
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  13)   }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  14)
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  15)   const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  16)
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  17)   callback(userURL);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  18) }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  19)
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  20) let getUserData = function (url,callback) {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  21)   console.log(url);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  22)   fetch(url, {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  23)     method: 'GET',
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  24)     headers: {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  25)       'Content-Type': 'application/json'      
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  26)     }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  27)   })
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  28)   .then(response => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  29)     if (response.ok) {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  30)       response.json().then(data => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  31)         setUserData(data, () => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  32)           console.log("User Data Set");
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  33)           const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  34)             if(data.teamID !== null)
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  35)             {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  36)               getTeamData(teamURL, () => {    
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  37)                 callback();
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  38)               });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  39)             }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  40)             else
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  41)             {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  42)               callback();
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  43)             }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  44)         });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  45)       });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  46)     } 
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  47)     else {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  48)       console.error('Error: ' + response.statusText);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  49)     }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  50)   })
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  51)   .catch(error => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  52)     console.error(error);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  53)   });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  54) }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  55) 
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  56) let getTeamData = function (teamURL, callback) {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  57)   fetch(teamURL, {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  58)     method: 'GET',
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  59)     headers: {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  60)       'Content-Type': 'application/json'
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  61)   }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  62)   })
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  63)   .then(response => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  64)     if (response.ok) {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  65)       response.json().then(data => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  66)         setTeamData(data, () => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  67)           console.log("Team Data Set");       
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  68)           const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  69)           getLeagueData(leagueURL, () => {    
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  70)             callback();
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  71)           });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  72)         });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  73)       });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  74)     } 
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  75)     else {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  76)       console.error('Error: ' + response.statusText);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  77)     }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  78)   })
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  79)   .catch(error => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  80)     console.error(error);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  81)   });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  82) }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  83) 
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  84) let getLeagueData = function (leagueURL, callback) {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  85)   fetch(leagueURL, {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  86)     method: 'GET',
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  87)     headers: {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  88)       'Content-Type': 'application/json'      
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  89)   }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  90)   })
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  91)   .then(response => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  92)     if (response.ok) {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  93)       response.json().then(data => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  94)         setLeagueData(data, () => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  95)           console.log("League Data Set");     
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  96)           callback();
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  97)         });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  98)       });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400  99)     }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 100)     else {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 101)       console.error('Error: ' + response.statusText);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 102)     }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 103)   })
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 104)   .catch(error => {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 105)     console.error(error);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 106)   });
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 107) }
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 108) let loadData = function () {
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 109)   getSessionId((userURL) => {
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 110)     console.log("URL: " + userURL);
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 111)     getUserData(userURL,() => {
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 112)       console.log("All Data Set");
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 113)       //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 114)     });
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 115)   });
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 116) };
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 117) const welcomeButton = document.querySelector("#welcome-button");
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 118) 
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 119) //Reference for username
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 120) let userNameHeading = document.getElementById("username");
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 121) let username = null;
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 122) let userLeagueHeading = document.getElementById("league");
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 123) let userleague = null;
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 124) let userTeamHeading = document.getElementById("team");
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 125) let userteam = null;
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 126) 
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 127) let setUserData = function (userDataJSON,callback) {
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 128)   console.log(userDataJSON.username);
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 129)   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 130)   if(userDataJSON.username){
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 131)     username = userDataJSON.username;
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 132)     welcomeButton.textContent = "Welcome, " + 
+username + "!!!";
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 133)   };
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 134)   callback();
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 135) }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 136) 
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 137) let setLeagueData = function (leagueDataJSON,callback){
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 138)   
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 139)   callback();
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 140) }
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 141) let setTeamData = function (teamDataJSON,callback){
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 142)
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 143)   callback();
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 144) }
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 145) //Need to add team and league after get it working on profile
+67c49045 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 16:53:51 -0400 146) loadData();
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 147) 
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 148) /*If user selects log out, a message says they have been logged out
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 149) then they return back to the home page*/
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 150) document.querySelector("#Log-Out").onclick = function(){
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 151)   alert("You have been logged out");
+3e6d8a80 DreamTeam/Front-End/leagues/league_home.js (Ryan-Carnes-01    2023-04-24 15:04:45 -0400 152) }
