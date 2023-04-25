@@ -48,7 +48,7 @@ class team_dbmanager{
     };
     update_name(new_name, ID, callback){
         this.data = [new_name, ID];
-        this.sql = 'UPDATE Teams SET name = ? WHERE id = ?';
+        this.sql = 'UPDATE Teams SET name = ? WHERE ID = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
             console.log(new_name);
@@ -56,13 +56,15 @@ class team_dbmanager{
         });
         callback();
     };
-    update_sport(name, new_sport){
-        this.data = [new_sport, name];
-        this.sql = 'UPDATE Teams SET sport = ? WHERE name = ?';
+    update_sport(new_sport, ID, callback){
+        this.data = [new_sport, ID];
+        this.sql = 'UPDATE Teams SET sport = ? WHERE ID = ?';
         this.db.run(this.sql, this.data, (err)=>{
             if(err){return console.log(err.message);}
+            console.log(`In teams_db.js: Sport is ${new_sport}`);
             console.log('Row(s) sport updated');
         });
+        callback();
     };
     update_num_players(name, new_num_players){
         this.data = [new_num_players, name];

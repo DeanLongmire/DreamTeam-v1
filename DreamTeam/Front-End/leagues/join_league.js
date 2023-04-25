@@ -131,7 +131,17 @@ let getSessionId = function (callback) {
       console.error(error);
     });
   }
+  let loadData = function () {
+    getSessionId((userURL) => {
+      console.log("URL: " + userURL);
+      getUserData(userURL,() => {
+        console.log("All Data Set");
+        //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
+      });
+    });
+  };
 
+const welcomeButton = document.querySelector("#welcome-button");
   //Reference for username
 let userNameHeading = document.getElementById("username");
 let username = null;
@@ -145,6 +155,8 @@ let setUserData = function (userDataJSON,callback) {
     };
     callback();
 }
+
+loadData();
 
 //Need to add team and league after get it working on profile
 

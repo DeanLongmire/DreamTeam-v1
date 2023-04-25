@@ -165,6 +165,7 @@ let setUserData = function (userDataJSON,callback) {
   callback();
 }
 
+
 let teamHeading = document.getElementById("team");
 let teamname = null;
 
@@ -174,8 +175,9 @@ let setTeamData = function (teamDataJSON, callback) {
   if(teamDataJSON.name){
     teamname = teamDataJSON.name;
     teamHeading.textContent = teamname;
-  }
+  //window.location.href = "../teams/team_home.html"
 
+  }
   callback();
 }
 
@@ -188,7 +190,26 @@ let setLeagueData = function (leagueDataJSON, callback) {
   if(leagueDataJSON.name){
     leaguename = leagueDataJSON.name;
     leagueHeading.textContent = leaguename;
+    //window.location.href = "../leagues/league_home.html"
   }
+  callback();
+}
+
+loadData();
+
+let logout = function(callback) {
+  const cookies = document.cookie.split(";");
+
+  cookies.forEach(cookie => {
+    console.log(cookie)
+    if (cookie.trim().startsWith("UserCookie")) {
+      console.log("Test");
+      // Set the cookie's expiration date to a past date to delete it
+      document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      console.log(document.cookie)
+    }
+  });
+
   callback();
 }
 
@@ -200,7 +221,10 @@ loadData();
 /*If user selects log out, a message says they have been logged out
 then they return back to the home page*/
 document.querySelector("#Log-Out").onclick = function(){
-    alert("You have been logged out");
+    logout(() => {
+      window.location.replace("../home/index.html");
+    });
+    //alert("You have been logged out");
 }
 
 

@@ -235,3 +235,38 @@ let setLeagueData = function (leagueDataJSON, callback) {
 }
 
 loadData();
+
+
+var sqlite = require('sqlite3').verbose();
+const { get_path } = require('../controllers/global_teams.js');
+var db_path;
+let teamNames = [];
+function ExtractTeams(db, callback){
+  db.all('SELECT * FROM Teams ORDER by ID', [], (err, rows)=>{
+    if(err){
+      return console.error(err.message);
+    }
+    else
+    {           
+      rows.forEach((row)=>{
+          teamNames.push(row.name);
+       });
+      
+      return callback(false, teamNames);
+        
+    }
+  });
+}
+
+var db = new sqlite3.Database(get_path(db_path), (err) => {
+  if(err){
+    return console.error(err.message);
+  }
+  console.log('Connected');
+})
+
+ExtractTeams(dtb, function(err, content){
+  if(err) throw(err);
+  extractedTeams = content;
+  console.log("Teams", extractedTeams);
+})
