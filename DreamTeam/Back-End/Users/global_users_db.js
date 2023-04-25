@@ -197,7 +197,7 @@ class users_dbmanager{
           return console.error(err.message);
         }
         if(row) {
-          callback(row.user_name,row.first_name,row.last_name,row.playerID,row.teamID,row.email,row.bio,row.pos);
+          callback(row.user_name,row.first_name,row.last_name,row.playerID,row.teamID,row.email,row.bio,row.pos,row.profile_picture);
         } 
         else {
           console.log("error");

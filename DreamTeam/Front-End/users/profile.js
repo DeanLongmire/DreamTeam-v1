@@ -162,6 +162,11 @@ let setUserData = function (userDataJSON,callback) {
   if(userDataJSON.bio){
     bio.textContent = "Bio: " + userDataJSON.bio;
   }
+
+  if(userDataJSON.pp){
+    const profilePhoto = document.querySelector("img");
+    profilePhoto.src = "data:image/jpeg;base64," + userDataJSON.pp;
+  }
   callback();
 }
 
@@ -195,7 +200,7 @@ let setLeagueData = function (leagueDataJSON, callback) {
   callback();
 }
 
-loadData();
+//loadData();
 
 let logout = function(callback) {
   const cookies = document.cookie.split(";");

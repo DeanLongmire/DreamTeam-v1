@@ -39,8 +39,9 @@ const get_user = (req, res) => {
             sess.close();
             get_path( (path) => {
                 db.open(path);
-                db.get_all(id, (username,first_name,last_name,playerID, teamID, email,bio,pos) => {
-                    console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos)
+                db.get_all(id, (username, first_name, last_name, playerID, teamID, email, bio, pos, picPath) => {
+                    console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos + " " + picPath)
+                    let encodedPic = encodePhoto(picPath);
                     const userData = {
                         id: id,
                         username: username,
@@ -50,7 +51,8 @@ const get_user = (req, res) => {
                         teamID: teamID,
                         email: email,
                         bio: bio,
-                        pos: pos
+                        pos: pos,
+                        pp: encodedPic
                     };
                     JSON.stringify(userData);
                     res.send(userData);
@@ -342,12 +344,12 @@ const update_profile_picture = (req, res) => {
     const { id } = req.params;
     const new_pp = req.body.pp;
 
-    console.log(new_pp + " " + id);
+    //console.log(new_pp + " " + id);
 
-    storePhoto(new_pp, id, () => {
+    storePhoto(new_pp, id, (picPath) => {
         get_path( (path) => {
             db.open(path);
-            db.update_profile_picture(new_pp,id, () => {
+            db.update_profile_picture(picPath,id, () => {
                 db.close();
             });
     
@@ -361,7 +363,9 @@ const storePhoto = function(base64Encoded, id, callback) {
 
     const buffer = Buffer.from(data, 'base64');
 
-    fs.writeFile("./DreamTeam/Back-End/Users/profile_pictures/" + id + ".png", buffer, function(err) {
+    let picPath = "./DreamTeam/Back-End/Users/profile_pictures/" + id + ".png";
+
+    fs.writeFile(picPath, buffer, function(err) {
         if(err) {
             console.log(err);
         } else {
@@ -369,7 +373,15 @@ const storePhoto = function(base64Encoded, id, callback) {
         }
     });
 
-    callback();
+    callback(picPath);
+}
+
+const encodePhoto = function(picPath) {
+    let pic = fs.readFileSync(picPath);
+    let picBase64 = Buffer.from(pic).toString('base64');
+
+    //console.log("PIC STRING: " + picBase64);
+    return(picBase64);
 }
 
 module.exports = { get_user, login, show_all, create_user, delete_user, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_profile_picture };

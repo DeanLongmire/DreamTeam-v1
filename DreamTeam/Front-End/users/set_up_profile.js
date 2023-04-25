@@ -78,7 +78,7 @@ let buttonSubmit = function () {
         getUserData(url, (id) => {
             console.log(id);
             waitOnRequest(numOfInputs,id).then(() => {
-                //window.location.replace("profile.html");
+                window.location.replace("profile.html");
             })
             .catch(error => {
                 console.log(error);
