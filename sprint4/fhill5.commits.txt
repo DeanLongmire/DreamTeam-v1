@@ -1,0 +1,372 @@
+index.js
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 35)     var container = document.getElementById("butt-container"); //hides login and create account
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 36)     if (container !== null) {  
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 37)       container.remove();      
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 38)     }
+e4ede7bd (jlongmi9   2023-04-24 15:52:58 -0400 39)   }
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 40)   if(loggedIn === 0)
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 41)   {
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 42)     var container2 = document.getElementById("butt-container-hide");//hides view teams league
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 43)     if(container2 !== null){   
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 44)       container2.remove();     
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 45)     }
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 46)   }
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 47) });
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 28) document.addEventListener("DOMContentLoaded", function() {
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 29)   // Your code to hide buttons goes here
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 49)
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400 50) // navbar stuff
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 51) window.onscroll = function() {scrollFunction()};
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 52)
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 53) function scrollFunction() {    
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 54)   var navbar = document.getElementById("navbar");
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 55)   if (navbar !== null) {       
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 56)     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 57)       navbar.style.top = "0";  
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 58)     }
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 59)   }
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400 60) }
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 61)
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400 62) window.addEventListener('scroll', () => {
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 63)   const footer = document.querySelector('.dynprog');
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 64)   const container = document.querySelector('.container');
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 65)   if (footer !== null && container !== null) {
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 66)     const containerHeight = container.offsetHeight;
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 67)     const currentScroll = window.pageYOffset;
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 68)     const windowHeight = window
+.innerHeight;
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 69)     if (currentScroll + windowHeight >= containerHeight) {
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 70)       footer.classList.add('show');
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 71)     } else {
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 72)       footer.classList.remove('show');
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 73)     }
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 74)   }
+438815a1 (Finli-Hill 2023-04-24 16:22:03 -0400 75) });
+1d96f15d (Finli-Hill 2023-04-24 22:00:52 -0400 76)
+
+index.html
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400  1) <!--HOME Page of Website-->
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400  2) <!DOCTYPE html>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400  3) <html class = "no-js">
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400  4)   <head>
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400  5)     <title> DreamTeam - Intermural Team Builder for UTK</title>
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400  6)     <meta charset="utf-8">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400  7)     <link rel="stylesheet" href="../Dynprog.css">
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400  8)     <script src="index.js"></script>
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400  9)   </head>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 10) <body>
+e577709e (Finli-Hill 2023-04-17 20:50:24 -0400 11)   <div class="dynprog-gradient-background-gray">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 12)     <div class = "dynprog-navbar">
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400 13)         <h7>DreamTeam</h7>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 14)     </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 15) 
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400 16)     <div style="padding-top:80px ;"> <!---important to make sure its not hidden by navbar--></div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 17) 
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 18)     <div class="dynprog-card-4 dynprog-padding-24">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 19)       <div class="dynprog-container dynprog-center dynprog-orange">
+e577709e (Finli-Hill 2023-04-17 20:50:24 -0400 20)       <h2>Welcome to <h7>DreamTeam</h7>, your all-in-one team builder</h2>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 21)     </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 22) 
+e577709e (Finli-Hill 2023-04-17 20:50:24 -0400 23)     <div id = "butt-container" class = "dynprog-homebutton-container dynprog-clearfix">
+e577709e (Finli-Hill 2023-04-17 20:50:24 -0400 24)       <a href="../users/Registry.html"> <button class ="dynprog-homebutton dynprog-text-black"><h7>Create Account</h7></button></a>
+e577709e (Finli-Hill 2023-04-17 20:50:24 -0400 25)       <a href="../users/login.html">    <button class ="dynprog-homebutton dynprog-text-black"><h7>Login</h7></button></a>
+2ba10a2c (Finli-Hill 2023-04-24 15:56:15 -0400 26)     </div>
+2ba10a2c (Finli-Hill 2023-04-24 15:56:15 -0400 27)     <div id = "butt-container-hide" class = "dynprog-homebutton-container dynprog-clearfix">
+2ba10a2c (Finli-Hill 2023-04-24 15:56:15 -0400 28)       <a href="../teams/view_teams.html">    <button class ="dynprog-homebutton dynprog-text-black"><h7>Teams</h7></button></a>
+1d96f15d (Finli-Hill 2023-04-24 22:00:52 -0400 29)       <a href="../leagues/j">    <button class ="dynprog-homebutton dynprog-text-black"><h7>Leagues</h7></button></a>
+317d2396 (Finli-Hill 2023-04-24 16:30:14 -0400 30)       <a href="../users/profile.html">    <button class ="dynprog-homebutton dynprog-text-black"><h7>Profile</h7></button></a>
+ef021553 (Finli-Hill 2023-04-12 20:09:57 -0400 31)     </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 32)     <div class = "dynprog-cell-row dynprog-padding-24 dynprog-round-small">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 33)       <div class="dynprog-container dynprog-black dynprog-cell">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 34)         <h2>Intramural Sports</h2>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 35)       </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 36)     </div>
+e577709e (Finli-Hill 2023-04-17 20:50:24 -0400 37)
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 38)   <div style = "padding-bottom: 1000px;"></div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 39)
+1d96f15d (Finli-Hill 2023-04-24 22:00:52 -0400 40)
+1d96f15d (Finli-Hill 2023-04-24 22:00:52 -0400 41)
+1d96f15d (Finli-Hill 2023-04-24 22:00:52 -0400 42)
+82a9aab4 (Finli-Hill 2023-04-17 15:48:51 -0400 43)   <div class="dino-container"> 
+82a9aab4 (Finli-Hill 2023-04-17 15:48:51 -0400 44)     <div class="dinosaur"></div>
+82a9aab4 (Finli-Hill 2023-04-17 15:48:51 -0400 45)   </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 46)   <div class = "dynprog-foot">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 47)     <div class = "dynprog-foot-container">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 48)       <div class = "dynprog-profile-small">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 49)         <img src = "../photos/Chad.jpg" alt="Profile Picture">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 50)         <p style = "font-family: Fantasy;"> Finli Hill </p>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 51)       </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 52)       <div class = "dynprog-profile-small">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 53)         <img src = "../photos/Chad.jpg" alt="Profile Picture">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 54)         <p style="font-family: Fantasy;">Logan Bowers</p>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 55)       </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 56)       <div class = "dynprog-profile-small">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 57)         <img src = "../photos/Chad.jpg" alt="Profile Picture">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 58)         <p style="font-family: Fantasy;"> Dean Longmire </p>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 59)       </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 60)       <div class = "dynprog-profile-small">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 61)         <img src = "../photos/Chad.jpg" alt="Profile Picture">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 62)         <p style ="font-family: Fantasy;"> Ryan Carnes </p>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 63)       </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 64)       <div class = "dynprog-profile-small">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 65)         <img src = "../photos/Chad Girl.jpg" alt="Profile Picture">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 66)         <p style = "font-family: Fantasy;"> Juliana Broussard </p>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 67)       </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 68)     </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 69)   </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 70) </body>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 71) 
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 72) <footer>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 73)   <div class="dynprog-center dynprog-padding-24">
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 74)  <p> &copy; Copyright Spring 2023 Dynprog Team. All rights reserved. Developed by Dynprog.</p>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 75)   </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 76) </footer>
+e577709e (Finli-Hill 2023-04-17 20:50:24 -0400 77) </div>
+^8e97790 (Finli-Hill 2023-04-11 08:12:42 -0400 78) </html>
+
+Dynprog.css
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   1) /*CSS style guide with extracts from W3.css style guide by Jan Egil and Borge Refsnes*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   2) /*Dynprog.css style guide February 2023 by Dynprog*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   3) 
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   4) /*Extract from W3.css style guide*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   5) html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   6) article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}summary{display:list-item}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   7) audio,canvas,progress,video{display:inline-block}progress{vertical-align:baseline}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   8) audio:not([controls]){display:none;height:0}[hidden],template{display:none}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400   9) a{background-color:transparent}a:active,a:hover{outline-width:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  10) abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  11) b,strong{font-weight:bolder}dfn{font-style:italic}mark{background:#ff0;color:#000}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  12) small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  13) sub{bottom:-0.25em}sup{top:-0.5em}figure{margin:1em 40px}img{border-style:none}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  14) code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  15) button,input,select,textarea,optgroup{font:inherit;margin:0}optgroup{font-weight:bold}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  16) button,input{overflow:visible}button,select{text-transform:none}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  17) /*button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  18) button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  19) button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  20) fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  21) legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}   
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  22) [type=checkbox],[type=radio]{padding:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  23) [type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  24) /*[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  25) [type=search]::-webkit-search-decoration{-webkit-appearance:none}*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  26) ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  27) /*End extract*/        
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  28)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  29) /*Begin Dynprog css style with reference to W3 CSS guide - Used what they had but edited to our needs*/  
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  30) /*BODY & HEADING SIZES, fonts, etc*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  31) html, body{font-family:Georgia; font-size:14px; line-height:1.5}html{overflow-x:hidden}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  32) h1{font-size:36px;}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  33) h1,h2,h3,h4,h5,h6{font:Georgia; font-weight:400;margin:10px 0} .dynprog-wide{letter-spacing:4px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  34) hr{border:0;border-top:1px solid #eee;margin:20px 0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  35)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  36) /*Fun features like images, tables, borders, buttons, etc.*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  37) .dynprog-image{max-width:100%;height:auto}img{vertical-align:middle}a{color:inherit}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  38) .dynprog-table,.dynprog-table-all{border-collapse:collapse;border-spacing:0;width:100%;display:table}.dynprog-table-all{border:1px solid #ccc}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  39) .dynprog-bordered tr,.dynprog-table-all tr{border-bottom:1px solid #ddd}.dynprog-striped tbody tr:nth-child(even){background-color:#f1f1f1}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  40) .dynprog-table-all tr:nth-child(odd){background-color:#fff}.dynprog-table-all tr:nth-child(even){background-color:#f1f1f1}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  41) .dynprog-hoverable tbody tr:hover,.dynprog-ul.dynprog-hoverable li:hover{background-color:#ccc}.dynprog-centered tr th,.dynprog-centered tr td{text-align:center}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  42) .dynprog-table td,.dynprog-table th,.dynprog-table-all td,.dynprog-table-all th{padding:8px 8px;display:table-cell;text-align:left;vertical-align:top}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  43) .dynprog-table th:first-child,.dynprog-table td:first-child,.dynprog-table-all th:first-child,.dynprog-table-all td:first-child{padding-left:16px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  44) .dynprog-btn,.dynprog-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  45) .dynprog-btn:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  46) .dynprog-btn,.dynprog-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  47) .dynprog-disabled,.dynprog-btn:disabled,.dynprog-button:disabled{cursor:not-allowed;opacity:0.3}.dynprog-disabled *,:disabled *{pointer-events:none}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  48) .dynprog-btn.dynprog-disabled:hover,.dynprog-btn:disabled:hover{box-shadow:none}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  49) .dynprog-badge,.dynprog-tag{background-color:#000;color:#fff;display:inline-block;padding-left:8px;padding-right:8px;text-align:center}.dynprog-badge{border-radius:50%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  50) .dynprog-ul{list-style-type:none;padding:0;margin:0}.dynprog-ul li{padding:8px 16px;border-bottom:1px solid #ddd}.dynprog-ul li:last-child{border-bottom:none}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  51) .dynprog-tooltip,.dynprog-display-container{position:relative}.dynprog-tooltip .dynprog-text{display:none}.dynprog-tooltip:hover .dynprog-text{display:inline-block}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  52) .dynprog-ripple:active{opacity:0.5}.dynprog-ripple{transition:opacity 0s}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  53) .dynprog-input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  54) .dynprog-select{padding:9px 0;width:100%;border:none;border-bottom:1px solid #ccc}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  55) .dynprog-dropdown-click,.dynprog-dropdown-hover{position:relative;display:inline-block;cursor:pointer}   
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  56) .dynprog-dropdown-hover:hover .dynprog-dropdown-content{display:block}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  57) .dynprog-dropdown-hover:first-child,.dynprog-dropdown-click:hover{background-color:#ccc;color:#000}      
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  58) .dynprog-dropdown-hover:hover > .dynprog-button:first-child,.dynprog-dropdown-click:hover > .dynprog-button:first-child{background-color:#ccc;color:#000}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  59) .dynprog-dropdown-content{cursor:auto;color:#000;background-color:#fff;display:none;position:absolute;min-width:160px;margin:0;padding:0;z-index:1}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  60) .dynprog-check,.dynprog-radio{width:24px;height:24px;position:relative;top:6px;font-family:monospace}    
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  61) .dynprog-sidebar{height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  62) .dynprog-bar-block .dynprog-dropdown-hover,.dynprog-bar-block .dynprog-dropdown-click{width:100%}        
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  63) .dynprog-bar-block .dynprog-dropdown-hover .dynprog-dropdown-content,.dynprog-bar-block .dynprog-dropdown-click .dynprog-dropdown-content{min-width:100%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  64) .dynprog-bar-block .dynprog-dropdown-hover .dynprog-button,.dynprog-bar-block .dynprog-dropdown-click .dynprog-button{width:100%;text-align:left;padding:8px 16px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  65) .dynprog-main,#main{transition:margin-left .4s}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  66) .dynprog-modal{z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)}     
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  67) .dynprog-modal-content{margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  68) .dynprog-bar{width:100%;overflow:hidden}.dynprog-center .dynprog-bar{display:inline-block;width:auto}    
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  69) .dynprog-bar .dynprog-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  70) .dynprog-bar .dynprog-dropdown-hover,.dynprog-bar .dynprog-dropdown-click{position:static;float:left}    
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  71) .dynprog-bar .dynprog-button{white-space:normal}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  72) .dynprog-bar-block .dynprog-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  73) .dynprog-bar-block.dynprog-center .dynprog-bar-item{text-align:center}.dynprog-block{display:block;width:100%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  74) .dynprog-responsive{display:block;overflow-x:auto}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  75) .dynprog-container:after,.dynprog-container:before,.dynprog-panel:after,.dynprog-panel:before,.dynprog-row:after,.dynprog-row:before,.dynprog-row-padding:after,.dynprog-row-padding:before,
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  76) .dynprog-cell-row:before,.dynprog-cell-row:after,.dynprog-clear:after,.dynprog-clear:before,.dynprog-bar:before,.dynprog-bar:after{content:"";display:table;clear:both}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  77) .dynprog-col,.dynprog-half,.dynprog-third,.dynprog-twothird,.dynprog-threequarter,.dynprog-quarter{float:left;width:100%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  78) .dynprog-col.s1{width:8.33333%}.dynprog-col.s2{width:16.66666%}.dynprog-col.s3{width:24.99999%}.dynprog-col.s4{width:33.33333%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  79) .dynprog-col.s5{width:41.66666%}.dynprog-col.s6{width:49.99999%}.dynprog-col.s7{width:58.33333%}.dynprog-col.s8{width:66.66666%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  80) .dynprog-col.s9{width:74.99999%}.dynprog-col.s10{width:83.33333%}.dynprog-col.s11{width:91.66666%}.dynprog-col.s12{width:99.99999%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  81) @media (min-width:601px){.dynprog-col.m1{width:8.33333%}.dynprog-col.m2{width:16.66666%}.dynprog-col.m3,.dynprog-quarter{width:24.99999%}.dynprog-col.m4,.dynprog-third{width:33.33333%}   
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  82) .dynprog-col.m5{width:41.66666%}.dynprog-col.m6,.dynprog-half{width:49.99999%}.dynprog-col.m7{width:58.33333%}.dynprog-col.m8,.dynprog-twothird{width:66.66666%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  83) .dynprog-col.m9,.dynprog-threequarter{width:74.99999%}.dynprog-col.m10{width:83.33333%}.dynprog-col.m11{width:91.66666%}.dynprog-col.m12{width:99.99999%}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  84) @media (min-width:993px){.dynprog-col.l1{width:8.33333%}.dynprog-col.l2{width:16.66666%}.dynprog-col.l3{width:24.99999%}.dynprog-col.l4{width:33.33333%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  85) .dynprog-col.l5{width:41.66666%}.dynprog-col.l6{width:49.99999%}.dynprog-col.l7{width:58.33333%}.dynprog-col.l8{width:66.66666%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  86) .dynprog-col.l9{width:74.99999%}.dynprog-col.l10{width:83.33333%}.dynprog-col.l11{width:91.66666%}.dynprog-col.l12{width:99.99999%}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  87) .dynprog-rest{overflow:hidden}.dynprog-stretch{margin-left:-16px;margin-right:-16px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  88) .dynprog-content,.dynprog-auto{margin-left:auto;margin-right:auto}.dynprog-content{max-width:980px}.dynprog-auto{max-width:1140px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  89) .dynprog-cell-row{display:table;width:100%}.dynprog-cell{display:table-cell}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  90) .dynprog-cell-top{vertical-align:top}.dynprog-cell-middle{vertical-align:middle}.dynprog-cell-bottom{vertical-align:bottom}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  91) .dynprog-hide{display:none!important}.dynprog-show-block,.dynprog-show{display:block!important}.dynprog-show-inline-block{display:inline-block!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  92) @media (max-width:1205px){.dynprog-auto{max-width:95%}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  93) @media (max-width:600px){.dynprog-modal-content{margin:0 10px;width:auto!important}.dynprog-modal{padding-top:30px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  94) .dynprog-dropdown-hover.dynprog-mobile .dynprog-dropdown-content,.dynprog-dropdown-click.dynprog-mobile .dynprog-dropdown-content{position:relative}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  95) .dynprog-hide-small{display:none!important}.dynprog-mobile{display:block;width:100%!important}.dynprog-bar-item.dynprog-mobile,.dynprog-dropdown-hover.dynprog-mobile,.dynprog-dropdown-click.dynprog-mobile{text-align:center}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  96) .dynprog-dropdown-hover.dynprog-mobile,.dynprog-dropdown-hover.dynprog-mobile .dynprog-btn,.dynprog-dropdown-hover.dynprog-mobile .dynprog-button,.dynprog-dropdown-click.dynprog-mobile,.dynprog-dropdown-click.dynprog-mobile .dynprog-btn,.dynprog-dropdown-click.dynprog-
+mobile .dynprog-button{width:100%}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  97) @media (max-width:768px){.dynprog-modal-content{width:500px}.dynprog-modal{padding-top:50px}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  98) @media (min-width:993px){.dynprog-modal-content{width:900px}.dynprog-hide-large{display:none!important}.dynprog-sidebar.dynprog-collapse{display:block!important}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400  99) @media (max-width:992px) and (min-width:601px){.dynprog-hide-medium{display:none!important}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 100) @media (max-width:992px){.dynprog-sidebar.dynprog-collapse{display:none}.dynprog-main{margin-left:0!important;margin-right:0!important}.dynprog-auto{max-width:100%}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 101) .dynprog-top,.dynprog-bottom{position:fixed;width:100%;z-index:1}.dynprog-top{top:0}.dynprog-bottom{bottom:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 102) .dynprog-overlay{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 103) .dynprog-display-topleft{position:absolute;left:0;top:0}.dynprog-display-topright{position:absolute;right:0;top:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 104) .dynprog-display-bottomleft{position:absolute;left:0;bottom:0}.dynprog-display-bottomright{position:absolute;right:0;bottom:0}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 105) .dynprog-display-middle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 106) .dynprog-display-left{position:absolute;top:50%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 107) .dynprog-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 108) .dynprog-display-topmiddle{position:absolute;left:50%;top:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 109) .dynprog-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 110) .dynprog-display-container:hover .dynprog-display-hover{display:block}.dynprog-display-container:hover span.dynprog-display-hover{display:inline-block}.dynprog-display-hover{display:none}^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 111) .dynprog-display-position{position:absolute}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 112) .dynprog-circle{border-radius:50%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 113) .dynprog-round-small{border-radius:2px}.dynprog-round,.dynprog-round-medium{border-radius:4px}.dynprog-round-large{border-radius:8px}.dynprog-round-xlarge{border-radius:16px}.dynprog-round-xxlarge{border-radius:48px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 114) .dynprog-row-padding,.dynprog-row-padding>.dynprog-half,.dynprog-row-padding>.dynprog-third,.dynprog-row-padding>.dynprog-twothird,.dynprog-row-padding>.dynprog-threequarter,.dynprog-row-padding>.dynprog-quarter,.dynprog-row-padding>.dynprog-col{padding:0 8px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 115) .dynprog-container,.dynprog-panel{padding:0.01em 16px}.dynprog-panel{margin-top:16px;margin-bottom:16px} 
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 116) .dynprog-code,.dynprog-codespan{font-family:monospace;font-size:16px}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 117) .dynprog-code{width:auto;background-color:#fff;padding:8px 12px;border-left:4px solid #4CAF50;word-wrap:break-word}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 118) .dynprog-codespan{color:rgb(230, 120, 17);background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 119) .dynprog-card,.dynprog-card-2{box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)}     
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 120) .dynprog-card-4,.dynprog-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 121) .dynprog-spin{animation:dynprog-spin 2s infinite linear}@keyframes dynprog-spin{0%{transform:rotate(0deg)}100%{transform:rotate(359deg)}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 122) .dynprog-animate-fading{animation:fading 10s infinite}@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 123) .dynprog-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 124) .dynprog-animate-top{position:relative;animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 125) .dynprog-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 126) .dynprog-animate-right{position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 127) .dynprog-animate-bottom{position:relative;animation:animatebottom 0.4s}@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 128) .dynprog-animate-zoom {animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 129) .dynprog-animate-input{transition:width 0.4s ease-in-out}.dynprog-animate-input:focus{width:100%!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 130) .dynprog-opacity,.dynprog-hover-opacity:hover{opacity:0.60}.dynprog-opacity-off,.dynprog-hover-opacity-off:hover{opacity:1}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 131) .dynprog-opacity-max{opacity:0.25}.dynprog-opacity-min{opacity:0.75}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 132) .dynprog-greyscale-max,.dynprog-grayscale-max,.dynprog-hover-greyscale:hover,.dynprog-hover-grayscale:hover{filter:grayscale(100%)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 133) .dynprog-greyscale,.dynprog-grayscale{filter:grayscale(75%)}.dynprog-greyscale-min,.dynprog-grayscale-min{filter:grayscale(50%)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 134) .dynprog-sepia{filter:sepia(75%)}.dynprog-sepia-max,.dynprog-hover-sepia:hover{filter:sepia(100%)}.dynprog-sepia-min{filter:sepia(50%)}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 135) .dynprog-tiny{font-size:10px!important}.dynprog-small{font-size:12px!important}.dynprog-medium{font-size:15px!important}.dynprog-large{font-size:18px!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 136) .dynprog-xlarge{font-size:24px!important}.dynprog-xxlarge{font-size:36px!important}.dynprog-xxxlarge{font-size:48px!important}.dynprog-jumbo{font-size:64px!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 137) .dynprog-left-align{text-align:left!important}.dynprog-right-align{text-align:right!important}.dynprog-justify{text-align:justify!important}.dynprog-center{text-align:center!important}   
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 138) .dynprog-border-0{border:0!important}.dynprog-border{border:1px solid #ccc!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 139) .dynprog-border-top{border-top:1px solid #ccc!important}.dynprog-border-bottom{border-bottom:1px solid #ccc!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 140) .dynprog-border-left{border-left:1px solid #ccc!important}.dynprog-border-right{border-right:1px solid #ccc!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 141) .dynprog-topbar{border-top:6px solid #ccc!important}.dynprog-bottombar{border-bottom:6px solid #ccc!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 142) .dynprog-leftbar{border-left:6px solid #ccc!important}.dynprog-rightbar{border-right:6px solid #ccc!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 143) .dynprog-section,.dynprog-code{margin-top:16px!important;margin-bottom:16px!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 144) .dynprog-margin{margin:16px!important}.dynprog-margin-top{margin-top:16px!important}.dynprog-margin-bottom{margin-bottom:16px!important}.dynprog-margin-more{margin:32px!important}        
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 145) .dynprog-margin-left{margin-left:30px!important}.dynprog-margin-right{margin-right:16px!important}       
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 146) .dynprog-padding-small{padding:4px 8px!important}.dynprog-padding{padding:8px 16px!important}.dynprog-padding-large{padding:12px 24px!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 147) .dynprog-padding-12{padding-top:6px!important;padding-bottom:6px!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 148) .dynprog-padding-16{padding-top:16px!important;padding-bottom:16px!important}.dynprog-padding-24{padding-top:24px!important;padding-bottom:24px!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 149) .dynprog-padding-32{padding-top:32px!important;padding-bottom:32px!important}.dynprog-padding-48{padding-top:48px!important;padding-bottom:48px!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 150) .dynprog-padding-64{padding-top:64px!important;padding-bottom:64px!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 151) .dynprog-padding-top-64{padding-top:64px!important}.dynprog-padding-top-48{padding-top:48px!important}   
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 152) .dynprog-padding-top-32{padding-top:32px!important}.dynprog-padding-top-24{padding-top:24px!important}   
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 153) .dynprog-left{float:left!important}.dynprog-right{float:right!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 154) .dynprog-button:hover{color:#000!important;background-color:#ccc!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 155) .dynprog-transparent,.dynprog-hover-none:hover{background-color:transparent!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 156) .dynprog-hover-none:hover{box-shadow:none!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 157)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 158) /*Colors Official UT Colors!*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 159) .dynprog-white,.dynprog-hover-white:hover{color:#000!important;background-color:#fff!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 160) .dynprog-black,.dynprog-hover-black:hover{color:#fff!important;background-color:#000!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 161) .dynprog-gray,.dynprog-hover-grey:hover,.dynprog-gray,.dynprog-hover-gray:hover{color:#000!important;background-color:#58595B!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 162) /* Will see if need these colors
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 163) .dynprog-light-grey,.dynprog-hover-light-grey:hover,.dynprog-light-gray,.dynprog-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 164) .dynprog-dark-grey,.dynprog-hover-dark-grey:hover,.dynprog-dark-gray,.dynprog-hover-dark-gray:hover{color:#fff!important;background-color:#616161!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 165) */
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 166) .dynprog-orange,.dynprog-hover-orange:hover{color:#000!important;background-color:#ff8200!important}     
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 167)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 168) .dynprog-text-black,.dynprog-hover-text-black:hover{color:#000!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 169) .dynprog-text-white,.dynprog-hover-text-white:hover{color:#fff!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 170) .dynprog-text-gray,.dynprog-hover-text-grey:hover,.dynprog-text-gray,.dynprog-hover-text-gray:hover{color:#58595B!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 171)  Will see if need these colors
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 172) .dynprog-text-light-grey,.dynprog-hover-text-light-grey:hover,.dynprog-text-light-gray,.dynprog-hover-text-light-gray:hover{color:#f1f1f1!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 173) /*.dynprog-text-dark-grey,.dynprog-hover-text-dark-grey:hover,.dynprog-text-dark-gray,.dynprog-hover-text-dark-gray:hover{color:#3a3a3a!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 174) */
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 175) .dynprog-text-orange,.dynprog-hover-text-orange:hover{color:#ff8200!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 176)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 177) .dynprog-border-white,.dynprog-hover-border-white:hover{border-color:#fff!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 178) .dynprog-border-black,.dynprog-hover-border-black:hover{border-color:#000!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 179) .dynprog-border-gray,.d
+ynprog-hover-border-grey:hover,.dynprog-border-gray,.dynprog-hover-border-gray:hover{border-color:#58595B!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 180) /* Will see if need these colors
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 181) .dynprog-border-light-grey,.dynprog-hover-border-light-grey:hover,.dynprog-border-light-gray,.dynprog-hover-border-light-gray:hover{border-color:#f1f1f1!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 182) .dynprog-border-dark-grey,.dynprog-hover-border-dark-grey:hover,.dynprog-border-dark-gray,.dynprog-hover-border-dark-gray:hover{border-color:#616161!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 183) */
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 184) .dynprog-border-orange,.dynprog-hover-border-orange:hover{border-color:#ff8200!important}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 185)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 186) /* making a navbar css template*/
+ef021553 (Finli-Hill        2023-04-12 20:09:57 -0400 187) .dynprog-navbar{background-color: #ff8200; position: fixed; width: 100%; transition: top 0.3s; padding: 10px;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 188)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 189) /*Making columns within a page - this will let you have columns side by side*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 190) .dynprog-column {box-sizing:border-box;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 193)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 194) /*Making a better box for forms*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 195) .dynprog-better-box{padding:25px; background-color: #d3d3d3;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 196) .dynprog-better-box2{padding:25px; background-color: #58595B;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 197) .dynprog-better-box3{pa
+dding:25px; background-color: #ff8200}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 198) .dynprog-tiny-box{padding:5px; height:150px; width:350px; background-color: #ff8200; text-align:center; margin:auto;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 199)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 200) /*Custom DreamTeam Font*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 201) h7{font-size: 32px; font-family: Fantasy;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 202) h8{font-size: 20px; font-family:Fantasy;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 204)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 205) /*Fixed (static) Footer template*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 206) .dynprog-foot{height: 140px; position: sticky; bottom: -140px; width: 100%; background-color: #ff8200; transition: bottom 0.5s ease-in-out;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 207) /*profile image for devs (us)*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 208) .dynprog-foot-container{display: flex;justify-content: space-evenly;align-items: center; height: 100%;}  
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 209) .dynprog-profile-small{display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 1px;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 210) .dynprog-profile-small img{width: 50px;height: 50px;object-fit: cover;border-radius: 50%;margin-bottom: 1px;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 211)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 212) /*for the view teams page*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 213) .dynprog-vt-header{  text-align: center; font-family: Fantasy; font-size: 24px;margin-top: 20px;}        
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 214) .dynprog-vt-container {display: flex;flex-wrap: wrap;justify-content: space-evenly;align-items: center;height: 200px;background-color: #f2f2f2;padding: 30px;margin: 30px;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 215) .dynprog-vt-tab {margin: 10px;padding: 20px;background-color: #ddd;border: 2px solid #ccc;border-radius: 10px;cursor: pointer;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 216) .dynprog-vt-dropdown-content {display: none;position: absolute;z-index: 1;background-color: #f9f9f9;min-width: 320px; box-shadow: 0px 16px 24px 0px rgba(0,0,0,0.2);padding: 24px 32px;border-radius: 10px;border: 2px solid #ccc;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 217) .dynprog-vt-dropdown:hover .dynprog-vt-dropdown-content {display: block;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 218) .dynprog-vt-dropdown-content a {display: block;color: black;padding: 5px;text-decoration: none;cursor: pointer;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 219) .dynprog-vt-dropdown-content a:hover {background-color: #f2f2f2;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 220)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 221) /*Background gradients*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 222) .dynprog-gradient-background-orange{background: rgb(255,130,0);
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 223)     background: linear-gradient(90deg, rgba(255,130,0,1) 35%, rgba(255,213,128,1) 100%);}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 224)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 225) .dynprog-gradient-background-gray{background: rgb(88,89,91);
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 226)     background: linear-gradient(90deg, rgba(88,89,91,1) 35%, rgba(211,211,211,1) 100%);}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 227)
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 228) /*Spacing for between the buttons NOT WORKING FML*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 229) .dynprog-padding-button{padding-left:100px; padding-right:100px; padding-top:0px; padding-bottom:0px;}   
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 230) /*Error for dumb people who make bad password*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 231) .dynprog-password-error-message {display: block; color: red;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 232) /*new stuff for the car
+d on view team page*/
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 233) .dynprog-roww {display: flex;flex-wrap: wrap;margin: -10px;}
+^8e97790 (Finli-Hill        2023-04-11 08:12:42 -0400 234) .dynprog-crd {position: relative;z-index: 1;transition: all 0.3s ease;background-color: #fff;border-color: #ff8200; border-radius: 2px;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);overflow: hidden;margin-bottom: 20px;}
+ef021553 (Finli-Hill        2023-04-12 20:09:57 -0400 235) /*new fancy buttons for home page*/
+e577709e (Finli-Hill        2023-04-17 20:50:24 -0400 236) .dynprog-homebutton {display: inline-flex;align-items: center;justify-content: center;background-color: #ff8200;color: #fff;border: none;border-radius: 133px;padding: 0 50px;text-align: center;text-decoration: none;font-size: 16px;margin: 20px;cursor: pointer;transition: all 0.3s ease;width: 250px; /* adjust the width as needed */height: 150px; /* set the height to a fixed value */}
+ef021553 (Finli-Hill        2023-04-12 20:09:57 -0400 237) .dynprog-homebutton:hover {background-color: #fff;color: #ff8200;box-shadow: 0px 0px 20px rgba(255, 130, 0, 0.5);}
+e577709e (Finli-Hill        2023-04-17 20:50:24 -0400 238) .dynprog-clearfix::after {content: "";clear: both;display: table;}
+e577709e (Finli-Hill        2023-04-17 20:50:24 -0400 239) @media only screen and (max-width: 600px) {.dynprog-homebutton {width: 100%;height: auto;padding: 10px 20px;font-size: 14px;}}
+ef021553 (Finli-Hill        2023-04-12 20:09:57 -0400 240) .dynprog-homebutton-container {display: flex;justify-content: center; text-align: center;  margin-top: 50px; /* adjust the margin as needed */}
+ef021553 (Finli-Hill        2023-04-12 20:09:57 -0400 241) /* dynprog dino hehehehehe */
+e577709e (Finli-Hill        2023-04-17 20:50:24 -0400 242) .dino-container {position: relative;height: 200px; /* adjust height as needed */overflow: hidden;}       
+e577709e (Finli-Hill        2023-04-17 20:50:24 -0400 243)   .dinosaur{position: absolute;left: -100px; /* start offscreen on the left */bottom: 0; width: 200px;height: 200px;background-image: url("photos/Dyno-no-back.png");background-size: contain;background-repeat: no-repeat;animation: runDino 30s linear infinite;}
+35608df1 (Finli-Hill        2023-04-17 20:55:13 -0400 244)   @keyframes runDino {0% {transform: translateX(-100%);}100% {transform: translateX(calc(100vw + 100px)); /* move across the screen */}}
+1d96f15d (Finli-Hill        2023-04-24 22:00:52 -0400 245) /*about us*/
