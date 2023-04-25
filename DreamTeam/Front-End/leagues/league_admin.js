@@ -1,8 +1,19 @@
 //League Admin JS form
+const url = 'http://127.0.0.1:5000/leagues/league_admin'   //HOW WE NEED TO SET URLS FROM NOW ON
+
 //Form stuff will go here
+const update_league_BT = document.querySelector('#update_league_button');
+const league_name = document.querySelector('#league_name');
+const league_photo = document.querySelector('league_photo');
+let selectedSport = null; //Define outside function
+const sportsRadios = document.getElementsByTagName("sport");
 
+league_name.addEventListener("input", buildData);
+league_photo.addEventListener("input", buildData);
 
-
+function buildData(){
+  
+}
 
 //COOKIE INFO
 let getSessionId = function (callback) {
