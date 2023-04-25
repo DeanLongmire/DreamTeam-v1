@@ -129,7 +129,7 @@ let setUserData = function (userDataJSON,callback) {
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
   if(userDataJSON.username){
     username = userDataJSON.username;
-    welcomeButton.textContent = "Welcome, " + username + "!!!";
+    welcomeButton.textContent = "Welcome, " + username + "!";
   };
   callback();
 }
