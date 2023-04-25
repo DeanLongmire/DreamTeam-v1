@@ -221,7 +221,6 @@ let getNumOfInputs = function () {
 //Event listener for when user clicks the submit button
 update_profile_BT.addEventListener('click', (event) =>{
     event.preventDefault();
-    //console.log(encodedPhoto);
     buttonSubmit();
     return false;
 });
