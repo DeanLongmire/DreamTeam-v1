@@ -224,7 +224,6 @@ document.querySelector("#Log-Out").onclick = function(){
     logout(() => {
       window.location.replace("../home/index.html");
     });
-    //alert("You have been logged out");
 }
 
 
