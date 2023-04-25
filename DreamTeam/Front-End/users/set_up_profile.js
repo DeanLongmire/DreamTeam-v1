@@ -78,7 +78,7 @@ let buttonSubmit = function () {
         getUserData(url, (id) => {
             console.log(id);
             waitOnRequest(numOfInputs,id).then(() => {
-                window.location.replace("profile.html");
+                //window.location.replace("profile.html");
             })
             .catch(error => {
                 console.log(error);
@@ -192,7 +192,7 @@ const waitOnRequest = function (numOfInputs, userID,) {
         if(profile_photo.value !== "")
         {
             const pp = {
-                pp: profile_photo.value
+                pp: encodedPhoto
             }
             const updatePPUrl = 'http://127.0.0.1:5000/users/update_picture/' + userID;
             makeRequest(pp,updatePPUrl, () => {
