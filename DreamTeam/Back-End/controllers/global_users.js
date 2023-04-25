@@ -1,5 +1,6 @@
 const global_users = require("../Users/global_users_db.js");
 const sessions = require("../sessions_db.js");
+const fs = require('fs');
 const { hash_data } = require("../Users/hash.js");
 const { v4: uuidv4 } = require('uuid');
 
@@ -343,14 +344,32 @@ const update_profile_picture = (req, res) => {
 
     console.log(new_pp + " " + id);
 
-    get_path( (path) => {
-        db.open(path);
-        db.update_profile_picture(new_pp,id, () => {
-            db.close();
+    storePhoto(new_pp, id, () => {
+        get_path( (path) => {
+            db.open(path);
+            db.update_profile_picture(new_pp,id, () => {
+                db.close();
+            });
+    
+            res.send('Picture updated');
         });
+    })
+}
 
-        res.send('Picture updated');
+const storePhoto = function(base64Encoded, id, callback) {
+    const data = base64Encoded.replace(/^data:image\/\w+;base64,/, "");
+
+    const buffer = Buffer.from(data, 'base64');
+
+    fs.writeFile("./DreamTeam/Back-End/Users/profile_pictures/" + id + ".png", buffer, function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("The file was saved!");
+        }
     });
+
+    callback();
 }
 
 module.exports = { get_user, login, show_all, create_user, delete_user, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_profile_picture };
