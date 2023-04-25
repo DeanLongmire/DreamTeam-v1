@@ -17,6 +17,7 @@
 * Had to figure out how to add space between radio buttons on create league page
 * Still working on getting the profile page to center in the column but left align
 * Need to figure out how to send league admin data back when they updat so don't mess anything up
+* Making a reference for if a user has a team that it can link to that team home page and for if user has a league to link to that page-otherwise it links to create team or create league respectively 
 
 ## Issues you worked on
 * Login Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/8)
