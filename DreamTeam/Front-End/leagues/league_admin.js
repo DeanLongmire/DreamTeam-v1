@@ -121,6 +121,7 @@ let getSessionId = function (callback) {
   }
 
   //Reference for username
+const welcomeButton = document.querySelector("#welcome-button");
 let userNameHeading = document.getElementById("username");
 let username = null;
 
