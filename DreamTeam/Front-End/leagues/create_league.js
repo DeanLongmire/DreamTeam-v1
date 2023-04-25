@@ -200,3 +200,9 @@ function createLeague(){
 }
 
 loadData();
+
+document.querySelector("#Log-Out").onclick = function(){
+  logout(() => {
+    window.location.replace("../home/index.html");
+  });
+}
