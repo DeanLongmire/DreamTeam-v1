@@ -100,7 +100,9 @@ let makeRequest = function (dataToBeUpdated, url, callback) {
           (console.log("Responded"));
           callback();
         }else{
-          throw new Error('Account not found');
+          if(response.status === 413){
+            console.log("Picture Too Big");  //MAKE THIS GO TO SCREEN
+          }
         }
      })
      .catch(error => console.error(error));

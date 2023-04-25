@@ -41,7 +41,11 @@ const get_user = (req, res) => {
                 db.open(path);
                 db.get_all(id, (username, first_name, last_name, playerID, teamID, email, bio, pos, picPath) => {
                     console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos + " " + picPath)
-                    let encodedPic = encodePhoto(picPath);
+                    let encodedPic;
+                    if(picPath !== null) 
+                    {
+                        encodedPic = encodePhoto(picPath);
+                    }
                     const userData = {
                         id: id,
                         username: username,

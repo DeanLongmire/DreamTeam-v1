@@ -170,7 +170,6 @@ let setUserData = function (userDataJSON,callback) {
   callback();
 }
 
-
 let teamHeading = document.getElementById("team");
 let teamname = null;
 
