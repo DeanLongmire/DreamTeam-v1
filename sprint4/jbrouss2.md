@@ -28,6 +28,8 @@
 * League Specific Page - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/26)
 * Profile Page League/Teams - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/53)
 * Profile Page Personal Info - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/52)
+* View Leagues Page Design - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/55)
+* Display leagues from backend - Issue(https://github.com/utk-cs340-spring23/DynProg/issues/56)
 
 ## Files you worked on
 * utk-cs340-spring23/Dynprog/DreamTeam/Front-End/Dynprog.css
