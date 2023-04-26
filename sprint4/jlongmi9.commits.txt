@@ -1,0 +1,623 @@
+controllers/global_leagues.js
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  17)     console.log(id);
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  20)         db.open(path, () => {
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  21)             db.get_all(id, (name, ID, sport) => {
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  22)                 console.log(name + " " + ID + " " + sport);
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  23)                 const leagueData = {
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  24)                     ID: ID,
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  25)                     name: name,
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  26)                     sport: sport
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  27)                 };
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  28)             
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  29)                 res.send(leagueData);
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  30)                 db.close();
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  31)              });
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  32)         });
+
+controllers/global_users.js
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400   2) const sessions = require("../sessions_db.js");
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400   3) const fs = require('fs');
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400   8) let sess = new sessions.sessions_dbmanager;
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  21) const get_path_session = (callback) => {
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  22)     const pwd = process.cwd();
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  23)     let db_path = pwd;
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  24)     db_path = db_path + "\\DreamTeam\\Back-End\\sessions.db";
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  25)     db_path = db_path.replace(/\\/g,"/");
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  26) 
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  27)     callback(db_path);
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  28) }
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400  29) 
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  32)     const { sessId } = req.params;
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  33) 
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  34)     get_path_session( (path) => {
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  35)         sess.open(path);
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  36)         sess.get_session(sessId, (sessData) => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400  37)             console.log("Got " + sessData.username);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400  38)             const id = sessData.id;
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  39)             sess.close();
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  40)             get_path( (path) => {
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  41)                 db.open(path);
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400  42)                 db.get_all(id, (username, first_name, last_name, playerID, teamID, email, bio, pos, picPath) => {
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400  43)                     console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos + " " + picPath)
+67e01b75 (jlongmi9 2023-04-25 19:00:04 -0400  44)                     let encodedPic;
+67e01b75 (jlongmi9 2023-04-25 19:00:04 -0400  45)                     if(picPath !== null) 
+67e01b75 (jlongmi9 2023-04-25 19:00:04 -0400  46)                     {
+67e01b75 (jlongmi9 2023-04-25 19:00:04 -0400  47)                         encodedPic = encodePhoto(picPath);
+67e01b75 (jlongmi9 2023-04-25 19:00:04 -0400  48)                     }
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  49)                     const userData = {
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400  50)                         id: id,
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  51)                         username: username,
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  52)                         firstName: first_name,
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  53)                         lastName: last_name,
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  54)                         playerID: playerID,
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  55)                         teamID: teamID,
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  56)                         email: email,
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  57)                         bio: bio,
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400  58)                         pos: pos,
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400  59)                         pp: encodedPic
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  60)                     };
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  61)                     JSON.stringify(userData);
+87cd9c15 (jlongmi9 2023-04-18 10:02:56 -0400  62)                     res.send(userData);
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  63)                     db.close();
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  64)                 });
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400  65)             });
+9cb73f3e (jlongmi9 2023-04-17 16:37:58 -0400  94)                     db.get_all(id, (un,fn,ln,pID,tID,email,bio,pos) => {
+9cb73f3e (jlongmi9 2023-04-17 16:37:58 -0400 100)                             playerID: pID,
+9cb73f3e (jlongmi9 2023-04-17 16:37:58 -0400 101)                             teamID: tID,
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 109)                             const sessionData = JSON.stringify(req.session.user);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 110)                             get_path_session( (sessPath) => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 111)                                 sess.open(sessPath);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 112)                                 sess.create_session(req.session.id,sessionData, () => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 113)                                     sess.close();
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 114)                                 })
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 115)                                 res.status(200).send("Passwords Match! Logged in");
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 116)                             });
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400 138)         playerID: userJSON.playerID,
+3073d2f1 (jlongmi9 2023-04-17 17:02:53 -0400 139)         teamID: userJSON.teamID,
+bea42172 (jlongmi9 2023-04-17 16:26:12 -0400 144)     res.cookie('UserCookie' + userJSON.id.substring(0,5), req.session.id);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 158)     sess = new sessions_dbmanager();
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 159)     sess.open("sessions.db");
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 160)     sess.create_session(5,"test", () => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 161)         sess.close();
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 162)     });
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 163) 
+9cb73f3e (jlongmi9 2023-04-17 16:37:58 -0400 182)         db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.playerID,uwid.teamID,uwid.bio,uwid.position,null, () => {
+9cb73f3e (jlongmi9 2023-04-17 16:37:58 -0400 183)             db.get_all(uwid.id, (un,fn,ln,pID,tID,email,bio,pos) => {
+9cb73f3e (jlongmi9 2023-04-17 16:37:58 -0400 189)                     playerID: pID,
+9cb73f3e (jlongmi9 2023-04-17 16:37:58 -0400 190)                     teamID: tID,
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 198)                     const sessionData = JSON.stringify(req.session.user);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 199)                     get_path_session( (sessPath) => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 200)                         sess.open(sessPath);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 201)                         sess.create_session(req.session.id,sessionData, () => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 202)                             sess.close();
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 203)                         });
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 204)                         res.send(`User with the name ${uwid.firstName} added to the database`);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 205)                     });
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400 229)     const new_username = req.body.un;
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400 246)     const new_email = req.body;
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400 263)     const new_bio = req.body.bio;
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400 280)     const new_first_name = req.body.fn;
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400 297)     const new_lastname = req.body.ln;
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400 314)     const new_position = req.body.pos;
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400 331)     const new_password = req.body;
+04ff4e49 (jlongmi9 2023-04-20 11:09:41 -0400 349)     const new_pp = req.body.pp;
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 351)     //console.log(new_pp + " " + id);
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 353)     storePhoto(new_pp, id, (picPath) => {
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 354)         get_path( (path) => {
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 355)             db.open(path);
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 356)             db.update_profile_picture(picPath,id, () => {
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 357)                 db.close();
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 358)             });
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 359)     
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 360)             res.send('Picture updated');
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 362)     })
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 363) }
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 365) const storePhoto = function(base64Encoded, id, callback) {
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 366)     const data = base64Encoded.replace(/^data:image\/\w+;base64,/, "");
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 367) 
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 368)     const buffer = Buffer.from(data, 'base64');
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 369) 
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 370)     let picPath = "./DreamTeam/Back-End/Users/profile_pictures/" + id + ".png";
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 371) 
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 372)     fs.writeFile(picPath, buffer, function(err) {
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 373)         if(err) {
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 374)             console.log(err);
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 375)         } else {
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 376)             console.log("The file was saved!");
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 377)         }
+4d500db9 (jlongmi9 2023-04-25 09:55:19 -0400 379) 
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 380)     callback(picPath);
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 381) }
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 382) 
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 383) const encodePhoto = function(picPath) {
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 384)     let pic = fs.readFileSync(picPath);
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 385)     let picBase64 = Buffer.from(pic).toString('base64');
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 386) 
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 387)     //console.log("PIC STRING: " + picBase64);
+b8dce147 (jlongmi9 2023-04-25 18:41:54 -0400 388)     return(picBase64);
+
+Leagues/global_leagues_db.js 
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400   5)     open(path, callback){
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  10)             console.log('Connected to Leagues SQLite database.db');
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  11)             if(callback) callback();
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  53)                 if(row){
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  54)                     callback(row.name,row.ID,row.sport);
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  55)                     console.log("HERE");
+2e17922e (jlongmi9       2023-04-19 15:29:54 -0400  56)
+
+Users/global_users_db.js
+bea42172 (jlongmi9     2023-04-17 16:26:12 -0400  20)     create(callback){
+9cb73f3e (jlongmi9     2023-04-17 16:37:58 -0400  21)         this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, playerID TEXT, teamID TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
+bea42172 (jlongmi9     2023-04-17 16:26:12 -0400  25)         callback();
+9cb73f3e (jlongmi9     2023-04-17 16:37:58 -0400  37)     insert(id, un, email, password, fn, ln, pID, tID, bio, pos, pp, callback){
+96283fb1 (jlongmi9     2023-04-17 16:52:55 -0400  39)           this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, playerID, teamID, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?,?,?)'
+9cb73f3e (jlongmi9     2023-04-17 16:37:58 -0400  40)           this.db.run(this.sql, [id, un, email, password, fn, ln, pID, tID, bio, pos, pp], (err)=>{
+b8dce147 (jlongmi9     2023-04-25 18:41:54 -0400 200)           callback(row.user_name,row.first_name,row.last_name,row.playerID,row.teamID,row.email,row.bio,row.pos,row.profile_picture);
+
+Users/global_users.js
+87cd9c15 DreamTeam/Back-End/Users/global_users.js  (jlongmi9 2023-04-18 10:02:56 -0400 19) router.get('/:sessId', get_user);
+
+Back-End/index.js
+fd332dcc (jlongmi9       2023-04-13 17:49:55 -0400 18)     saveUninitialized: true,
+fd332dcc (jlongmi9       2023-04-13 17:49:55 -0400 19)     cookie: {
+fd332dcc (jlongmi9       2023-04-13 17:49:55 -0400 20)         httpOnly: false,
+fd332dcc (jlongmi9       2023-04-13 17:49:55 -0400 21)         secure: false,
+fd332dcc (jlongmi9       2023-04-13 17:49:55 -0400 22)         sameSite: 'none'
+fd332dcc (jlongmi9       2023-04-13 17:49:55 -0400 23)     }
+04ff4e49 (jlongmi9       2023-04-20 11:09:41 -0400 31)     allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+73bbd00f (jlongmi9       2023-04-18 21:24:31 -0400 44) app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`));
+
+Back-End/sessions_db.js
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  1) //Requires
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  2) const sqlite3 = require('sqlite3').verbose()
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  3) 
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  4) //DB class - use for interacting with database
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  5) class sessions_dbmanager{
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  6)     constructor(db, sql, data){}
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  7) 
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  8)     //opens the database
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400  9)     open(path){
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 10)         console.log("opening " + path);
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 11)         this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 12)             if (err){
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 13)                 return console.error(err.message)
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 14)             }
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 15)             console.log("Connected to sessions.db");
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 16)         })
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 17)     }
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 18) 
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 19)     //create a session
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 20)     create_session(ID,user,callback)
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 21)     {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 22)         this.db.serialize(() => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 23)             this.sql = 'INSERT INTO sessions (sid, sess) VALUES(?,?)'
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 24)             this.db.run(this.sql, [ID, user], (err)=>{
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 25)               if(err){return console.log(err.message)}
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 26)             })
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 27)             callback();
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 28)           })
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 29)     }
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 30) 
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 31)     //deletes a session
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 32)     delete_session(ID, callback){
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 33)         this.sql = 'DELETE FROM sessions WHERE sid = ?'
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 34) 
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 35)         this.db.run(this.sql, [ID], (err)=>{
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 36)             if(err){return console.log(err.message)}
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 37)         })
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 38)         callback();
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 39)     }
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 40) 
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 41)     //gets a session and returns the sess data
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 42)     get_session(ID, callback){
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 43)         this.sql = 'SELECT * FROM sessions WHERE sid = ?';
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400 44)         console.log("Again, Looking for session " + ID);
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 45)         this.db.get(this.sql, [ID], (err, row) => {
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 46)             if(err) {
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 47)               return console.error(err.message);
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 48)             }
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 49)             if(row) {
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400 50)                 const sessObj = JSON.parse(row.sess);
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400 51)                 callback(sessObj);
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 52)             } 
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 53)             else {
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400 54)               const errObj = JSON.parse(row.sess);
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400 55)               console.log(errObj);
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 56)               console.log("error");
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400 57)             }
+22c223da (jlongmi9 2023-04-17 20:30:33 -0400 58)         });
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 59)     }
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 60)     
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 61)     //closes the database
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 62)     close(){
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 63)         this.db.close((err) => {
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 64)             if(err){
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 65)                 return console.error(err.message)
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 66)             }
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 67)             console.log('Database Closed.')
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 68)         })
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 69)     }
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 70) }
+1e88a65c (jlongmi9 2023-04-17 17:21:35 -0400 71) 
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 72) /*let db = new sessions_dbmanager();
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 73) 
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 74) const testJSON = {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 75)     id: "bada0bad-8d75-4329-9621-f5dce3cc4b00",
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 76)     username: "username",
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 77)     firstName: "firstName",
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 78)     lastName: "lastName",
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 79)     playerID: "6a3ffa53-a864-418c-9bea-18136033c4d7",
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 80)     teamID: "124d3b1e-fa03-4705-be8f-c9f1fefaa90a",
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 81)     pos: "POS",
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 82)     bio: "bio",
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 83)     profilePicture: null
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 84) };
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 85) 
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 86) const passJSON = JSON.stringify(testJSON);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 87) 
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 88) db.open("./sessions.db");
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 89) db.create_session(10,passJSON, () => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 90)     db.get_session(10, (user) => {
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 91)         console.log(user.firstName);
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 92)         db.close();
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 93)     })
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 94) })*/
+73bbd00f (jlongmi9 2023-04-18 21:24:31 -0400 95) 
+70b65136 (jlongmi9 2023-04-17 17:22:11 -0400 96) module.exports.sessions_dbmanager = sessions_dbmanager;
+
+Front-End/home/index.js 
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400  1) let loggedIn;
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400  3) let getSessionId = function (callback) {
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400  4)   const cookies = document.cookie.split(';');
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400  5)   const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400  6)   const userCookieId = cookie ? cookie.split('=')[1] : null;
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400  7)   console.log(userCookieId);
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400  8) 
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400  9)   const sessionId = {
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 10)     id: userCookieId
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 11)   }
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 12) 
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 13)   if(userCookieId === null)
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 14)   {
+a1afd226 DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 17:02:46 -0400 16)     console.log("No User Logged in");
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 17)   }
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 18)   else
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 19)   {
+a1afd226 DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 17:02:46 -0400 21)     console.log("User Logged In");
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 22)   }
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 23) 
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 24)   const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 25) 
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 26)   callback(userURL);
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 27) }
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 30) getSessionId((userURL) => {
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 31)   if(loggedIn === 1)
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 32)   {
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 33)     //CODE OR FUNCTION HERE TO HIDE LOGIN/REGISTER 
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 34)     //ALSO ADD STUFF TO HOME BAR FOR GOING TO LEAGUE AND TEAM AND PROFILE
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 39)   }
+e4ede7bd DreamTeam/Front-End/home/index.js (jlongmi9   2023-04-24 15:52:58 -0400 48) });
+
+Front-End/users/profile.js 
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400   1) //COOKIE INFO
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400   2) let getSessionId = function (callback) {
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400   3)   const cookies = document.cookie.split(';');
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400   4)   const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400   5)   const userCookieId = cookie ? cookie.split('=')[1] : null;
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400   6)   console.log(userCookieId);
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400   8)   const sessionId = {
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400   9)     id: userCookieId
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  10)   }
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  12)   const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  13) 
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  14)   callback(userURL);
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  15) }
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  16) 
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  17) let getUserData = function (url,callback) {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  18)   console.log(url);
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  19)   fetch(url, {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  20)     method: 'GET',
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  21)     headers: {
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  22)       'Content-Type': 'application/json'
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  23)     }
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  24)   })
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  25)   .then(response => {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  26)     if (response.ok) {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  27)       response.json().then(data => {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  28)         setUserData(data, () => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  29)           console.log("User Data Set");
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  30)           const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  31)             if(data.teamID !== null) 
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  32)             {
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  33)               getTeamData(teamURL, () => {
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  34)                 callback();
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  35)               });
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  36)             }
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  37)             else
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  38)             {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  39)               callback();
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  40)             }
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  41)         });
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  42)       });
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  43)     } 
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  44)     else {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  45)       console.error('Error: ' + response.statusText);
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  46)     }
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  47)   })
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  48)   .catch(error => {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  49)     console.error(error);
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  50)   });
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  51) }
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  52) 
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  53) let getTeamData = function (teamURL, callback) {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  54)   fetch(teamURL, {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  55)     method: 'GET',
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  56)     headers: {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  57)       'Content-Type': 'application/json'
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  58)   }
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  59)   })
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  60)   .then(response => {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  61)     if (response.ok) {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  62)       response.json().then(data => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  63)         setTeamData(data, () => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  64)           console.log("Team Data Set");
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  65)           const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  66)           getLeagueData(leagueURL, () => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  67)             callback();
+04ff4e49 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-20 11:09:41 -0400  68)           });
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  69)         });
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  70)       });
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  71)     } 
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  72)     else {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  73)       console.error('Error: ' + response.statusText);
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  74)     }
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  75)   })
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  76)   .catch(error => {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  77)     console.error(error);
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  78)   });
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  79) }
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  80) 
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  81) let getLeagueData = function (leagueURL, callback) {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  82)   fetch(leagueURL, {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  83)     method: 'GET',
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  84)     headers: {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  85)       'Content-Type': 'application/json'
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  86)   }
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400  87)   })
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  88)   .then(response => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  89)     if (response.ok) {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  90)       response.json().then(data => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  91)         setLeagueData(data, () => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  92)           console.log("League Data Set");
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  93)           callback();
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  94)         });
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  95)       });
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  96)     } 
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  97)     else {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400  98)       console.error('Error: ' + response.statusText);
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400  99)     }
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400 100)   })
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400 101)   .catch(error => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 102)     console.error(error);
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400 103)   });
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400 104) }
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400 105) 
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400 106) let loadData = function () {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 107)   getSessionId((userURL) => {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 108)     console.log("URL: " + userURL);
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 109)     getUserData(userURL,() => {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 110)       console.log("All Data Set");
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 111)       //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 112)     });
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 113)   });
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400 114) };
+682286a9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-17 21:35:40 -0400 115) 
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 128) let setUserData = function (userDataJSON,callback) {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 129)   console.log(userDataJSON.username);
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 130)   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
+b8dce147 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-25 18:41:54 -0400 165) 
+b8dce147 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-25 18:41:54 -0400 166)   if(userDataJSON.pp){
+b8dce147 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-25 18:41:54 -0400 167)     const profilePhoto = document.querySelector("img");
+b8dce147 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-25 18:41:54 -0400 168)     profilePhoto.src = "data:image/jpeg;base64," + userDataJSON.pp;
+b8dce147 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-25 18:41:54 -0400 169)   }
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 170)   callback();
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 171) }
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 172) 
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 176) let setTeamData = function (teamDataJSON, callback) {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 177)   console.log(teamDataJSON.name);
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 178)   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH TEAM DATA (USE THE 'teamDataJSON' OBJECT)
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 185)   callback();
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 186) }
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 187) 
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 191) let setLeagueData = function (leagueDataJSON, callback) {
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 192)   console.log(leagueDataJSON.name);
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 193)   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH LEAGUE DATA (USE THE 'leagueDataJSON' OBJECT)
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 199)   callback();
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 200) }
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 201) 
+b8dce147 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-25 18:41:54 -0400 202) //loadData();
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 204) let logout = function(callback) {
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 205)   const cookies = document.cookie.split(";");
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 206) 
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 207)   cookies.forEach(cookie => {
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 208)     console.log(cookie)
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 209)     if (cookie.trim().startsWith("UserCookie")) {
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 210)       console.log("Test");
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 211)       // Set the cookie's expiration date to a past date to delete it
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 212)       document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 213)       console.log(document.cookie)
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 214)     }
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 215)   });
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 216) 
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 217)   callback();
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 218) }
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 219) 
+eb536fa9 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 22:19:26 -0400 220) loadData();
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 228)     logout(() => {
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 229)       window.location.replace("../home/index.html");
+a1afd226 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-24 17:02:46 -0400 230)     });
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 234) /*document.onreadystatechange = function() {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 241) 	} else {
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 246) 	}
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 247) };*/
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 260) //const welcomeButton = document.querySelector("#welcome-button");
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 263) //function getData(){
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 264)   //  console.log("in the function get data");
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 274) //}
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 281)   //welcomeButton.textContent = "Welcome, " + username + "!";
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 288) /*const firstNameHeading = document.getElementById("first_name");
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 292) const bio = document.getElementById("bio");*/
+87cd9c15 DreamTeam/Front-End/users/profile.js (jlongmi9          2023-04-18 10:02:56 -0400 297) //firstNameHeading.textContent = "test";
+
+Front-End/users/set_up_profile.js 
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  42)     if(position.value.trim === ''){
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  60) let getSessionId = function (callback) {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  61)     const cookies = document.cookie.split(';');
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  62)     const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  63)     const userCookieId = cookie ? cookie.split('=')[1] : null;
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  64)     console.log(userCookieId);
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  65)   
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  66)     const sessionId = {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  67)       id: userCookieId
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  68)     }
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  69)   
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  70)     const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  71)   
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  72)     callback(userURL);
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  73) }
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  74) 
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  75) let buttonSubmit = function () {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400  76)     let numOfInputs = getNumOfInputs();
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  77)     getSessionId((url) => {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  78)         getUserData(url, (id) => {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  79)             console.log(id);
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400  80)             waitOnRequest(numOfInputs,id).then(() => {
+b8dce147 (jlongmi9          2023-04-25 18:41:54 -0400  81)                 window.location.replace("profile.html");
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400  82)             })
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400  83)             .catch(error => {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400  84)                 console.log(error);
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400  85)             })
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  86)         });
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  87)     });
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  88) };
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400  90) let makeRequest = function (dataToBeUpdated, url, callback) {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  92)         method: 'PATCH',
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400  96)         body: JSON.stringify(dataToBeUpdated)
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 101)           callback();
+67e01b75 (jlongmi9          2023-04-25 19:00:04 -0400 103)           if(response.status === 413){
+67e01b75 (jlongmi9          2023-04-25 19:00:04 -0400 104)             console.log("Picture Too Big");  //MAKE THIS GO TO SCREEN
+67e01b75 (jlongmi9          2023-04-25 19:00:04 -0400 105)           }
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 111) let getUserData = function (url,callback) {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 112)     console.log(url);
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 113)     fetch(url, {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 114)       method: 'GET',
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 115)       headers: {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 116)         'Content-Type': 'application/json'
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 117)     }
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 118)     })
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 119)     .then(response => {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 120)       if (response.ok) {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 121)         response.json().then(data => {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 122)           console.log(data.id);
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 123)           callback(data.id);
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 124)         });
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 125)       } 
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 126)       else {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 127)         console.error('Error: ' + response.statusText);
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 128)       }
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 129)     })
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 130)     .catch(error => {
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 131)       console.error(error);
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 132)     });
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 133) }
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 134) 
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 135) const waitOnRequest = function (numOfInputs, userID,) {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 136)     return new Promise((resolve,reject) => {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 137)         let proccessed = 0;
+52d18a0a (jlongmi9          2023-04-21 15:08:48 -0400 138)         if(numOfInputs === proccessed) resolve();
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 139)         if(first_name.value !== "")
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 140)         {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 141)             const fn = {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 142)                 fn: first_name.value
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 143)             }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 144)             const updateFNUrl = 'http://127.0.0.1:5000/users/update_firstname/' + userID;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 145)             makeRequest(fn,updateFNUrl, () => {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 146)                 proccessed += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 147)                 if(proccessed === numOfInputs) resolve();
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 148)             });
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 149)         }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 150)         if(last_name.value !== "")
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 151)         {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 152)             const ln = {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 153)                 ln: last_name.value
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 154)             }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 155)             const updateLNUrl = 'http://127.0.0.1:5000/users/update_lastname/' + userID;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 156)             makeRequest(ln,updateLNUrl, () => {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 157)                 proccessed += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 158)                 if(proccessed === numOfInputs) resolve();
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 159)             });
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 160)         }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 161)         if(username.value !== "")
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 162)         {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 163)             const un = {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 164)                 un: username.value
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 165)             }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 166)             const updateUNUrl = 'http://127.0.0.1:5000/users/update_username/' + userID;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 167)             makeRequest(un,updateUNUrl, () => {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 168)                 proccessed += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 169)                 if(proccessed === numOfInputs) resolve();
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 170)             });
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 171)         }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 172)         if(bio.value !== "")
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 173)         {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 174)             const bioJSON = {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 175)                 bio: bio.value
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 176)             }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 177)             const updateBUrl = 'http://127.0.0.1:5000/users/update_bio/' + userID;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 178)             makeRequest(bioJSON,updateBUrl, () => {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 179)                 proccessed += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 180)                 if(proccessed === numOfInputs) resolve();
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 181)             });
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 182)         }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 183)         if(position.value !== "")
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 184)         {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 185)             const pos = {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 186)                 pos: position.value
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 187)             }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 188)             const updatePOSUrl = 'http://127.0.0.1:5000/users/update_position/' + userID;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 189)             makeRequest(pos,updatePOSUrl, () => {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 190)                 proccessed += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 191)                 if(proccessed === numOfInputs) resolve();
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 192)             });
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 193)         }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 194)         if(profile_photo.value !== "")
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 195)         {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 196)             const pp = {
+5af6434c (jlongmi9          2023-04-25 09:38:08 -0400 197)                 pp: encodedPhoto
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 198)             }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 199)             const updatePPUrl = 'http://127.0.0.1:5000/users/update_picture/' + userID;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 200)             makeRequest(pp,updatePPUrl, () => {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 201)                 proccessed += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 202)                 if(proccessed === numOfInputs) resolve();
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 203)             });
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 204)         }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 205)     });
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 206) };
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 207) 
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 208) let getNumOfInputs = function () {
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 209)     let numOfInputs = 0;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 210) 
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 211)     if(first_name.value !== "")    numOfInputs += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 212)     if(last_name.value !== "")     numOfInputs += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 213)     if(username.value !== "")      numOfInputs += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 214)     if(bio.value !== "")           numOfInputs += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 215)     if(position.value !== "")      numOfInputs += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 216)     if(profile_photo.value !== "") numOfInputs += 1;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 217) 
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 218)     return numOfInputs;
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 219) }
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 220) 
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 222) update_profile_BT.addEventListener('click', (event) =>{
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 223)     event.preventDefault();
+04ff4e49 (jlongmi9          2023-04-20 11:09:41 -0400 224)     buttonSubmit();
+6e687c68 (jlongmi9          2023-04-21 14:40:41 -0400 225)     return false;
