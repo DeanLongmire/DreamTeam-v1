@@ -34,13 +34,13 @@ const get_user = (req, res) => {
     get_path_session( (path) => {
         sess.open(path);
         sess.get_session(sessId, (sessData) => {
-            console.log("Got " + sessData.username);
+            //console.log("Got " + sessData.username);
             const id = sessData.id;
             sess.close();
             get_path( (path) => {
                 db.open(path);
                 db.get_all(id, (username, first_name, last_name, playerID, teamID, email, bio, pos, picPath) => {
-                    console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos + " " + picPath)
+                    //console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos + " " + picPath)
                     let encodedPic;
                     if(picPath !== null) 
                     {
@@ -59,6 +59,7 @@ const get_user = (req, res) => {
                         pp: encodedPic
                     };
                     JSON.stringify(userData);
+                    console.log(`\nSent user ${userData.username}'s data to client\n`);
                     res.send(userData);
                     db.close();
                 });
@@ -74,23 +75,23 @@ const login = (req, res) => {
     let hash_pass = hash_data(user.passwordField); //hash password
     user.passwordField = hash_pass;
 
-    console.log(user.emailField + " " + user.passwordField);
+    //console.log(user.emailField + " " + user.passwordField);
 
     get_path( (path) => {
         db.open(path);
         db.get_ID(user.emailField, (password, id) => {
-            console.log("Got password: "+ password + " from id " + id);
+            //console.log("Got password: "+ password + " from id " + id);
             if(password == null) //can't find email in database
             {
-                console.log("Email is not found")
+                console.log(`The email "${user.emailField}" was not found\n`);
                 res.status(500).send("Email is not found");
             }
             else
             {
-                console.log(hash_pass + "\n" + password);
+                //console.log(hash_pass + "\n" + password);
                 if(hash_pass == password) //password match
                 {
-                    console.log("Logged in");
+                    //console.log("Logged in");
                     db.get_all(id, (un,fn,ln,pID,tID,email,bio,pos) => {
                         const user = {
                             id: id,
@@ -105,13 +106,14 @@ const login = (req, res) => {
                         };
 
                         create_session(req, res, user, () => { //create the session 
-                            console.log(`Session created for ${req.session.user.username} with ID ${req.session.id}`);
+                            //console.log(`Session created for ${req.session.user.username} with ID ${req.session.id}`);
                             const sessionData = JSON.stringify(req.session.user);
                             get_path_session( (sessPath) => {
                                 sess.open(sessPath);
                                 sess.create_session(req.session.id,sessionData, () => {
                                     sess.close();
                                 })
+                                console.log(`\nUser ${user.username} was logged in\n`);
                                 res.status(200).send("Passwords Match! Logged in");
                             });
                         });
@@ -119,7 +121,7 @@ const login = (req, res) => {
                 }
                 else //incorrect password
                 {
-                    console.log("Wrong");
+                    console.log("An incorrect Password Was Recieved\n");
                     res.status(400).send("Invalid password");
                 }
             }
@@ -150,7 +152,7 @@ const show_all = (req, res) => {
     get_path( (path) => {
         db.open(path);
         db.display_all( () => {
-            console.log("in controllers: " + path)
+            //console.log("in controllers: " + path)
             db.close();
         });
     });
@@ -173,7 +175,7 @@ const create_user = (req, res) => {
         //adds unique ID to the user
         const uwid = { ... user, id: userID}
 
-        console.log(uwid);
+        //console.log(uwid);
 
         let hash_pass = hash_data(uwid.password);
         uwid.password = hash_pass;
@@ -194,13 +196,14 @@ const create_user = (req, res) => {
                 };
 
                 create_session(req, res, user, () => { //create the session 
-                    console.log(`Session created for ${req.session.user.username} with ID ${req.session.id}`);
+                    //console.log(`Session created for ${req.session.user.username} with ID ${req.session.id}`);
                     const sessionData = JSON.stringify(req.session.user);
                     get_path_session( (sessPath) => {
                         sess.open(sessPath);
                         sess.create_session(req.session.id,sessionData, () => {
                             sess.close();
                         });
+                        console.log(`\nUser ${uwid.username} was created\n`);
                         res.send(`User with the name ${uwid.firstName} added to the database`);
                     });
                 });
@@ -240,7 +243,7 @@ const update_username = (req, res) => {
     const { id } = req.params;
     const new_username = req.body.un;
 
-    console.log(new_username + " " + id);
+    //console.log(new_username + " " + id);
 
     get_path( (path) => {
         db.open(path);
@@ -257,7 +260,7 @@ const update_email = (req, res) => {
     const { id } = req.params;
     const new_email = req.body;
 
-    console.log(new_email + " " + id);
+    //console.log(new_email + " " + id);
 
     get_path( (path) => {
         db.open(path);
@@ -274,7 +277,7 @@ const update_bio = (req, res) => {
     const { id } = req.params;
     const new_bio = req.body.bio;
 
-    console.log(new_bio + " " + id);
+    //console.log(new_bio + " " + id);
 
     get_path( (path) => {
         db.open(path);
@@ -291,7 +294,7 @@ const update_firstname = (req, res) => {
     const { id } = req.params;
     const new_first_name = req.body.fn;
 
-    console.log(new_first_name + " " + id);
+    //console.log(new_first_name + " " + id);
 
     get_path( (path) => {
         db.open(path);
@@ -308,7 +311,7 @@ const update_lastname = (req, res) => {
     const { id } = req.params;
     const new_lastname = req.body.ln;
 
-    console.log(new_lastname + " " + id);
+    //console.log(new_lastname + " " + id);
 
     get_path( (path) => {
         db.open(path);
@@ -325,7 +328,7 @@ const update_position = (req, res) => {
     const { id } = req.params;
     const new_position = req.body.pos;
 
-    console.log(new_position + " " + id);
+    //console.log(new_position + " " + id);
 
     get_path( (path) => {
         db.open(path);
@@ -342,7 +345,7 @@ const update_password = (req, res) => {
     const { id } = req.params;
     const new_password = req.body;
 
-    console.log(new_password + " " + id);
+    //console.log(new_password + " " + id);
 
     let hash_pass = hash_data(new_password);
 
@@ -385,7 +388,7 @@ const storePhoto = function(base64Encoded, id, callback) {
         if(err) {
             console.log(err);
         } else {
-            console.log("The file was saved!");
+            //console.log("The file was saved!");
         }
     });
 

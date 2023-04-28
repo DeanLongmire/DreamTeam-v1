@@ -7,12 +7,12 @@ class sessions_dbmanager{
 
     //opens the database
     open(path){
-        console.log("opening " + path);
+        //console.log("opening " + path);
         this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
             if (err){
                 return console.error(err.message)
             }
-            console.log("Connected to sessions.db");
+            //console.log("Connected to sessions.db");
         })
     }
 
@@ -41,7 +41,7 @@ class sessions_dbmanager{
     //gets a session and returns the sess data
     get_session(ID, callback){
         this.sql = 'SELECT * FROM sessions WHERE sid = ?';
-        console.log("Again, Looking for session " + ID);
+        //console.log("Again, Looking for session " + ID);
         this.db.get(this.sql, [ID], (err, row) => {
             if(err) {
               return console.error(err.message);
@@ -64,7 +64,7 @@ class sessions_dbmanager{
             if(err){
                 return console.error(err.message)
             }
-            console.log('Database Closed.')
+            //console.log('Database Closed.')
         })
     }
 }

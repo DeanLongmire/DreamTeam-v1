@@ -7,12 +7,12 @@ class users_dbmanager{
 
     //opens the database
     open(path){
-        console.log("opening " + path);
+        //console.log("opening " + path);
         this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
             if (err){
                 return console.error(err.message)
             }
-            console.log("Connected to database.db");
+            //console.log("Connected to database.db");
         })
     }
 
@@ -20,7 +20,7 @@ class users_dbmanager{
     create(callback){
         this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, playerID TEXT, teamID TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
             if(err){return console.error(err.message)}
-            console.log('Created User table')
+            //console.log('Created User table')
         })
         callback();
     }
@@ -29,7 +29,7 @@ class users_dbmanager{
     drop(){
         this.db.run('DROP TABLE Users', (err)=>{
             if(err){return console.error(err.message)}
-            console.log('Dropped User table')
+            //console.log('Dropped User table')
         })
     }
 
@@ -50,12 +50,9 @@ class users_dbmanager{
 
         this.db.all(this.sql, [], (err,rows)=>{
             if(err){return console.error(err.message)}
-            console.log("")
             rows.forEach((row)=>{
                 console.log(`${row.ID} ${row.first_name} ${row.last_name} - ${row.email} - ${row.user_name} : ${row.password} - ${row.bio} - ${row.pos}`)
             })
-            console.log("")
-            console.log('End of Users Table')
             callback()
         })
     }
@@ -280,7 +277,6 @@ class users_dbmanager{
     //deletes a user from table 'Users'
     delete_user(ID, callback){
         this.sql = 'DELETE FROM Users WHERE ID = ?'
-
         this.db.run(this.sql, [ID], (err)=>{
             if(err){return console.log(err.message)}
         })
@@ -293,7 +289,7 @@ class users_dbmanager{
             if(err){
                 return console.error(err.message)
             }
-            console.log('Database Closed.')
+            //console.log('Database Closed.')
         })
     }
 }
