@@ -1,8 +1,10 @@
+let userCookieId;
+
 //COOKIE INFO
 let getSessionId = function (callback) {
   const cookies = document.cookie.split(';');
   const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
-  const userCookieId = cookie ? cookie.split('=')[1] : null;
+  userCookieId = cookie ? cookie.split('=')[1] : null;
   console.log(userCookieId);
 
   const sessionId = {
@@ -199,8 +201,6 @@ let setLeagueData = function (leagueDataJSON, callback) {
   callback();
 }
 
-//loadData();
-
 let logout = function(callback) {
   const cookies = document.cookie.split(";");
 
@@ -214,7 +214,24 @@ let logout = function(callback) {
     }
   });
 
-  callback();
+  const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userCookieId;
+
+  fetch(deleteSessionURL, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log("Session Deleted");
+      callback();
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+      callback();
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
 }
 
 loadData();
@@ -229,7 +246,6 @@ document.querySelector("#Log-Out").onclick = function(){
       window.location.replace("../home/index.html");
     });
 }
-
 
 /*document.onreadystatechange = function() {
 	if (document.readyState !== "complete") {

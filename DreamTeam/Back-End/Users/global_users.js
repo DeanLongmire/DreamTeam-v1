@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { get_user, login, show_all, create_user, delete_user, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_profile_picture } = require('../controllers/global_users.js');
+const { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_profile_picture } = require('../controllers/global_users.js');
 
 const router = express.Router();
 
@@ -20,6 +20,7 @@ router.get('/:sessId', get_user);
 
 //Delete a User
 router.delete('/:id', delete_user);
+router.delete('/delete_session/:sessId', delete_session);
 
 //Update User Info
 router.patch('/update_username/:id', update_username);

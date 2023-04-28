@@ -223,6 +223,18 @@ const delete_user =  (req, res) => {
     });
 };
 
+const delete_session = (req, res) => {
+    const { sessId } = req.params;
+    
+    get_path_session((sessionPath) => {
+        sess.open(sessionPath);
+        sess.delete_session(sessId, () => {
+            sess.close();
+            res.send("Session Deleted");
+        })
+    })
+}
+
 //updates username
 const update_username = (req, res) => {
     const { id } = req.params;
@@ -388,4 +400,4 @@ const encodePhoto = function(picPath) {
     return(picBase64);
 }
 
-module.exports = { get_user, login, show_all, create_user, delete_user, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_profile_picture };
+module.exports = { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_profile_picture };
