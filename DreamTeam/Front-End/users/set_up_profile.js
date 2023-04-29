@@ -5,6 +5,7 @@ const last_name = document.getElementById("last_name");
 const username = document.getElementById("username");
 const bio = document.getElementById("bio");
 const position = document.getElementById("position");
+const errorElement = document.getElementById("error-message");
 //Need to see if can get photo this way
 const profile_photo = document.getElementById("profile_photo");
 let encodedPhoto;
@@ -88,6 +89,7 @@ let buttonSubmit = function () {
 };
 
 let makeRequest = function (dataToBeUpdated, url, callback) {
+    errorElement.style.display = "none"; //Hide the error message
     fetch(url, {
         method: 'PATCH',
         headers: {
@@ -102,7 +104,9 @@ let makeRequest = function (dataToBeUpdated, url, callback) {
         }else{
           if(response.status === 413){
             console.log("Picture Too Big");  //MAKE THIS GO TO SCREEN
-          }
+            errorElement.innerText = "*The picture you uploaded is too big*";
+            errorElement.style.display = "block";
+        }
         }
      })
      .catch(error => console.error(error));
