@@ -180,10 +180,16 @@ let setTeamData = function (teamDataJSON, callback) {
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH TEAM DATA (USE THE 'teamDataJSON' OBJECT)
   if(teamDataJSON.name){
     teamname = teamDataJSON.name;
-    teamHeading.textContent = teamname;
-  //window.location.href = "../teams/team_home.html"
-
+    teamHeading.textContent = "View " + teamname + " Home Page";
+  
+    teamHeading.onclick = function(){
+      window.location.href = "../teams/team_home.html"
+    }
   }
+  else{
+    window.location.href = "../teams/view_teams.html"
+  }
+
   callback();
 }
 
@@ -195,9 +201,16 @@ let setLeagueData = function (leagueDataJSON, callback) {
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH LEAGUE DATA (USE THE 'leagueDataJSON' OBJECT)
   if(leagueDataJSON.name){
     leaguename = leagueDataJSON.name;
-    leagueHeading.textContent = leaguename;
-    //window.location.href = "../leagues/league_home.html"
+    leagueHeading.textContent = "View " + leaguename + " Home Page";
+    
+    leagueHeading.onclick = function(){
+      window.location.href = "../leagues/league_home.html"
   }
+  }
+  else{
+    window.location.href = "../leagues/view_leagues.html"
+  }
+
   callback();
 }
 
