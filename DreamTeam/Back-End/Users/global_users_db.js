@@ -265,6 +265,24 @@ class users_dbmanager{
         callback();
     }
 
+    //updates a user's player tag
+    update_playerId(playerId, ID, callback){
+      this.sql = "UPDATE Users SET playerID = ? WHERE ID = ?"
+      this.db.run(this.sql, [playerId, ID], (err)=>{
+          if(err){return console.log(err.message)}
+      })
+      callback();
+    }
+
+    //updates a user's team
+    update_teamId(teamID, ID, callback){
+      this.sql = "UPDATE Users SET teamID = ? WHERE ID = ?"
+      this.db.run(this.sql, [teamID, ID], (err)=>{
+          if(err){return console.log(err.message)}
+      })
+      callback();
+    }
+
     //updates a user's profile picture
     update_profile_picture(new_pp, ID, callback){
       this.sql = "UPDATE Users SET profile_picture = ? WHERE ID = ?"

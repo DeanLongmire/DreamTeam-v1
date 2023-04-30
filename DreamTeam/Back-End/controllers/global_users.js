@@ -359,6 +359,36 @@ const update_password = (req, res) => {
     });
 };
 
+//for when a user joins a team, a player will be created
+const update_player = (req, res) => {
+    const { id } = req.params;
+    const playerId = req.body.playerId;
+
+    get_path((path) => {
+        db.open(path);
+        db.update_playerId(playerId,id, () => {
+            db.close();
+        });
+
+        res.send('Player ID updated');
+    });
+}
+
+//for when a user joins a team
+const update_team = (req, res) => {
+    const { id } = req.params;
+    const teamId = req.body.teamId;
+
+    get_path((path) => {
+        db.open(path);
+        db.update_teamId(teamId,id, () => {
+            db.close();
+        });
+
+        res.send('Team ID updated');
+    });
+}
+
 const update_profile_picture = (req, res) => {
     const { id } = req.params;
     const new_pp = req.body.pp;
@@ -403,4 +433,4 @@ const encodePhoto = function(picPath) {
     return(picBase64);
 }
 
-module.exports = { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_profile_picture };
+module.exports = { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_player, update_team, update_profile_picture };
