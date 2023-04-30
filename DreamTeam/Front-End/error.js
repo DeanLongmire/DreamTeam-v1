@@ -117,8 +117,43 @@ let setUserData = function (userDataJSON,callback) {
     callback();
 }
 
-/*If user selects log out, a message says they have been logged out
-then they return back to the home page*/
+let logout = function(callback) {
+  const cookies = document.cookie.split(";");
+
+  cookies.forEach(cookie => {
+    console.log(cookie)
+    if (cookie.trim().startsWith("UserCookie")) {
+      console.log("Test");
+      // Set the cookie's expiration date to a past date to delete it
+      document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      console.log(document.cookie)
+    }
+  });
+
+  const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userCookieId;
+
+  fetch(deleteSessionURL, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log("Session Deleted");
+      callback();
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+      callback();
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+loadData();
+
 document.querySelector("#Log-Out").onclick = function(){
-    alert("You have been logged out");
+  logout(() => {
+    window.location.replace("../home/index.html");
+  });
 }
