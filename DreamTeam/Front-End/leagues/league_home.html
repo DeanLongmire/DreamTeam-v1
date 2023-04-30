@@ -31,18 +31,44 @@
 
         <body>
         <div class="dynprog-center dynprog-text-black">
-            <h2 id="league">Welcome to your league - League name</h2>
+            <h2>Welcome: <h7 id="league">Name</h7></h2>
             <div class="dynprog-padding-12"></div>
-            <h3>View the teams in your league</h3>
         </div>
+
+<!--These are the two columns on the page, this allows for them to be side by side
+    This has all the user's information-->
+    <div class="dynprog-parent-column">
+        <div class="dynprog-child-column">
+            <div class="dynprog-container dynprog-center">
+                <img src="../photos/DynProg.jpg" alt="blank person" style="width:60%">
+            </div>
+        </div>
+    
+        <div class="dynprog-child-column">
+            <div class= "dynprog-left-align dynprog-text-black">
+                <h4>General Information about your league</h4>
+                <h4 id="sport_type">Sport</h4>
+                <div class="dynprog-padding-12"></div>
+    
+                </div>
+                <div class="dynprog-center">
+                <a href="league_adminhtml">
+                    <button class="dynprog-button dynprog-gray dynprog-text-white">Edit my information</button>
+                 </a>
+                </div>
+        </div>
+    
+    </div>
+
+    <div class="dynprog-center dynprog-text-black">
+        <h3>View the teams in your league</h3>
+    </div>
+
 
        <div class="dynprog-container">
             <div class="dynprog-card-4 dynprog-center dynprog-white">
-            <h2 id="team">Team A</h2>
+                <div id="team"></div>
             </div>
-            <!--<div class="dynprog-card-4 dynprog-center dynprog-white">
-                <h2 id="team2">Team B</h2>
-            </div>-->
         </div>
 
 
@@ -56,4 +82,5 @@
     </footer>
     </div>
 
+    <script src="league_home.js"></script>
 </html>

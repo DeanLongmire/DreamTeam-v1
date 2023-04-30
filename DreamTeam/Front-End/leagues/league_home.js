@@ -119,14 +119,16 @@ const welcomeButton = document.querySelector("#welcome-button");
 //Reference for username
 let userNameHeading = document.getElementById("username");
 let username = null;
-let userLeagueHeading = document.getElementById("league");
-let userleague = null;
+let leagueHeading = document.getElementById("league");
+let leaguename = null;
 let userTeamHeading = document.getElementById("team");
 let userteam = null;
+let sportHeading = document.getElementById("sport_type");
+let sport_type = null;
 
+//Setting the username
 let setUserData = function (userDataJSON,callback) {
   console.log(userDataJSON.username);
-  //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
   if(userDataJSON.username){
     username = userDataJSON.username;
     welcomeButton.textContent = "Welcome, " + username + "!";
@@ -135,13 +137,61 @@ let setUserData = function (userDataJSON,callback) {
 }
 
 let setLeagueData = function (leagueDataJSON,callback){
-  
+  console.log(leagueDataJSON.name);
+  console.log(leagueDataJSON.sport);
+  //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH LEAGUE DATA (USE THE 'leagueDataJSON' OBJECT)
+  if(leagueDataJSON.name){
+    leaguename = leagueDataJSON.name;
+    leagueHeading.textContent = leaguename;
+    sport_type = leagueDataJSON.sport;
+    if(sport_type === "Flag_football"){
+      sportHeading.textContent = "Sport: Flag Football"
+    }else{
+      sportHeading.textContent = "Sport: " + sport_type;
+    }
+    }
+ 
   callback();
 }
+
 let setTeamData = function (teamDataJSON,callback){
   
   callback();
 }
+
+let logout = function(callback) {
+  const cookies = document.cookie.split(";");
+
+  cookies.forEach(cookie => {
+    console.log(cookie)
+    if (cookie.trim().startsWith("UserCookie")) {
+      console.log("Test");
+      // Set the cookie's expiration date to a past date to delete it
+      document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      console.log(document.cookie)
+    }
+  });
+
+  const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userCookieId;
+
+  fetch(deleteSessionURL, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log("Session Deleted");
+      callback();
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+      callback();
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
 //Need to add team and league after get it working on profile
 loadData();
 
