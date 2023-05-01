@@ -174,6 +174,7 @@ let setUserData = function (userDataJSON,callback) {
 
 let teamHeading = document.getElementById("team");
 let teamname = null;
+let barTeam = document.getElementById("team_button");
 
 let setTeamData = function (teamDataJSON, callback) {
   console.log(teamDataJSON.name);
@@ -183,8 +184,9 @@ let setTeamData = function (teamDataJSON, callback) {
     teamHeading.textContent = "View " + teamname + " Home Page";
   
     teamHeading.onclick = function(){
-      window.location.href = "../teams/team_home.html"
+      window.location.href = "../teams/team_home.html";
     }
+    
   }
   else{
     window.location.href = "../teams/view_teams.html"
@@ -195,6 +197,7 @@ let setTeamData = function (teamDataJSON, callback) {
 
 let leagueHeading = document.getElementById("league");
 let leaguename = null;
+let barLeague = document.getElementById("league_button");
 
 let setLeagueData = function (leagueDataJSON, callback) {
   console.log(leagueDataJSON.name);
@@ -204,11 +207,33 @@ let setLeagueData = function (leagueDataJSON, callback) {
     leagueHeading.textContent = "View " + leaguename + " Home Page";
     
     leagueHeading.onclick = function(){
-      window.location.href = "../leagues/league_home.html"
+      window.location.href = "../leagues/league_home.html";
   }
+    barLeague.textContent = "View my league";
+    barLeague.onclick = function(){
+      window.location.href = "../leagues/league_home.html";
+    }
+    //If there is league and team name then bar needs to display view league and team
+    if(leaguename && teamname){
+      barTeam.textContent = "View my team";
+      barTeam.onclick = function(){
+        window.location.href = "../teams/team_home.html";
+      }
+    }
+    //If there is only a a league name then bar needs to display view league and join a team
+    else if(leaguename && teamname === ""){
+      barTeam.textContent = "Join a Team";
+      barTeam.onclick = function(){
+        window.location.href = "../teams/view_teams.html";
+      }
+    }
   }
   else{
-    window.location.href = "../leagues/view_leagues.html"
+    window.location.href = "../leagues/view_leagues.html";
+    barLeague.textContent = "Join a League"
+    barLeague.onclick = function(){
+      window.location.href = "../leagues/join_league.html";
+    }
   }
 
   callback();
