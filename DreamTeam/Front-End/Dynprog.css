@@ -243,5 +243,32 @@ h9{font-size: 36px; font-family:Fantasy}
   .dinosaur{position: absolute;left: -100px; /* start offscreen on the left */bottom: 0; width: 200px;height: 200px;background-image: url("photos/Dyno-no-back.png");background-size: contain;background-repeat: no-repeat;animation: runDino 30s linear infinite;}
   @keyframes runDino {0% {transform: translateX(-100%);}100% {transform: translateX(calc(100vw + 100px)); /* move across the screen */}}
 /*about us*/
+/*slideshow*/
+.slideshow-container {
+  max-width: 600px; /* Adjust the maximum width as desired */
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ff8200; /* Add a background color for a modern touch */
+  position: relative;
+}
 
-/*Stuff for the creat league page*/
+.slides {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease;
+  cursor: grab;
+}
+
+.slides.dragging {
+  cursor: grabbing;
+}
+
+.slides img {
+  flex: 0 0 100%;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* Adjust the maximum height as desired */
+}

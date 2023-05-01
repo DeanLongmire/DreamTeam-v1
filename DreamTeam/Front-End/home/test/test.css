@@ -1,0 +1,32 @@
+.slideshow-container {
+    max-width: 600px; /* Adjust the maximum width as desired */
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ff8200; /* Add a background color for a modern touch */
+    position: relative;
+  }
+  
+  .slides {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease;
+    cursor: grab;
+  }
+  
+  .slides.dragging {
+    cursor: grabbing;
+  }
+  
+  .slides img {
+    flex: 0 0 100%;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* Adjust the maximum height as desired */
+  }
+  
+  
+  
+    
