@@ -58,6 +58,7 @@ function createLeague(){
               if (response.ok) {
                 // Redirect user to view their league page after successful POST request
                 console.log("Responded");
+
                 window.location.replace('league_admin.html');
               } else {
                 // Handle error response
@@ -66,7 +67,30 @@ function createLeague(){
               }
             })
            .catch(error => console.error(error));
+}
+
+let setUserLeague = function() {
+  fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+ })
+ .then(response => {
+    if (response.ok) {
+      // Redirect user to view their league page after successful POST request
+      console.log("Responded");
+
+      window.location.replace('league_admin.html');
+    } else {
+      // Handle error response
+      throw new Error('Unable to create user account');
+      window.location.replace('../error.html');
     }
+  })
+ .catch(error => console.error(error));
+}
 
 //Event listener for when user clicks the button
   create_button.addEventListener('click', () =>{

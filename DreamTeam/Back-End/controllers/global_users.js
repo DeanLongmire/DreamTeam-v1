@@ -39,7 +39,7 @@ const get_user = (req, res) => {
             sess.close();
             get_path( (path) => {
                 db.open(path);
-                db.get_all(id, (username, first_name, last_name, playerID, teamID, email, bio, pos, picPath) => {
+                db.get_all(id, (username, first_name, last_name, playerID, teamID, leagueID, email, bio, pos, picPath) => {
                     //console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos + " " + picPath)
                     let encodedPic;
                     if(picPath !== null) 
@@ -53,6 +53,7 @@ const get_user = (req, res) => {
                         lastName: last_name,
                         playerID: playerID,
                         teamID: teamID,
+                        leagueID: leagueID,
                         email: email,
                         bio: bio,
                         pos: pos,
@@ -442,6 +443,8 @@ const storePhoto = function(base64Encoded, id, callback) {
 }
 
 const encodePhoto = function(picPath) {
+    console.log(picPath)
+
     let pic = fs.readFileSync(picPath);
     let picBase64 = Buffer.from(pic).toString('base64');
 
