@@ -163,6 +163,18 @@ const UpdateLosses = (req, res) => {
     res.send('Team losses updated');
 }
 
+const SetA_ID = (req, res) => {
+    const {id} = req.params;
+    const adId = req.body.A_ID;
+    get_path((path) => {
+        db.open(path);
+        db.SetAdminID(adId, id, () => {
+            db.close();
+        });
+    });
+    res.send('Team admin ID updated');
+}
+
 // function that creates the session with all the teams data
 const createTeamSession = (req, res, teamJSON, callback) => {
     console.log('made it here 1');
@@ -192,4 +204,5 @@ module.exports = {
     UpdateWins,
     UpdateLosses,
     createTeamSession,
+    SetA_ID
 }

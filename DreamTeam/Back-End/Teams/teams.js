@@ -14,7 +14,8 @@ const {
     DeleteTeam,
     UpdateWins,
     UpdateLosses,
-    createTeamSession
+    createTeamSession,
+    SetA_ID
 } = require('../controllers/global_teams.js');
 
 const router = express.Router();
@@ -44,6 +45,9 @@ router.patch('/update_team_wins/:id', UpdateWins);
 
 // patch to update the amount of losses a team has
 router.patch('/update_team_losses/:id', UpdateLosses);
+
+// patch to add an admin id
+router.patch('/update_admin_id/:id', SetA_ID);
 
 // Delete a team from the database
 router.delete('/:id', DeleteTeam);

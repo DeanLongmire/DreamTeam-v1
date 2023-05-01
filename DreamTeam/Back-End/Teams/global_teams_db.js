@@ -16,7 +16,7 @@ class team_dbmanager{
         });
     };
     create(){
-        this.db.run('CREATE TABLE Teams(name, ID, P_ID, sport, num_players, W, L)', (err)=>{
+        this.db.run('CREATE TABLE Teams(name, ID, P_ID, A_ID,sport, num_players, W, L)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created team table');
         });
@@ -27,9 +27,9 @@ class team_dbmanager{
             console.log('Dropped team table')
         });
     };
-    insert(name, ID, P_ID, sport, num_players, W, L, callback){
-        this.sql = 'INSERT INTO Teams (name, ID, P_ID, sport, num_players, W, L) VALUES(?, ?, ?, ?, ?, ?, ?)';
-        this.db.run(this.sql, [name, ID, P_ID, sport, num_players, W, L], (err)=>{
+    insert(name, ID, P_ID, A_ID, sport, num_players, W, L, callback){
+        this.sql = 'INSERT INTO Teams (name, ID, P_ID, A_ID, sport, num_players, W, L) VALUES(?, ?, ?, ?, ?, ?, ?)';
+        this.db.run(this.sql, [name, ID, P_ID, A_ID, sport, num_players, W, L], (err)=>{
             if(err){return console.error(err.message);}
             console.log('New row created in Team table')
         });
@@ -116,13 +116,22 @@ class team_dbmanager{
             return console.error(err.message);
         }
         if(row){
-            callback(row.name,row.ID,row.P_ID,row.sport,row.num_players,row.W,row.L);
+            callback(row.name,row.ID,row.P_ID,row.A_ID,row.sport,row.num_players,row.W,row.L);
         }
         else{
             console.log("error");
         }
         });
-      }
+    }
+    SetAdminID(A_ID, ID, callback){
+        this.data = [A_ID, ID];
+        this.sql = 'UPDATE Teams SET A_ID = ? WHERE ID = ?';
+        this.db.run(this.sql, this.data, (err)=>{
+            if(err){return console.log(err.message);}
+            console.log('Row(s) A_ID updated');
+        });
+        callback();
+    }
 }
 
 module.exports.team_dbmanager = team_dbmanager;
