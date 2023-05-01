@@ -181,8 +181,8 @@ const create_user = (req, res) => {
         uwid.password = hash_pass;
 
         db.open(path);
-        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.playerID,uwid.teamID,uwid.bio,uwid.position,null, () => {
-            db.get_all(uwid.id, (un,fn,ln,pID,tID,email,bio,pos) => {
+        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.playerID,uwid.teamID,uwid.leagueID,uwid.bio,uwid.position,null, () => {
+            db.get_all(uwid.id, (un,fn,ln,pID,tID,lID,email,bio,pos) => {
                 const user = {
                     id: uwid.id,
                     username: un,
@@ -190,6 +190,7 @@ const create_user = (req, res) => {
                     lastName: ln,
                     playerID: pID,
                     teamID: tID,
+                    leagueID: lID,
                     email: email,
                     bio: bio,
                     pos: pos

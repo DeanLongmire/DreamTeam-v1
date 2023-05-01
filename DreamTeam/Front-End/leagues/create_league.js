@@ -1,6 +1,7 @@
 //This is the url for the server
 const url = 'http://localhost:5000/leagues'
 let userCookieId;
+let userID;
 
 //Make the fields and create button itself
 const create_button = document.querySelector('#create_league_button');
@@ -99,6 +100,7 @@ function createLeague(){
     .then(response => {
       if (response.ok) {
         response.json().then(data => {
+          userID = data.id;
           setUserData(data, () => {
             console.log("User Data Set");
             const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
