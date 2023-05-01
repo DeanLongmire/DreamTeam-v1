@@ -288,21 +288,6 @@ document.querySelector("#Log-Out").onclick = function(){
     });
 }
 
-/*document.onreadystatechange = function() {
-	if (document.readyState !== "complete") {
-		document.querySelector(
-		"body").style.visibility = "hidden";
-		document.querySelector(
-		"#loader").style.visibility = "visible";
-        loadData();
-	} else {
-		document.querySelector(
-		"#loader").style.display = "none";
-		document.querySelector(
-		"body").style.visibility = "visible";
-	}
-};*/
-
 //Function for the acordian!
 function myFunction(id) {
     var x = document.getElementById(id);
