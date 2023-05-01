@@ -38,6 +38,15 @@ let getUserData = function (url,callback) {
             }
             else
             {
+              let leagueNull;
+              let teamNull; 
+              setLeagueData(leagueNull, ()=> {
+                callback();
+              });
+              setTeamData(teamNull, ()=> {
+                callback();
+              });
+                
               callback();
             }
         });
@@ -174,12 +183,14 @@ let setUserData = function (userDataJSON,callback) {
 
 let teamHeading = document.getElementById("team");
 let teamname = null;
-let barTeam = document.getElementById("team_button");
+let barTeam = document.getElementById("team_bt");
 
 let setTeamData = function (teamDataJSON, callback) {
-  console.log(teamDataJSON.name);
+  console.log("In set team data");
+  console.log(barTeam.textContent);
+  console.log(teamHeading.textContent);
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH TEAM DATA (USE THE 'teamDataJSON' OBJECT)
-  if(teamDataJSON.name){
+  if(teamDataJSON != null){
     teamname = teamDataJSON.name;
     teamHeading.textContent = "View " + teamname + " Home Page";
   
@@ -189,7 +200,7 @@ let setTeamData = function (teamDataJSON, callback) {
     
   }
   else{
-    window.location.href = "../teams/view_teams.html"
+    teamHeading.textContent = "Must be in league to join a team"
   }
 
   callback();
@@ -197,39 +208,32 @@ let setTeamData = function (teamDataJSON, callback) {
 
 let leagueHeading = document.getElementById("league");
 let leaguename = null;
-let barLeague = document.getElementById("league_button");
+let barLeague = document.getElementById("league_bt");
 
 let setLeagueData = function (leagueDataJSON, callback) {
-  console.log(leagueDataJSON.name);
+  console.log("In set league data");
+  console.log(barLeague.texContent);
+  console.log(leagueHeading.textContent);
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH LEAGUE DATA (USE THE 'leagueDataJSON' OBJECT)
-  if(leagueDataJSON.name){
+  if(leagueDataJSON != null){
     leaguename = leagueDataJSON.name;
     leagueHeading.textContent = "View " + leaguename + " Home Page";
     
     leagueHeading.onclick = function(){
       window.location.href = "../leagues/league_home.html";
-  }
+    }
+
     barLeague.textContent = "View my league";
     barLeague.onclick = function(){
       window.location.href = "../leagues/league_home.html";
     }
-    //If there is league and team name then bar needs to display view league and team
-    if(leaguename && teamname){
-      barTeam.textContent = "View my team";
-      barTeam.onclick = function(){
-        window.location.href = "../teams/team_home.html";
-      }
-    }
-    //If there is only a a league name then bar needs to display view league and join a team
-    else if(leaguename && teamname === ""){
-      barTeam.textContent = "Join a Team";
-      barTeam.onclick = function(){
-        window.location.href = "../teams/view_teams.html";
-      }
-    }
   }
   else{
-    window.location.href = "../leagues/view_leagues.html";
+    console.log("NO LEAGUE NAME EXISTS");
+    leagueHeading.textContent = "No league found: Please join one or create on here"
+    leagueHeading.onclick = function(){
+      window.location.href = "../leagues/join_league.html";
+    }
     barLeague.textContent = "Join a League"
     barLeague.onclick = function(){
       window.location.href = "../leagues/join_league.html";
