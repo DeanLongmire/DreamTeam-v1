@@ -45,12 +45,14 @@ const get_team = (req, res) => {
 const show_all = (req, res) => {
     get_path( (path) => {
         db.open(path);
-        db.display_all( () => {
+        db.display_all( (teams) => {
+            const data = {teams:teams}
             db.close();
+            res.send(data);
         });
     });
 
-    res.send("Read all teams");
+    //res.send("Read all teams");
 }
 
 // create a team

@@ -35,14 +35,19 @@ class team_dbmanager{
         });
         callback();
     };
-    display_all(){
-        this.sql = 'SELECT * FROM Teams';
-        this.db.all(this.sql, [], (err,rows)=>{
-            if(err) {
-                return console.error(err.message);
-            }
-            rows.forEach((row)=>{
-                console.log(row);
+    display_all(callback){
+        const teams = [];
+        this.db.serialize(() => {
+            this.sql = 'SELECT name FROM Teams';
+            this.db.all(this.sql, [], (err,rows)=>{
+                if(err) {
+                    return console.error(err.message);
+                }
+                rows.forEach((row)=>{
+                    console.log(row);
+                    teams.push(row.name);
+                });
+                callback(teams);
             });
         });
     };
