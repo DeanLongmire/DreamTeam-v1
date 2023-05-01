@@ -34,15 +34,17 @@ class league_dbmanager{
         });
     }
     display_all(callback){
+        const league_names = [];
         this.db.serialize(()=>{ 
-            this.sql = 'SELECT * FROM Leagues';
+            this.sql = 'SELECT name FROM Leagues';
             this.db.all(this.sql, [], (err,rows)=>{
                 if(err) {return console.error(err.message);}
                 rows.forEach((row)=>{
-                    console.log(row);
+                    console.log(row.name);
+                    league_names.push(row.name);
                 });
+                callback(league_names);
             });
-            callback();
         });
     }
     get_all(ID, callback){
