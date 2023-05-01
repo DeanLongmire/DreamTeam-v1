@@ -59,6 +59,29 @@ let saveTeam = () => {
 create_button.addEventListener("click", saveTeam);
 */
 
+let globalUID;
+
+const setUserData = function(data, callback) {
+  console.log("Setting User Data");
+
+  callback();
+}
+
+let getSessionId = function (callback) {
+  const cookies = document.cookie.split(';');
+  const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+  userCookieId = cookie ? cookie.split('=')[1] : null;
+  console.log(userCookieId);
+
+  const sessionId = {
+    id: userCookieId
+  }
+
+  const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+
+  callback(userURL);
+}
+
 let getUserData = function (url,callback) {
   console.log(url);
   fetch(url, {
@@ -70,6 +93,8 @@ let getUserData = function (url,callback) {
   .then(response => {
     if (response.ok) {
       response.json().then(data => {
+        globalUID = data.id;
+        console.log(globalUID);
         setUserData(data, () => {
           console.log("User Data Set");
           const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
@@ -202,7 +227,8 @@ function createTeam(){
   const teamName= teamInput.value; //Set leaguename
   const data = { 
       num_players: selectedSize, 
-      teamName: teamName 
+      teamName: teamName,
+      TeamCreator: globalUID
     };
     
     console.log(data);
@@ -219,7 +245,7 @@ function createTeam(){
         if (response.ok) {
           // Redirect user to view their league page after successful POST request
           console.log("Responded");
-          window.location.replace('lteam_admin.html');
+          //window.location.replace('lteam_admin.html');
         } else {
           // Handle error response
           throw new Error('Unable to create user account');

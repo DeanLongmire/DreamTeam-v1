@@ -28,7 +28,7 @@ class team_dbmanager{
         });
     };
     insert(name, ID, P_ID, A_ID, sport, num_players, W, L, callback){
-        this.sql = 'INSERT INTO Teams (name, ID, P_ID, A_ID, sport, num_players, W, L) VALUES(?, ?, ?, ?, ?, ?, ?)';
+        this.sql = 'INSERT INTO Teams (name, ID, P_ID, A_ID, sport, num_players, W, L) VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
         this.db.run(this.sql, [name, ID, P_ID, A_ID, sport, num_players, W, L], (err)=>{
             if(err){return console.error(err.message);}
             console.log('New row created in Team table')
