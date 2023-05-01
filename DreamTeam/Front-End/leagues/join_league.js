@@ -1,5 +1,6 @@
 // Array of league names
 const leagues = ["League A", "League B", "League C"];
+let userCookieId;
 
 const ls =[
     {name: 'League 1', team: 1.99},
@@ -31,7 +32,7 @@ for (const l of ls) {
 let getSessionId = function (callback) {
     const cookies = document.cookie.split(';');
     const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
-    const userCookieId = cookie ? cookie.split('=')[1] : null;
+    userCookieId = cookie ? cookie.split('=')[1] : null;
     console.log(userCookieId);
   
     const sessionId = {
@@ -131,6 +132,7 @@ let getSessionId = function (callback) {
       console.error(error);
     });
   }
+
   let loadData = function () {
     getSessionId((userURL) => {
       console.log("URL: " + userURL);

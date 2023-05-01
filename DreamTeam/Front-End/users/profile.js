@@ -220,7 +220,6 @@ let logout = function(callback) {
   cookies.forEach(cookie => {
     console.log(cookie)
     if (cookie.trim().startsWith("UserCookie")) {
-      console.log("Test");
       // Set the cookie's expiration date to a past date to delete it
       document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       console.log(document.cookie)
