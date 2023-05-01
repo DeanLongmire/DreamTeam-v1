@@ -114,20 +114,22 @@ for (let i = 0; i < teams.length; i++) {
 
 // Added by Logan
 //COOKIE INFO
-// let getSessionId = function (callback) {
-//   const cookies = document.cookie.split(';');
-//   const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
-//   const userCookieId = cookie ? cookie.split('=')[1] : null;
-//   console.log(userCookieId);
+ let userCookieId;
 
-//   const sessionId = {
-//     id: userCookieId
-//   }
+ let getSessionId = function (callback) {
+   const cookies = document.cookie.split(';');
+   const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+   userCookieId = cookie ? cookie.split('=')[1] : null;
+   console.log(userCookieId);
 
-//   const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+   const sessionId = {
+     id: userCookieId
+   }
 
-//   callback(userURL);
-// }
+   const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+
+   callback(userURL);
+}
 
 // let getUserData = function (url,callback) {
 //   console.log(url);
@@ -325,3 +327,46 @@ for (let i = 0; i < teams.length; i++) {
 //   extractedTeams = content;
 //   console.log("Teams", extractedTeams);
 // })
+
+getSessionId(() => { //TAKE THIS OUT AND REPLACE WITH A LOAD DATA FUNCTION
+  console.log("Got Session ID");
+});  
+
+//Logout
+let logout = function(callback) {
+  const cookies = document.cookie.split(";");
+
+  cookies.forEach(cookie => {
+    console.log(cookie)
+    if (cookie.trim().startsWith("UserCookie")) {
+      // Set the cookie's expiration date to a past date to delete it
+      document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      console.log(document.cookie)
+    }
+  });
+
+  const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userCookieId;
+
+  fetch(deleteSessionURL, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log("Session Deleted");
+      callback();
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+      callback();
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+document.querySelector("#Log-Out").onclick = function(){
+  logout(() => {
+    window.location.replace("../home/index.html");
+  });
+}
