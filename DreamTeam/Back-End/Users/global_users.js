@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_player, update_team, update_profile_picture } = require('../controllers/global_users.js');
+const { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_player, update_team, update_league, update_profile_picture } = require('../controllers/global_users.js');
 
 const router = express.Router();
 
@@ -32,6 +32,7 @@ router.patch('/update_position/:id', update_position);
 router.patch('/update_password/:id', update_password);
 router.patch('/update_player/:id', update_player);
 router.patch('/update_team/:id', update_team);
+router.patch('/update_league/:id', update_league);
 router.patch('/update_picture/:id', update_profile_picture);
 
 module.exports = router;

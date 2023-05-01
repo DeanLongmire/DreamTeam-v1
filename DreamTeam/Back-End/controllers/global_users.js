@@ -389,6 +389,21 @@ const update_team = (req, res) => {
     });
 }
 
+//for when a user joins a league
+const update_league = (req, res) => {
+    const { id } = req.params;
+    const leagueId = req.body.leagueId;
+
+    get_path((path) => {
+        db.open(path);
+        db.update_leagueId(leagueId,id, () => {
+            db.close();
+        });
+
+        res.send('League ID updated');
+    });
+}
+
 const update_profile_picture = (req, res) => {
     const { id } = req.params;
     const new_pp = req.body.pp;
@@ -433,4 +448,4 @@ const encodePhoto = function(picPath) {
     return(picBase64);
 }
 
-module.exports = { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_player, update_team, update_profile_picture };
+module.exports = { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_player, update_team, update_league, update_profile_picture };
