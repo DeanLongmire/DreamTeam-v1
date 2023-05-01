@@ -1,5 +1,6 @@
 //This is the url for the server
 const url = 'http://localhost:5000/leagues'
+let userCookieId;
 
 //Make the fields and create button itself
 const create_button = document.querySelector('#create_league_button');
@@ -75,7 +76,7 @@ function createLeague(){
   let getSessionId = function (callback) {
     const cookies = document.cookie.split(';');
     const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
-    const userCookieId = cookie ? cookie.split('=')[1] : null;
+    userCookieId = cookie ? cookie.split('=')[1] : null;
     console.log(userCookieId);
   
     const sessionId = {
