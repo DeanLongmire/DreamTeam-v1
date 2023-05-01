@@ -35,15 +35,18 @@ class league_dbmanager{
     }
     display_all(callback){
         const league_names = [];
+        const league_sports = [];
         this.db.serialize(()=>{ 
-            this.sql = 'SELECT name FROM Leagues';
+            this.sql = 'SELECT name,sport FROM Leagues';
             this.db.all(this.sql, [], (err,rows)=>{
                 if(err) {return console.error(err.message);}
                 rows.forEach((row)=>{
                     console.log(row.name);
+                    console.log(row.sport);
                     league_names.push(row.name);
+                    league_sports.push(row.sport);
                 });
-                callback(league_names);
+                callback(league_names,league_sports);
             });
         });
     }
