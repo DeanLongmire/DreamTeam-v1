@@ -1,4 +1,21 @@
 let userCookieId;
+const welcomeButton = document.querySelector("#welcome-button");
+// Get a reference to the <h4> element for each object
+let fullNameHeading = document.getElementById("full_name");
+let userNameHeading = document.getElementById("username");
+let email = document.getElementById("email");
+let position = document.getElementById("position");
+let bio = document.getElementById("bio");
+let username = null;
+let first = null;
+let last = null;
+let leagueHeading = document.getElementById("league");
+let leaguename = null;
+let barLeague = document.getElementById("league_bt");
+let teamHeading = document.getElementById("team");
+let teamname = null;
+let barTeam = document.getElementById("team_bt");
+
 
 //COOKIE INFO
 let getSessionId = function (callback) {
@@ -55,6 +72,9 @@ let getUserData = function (url,callback) {
               getLeagueData(leagueURL, () => {
                 callback();
               });
+              teamHeading.onclick = function(){
+                window.location.href = "../teams/view_teams.html";
+              }
             }
         });
       });
@@ -131,17 +151,6 @@ let loadData = function () {
   });
 };
 
-const welcomeButton = document.querySelector("#welcome-button");
-
-// Get a reference to the <h4> element for each object
-let fullNameHeading = document.getElementById("full_name");
-let userNameHeading = document.getElementById("username");
-let email = document.getElementById("email");
-let position = document.getElementById("position");
-let bio = document.getElementById("bio");
-let username = null;
-let first = null;
-let last = null;
 
 let setUserData = function (userDataJSON,callback) {
   console.log(userDataJSON.username);
@@ -188,10 +197,6 @@ let setUserData = function (userDataJSON,callback) {
   callback();
 }
 
-let teamHeading = document.getElementById("team");
-let teamname = null;
-let barTeam = document.getElementById("team_bt");
-
 let setTeamData = function (teamDataJSON, callback) {
   console.log("In set team data");
   console.log(barTeam.textContent);
@@ -213,9 +218,6 @@ let setTeamData = function (teamDataJSON, callback) {
   callback();
 }
 
-let leagueHeading = document.getElementById("league");
-let leaguename = null;
-let barLeague = document.getElementById("league_bt");
 
 let setLeagueData = function (leagueDataJSON, callback) {
   console.log("In set league data");
