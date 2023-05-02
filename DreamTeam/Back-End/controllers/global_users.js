@@ -397,6 +397,7 @@ const update_league = (req, res) => {
     const leagueId = req.body.leagueId;
 
     get_path((path) => {
+        console.log(leagueId);
         db.open(path);
         db.update_leagueId(leagueId,id, () => {
             db.close();

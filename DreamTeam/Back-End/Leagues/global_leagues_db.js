@@ -27,8 +27,11 @@ class league_dbmanager{
         this.db.serialize(() => {
             this.sql = 'INSERT INTO Leagues (name, ID, sport) VALUES(?,?,?)';
             this.db.run(this.sql, [name, ID, sport], (err)=>{
-                if(err) {return console.error(err.message);}
-                console.log("New row created in League table");
+                if (err) {
+                    console.error(err.message);
+                } else {
+                    console.log("New row created in League table");
+                }
             });
             callback();
         });

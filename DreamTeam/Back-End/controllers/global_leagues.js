@@ -62,7 +62,10 @@ const create_league = (req, res) => {
       db.open(path);
       db.insert(uwid.leagueName,uwid.id,uwid.sport, () =>{
           db.close();
-          res.send('League added to database');
+          const leagueData = {
+            id: uwid.id
+          }
+          res.send(leagueData);
         });
     });
 }

@@ -2,6 +2,10 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
+
+const rootDir = path.dirname(require.main.filename);
+console.log("root: " + rootDir);
 
 //Routes
 const usersRoutes = require('./Users/global_users.js');

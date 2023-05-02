@@ -1,5 +1,5 @@
 //This is the url for the server
-const url = 'http://localhost:5000/leagues'
+const url = 'http://127.0.0.1:5000/leagues'
 let userCookieId;
 let userID;
 
@@ -36,42 +36,59 @@ function toggleCreateButton(){
     }
 }
 
+let leagueData;
+
 //Function to create a league on click
-function createLeague(){
-        const leagueName = leagueInput.value; //Set leaguename
-        const data = { 
-            sport: selectedSport, 
-            leagueName: leagueName 
-          };
+function createLeague(event){
+  event.preventDefault();
+
+  const leagueName = leagueInput.value; //Set leaguename
+  const data = { 
+    sport: selectedSport, 
+    leagueName: leagueName 
+  };
           
-          console.log(data);
+  console.log(data);
       
-          //How data is sent back to database
-          fetch(url, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-           })
-           .then(response => {
-              if (response.ok) {
-                // Redirect user to view their league page after successful POST request
-                console.log("Responded");
-
-                window.location.replace('league_admin.html');
-              } else {
-                // Handle error response
-                throw new Error('Unable to create user account');
-                window.location.replace('../error.html');
-              }
-            })
-           .catch(error => console.error(error));
-}
-
-let setUserLeague = function() {
+  //How data is sent back to database
   fetch(url, {
     method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (response.ok) {
+      // Redirect user to view their league page after successful POST request
+      response.json().then(data => {
+        leagueData = {
+          leagueId: data.id
+        };
+        console.log("League Data after initializing: " + leagueData.leagueId)
+
+        setUserLeague(leagueData, () => {
+          window.location.replace('league_admin.html');
+        });
+      });
+    } 
+    else {
+      // Handle error response
+      throw new Error('Unable to create user account');
+      window.location.replace('../error.html');
+    }
+  })
+  .catch(error => console.error(error));
+  return false;
+}
+
+let setUserLeague = function(data, callback) {
+  const sulURL = 'http://127.0.0.1:5000/users/update_league/' + userID;
+
+  console.log(data);
+
+  fetch(sulURL, {
+    method: 'PATCH',
     headers: {
         'Content-Type': 'application/json'
     },
@@ -81,8 +98,7 @@ let setUserLeague = function() {
     if (response.ok) {
       // Redirect user to view their league page after successful POST request
       console.log("Responded");
-
-      window.location.replace('league_admin.html');
+      callback();
     } else {
       // Handle error response
       throw new Error('Unable to create user account');
@@ -93,9 +109,7 @@ let setUserLeague = function() {
 }
 
 //Event listener for when user clicks the button
-  create_button.addEventListener('click', () =>{
-    createLeague();
-  });
+create_button.addEventListener('click', createLeague);
 
 //COOKIESSTUFF
   let getSessionId = function (callback) {
