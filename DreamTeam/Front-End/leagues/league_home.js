@@ -37,9 +37,26 @@ let getUserData = function (url,callback) {
                 callback();
               });
             }
+            else if(data.teamID === null && data.leagueID == null)
+            {
+              let leagueNull;
+              let teamNull; 
+              setLeagueData(leagueNull, ()=> {
+                callback();
+              });
+              setTeamData(teamNull, ()=> {
+                callback();
+              });
+                
+              callback();
+            }
             else
             {
-              callback();
+              const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.leagueID;
+              getLeagueData(leagueURL, () => {
+                
+                callback();
+              });
             }
         });
       });

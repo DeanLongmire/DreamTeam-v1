@@ -70,6 +70,7 @@ let getUserData = function (url,callback) {
             {
               const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.leagueID;
               getLeagueData(leagueURL, () => {
+                
                 callback();
               });
               teamHeading.onclick = function(){
