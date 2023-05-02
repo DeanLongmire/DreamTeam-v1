@@ -36,7 +36,7 @@ let getUserData = function (url,callback) {
                 callback();
               });
             }
-            else
+            else if(data.teamID === null && data.leagueID == null)
             {
               let leagueNull;
               let teamNull; 
@@ -48,6 +48,13 @@ let getUserData = function (url,callback) {
               });
                 
               callback();
+            }
+            else
+            {
+              const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.leagueID;
+              getLeagueData(leagueURL, () => {
+                callback();
+              });
             }
         });
       });
