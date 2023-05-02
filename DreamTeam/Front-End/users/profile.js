@@ -100,7 +100,6 @@ let getTeamData = function (teamURL, callback) {
     if (response.ok) {
       response.json().then(data => {
         setTeamData(data, () => {
-          console.log("Team Data Set");
           const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
           getLeagueData(leagueURL, () => {
             callback();
@@ -199,9 +198,6 @@ let setUserData = function (userDataJSON,callback) {
 }
 
 let setTeamData = function (teamDataJSON, callback) {
-  console.log("In set team data");
-  console.log(barTeam.textContent);
-  console.log(teamHeading.textContent);
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH TEAM DATA (USE THE 'teamDataJSON' OBJECT)
   if(teamDataJSON != null){
     teamname = teamDataJSON.name;

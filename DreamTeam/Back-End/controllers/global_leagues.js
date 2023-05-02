@@ -16,7 +16,7 @@ const get_league = (req, res) => {
     const { id } = req.params;
     console.log(id);
 
-    get_path( (path) =>{
+    get_path((path) =>{
         db.open(path, () => {
             db.get_all(id, (name, ID, sport) => {
                 console.log(name + " " + ID + " " + sport);
