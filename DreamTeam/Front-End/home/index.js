@@ -47,32 +47,6 @@ getSessionId((userURL) => {
 });
 });
 
-// navbar stuff
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  var navbar = document.getElementById("navbar");
-  if (navbar !== null) {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      navbar.style.top = "0";
-    }
-  }
-}
-
-window.addEventListener('scroll', () => {
-  const footer = document.querySelector('.dynprog');
-  const container = document.querySelector('.container');
-  if (footer !== null && container !== null) {
-    const containerHeight = container.offsetHeight;
-    const currentScroll = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-    if (currentScroll + windowHeight >= containerHeight) {
-      footer.classList.add('show');
-    } else {
-      footer.classList.remove('show');
-    }
-  }
-});
 
 /*slideshow*/
 var slidesContainer = document.querySelector('.slides');
@@ -82,7 +56,7 @@ var isDragging = false;
 var startPosition = 0;
 var currentTranslate = 0;
 var prevTranslate = 0;
-
+if(slidesContainer!==null){
 slidesContainer.addEventListener('mousedown', dragStart);
 slidesContainer.addEventListener('mousemove', drag);
 slidesContainer.addEventListener('mouseup', dragEnd);
@@ -91,7 +65,7 @@ slidesContainer.addEventListener('touchstart', touchStart);
 slidesContainer.addEventListener('touchmove', touchMove);
 slidesContainer.addEventListener('touchend', touchEnd);
 slidesContainer.addEventListener('touchcancel', touchEnd);
-
+}
 function dragStart(event) {
   event.preventDefault();
   isDragging = true;
@@ -130,6 +104,7 @@ function dragEnd() {
   currentTranslate = -currentSlide * slidesContainer.offsetWidth;
   setSlidePosition();
 }
+
 
 function touchStart(event) {
   isDragging = true;
@@ -174,8 +149,11 @@ function getPositionX(event) {
 }
 
 function setSlidePosition() {
-  slidesContainer.style.transform = `translateX(${currentTranslate}px)`;
+  if (slidesContainer) {
+    slidesContainer.style.transform = `translateX(${currentTranslate}px)`;
+  }
 }
+
 
 setSlidePosition();
 

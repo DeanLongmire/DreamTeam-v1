@@ -5,7 +5,7 @@ var isDragging = false;
 var startPosition = 0;
 var currentTranslate = 0;
 var prevTranslate = 0;
-
+if (slidesContainer !== null){
 slidesContainer.addEventListener('mousedown', dragStart);
 slidesContainer.addEventListener('mousemove', drag);
 slidesContainer.addEventListener('mouseup', dragEnd);
@@ -14,7 +14,7 @@ slidesContainer.addEventListener('touchstart', touchStart);
 slidesContainer.addEventListener('touchmove', touchMove);
 slidesContainer.addEventListener('touchend', touchEnd);
 slidesContainer.addEventListener('touchcancel', touchEnd);
-
+}
 function dragStart(event) {
   event.preventDefault();
   isDragging = true;
@@ -97,8 +97,11 @@ function getPositionX(event) {
 }
 
 function setSlidePosition() {
-  slidesContainer.style.transform = `translateX(${currentTranslate}px)`;
+  if (slidesContainer) {
+    slidesContainer.style.transform = `translateX(${currentTranslate}px)`;
+  }
 }
+
 
 setSlidePosition();
 
