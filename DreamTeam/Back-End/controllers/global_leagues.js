@@ -40,11 +40,15 @@ const get_league = (req, res) => {
 const show_all = (req, res) => {
     get_path( (path) => {
         db.open(path);
-        db.display_all( () => {
+        db.display_all( (league_names,league_sports) => {
+            const data = { 
+                names: league_names,
+                sports: league_sports
+            }
             db.close();
+            res.send(data);
         });
     });
-    res.send("show all leagues");
 }
 
 const create_league = (req, res) => {
@@ -58,7 +62,10 @@ const create_league = (req, res) => {
       db.open(path);
       db.insert(uwid.leagueName,uwid.id,uwid.sport, () =>{
           db.close();
-          res.send('League added to database');
+          const leagueData = {
+            id: uwid.id
+          }
+          res.send(leagueData);
         });
     });
 }

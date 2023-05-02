@@ -18,7 +18,7 @@ class users_dbmanager{
 
     //creates the table 'Users'
     create(callback){
-        this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, playerID TEXT, teamID TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
+        this.db.run('CREATE TABLE Users(ID INT, user_name TEXT, email TEXT, password TEXT, first_name TEXT, last_name TEXT, playerID TEXT, teamID TEXT, leagueID TEXT, bio TEXT, pos TEXT, profile_picture BLOB)', (err)=>{
             if(err){return console.error(err.message)}
             //console.log('Created User table')
         })
@@ -34,10 +34,10 @@ class users_dbmanager{
     }
 
     //inserts into the table
-    insert(id, un, email, password, fn, ln, pID, tID, bio, pos, pp, callback){
+    insert(id, un, email, password, fn, ln, pID, tID, lID, bio, pos, pp, callback){
         this.db.serialize(() => {
-          this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, playerID, teamID, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?,?,?)'
-          this.db.run(this.sql, [id, un, email, password, fn, ln, pID, tID, bio, pos, pp], (err)=>{
+          this.sql = 'INSERT INTO Users (ID, user_name, email, password, first_name, last_name, playerID, teamID, leagueID, bio, pos, profile_picture) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)'
+          this.db.run(this.sql, [id, un, email, password, fn, ln, pID, tID, lID, bio, pos, pp], (err)=>{
             if(err){return console.log(err.message)}
           })
           callback();
@@ -194,7 +194,7 @@ class users_dbmanager{
           return console.error(err.message);
         }
         if(row) {
-          callback(row.user_name,row.first_name,row.last_name,row.playerID,row.teamID,row.email,row.bio,row.pos,row.profile_picture);
+          callback(row.user_name,row.first_name,row.last_name,row.playerID,row.teamID,row.leagueID,row.email,row.bio,row.pos,row.profile_picture);
         } 
         else {
           console.log("error");
@@ -290,7 +290,16 @@ class users_dbmanager{
           if(err){return console.log(err.message)}
       })
       callback();
-  }
+    }
+
+    //update a users league ID column
+    update_leagueId(leagueId, ID, callback) {
+      this.sql = "UPDATE Users SET leagueID = ? WHERE ID = ?"
+      this.db.run(this.sql, [leagueId, ID], (err)=>{
+        if(err){return console.log(err.message)}
+      })
+      callback();
+    }
 
     //deletes a user from table 'Users'
     delete_user(ID, callback){

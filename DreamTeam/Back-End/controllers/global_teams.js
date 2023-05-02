@@ -45,12 +45,14 @@ const get_team = (req, res) => {
 const show_all = (req, res) => {
     get_path( (path) => {
         db.open(path);
-        db.display_all( () => {
+        db.display_all( (teams) => {
+            const data = {teams:teams}
             db.close();
+            res.send(data);
         });
     });
 
-    res.send("Read all teams");
+    //res.send("Read all teams");
 }
 
 // create a team
@@ -65,7 +67,7 @@ const create_team = (req, res) => {
         console.log(teamWid);
     
         db.open(path);
-        db.insert(teamWid.teamName, teamWid.id, teamWid.P_ID, teamWid.sport, teamWid.size, 0, 0, () =>{
+        db.insert(teamWid.teamName, teamWid.id, teamWid.P_ID, teamWid.creator,teamWid.sport, teamWid.size, 0, 0, () =>{
             db.close();
             console.log("HERE")
             res.status(200).send(`Team with the name ${teamWid.name} added to the Teams database`);
@@ -163,6 +165,18 @@ const UpdateLosses = (req, res) => {
     res.send('Team losses updated');
 }
 
+const SetA_ID = (req, res) => {
+    const {id} = req.params;
+    const adId = req.body.A_ID;
+    get_path((path) => {
+        db.open(path);
+        db.SetAdminID(adId, id, () => {
+            db.close();
+        });
+    });
+    res.send('Team admin ID updated');
+}
+
 // function that creates the session with all the teams data
 const createTeamSession = (req, res, teamJSON, callback) => {
     console.log('made it here 1');
@@ -192,4 +206,5 @@ module.exports = {
     UpdateWins,
     UpdateLosses,
     createTeamSession,
+    SetA_ID
 }

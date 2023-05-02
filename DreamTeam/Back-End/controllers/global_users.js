@@ -39,7 +39,7 @@ const get_user = (req, res) => {
             sess.close();
             get_path( (path) => {
                 db.open(path);
-                db.get_all(id, (username, first_name, last_name, playerID, teamID, email, bio, pos, picPath) => {
+                db.get_all(id, (username, first_name, last_name, playerID, teamID, leagueID, email, bio, pos, picPath) => {
                     //console.log(username + " " + first_name + " " + last_name + " " + playerID + " " + teamID + " " + email + " " + bio + " " + pos + " " + picPath)
                     let encodedPic;
                     if(picPath !== null) 
@@ -53,6 +53,7 @@ const get_user = (req, res) => {
                         lastName: last_name,
                         playerID: playerID,
                         teamID: teamID,
+                        leagueID: leagueID,
                         email: email,
                         bio: bio,
                         pos: pos,
@@ -181,8 +182,8 @@ const create_user = (req, res) => {
         uwid.password = hash_pass;
 
         db.open(path);
-        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.playerID,uwid.teamID,uwid.bio,uwid.position,null, () => {
-            db.get_all(uwid.id, (un,fn,ln,pID,tID,email,bio,pos) => {
+        db.insert(uwid.id,uwid.username,uwid.email,uwid.password,uwid.firstName,uwid.lastName,uwid.playerID,uwid.teamID,uwid.leagueID,uwid.bio,uwid.position,null, () => {
+            db.get_all(uwid.id, (un,fn,ln,pID,tID,lID,email,bio,pos) => {
                 const user = {
                     id: uwid.id,
                     username: un,
@@ -190,6 +191,7 @@ const create_user = (req, res) => {
                     lastName: ln,
                     playerID: pID,
                     teamID: tID,
+                    leagueID: lID,
                     email: email,
                     bio: bio,
                     pos: pos
@@ -389,6 +391,22 @@ const update_team = (req, res) => {
     });
 }
 
+//for when a user joins a league
+const update_league = (req, res) => {
+    const { id } = req.params;
+    const leagueId = req.body.leagueId;
+
+    get_path((path) => {
+        console.log(leagueId);
+        db.open(path);
+        db.update_leagueId(leagueId,id, () => {
+            db.close();
+        });
+
+        res.send('League ID updated');
+    });
+}
+
 const update_profile_picture = (req, res) => {
     const { id } = req.params;
     const new_pp = req.body.pp;
@@ -426,6 +444,8 @@ const storePhoto = function(base64Encoded, id, callback) {
 }
 
 const encodePhoto = function(picPath) {
+    console.log(picPath)
+
     let pic = fs.readFileSync(picPath);
     let picBase64 = Buffer.from(pic).toString('base64');
 
@@ -433,4 +453,4 @@ const encodePhoto = function(picPath) {
     return(picBase64);
 }
 
-module.exports = { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_player, update_team, update_profile_picture };
+module.exports = { get_user, login, show_all, create_user, delete_user, delete_session, update_firstname, update_lastname, update_username, update_password, update_email, update_bio, update_position, update_player, update_team, update_league, update_profile_picture };

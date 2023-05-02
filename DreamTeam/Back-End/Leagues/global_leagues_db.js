@@ -27,22 +27,30 @@ class league_dbmanager{
         this.db.serialize(() => {
             this.sql = 'INSERT INTO Leagues (name, ID, sport) VALUES(?,?,?)';
             this.db.run(this.sql, [name, ID, sport], (err)=>{
-                if(err) {return console.error(err.message);}
-                console.log("New row created in League table");
+                if (err) {
+                    console.error(err.message);
+                } else {
+                    console.log("New row created in League table");
+                }
             });
             callback();
         });
     }
     display_all(callback){
+        const league_names = [];
+        const league_sports = [];
         this.db.serialize(()=>{ 
-            this.sql = 'SELECT * FROM Leagues';
+            this.sql = 'SELECT name,sport FROM Leagues';
             this.db.all(this.sql, [], (err,rows)=>{
                 if(err) {return console.error(err.message);}
                 rows.forEach((row)=>{
-                    console.log(row);
+                    console.log(row.name);
+                    console.log(row.sport);
+                    league_names.push(row.name);
+                    league_sports.push(row.sport);
                 });
+                callback(league_names,league_sports);
             });
-            callback();
         });
     }
     get_all(ID, callback){

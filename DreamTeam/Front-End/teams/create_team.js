@@ -58,6 +58,134 @@ let saveTeam = () => {
 
 create_button.addEventListener("click", saveTeam);
 */
+
+let globalUID;
+
+const setUserData = function(data, callback) {
+  console.log("Setting User Data");
+
+  callback();
+}
+
+let getSessionId = function (callback) {
+  const cookies = document.cookie.split(';');
+  const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+  userCookieId = cookie ? cookie.split('=')[1] : null;
+  console.log(userCookieId);
+
+  const sessionId = {
+    id: userCookieId
+  }
+
+  const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
+
+  callback(userURL);
+}
+
+let getUserData = function (url,callback) {
+  console.log(url);
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      response.json().then(data => {
+        globalUID = data.id;
+        console.log(globalUID);
+        setUserData(data, () => {
+          console.log("User Data Set");
+          const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
+            if(data.teamID !== null) 
+            {
+              getTeamData(teamURL, () => {
+                callback();
+              });
+            }
+            else
+            {
+              callback();
+            }
+        });
+      });
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+let getTeamData = function (teamURL, callback) {
+  fetch(teamURL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+  }
+  })
+  .then(response => {
+    if (response.ok) {
+      response.json().then(data => {
+        setTeamData(data, () => {
+          console.log("Team Data Set");
+          const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+          getLeagueData(leagueURL, () => {
+            callback();
+          });
+        });
+      });
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+let getLeagueData = function (leagueURL, callback) {
+  fetch(leagueURL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+  }
+  })
+  .then(response => {
+    if (response.ok) {
+      response.json().then(data => {
+        setLeagueData(data, () => {
+          console.log("League Data Set");
+          callback();
+        });
+      });
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+let loadData = function () {
+  getSessionId((userURL) => {
+    console.log("URL: " + userURL);
+    getUserData(userURL,() => {
+      console.log("All Data Set");
+      //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
+    });
+  });
+};
+
+loadData();
+
+
 const url = 'http://localhost:5000/teams'
 
 //Make the fields and create button
@@ -99,7 +227,8 @@ function createTeam(){
   const teamName= teamInput.value; //Set leaguename
   const data = { 
       num_players: selectedSize, 
-      teamName: teamName 
+      teamName: teamName,
+      TeamCreator: globalUID
     };
     
     console.log(data);
@@ -116,7 +245,7 @@ function createTeam(){
         if (response.ok) {
           // Redirect user to view their league page after successful POST request
           console.log("Responded");
-          window.location.replace('lteam_admin.html');
+          //window.location.replace('lteam_admin.html');
         } else {
           // Handle error response
           throw new Error('Unable to create user account');

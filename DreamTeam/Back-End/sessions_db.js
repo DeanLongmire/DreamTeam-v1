@@ -51,8 +51,8 @@ class sessions_dbmanager{
                 callback(sessObj);
             } 
             else {
-              const errObj = JSON.parse(row.sess);
-              console.log(errObj);
+              //const errObj = JSON.parse(row.sess);
+              //console.log(errObj);
               console.log("error");
             }
         });
