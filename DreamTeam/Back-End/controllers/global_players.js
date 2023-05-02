@@ -1,8 +1,11 @@
-const global_players = require("../Players/global_players_db.js")
+const global_players = require("../Players/global_players_db.js");
+const global_users = require("../Users/global_users_db.js");
 
 const { v4: uuidv4 } = require('uuid');
 
 let db = new global_players.player_dbmanager;
+let usersDb = new global_users.users_dbmanager;
+
 const get_path = (callback) => {
     const pwd = process.cwd();
     let db_path = pwd;
@@ -43,11 +46,16 @@ const create_player = (req, res) => {
     const uwid = { ... player, id: playerID}
 
     console.log(uwid);
-    get_path( (path) =>{
+    get_path((path) => {
         db.open(path);
         db.insert(uwid.player,uwid.username,uwid.id,uwid.teamId,uwid.pos, () =>{
             db.close();
-            res.send('Player added to database')
+            usersDb.open(path);
+            usersDb.update_playerId(uwid.id,uwid.userId,() => {
+                usersDb.close();
+                console.log("Got to here");
+                res.send('Player added to database');
+            })
         });
     });
 }
