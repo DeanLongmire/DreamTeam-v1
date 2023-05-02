@@ -60,6 +60,8 @@ create_button.addEventListener("click", saveTeam);
 */
 
 let globalUID;
+let globalUPOS;
+let globalUUN;
 
 const setUserData = function(data, callback) {
   console.log("Setting User Data");
@@ -94,19 +96,28 @@ let getUserData = function (url,callback) {
     if (response.ok) {
       response.json().then(data => {
         globalUID = data.id;
+        globalUPOS = data.pos;
+        globalUUN = data.username;
         console.log(globalUID);
         setUserData(data, () => {
           console.log("User Data Set");
           const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
-            if(data.teamID !== null) 
+            if(data.teamID !== null) //this shouldn't happen, ideally they cannot create a team if they are already on one
             {
               getTeamData(teamURL, () => {
                 callback();
               });
             }
-            else
-            {
+            else if(data.teamID === null && data.leagueID == null) //gotta get league ID of league they are attempting to create a team in, probably from a cookie when they click on a league
+            {  
               callback();
+            }
+            else //they are in a league already, get the leagueID from the user
+            {
+              const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.leagueID;
+              getLeagueData(leagueURL, () => {
+                callback();
+              });
             }
         });
       });
@@ -130,12 +141,9 @@ let getTeamData = function (teamURL, callback) {
   .then(response => {
     if (response.ok) {
       response.json().then(data => {
-        setTeamData(data, () => {
-          console.log("Team Data Set");
-          const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
-          getLeagueData(leagueURL, () => {
-            callback();
-          });
+        const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+        getLeagueData(leagueURL, () => {
+          callback();
         });
       });
     } 
@@ -158,10 +166,7 @@ let getLeagueData = function (leagueURL, callback) {
   .then(response => {
     if (response.ok) {
       response.json().then(data => {
-        setLeagueData(data, () => {
-          console.log("League Data Set");
-          callback();
-        });
+        callback();
       });
     } 
     else {
@@ -221,6 +226,47 @@ function toggleCreateButton(){
   }
 }
 
+const setUserTeamId = function(url,data,callback) {
+  fetch(url, {
+    method: 'PATCH',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+ })
+ .then(response => {
+    if (response.ok) {
+      callback();
+    } else {
+      // Handle error response
+      throw new Error('Unable to create user account');
+      window.location.replace('../error.html');
+    }
+  })
+ .catch(error => console.error(error));
+}
+
+const createPlayer = function(url,data,callback) {
+  fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+ })
+ .then(response => {
+    if (response.ok) {
+      console.log("Player Created")
+      callback();
+    } else {
+      // Handle error response
+      throw new Error('Unable to create user account');
+      window.location.replace('../error.html');
+    }
+  })
+ .catch(error => console.error(error));
+}
+
 //Function to create a team on click
 //Function to create a league on click
 function createTeam(){
@@ -243,9 +289,22 @@ function createTeam(){
      })
      .then(response => {
         if (response.ok) {
-          // Redirect user to view their league page after successful POST request
-          console.log("Responded");
-          //window.location.replace('lteam_admin.html');
+          response.json().then(teamData => {
+            const updateURL = 'http://127.0.0.1:5000/users/update_team/' + globalUID;
+            setUserTeamId(updateURL,teamData,() => {
+              console.log("Done");
+              const globalUserData = {
+                userId: globalUID,
+                teamId: teamData.teamId,
+                pos: globalUPOS,
+                username: globalUUN
+              }
+              const playerURL = 'http://127.0.0.1:5000/players';
+              createPlayer(playerURL,globalUserData,() => {
+                console.log("DONE");
+              });
+            })
+          });
         } else {
           // Handle error response
           throw new Error('Unable to create user account');
@@ -257,5 +316,5 @@ function createTeam(){
 
 //Event listener for when user clicks the button
 create_button.addEventListener('click', () =>{
-createTeam();
+  createTeam();
 });

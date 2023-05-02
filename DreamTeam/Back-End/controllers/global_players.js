@@ -45,7 +45,7 @@ const create_player = (req, res) => {
     console.log(uwid);
     get_path( (path) =>{
         db.open(path);
-        db.insert(uwid.player,uwid.userName,uwid.id,uwid.teamID,uwid.position, () =>{
+        db.insert(uwid.player,uwid.username,uwid.id,uwid.teamId,uwid.pos, () =>{
             db.close();
             res.send('Player added to database')
         });

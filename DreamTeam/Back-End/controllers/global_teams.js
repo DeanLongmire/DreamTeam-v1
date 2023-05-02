@@ -70,7 +70,10 @@ const create_team = (req, res) => {
         db.insert(teamWid.teamName, teamWid.id, teamWid.P_ID, teamWid.creator,teamWid.sport, teamWid.size, 0, 0, () =>{
             db.close();
             console.log("HERE")
-            res.status(200).send(`Team with the name ${teamWid.name} added to the Teams database`);
+            const resData = {
+                teamId: teamWid.id
+            }
+            res.status(200).send(resData);
         });
     });
 }
