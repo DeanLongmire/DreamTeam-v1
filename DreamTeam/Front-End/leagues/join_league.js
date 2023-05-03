@@ -58,16 +58,11 @@ let getSessionId = function (callback) {
           setUserData(data, () => {
             console.log("User Data Set");
             const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
-              if(data.teamID !== null) 
-              {
-                getTeamData(teamURL, () => {
-                  callback();
-                });
-              }
-              else
-              {
+            const leagueURL = 'http://127.0.0.1:5000/leagues/';
+              getLeagueData(null, () => {
+                
                 callback();
-              }
+              });
           });
         });
       } 
@@ -80,35 +75,9 @@ let getSessionId = function (callback) {
     });
   }
   
-  let getTeamData = function (teamURL, callback) {
-    fetch(teamURL, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-    }
-    })
-    .then(response => {
-      if (response.ok) {
-        response.json().then(data => {
-          setTeamData(data, () => {
-            console.log("Team Data Set");
-            const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
-            getLeagueData(leagueURL, () => {
-              callback();
-            });
-          });
-        });
-      } 
-      else {
-        console.error('Error: ' + response.statusText);
-      }
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
   
   let getLeagueData = function (leagueURL, callback) {
+    console.log("in get leage data");
     fetch(leagueURL, {
       method: 'GET',
       headers: {
@@ -138,10 +107,21 @@ let getSessionId = function (callback) {
       console.log("URL: " + userURL);
       getUserData(userURL,() => {
         console.log("All Data Set");
-        //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
       });
     });
   };
+
+  let setLeagueData = function (leagueDataJSON){
+    console.log("In the setleague function");
+    for(let i=0; i < leagueDataJSON.length; i++){
+       const leagueDiv = document.createElement("div");
+       leagueContainer.textContent = leagueDataJSON[i].name;
+       leagueContainer.appendChild(leagueDiv);
+
+    }
+    console.log(leagueDataJSON.name);
+    console.log(leagueDataJSON.sport);
+  }
 
 const welcomeButton = document.querySelector("#welcome-button");
   //Reference for username
