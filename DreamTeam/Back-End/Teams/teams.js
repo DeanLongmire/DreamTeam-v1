@@ -15,8 +15,10 @@ const {
     UpdateWins,
     UpdateLosses,
     createTeamSession,
-    SetA_ID
+    SetA_ID,
+    UpdateTeamPicture
 } = require('../controllers/global_teams.js');
+const { update_profile_picture } = require('../controllers/global_users.js');
 
 const router = express.Router();
 
@@ -53,5 +55,7 @@ router.patch('/update_admin_id/:id', SetA_ID);
 router.delete('/:id', DeleteTeam);
 
 router.get('/get_team_session/:id', createTeamSession);
+
+router.patch('/update_picture/:id', update_profile_picture);
 
 module.exports = router;

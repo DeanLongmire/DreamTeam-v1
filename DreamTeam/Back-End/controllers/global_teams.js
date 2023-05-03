@@ -198,6 +198,52 @@ const createTeamSession = (req, res, teamJSON, callback) => {
     callback();
 };
 
+const update_profile_picture = (req, res) => {
+    const { id } = req.params;
+    const new_pp = req.body.pp;
+
+    //console.log(new_pp + " " + id);
+
+    storePhoto(new_pp, id, (picPath) => {
+        get_path( (path) => {
+            db.open(path);
+            db.update_profile_picture(picPath,id, () => {
+                db.close();
+            });
+    
+            res.send('Picture updated');
+        });
+    })
+}
+
+const storePhoto = function(base64Encoded, id, callback) {
+    const data = base64Encoded.replace(/^data:image\/\w+;base64,/, "");
+
+    const buffer = Buffer.from(data, 'base64');
+
+    let picPath = "./DreamTeam/Back-End/Teams/profile_pictures/" + id + ".png";
+
+    fs.writeFile(picPath, buffer, function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            //console.log("The file was saved!");
+        }
+    });
+
+    callback(picPath);
+}
+
+const encodePhoto = function(picPath) {
+    console.log(picPath)
+
+    let pic = fs.readFileSync(picPath);
+    let picBase64 = Buffer.from(pic).toString('base64');
+
+    //console.log("PIC STRING: " + picBase64);
+    return(picBase64);
+}
+
 module.exports = {
     get_team,
     show_all,
@@ -209,5 +255,8 @@ module.exports = {
     UpdateWins,
     UpdateLosses,
     createTeamSession,
-    SetA_ID
+    SetA_ID,
+    storePhoto,
+    encodePhoto,
+    update_profile_picture
 }
