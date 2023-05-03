@@ -7,12 +7,32 @@ const league_name = document.querySelector('#league_name');
 const league_photo = document.querySelector('league_photo');
 let selectedSport = null; //Define outside function
 const sportsRadios = document.getElementsByTagName("sport");
+//Need to see if can get photo this way
+const profile_photo = document.getElementById("profile_photo");
+let encodedPhoto;
 
 league_name.addEventListener("input", buildData);
-league_photo.addEventListener("input", buildData);
+//league_photo.addEventListener("input", buildData);
 
 function buildData(){
   
+  //Check if there is even a value for the field
+  if(league_name.value.trim === ''){
+      league_name.value = null;
+    }
+
+    //Picture
+    if(profile_photo.value.trim() === ''){
+      profile_photo.value = null;
+  }
+  else{
+      const pic = profile_photo.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(pic);
+      reader.onload = function() {
+          encodedPhoto = reader.result;
+      };
+  }
 }
 
 //COOKIE INFO
@@ -30,6 +50,9 @@ let getSessionId = function (callback) {
   
     callback(userURL);
   }
+  
+
+
   
   let getUserData = function (url,callback) {
     console.log(url);
