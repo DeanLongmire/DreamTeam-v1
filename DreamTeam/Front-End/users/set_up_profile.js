@@ -74,12 +74,11 @@ let getSessionId = function (callback) {
 }
 
 let buttonSubmit = function () {
-    let numOfInputs = getNumOfInputs();
-    getSessionId((url) => {
-        getUserData(url, (id) => {
-            console.log(id);
-            waitOnRequest(numOfInputs,id).then(() => {
-                window.location.replace("profile.html");
+    let numOfInputs = getNumOfInputs(); //get number of fields that the user entered
+    getSessionId((url) => { //get user from session store to get user ID
+        getUserData(url, (id) => { //get user ID
+            waitOnRequest(numOfInputs,id).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
+                window.location.replace("profile.html"); //take back to profile page
             })
             .catch(error => {
                 console.log(error);
@@ -139,16 +138,16 @@ let getUserData = function (url,callback) {
 const waitOnRequest = function (numOfInputs, userID,) {
     return new Promise((resolve,reject) => {
         let proccessed = 0;
-        if(numOfInputs === proccessed) resolve();
-        if(first_name.value !== "")
+        if(numOfInputs === proccessed) resolve(); //if zero fields were updated
+        if(first_name.value !== "") //if the field is filled in
         {
             const fn = {
-                fn: first_name.value
+                fn: first_name.value   //get the value entered
             }
-            const updateFNUrl = 'http://127.0.0.1:5000/users/update_firstname/' + userID;
-            makeRequest(fn,updateFNUrl, () => {
-                proccessed += 1;
-                if(proccessed === numOfInputs) resolve();
+            const updateFNUrl = 'http://127.0.0.1:5000/users/update_firstname/' + userID;  //construct patch URL
+            makeRequest(fn,updateFNUrl, () => {  //make the patch request, see makeRequest function
+                proccessed += 1;                  //increment the number of proccessed requests
+                if(proccessed === numOfInputs) resolve();   //if the number proccessed equals number inputted, all requests processed, return
             });
         }
         if(last_name.value !== "")
