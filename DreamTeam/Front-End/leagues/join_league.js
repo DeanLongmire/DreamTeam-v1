@@ -1,33 +1,5 @@
-// Array of league names
-//var leagues = ["League A", "League B", "League C"];
 let userCookieId;
-/*
-const ls =[
-    {name: 'League 1', team: 1.99},
-    {name: 'League 2', team: 2.99},
-    {name: 'League 3', team: 3.99}
-];
 
-// Get the container element where the league names will be displayed
-const leagueContainer = document.getElementById("league_container");
-const lContainer = document.getElementById("l_container");
-
-// Loop through the array of league names and create a new h4 element for each one
-for (let i = 0; i < leagues.length; i++) {
-    const leagueName = leagues[i];
-    const h4 = document.createElement("h4");
-    h4.textContent = leagueName;
-    leagueContainer.appendChild(h4);
-}
-
-for (const l of ls) {
-    const div = document.createElement('div');
-    div.classList.add('.dynprog-card-4');
-    div.innerHTML = `<h3>${l.name}</h3><p>$${l.team.toFixed(2)}</p>`;
-    //container.appendChild(div);
-}
-
-*/
 ///COOKIE INFO
 let getSessionId = function (callback) {
     const cookies = document.cookie.split(';');
@@ -48,8 +20,6 @@ let getSessionId = function (callback) {
     const lContainer = document.getElementById("l_container");
     names = LeagueDataJSON.names;
     sports = LeagueDataJSON.sports;
-    console.log(names);
-    console.log(sports);
     for (let i = 0; i < names.length; i++) {
       const leagueName = names[i];
       const leagueSport = sports[i];
@@ -60,7 +30,6 @@ let getSessionId = function (callback) {
     callback();
   } 
   let getLeagueData = function(leagueURL, callback){
-    console.log(leagueURL);
     fetch(leagueURL, {
       method: 'GET',
       headers: {
@@ -71,7 +40,7 @@ let getSessionId = function (callback) {
       if(response.ok){
         response.json().then(data =>{
           setLeagueData(data, ()=>{
-            console.log("set league data")
+          
           })
         })
       }
