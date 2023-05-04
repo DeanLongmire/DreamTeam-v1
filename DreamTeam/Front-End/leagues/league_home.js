@@ -166,7 +166,11 @@ let setLeagueData = function (leagueDataJSON,callback){
     sport_type = leagueDataJSON.sport;
     if(sport_type === "Flag_football"){
       sportHeading.textContent = "Sport: Flag Football"
-    }else{
+    }
+    else if(sport_type === "Men_soccer"){
+      sportHeading.textContent = "Sport: Men's Soccer"
+    }
+    else{
       sportHeading.textContent = "Sport: " + sport_type;
     }
     }
