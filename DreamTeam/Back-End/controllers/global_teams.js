@@ -74,7 +74,7 @@ const create_team = (req, res) => {
         console.log(teamWid);
     
         db.open(path);
-        db.insert(teamWid.teamName, teamWid.id, teamWid.P_ID, teamWid.creator,teamWid.sport, teamWid.size, 0, 0, () =>{
+        db.insert(teamWid.teamName, teamWid.id, teamWid.P_ID, teamWid.creator,teamWid.sport, teamWid.size, 0, 0, null, () =>{
             db.close();
             console.log("HERE")
             const resData = {

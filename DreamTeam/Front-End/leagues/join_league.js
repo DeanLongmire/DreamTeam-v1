@@ -25,7 +25,7 @@ for (const l of ls) {
     div.classList.add('.dynprog-card-4');
     div.innerHTML = `<h3>${l.name}</h3><p>$${l.team.toFixed(2)}</p>`;
     //container.appendChild(div);
-  }
+}
 
 
 ///COOKIE INFO
@@ -107,7 +107,6 @@ let getTeamData = function (teamURL, callback) {
     console.error(error);
   });
 }
-  
   
   let getLeagueData = function (leagueURL, callback) {
     console.log("in get leage data");
