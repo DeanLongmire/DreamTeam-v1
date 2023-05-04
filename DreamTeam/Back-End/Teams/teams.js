@@ -28,6 +28,7 @@ router.get('/', show_all);
 
 //Get a Team's name
 router.get('/:id', get_team);
+//router.getTeamsInLeague('/:leagueId,get_teams_in_league)
 
 //Create a team
 router.post('/', create_team);

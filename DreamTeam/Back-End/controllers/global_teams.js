@@ -41,6 +41,13 @@ const get_team = (req, res) => {
     });
 }
 
+/*get team in league function(){
+    get league id from param
+    search db where p_id = league id (will have to make a db function for this)
+    store all of these teams with their names, sport, W, L, numplayers maybe in a JSON object
+    might need to have a count of all teams returned
+}*/
+
 // Diplay all teams in DB
 const show_all = (req, res) => {
     get_path( (path) => {
