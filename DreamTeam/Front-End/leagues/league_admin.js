@@ -15,6 +15,7 @@ league_name.addEventListener("input", buildData);
 //league_photo.addEventListener("input", buildData);
 let selectedSport = null; //Define outside function
 
+let leagueID;
 
 function buildData(){
   
@@ -69,7 +70,7 @@ let getSessionId = function (callback) {
     let numOfInputs = getNumOfInputs(); //get number of fields that the user entered
     getSessionId((url) => { //get user from session store to get user ID
         getUserData(url, (id) => { //get user ID
-            waitOnRequest(numOfInputs,id).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
+            waitOnRequest(numOfInputs,leagueID).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
                 window.location.replace("league_home.html"); //take back to league home page
             })
             .catch(error => {
@@ -114,6 +115,9 @@ let makeRequest = function (dataToBeUpdated, url, callback) {
     .then(response => {
       if (response.ok) {
         response.json().then(data => {
+  
+          leagueID = data.leagueID;
+          console.log(leagueID);
           setUserData(data, () => {
             console.log("User Data Set");
             const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
@@ -145,21 +149,25 @@ let makeRequest = function (dataToBeUpdated, url, callback) {
       if(numOfInputs === proccessed) resolve(); //Only sport updated
       if(league_name.value !== "")
       {
-        const fn = {
-          fn: league_name.value //get the value
+        const newName = {
+          newName: league_name.value //get the value
         }
+        console.log(league_name.value);
+        console.log(leagueID);
         const updateFNUrl = 'http://127.0.0.1:5000/leagues/update_name/' + leagueID;  //construct patch URL
-        makeRequest(fn, updateFNUrl, () => {
+        makeRequest(newName, updateFNUrl, () => {
               proccessed += 1;
               if(proccessed === numOfInputs) resolve();
         });
       }
       if (selectedSport){
-        const fn = {
-          fn: selectedSport
+        const newSport = {
+          newSport: selectedSport
         }
+        console.log(selectedSport);
+        console.log(leagueID);
         const updateFNUrl = 'http://127.0.0.1:5000/leagues/update_sport/' + leagueID;  //construct patch URL
-        makeRequest(fn, updateFNUrl, () => {
+        makeRequest(newSport, updateFNUrl, () => {
               proccessed += 1;
               if(proccessed === numOfInputs) resolve();
         }); 
@@ -251,6 +259,15 @@ const welcomeButton = document.querySelector("#welcome-button");
 let userNameHeading = document.getElementById("username");
 let username = null;
 
+let loadData = function () {
+  getSessionId((userURL) => {
+    console.log("URL: " + userURL);
+    getUserData(userURL,() => {
+      console.log("All Data Set");
+    });
+  });
+};
+
 let setUserData = function (userDataJSON,callback) {
     console.log(userDataJSON.username);
     //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)
@@ -260,6 +277,7 @@ let setUserData = function (userDataJSON,callback) {
     };
     callback();
 }
+
 
 let logout = function(callback) {
   const cookies = document.cookie.split(";");
@@ -293,6 +311,8 @@ let logout = function(callback) {
     console.error(error);
   });
 }
+
+loadData();
 
 //Need to add team and league after get it working on profile
 
