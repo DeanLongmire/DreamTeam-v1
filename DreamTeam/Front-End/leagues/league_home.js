@@ -1,6 +1,8 @@
 //JS Page for League Home
 //Will have to make dynamic boxes to account for different numbers of teams
 
+let leagueAdmin;
+
 //COOKIE INFO
 let getSessionId = function (callback) {
   const cookies = document.cookie.split(';');
@@ -122,12 +124,13 @@ let getLeagueData = function (leagueURL, callback) {
     console.error(error);
   });
 }
+
 let loadData = function () {
   getSessionId((userURL) => {
     console.log("URL: " + userURL);
     getUserData(userURL,() => {
       console.log("All Data Set");
-      //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
+            
     });
   });
 };
@@ -172,7 +175,6 @@ let setLeagueData = function (leagueDataJSON,callback){
 }
 
 let setTeamData = function (teamDataJSON,callback){
-  
   callback();
 }
 
