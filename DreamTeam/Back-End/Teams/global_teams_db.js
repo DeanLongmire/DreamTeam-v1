@@ -143,6 +143,18 @@ class team_dbmanager{
             if(err){return console.log(err.message)}
         })
         callback();
+    }
+    PullTeams(){
+        db.all('SELECT * FROM Teams', (err, rows) => {
+          if (err) {
+            // Handle the error
+            console.error(err.message);
+            res.status(500).send('Internal server error');
+          } else {
+            // Return the team information as JSON
+            res.json(rows);
+          }
+        });
       }
 }
 

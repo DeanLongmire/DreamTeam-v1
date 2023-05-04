@@ -2,21 +2,48 @@ const teamList = document.getElementById('team-container');
 // const sqlite3 = require('sqlite3').verbose();
 // const path = require('path');
 // const tdb = new sqlite3.Database(path.join(__dirname, '../Teams/global_teams_db.db'));
-const teams = [
-  { name: 'Team A', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
-  { name: 'Team B', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
-  { name: 'Team C', sport: 'Softball', num_players: 9, W: 3, L: 4 },
-  { name: 'Team D', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
-  { name: 'Team E', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
-  { name: 'Team F', sport: 'Softball', num_players: 9, W: 3, L: 4 },
-  { name: 'Team G', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
-  { name: 'Team H', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
-  { name: 'Team I', sport: 'Softball', num_players: 9, W: 3, L: 4 },
-  { name: 'Team J', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
-  { name: 'Team K', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
-  { name: 'Team L', sport: 'Softball', num_players: 9, W: 3, L: 4 },
-  // add more teams here
-];
+// const teams = [
+//   { name: 'Team A', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
+//   { name: 'Team B', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
+//   { name: 'Team C', sport: 'Softball', num_players: 9, W: 3, L: 4 },
+//   { name: 'Team D', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
+//   { name: 'Team E', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
+//   { name: 'Team F', sport: 'Softball', num_players: 9, W: 3, L: 4 },
+//   { name: 'Team G', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
+//   { name: 'Team H', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
+//   { name: 'Team I', sport: 'Softball', num_players: 9, W: 3, L: 4 },
+//   { name: 'Team J', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
+//   { name: 'Team K', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
+//   { name: 'Team L', sport: 'Softball', num_players: 9, W: 3, L: 4 },
+//   // add more teams here
+// ];
+
+const sqlite3 = require('sqlite3').verbose();
+
+// Create a new database object
+const db = new sqlite3.Database('your-database-name.sqlite');
+
+// Retrieve the team information from the database
+db.all('SELECT * FROM Teams', (err, rows) => {
+  if (err) {
+    console.error(err.message);
+    return;
+  }
+
+  // Generate a list of team names
+  const teamList = rows.map(row => `<li>${row.name}</li>`).join('');
+
+  // Add the list of team names to the HTML document
+  const teamListElement = document.getElementById('team-list');
+  teamListElement.innerHTML = teamList;
+});
+
+
+
+
+
+
+
 // function fetchTeams(callback) {
 //   const teams = [];
 //   tdb.serialize(() => {

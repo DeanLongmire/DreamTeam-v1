@@ -314,7 +314,7 @@ class users_dbmanager{
     close(){
         this.db.close((err) => {
             if(err){
-                return console.error(err.message)
+              return console.error(err.message)
             }
             //console.log('Database Closed.')
         })

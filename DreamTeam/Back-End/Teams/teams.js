@@ -16,9 +16,8 @@ const {
     UpdateLosses,
     createTeamSession,
     SetA_ID,
-    UpdateTeamPicture
+    update_profile_picture
 } = require('../controllers/global_teams.js');
-const { update_profile_picture } = require('../controllers/global_users.js');
 
 const router = express.Router();
 
