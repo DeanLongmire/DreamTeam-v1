@@ -157,3 +157,17 @@ function setSlidePosition() {
 
 setSlidePosition();
 
+/*about us*/
+function toggleCollapse() {
+  const aboutUsSection = document.getElementById("aboutUsSection");
+  const collapseButton = document.querySelector(".collapse-button");
+
+  if (aboutUsSection.style.maxHeight) {
+    aboutUsSection.style.maxHeight = null;
+    collapseButton.classList.remove("expanded");
+  } else {
+    aboutUsSection.style.maxHeight = aboutUsSection.scrollHeight + "px";
+    collapseButton.classList.add("expanded");
+  }
+}
+
