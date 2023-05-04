@@ -151,7 +151,6 @@ let loadData = function () {
   });
 };
 
-
 let setUserData = function (userDataJSON,callback) {
   console.log(userDataJSON.username);
   //FOR JULIANA : PUT CODE HERE TO FILL IN HTML WITH USER DATA (USE THE 'userDataJSON' OBJECT)

@@ -121,7 +121,7 @@ class team_dbmanager{
             return console.error(err.message);
         }
         if(row){
-            callback(row.name,row.ID,row.P_ID,row.A_ID,row.sport,row.num_players,row.W,row.L, row.profile_picture);
+            callback(row.name,row.ID,row.P_ID,row.A_ID,row.sport,row.num_players,row.W,row.L,row.profile_picture);
         }
         else{
             console.log("error");

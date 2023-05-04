@@ -23,7 +23,7 @@ const get_team = (req, res) => {
 
     get_path( (path) => {
         db.open(path);
-        db.get_all(id, (name, ID, P_ID, sport, num_players, W, L) => {
+        db.get_all(id, (name, ID, P_ID, A_ID, sport, num_players, W, L, profile_picture) => {
             console.log(`${name} ${ID} ${P_ID} ${sport} ${num_players} ${W} ${L}`);
             const teamData = {
                 name: name,
