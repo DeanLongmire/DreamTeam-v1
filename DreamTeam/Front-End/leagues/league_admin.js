@@ -5,20 +5,34 @@ const url = 'http://127.0.0.1:5000/leagues/league_admin'   //HOW WE NEED TO SET 
 const update_league_BT = document.querySelector('#update_league_button');
 const league_name = document.querySelector('#league_name');
 const league_photo = document.querySelector('league_photo');
-let selectedSport = null; //Define outside function
 const sportsRadios = document.getElementsByTagName("sport");
+const errorElement = document.getElementById("error-message");
 //Need to see if can get photo this way
 const profile_photo = document.getElementById("profile_photo");
 let encodedPhoto;
 
 league_name.addEventListener("input", buildData);
 //league_photo.addEventListener("input", buildData);
+let selectedSport = null; //Define outside function
+
 
 function buildData(){
   
   //Check if there is even a value for the field
   if(league_name.value.trim === ''){
       league_name.value = null;
+    }
+
+    //Radio buttons
+    //Get data from each element
+    const sportRadios = document.getElementsByName("sport");
+
+    //Checking if a sport is checked
+    for (const sport of sportRadios) {
+        if (sport.checked) {
+        selectedSport = sport.value; //Setting value of selectedSport
+        break;
+        }
     }
 
     //Picture
@@ -51,8 +65,43 @@ let getSessionId = function (callback) {
     callback(userURL);
   }
   
+  let buttonSubmit = function () {
+    let numOfInputs = getNumOfInputs(); //get number of fields that the user entered
+    getSessionId((url) => { //get user from session store to get user ID
+        getUserData(url, (id) => { //get user ID
+            waitOnRequest(numOfInputs,id).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
+                window.location.replace("league_home.html"); //take back to league home page
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        });
+    });
+};
 
-
+let makeRequest = function (dataToBeUpdated, url, callback) {
+  errorElement.style.display = "none"; //Hide the error message
+  fetch(url, {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataToBeUpdated)
+   })
+   .then(response => {
+      if(response.ok){
+        (console.log("Responded"));
+        callback();
+      }else{
+        if(response.status === 413){
+          console.log("Picture Too Big");  //MAKE THIS GO TO SCREEN
+          errorElement.innerText = "*The picture you uploaded is too big*";
+          errorElement.style.display = "block";
+      }
+      }
+   })
+   .catch(error => console.error(error));
+}
   
   let getUserData = function (url,callback) {
     console.log(url);
@@ -90,6 +139,60 @@ let getSessionId = function (callback) {
     });
   }
   
+  const waitOnRequest = function(numOfInputs, leagueID,){
+    return new Promise((resolve, reject) => {
+      let proccessed = 1;
+      if(numOfInputs === proccessed) resolve(); //Only sport updated
+      if(league_name.value !== "")
+      {
+        const fn = {
+          fn: league_name.value //get the value
+        }
+        const updateFNUrl = 'http://127.0.0.1:5000/leagues/update_name/' + leagueID;  //construct patch URL
+        makeRequest(fn, updateFNUrl, () => {
+              proccessed += 1;
+              if(proccessed === numOfInputs) resolve();
+        });
+      }
+      if (selectedSport){
+        const fn = {
+          fn: selectedSport
+        }
+        const updateFNUrl = 'http://127.0.0.1:5000/leagues/update_sport/' + leagueID;  //construct patch URL
+        makeRequest(fn, updateFNUrl, () => {
+              proccessed += 1;
+              if(proccessed === numOfInputs) resolve();
+        }); 
+      }
+      if(profile_photo.value !== "")
+        {
+            const pp = {
+                pp: encodedPhoto
+            }
+            const updatePPUrl = 'http://127.0.0.1:5000/leagues/update_picture/' + leagueID;
+            makeRequest(pp,updatePPUrl, () => {
+                proccessed += 1;
+                if(proccessed === numOfInputs) resolve();
+            });
+        }
+    });
+  };
+
+  let getNumOfInputs = function (){
+    let numOfInputs = 1;
+    if(league_name.value !== "")    numOfInputs += 1;
+    if(profile_photo.value !== "")  numOfInputs += 1;
+
+    return numOfInputs;
+  }
+
+  //Event listener for when user clicks the submit button
+update_league_BT.addEventListener('click', (event) =>{
+  event.preventDefault();
+  buttonSubmit();
+  return false;
+});
+
   let getTeamData = function (teamURL, callback) {
     fetch(teamURL, {
       method: 'GET',
@@ -118,7 +221,7 @@ let getSessionId = function (callback) {
     });
   }
   
-  let getLeagueData = function (leagueURL, callback) {
+  /*let getLeagueData = function (leagueURL, callback) {
     fetch(leagueURL, {
       method: 'GET',
       headers: {
@@ -141,7 +244,7 @@ let getSessionId = function (callback) {
     .catch(error => {
       console.error(error);
     });
-  }
+  }*/
 
   //Reference for username
 const welcomeButton = document.querySelector("#welcome-button");
