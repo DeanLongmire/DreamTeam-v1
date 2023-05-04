@@ -74,12 +74,11 @@ let getSessionId = function (callback) {
 }
 
 let buttonSubmit = function () {
-    let numOfInputs = getNumOfInputs();
-    getSessionId((url) => {
-        getUserData(url, (id) => {
-            console.log(id);
-            waitOnRequest(numOfInputs,id).then(() => {
-                window.location.replace("profile.html");
+    let numOfInputs = getNumOfInputs(); //get number of fields that the user entered
+    getSessionId((url) => { //get user from session store to get user ID
+        getUserData(url, (id) => { //get user ID
+            waitOnRequest(numOfInputs,id).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
+                window.location.replace("profile.html"); //take back to profile page
             })
             .catch(error => {
                 console.log(error);
