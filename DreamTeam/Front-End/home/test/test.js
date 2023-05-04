@@ -1,112 +1,57 @@
-var slidesContainer = document.querySelector('.slides');
-var slides = document.querySelectorAll('.slides img');
-var currentSlide = 0;
-var isDragging = false;
-var startPosition = 0;
-var currentTranslate = 0;
-var prevTranslate = 0;
-if (slidesContainer !== null){
-slidesContainer.addEventListener('mousedown', dragStart);
-slidesContainer.addEventListener('mousemove', drag);
-slidesContainer.addEventListener('mouseup', dragEnd);
-slidesContainer.addEventListener('mouseleave', dragEnd);
-slidesContainer.addEventListener('touchstart', touchStart);
-slidesContainer.addEventListener('touchmove', touchMove);
-slidesContainer.addEventListener('touchend', touchEnd);
-slidesContainer.addEventListener('touchcancel', touchEnd);
-}
-function dragStart(event) {
-  event.preventDefault();
-  isDragging = true;
-  startPosition = getPositionX(event);
-  prevTranslate = currentTranslate;
-
-  // Add CSS class to disable transitions during dragging
-  slidesContainer.classList.add('dragging');
+const teamList = document.getElementById('team-container');
+// const sqlite3 = require('sqlite3').verbose();
+// const path = require('path');
+// const tdb = new sqlite3.Database(path.join(__dirname, '../Teams/global_teams_db.db'));
+const teams = [
+  { name: 'Team A', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
+  { name: 'Team B', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
+  { name: 'Team C', sport: 'Softball', num_players: 9, W: 3, L: 4 },
+  { name: 'Team D', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
+  { name: 'Team E', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
+  { name: 'Team F', sport: 'Softball', num_players: 9, W: 3, L: 4 },
+  { name: 'Team G', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
+  { name: 'Team H', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
+  { name: 'Team I', sport: 'Softball', num_players: 9, W: 3, L: 4 },
+  { name: 'Team J', sport: 'Flag Football', num_players: 10, W: 5, L: 2 },
+  { name: 'Team K', sport: 'Men\'s Soccer', num_players: 11, W: 7, L: 3 },
+  { name: 'Team L', sport: 'Softball', num_players: 9, W: 3, L: 4 },
+  // add more teams here
+];
+//This should make it so the boxes don't jumble and get moved around when hoverd over
+function expandBox(teamElement) {
+  const card = teamElement.querySelector('.dynprog-crd');
+  card.style.height = "200px";
 }
 
-function drag(event) {
-  if (isDragging) {
-    var currentPosition = getPositionX(event);
-    currentTranslate = prevTranslate + currentPosition - startPosition;
-    setSlidePosition();
-  }
+function collapseBox(teamElement) {
+  const card = teamElement.querySelector('.dynprog-crd');
+  card.style.height = "100px";
 }
 
-function dragEnd() {
-  isDragging = false;
+//Loop through teams and create elements for each one
+for (let i = 0; i < teams.length; i++) {
+const team = teams[i];
+const teamElement = document.createElement('div');
+teamElement.className = 'dynprog-col dynprog-third dynprog-margin-bottom';
+teamElement.innerHTML = `
+  <div class="dynprog-crd dynprog-hover-shadow">
+    <div class="dynprog-container dynprog-center">
+      <h4><b>${team.name}</b></h4> 
+      <p>${team.sport}</p> 
+      <p class="team-info" style="display: none;">Players: ${team.num_players}, Wins: ${team.W}, Losses: ${team.L}</p>
+    </div>
+  </div>
+`;
+teamList.appendChild(teamElement);
 
-  // Remove CSS class to enable transitions after dragging
-  slidesContainer.classList.remove('dragging');
+// Add event listener to show/hide team info on hover
+teamElement.addEventListener('mouseenter', () => {
+  const teamInfo = teamElement.querySelector('.team-info');
+  teamInfo.style.display = 'block';
+});
 
-  // Determine if the slide should change based on drag distance
-  var slideChangeThreshold = slidesContainer.offsetWidth / 4;
-  if (Math.abs(currentTranslate - prevTranslate) > slideChangeThreshold) {
-    if (currentTranslate > prevTranslate && currentSlide > 0) {
-      currentSlide--;
-    } else if (currentTranslate < prevTranslate && currentSlide < slides.length - 1) {
-      currentSlide++;
-    }
-  }
-
-  // Reset the current translate value
-  currentTranslate = -currentSlide * slidesContainer.offsetWidth;
-  setSlidePosition();
-}
-
-function touchStart(event) {
-  isDragging = true;
-  startPosition = getPositionX(event.touches[0]);
-  prevTranslate = currentTranslate;
-
-  // Add CSS class to disable transitions during dragging
-  slidesContainer.classList.add('dragging');
-}
-
-function touchMove(event) {
-  if (isDragging) {
-    var currentPosition = getPositionX(event.touches[0]);
-    currentTranslate = prevTranslate + currentPosition - startPosition;
-    setSlidePosition();
-  }
-}
-
-function touchEnd() {
-  isDragging = false;
-
-  // Remove CSS class to enable transitions after dragging
-  slidesContainer.classList.remove('dragging');
-
-  // Determine if the slide should change based on drag distance
-  var slideChangeThreshold = slidesContainer.offsetWidth / 4;
-  if (Math.abs(currentTranslate - prevTranslate) > slideChangeThreshold) {
-    if (currentTranslate > prevTranslate && currentSlide > 0) {
-      currentSlide--;
-    } else if (currentTranslate < prevTranslate && currentSlide < slides.length - 1) {
-      currentSlide++;
-    }
-  }
-
-  // Reset the current translate value
-  currentTranslate = -currentSlide * slidesContainer.offsetWidth;
-  setSlidePosition();
-}
-
-function getPositionX(event) {
-  return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-}
-
-function setSlidePosition() {
-  if (slidesContainer) {
-    slidesContainer.style.transform = `translateX(${currentTranslate}px)`;
-  }
-}
-
-
-setSlidePosition();
-
-
-
-  
-  
-  
+teamElement.addEventListener('mouseleave', () => {
+  const teamInfo = teamElement.querySelector('.team-info');
+  teamInfo.style.display = 'none';
+});
+}  

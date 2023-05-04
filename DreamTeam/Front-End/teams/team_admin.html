@@ -23,7 +23,7 @@ When user clicks, welcom name should take them to profile page-->
 <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
     <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
     <a href="../teams/create_team.html" class="dynprog-bar-item dynprog-button">Create Team</a>
-    <a href="view_leagues.html" class="dynprog-bar-item dynprog-button"> View League</a>
+    <a href="view_teams.html" class="dynprog-bar-item dynprog-button"> View Team</a>
 </div>
 
 <div class="dynprog-padding-12"></div>
@@ -32,49 +32,44 @@ When user clicks, welcom name should take them to profile page-->
 
 <body>
 <div class="dynprog-center">
-    <h2>Welcome league admin! </h2>
-    <h3>You have access to edit the elements for your specific league!</h3>
+    <h2>Welcome Team admin! </h2>
+    <h3>You have access to edit the elements for your specific team!</h3>
 </div>
 
 <div class="dynprog-panel"></div>
 
-<form id=league_edit class="dynprog-container dynprog-better-box3 dynprog-margin-more dynprog-text-black dynprog-padding-24">
+<form id=team_edit class="dynprog-container dynprog-better-box3 dynprog-margin-more dynprog-text-black dynprog-padding-24">
 
-    <h4>Change League Name</h4>
+    <h4>Change Team Name</h4>
     <div class="dynprog-padding-12"></div>
-    <input id="league_name" class="dynprog-input dynprog-border" type="text" name="league_name">
+    <input id="team_name" class="dynprog-input dynprog-border" type="text" name="team_name">
 
     <div class="dynprog-panel"></div>
 
-    <!--<label for="league_sport">Change League Sport</label>
-    <div class="dynprog-padding-12"></div>
-    <input id="league_sport" class="dynprog-input dynprog-border" type="text">-->
-
-    <h4>Change League Sport</h4>
+    <h4>Change Team Sport</h4>
     <input class="dynprog-radio" type="radio" name="sport" value="Flag_football" checked>
     <label style="margin-right: 15px">Flag Football</label>
 
-    <input class="dynprog-radio" type="radio" name="sport" value="Men_soccer">
+    <input class="dynprog-radio" type="radio" name="sport" value="Men_soccer" checked>
     <label style="margin-right: 15px">Men's Soccer</label>
 
-    <input class="dynprog-radio" type="radio" name="sport" value="Softball">
+    <input class="dynprog-radio" type="radio" name="sport" value="Softball" checked>
     <label style="margin-right: 15px">Softball</label>
 
     <div class="dynprog-panel dynprog-padding-12"></div>
 
-    <h4>League Photo</h4>
+    <h4>Team Photo</h4>
     <div class="dynprog-padding-12"></div>
     <input type="file" id="profile_photo" name="profile_photo">
 
     <div class="dynprog-padding-12"></div>
-    <div id="error-message" class="dynprog-center dynprog-password-error-message"></div>
 
 </form>
 
     <div class="dynrpog-panel"></div>
 
     <div class="dynprog-center dynprog-padding-16">
-            <button id="update_league_button" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Update my league now</button>
+            <button id="update_team_button" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Update my team now</button>
     </div>
 
 </body>
@@ -88,5 +83,5 @@ When user clicks, welcom name should take them to profile page-->
 
 </div>
 
-<script src="league_admin.js"></script>
+<script src="team_admin.js"></script>
 </html>
