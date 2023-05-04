@@ -128,6 +128,21 @@ class team_dbmanager{
         }
         });
     }
+    get_all_with_id(ID, callback){
+        console.log(`id: ${ID}`);
+        this.sql = 'SELECT * FROM Teams WHERE P_ID = ?';
+        this.db.get(this.sql, [ID], (err, row) => {
+        if(err){
+            return console.error(err.message);
+        }
+        if(row){
+            callback(row.name, row.sport, row.num_players, row.W, row.L);
+        }
+        else{
+            console.log("error");
+        }
+        });
+    }
     SetAdminID(A_ID, ID, callback){
         this.data = [A_ID, ID];
         this.sql = 'UPDATE Teams SET A_ID = ? WHERE ID = ?';
@@ -144,18 +159,6 @@ class team_dbmanager{
         })
         callback();
     }
-    PullTeams(){
-        db.all('SELECT * FROM Teams', (err, rows) => {
-          if (err) {
-            // Handle the error
-            console.error(err.message);
-            res.status(500).send('Internal server error');
-          } else {
-            // Return the team information as JSON
-            res.json(rows);
-          }
-        });
-      }
 }
 
 module.exports.team_dbmanager = team_dbmanager;

@@ -6,7 +6,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { 
-    get_team, show_all,
+    get_team,
+    get_team_in_league,
+    show_all,
     create_team,
     update_team_name,
     update_team_sport,
@@ -29,6 +31,7 @@ router.get('/', show_all);
 //Get a Team's name
 router.get('/:id', get_team);
 //router.getTeamsInLeague('/:leagueId,get_teams_in_league)
+router.get('/get_team_in_league/:leagueid', get_team_in_league);
 
 //Create a team
 router.post('/', create_team);
