@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<!--CSS style guide link!-->
+<link rel="stylesheet" href="../Dynprog.css">
+
+<div class="dynprog-padding-12"></div>
+
+<div class="dynprog-center">
+    <h7>DreamTeam</h7>
+</div>
+
+<!--Log out and Welcome message that are in top right
+When user clicks, welcom name should take them to profile page-->
+<head>
+    <A HREF="../home/index.html">
+        <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>
+    </A>
+    <A HREF="../users/profile.html"> 
+        <button id="welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+    </A>
+</head>
+
+<div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+    <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
+    <a href="../teams/create_team.html" class="dynprog-bar-item dynprog-button">Create Team</a>
+    <a href="view_teams.html" class="dynprog-bar-item dynprog-button"> View Team</a>
+</div>
+
+<div class="dynprog-padding-12"></div>
+
+<div class="dynprog-gradient-background-gray dynprog-text-white">
+
+<body>
+<div class="dynprog-center">
+    <h2>Welcome Team admin! </h2>
+    <h3>You have access to edit the elements for your specific team!</h3>
+</div>
+
+<div class="dynprog-panel"></div>
+
+<form id=team_edit class="dynprog-container dynprog-better-box3 dynprog-margin-more dynprog-text-black dynprog-padding-24">
+
+    <h4>Change Team Name</h4>
+    <div class="dynprog-padding-12"></div>
+    <input id="team_name" class="dynprog-input dynprog-border" type="text" name="team_name">
+
+    <div class="dynprog-panel"></div>
+
+    <h4>Change Team Sport</h4>
+    <input class="dynprog-radio" type="radio" name="sport" value="Flag_football" checked>
+    <label style="margin-right: 15px">Flag Football</label>
+
+    <input class="dynprog-radio" type="radio" name="sport" value="Men_soccer" checked>
+    <label style="margin-right: 15px">Men's Soccer</label>
+
+    <input class="dynprog-radio" type="radio" name="sport" value="Softball" checked>
+    <label style="margin-right: 15px">Softball</label>
+
+    <div class="dynprog-panel dynprog-padding-12"></div>
+
+    <h4>Team Photo</h4>
+    <div class="dynprog-padding-12"></div>
+    <input type="file" id="profile_photo" name="profile_photo">
+
+    <div class="dynprog-padding-12"></div>
+
+</form>
+
+    <div class="dynrpog-panel"></div>
+
+    <div class="dynprog-center dynprog-padding-16">
+            <button id="update_team_button" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Update my team now</button>
+    </div>
+
+</body>
+
+<!--This is the footer!-->
+<footer>
+    <div class="dynprog-center dynprog-padding-24">
+    <p> &copy; Copyright Spring 2023 DynProg Team. All rights reserved. Developed by DynProg.</p>
+    </div>
+</footer>
+
+</div>
+
+<script src="team_admin.js"></script>
+</html>

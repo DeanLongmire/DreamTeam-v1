@@ -1,31 +1,10 @@
-.slideshow-container {
-    max-width: 600px; /* Adjust the maximum width as desired */
-    margin: auto;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #ff8200; /* Add a background color for a modern touch */
-    position: relative;
-  }
-  
-  .slides {
-    display: flex;
-    width: 100%;
-    transition: transform 0.5s ease;
-    cursor: grab;
-  }
-  
-  .slides.dragging {
-    cursor: grabbing;
-  }
-  
-  .slides img {
-    flex: 0 0 100%;
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 400px; /* Adjust the maximum height as desired */
-  }
+.dynprog-vt-header{	text-align: center; font-family: Fantasy; font-size: 24px;margin-top: 20px;}
+.dynprog-vt-container {display: flex;flex-wrap: wrap;justify-content: space-evenly;align-items: center;height: 200px;background-color: #f2f2f2;padding: 30px;margin: 30px;}
+.dynprog-vt-tab {margin: 10px;padding: 20px;background-color: #ddd;border: 2px solid #ccc;border-radius: 10px;cursor: pointer;}
+.dynprog-vt-dropdown-content {display: none;position: absolute;z-index: 1;background-color: #f9f9f9;min-width: 320px; box-shadow: 0px 16px 24px 0px rgba(0,0,0,0.2);padding: 24px 32px;border-radius: 10px;border: 2px solid #ccc;}
+.dynprog-vt-dropdown:hover .dynprog-vt-dropdown-content {display: block;}
+.dynprog-vt-dropdown-content a {display: block;color: black;padding: 5px;text-decoration: none;cursor: pointer;}
+.dynprog-vt-dropdown-content a:hover {background-color: #f2f2f2;}
   
   
   
