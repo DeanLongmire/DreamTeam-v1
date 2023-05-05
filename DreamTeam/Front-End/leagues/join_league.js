@@ -18,6 +18,7 @@ let getSessionId = function (callback) {
   let setLeagueData = function(LeagueDataJSON, callback){
     const leagueContainer = document.getElementById("league_contain_names");
     const lContainer = document.getElementById("l_container");
+    const join = document.getElementById("join_button");
     names = LeagueDataJSON.names;
     sports = LeagueDataJSON.sports;
     for (let i = 0; i < names.length; i++) {
@@ -35,6 +36,9 @@ let getSessionId = function (callback) {
         head.textContent = leagueSport;
       }
       lContainer.appendChild(head);
+      const but = document.createElement("button");
+      but.textContent = "Join this league";
+      join.appendChild(but);
     }
     callback();
   } 

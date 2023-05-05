@@ -323,3 +323,14 @@ transition: max-height 0.2s ease-out;
 border-bottom: 1px solid #ff8200;
 border-radius: 0 0 5px 5px;
 }
+
+.l_container {
+  display: flex;
+  justify-content: center;
+}
+
+.l_container .dynprog-left-align {
+  text-align: left;
+}
+
+/*
