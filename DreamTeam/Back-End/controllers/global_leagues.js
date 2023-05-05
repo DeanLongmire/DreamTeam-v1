@@ -38,7 +38,7 @@ const get_league = (req, res) => {
 //create_session -- reference users
 
 const show_all = (req, res) => {
-    get_path( (path) => {
+    get_path((path) => {
         db.open(path);
         db.display_all( (league_names,league_sports) => {
             const data = { 
@@ -58,7 +58,7 @@ const create_league = (req, res) => {
     const uwid = { ... league, id: leagueID}
 
     console.log(uwid);
-    get_path( (path) => {
+    get_path((path) => {
       db.open(path);
       db.insert(uwid.leagueName,uwid.id,uwid.sport, () =>{
           db.close();
@@ -73,7 +73,7 @@ const create_league = (req, res) => {
 const delete_league = (req, res) => {
     const { id } = req.params;
 
-    get_path( (path) => {
+    get_path((path) => {
         db.open(path);
         db.delete(id, () =>{
             db.close();
@@ -101,7 +101,7 @@ const update_sport = (req, res) => {
     const new_sport = req.body.newSport; //newSport not real yet
 
     console.log(new_sport + " " + id);
-    get_path( (path) => {
+    get_path((path) => {
         db.open(path);
         db.update_sport(new_sport,id, () =>{
             db.close();

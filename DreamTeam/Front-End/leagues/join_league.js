@@ -16,7 +16,7 @@ let getSessionId = function (callback) {
     callback(userURL);
   }
   let setLeagueData = function(LeagueDataJSON, callback){
-    const leagueContainer = document.getElementById("league_container");
+    const leagueContainer = document.getElementById("league_contain_names");
     const lContainer = document.getElementById("l_container");
     names = LeagueDataJSON.names;
     sports = LeagueDataJSON.sports;
@@ -24,8 +24,17 @@ let getSessionId = function (callback) {
       const leagueName = names[i];
       const leagueSport = sports[i];
       const h4 = document.createElement("h4");
-      h4.textContent = leagueName + ": " + leagueSport;
+      h4.textContent = leagueName;
       leagueContainer.appendChild(h4);
+      const head = document.createElement("h4");
+      if(leagueSport=== "Flag_football"){
+        head.textContent = "Flag Football";
+      }else if(leagueSport === "Men_soccer"){
+          head.textContent = "Men's Soccer";
+      }else{
+        head.textContent = leagueSport;
+      }
+      lContainer.appendChild(head);
     }
     callback();
   } 
