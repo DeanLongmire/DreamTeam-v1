@@ -247,7 +247,7 @@ h9{font-size: 36px; font-family:Fantasy}
 .slides {display: flex;width: 100%;transition: transform 0.5s ease;cursor: grab;z-index: 1;}
 .slides.dragging {cursor: grabbing;}
 .slides img {flex: 0 0 100%;display: block;width: 100%;height: auto;max-height: 400px; /* Adjust the maximum height as desired */}
-/*about us*/
+/* about us*/
 /* Global Styles */
 .about-container {
   max-width: 800px;
@@ -322,6 +322,7 @@ overflow: hidden;
 transition: max-height 0.2s ease-out;
 border-bottom: 1px solid #ff8200;
 border-radius: 0 0 5px 5px;
+background-color: white;
 }
 
 .l_container {
@@ -332,5 +333,3 @@ border-radius: 0 0 5px 5px;
 .l_container .dynprog-left-align {
   text-align: left;
 }
-
-/*
