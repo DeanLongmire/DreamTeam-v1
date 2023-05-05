@@ -62,10 +62,11 @@ create_button.addEventListener("click", saveTeam);
 let globalUID;
 let globalUPOS;
 let globalUUN;
+let parentLeagueID;
+let leagueSport;
 
 const setUserData = function(data, callback) {
   console.log("Setting User Data");
-
   callback();
 }
 
@@ -166,6 +167,9 @@ let getLeagueData = function (leagueURL, callback) {
   .then(response => {
     if (response.ok) {
       response.json().then(data => {
+        leagueSport = data.sport;
+        parentLeagueID = data.ID;
+        console.log(leagueSport + " " + parentLeagueID);
         callback();
       });
     } 
@@ -270,11 +274,13 @@ const createPlayer = function(url,data,callback) {
 //Function to create a team on click
 //Function to create a league on click
 function createTeam(){
-  const teamName= teamInput.value; //Set leaguename
+  const teamName = teamInput.value; //Set leaguename
   const data = { 
-      num_players: selectedSize, 
+      size: selectedSize, 
       teamName: teamName,
-      TeamCreator: globalUID
+      creator: globalUID,
+      P_ID: parentLeagueID,
+      sport: leagueSport
     };
     
     console.log(data);

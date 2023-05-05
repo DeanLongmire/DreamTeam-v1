@@ -79,15 +79,15 @@ const delete_league = (req, res) => {
             db.close();
             res.send('League deleted');
         });
-    });
+    }); 
 }
 
 const update_name = (req, res) => {
     const { id } = req.params;
     const new_name = req.body.newName;
-
     console.log(new_name + " " + id);
-    get_path( (path) => {
+
+    get_path((path) => {
          db.open(path);
          db.update_name(new_name,id, () =>{
             db.close();
