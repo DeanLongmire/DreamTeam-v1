@@ -173,7 +173,6 @@ setSlidePosition();
 
 function toggleCollapse(elementId, button) {
   const section = document.getElementById(elementId);
-  const aboutUsSection = document.getElementById("aboutUsSection");
 
   if (section.style.maxHeight) {
     section.style.maxHeight = null;
@@ -183,11 +182,13 @@ function toggleCollapse(elementId, button) {
     button.classList.add("expanded");
   }
 
-  // Update the height of the aboutUsSection
-  updateAboutUsSectionHeight(button);
+  // Update the height of the aboutUsSection only if it's a sub-dropdown being toggled
+  if (elementId !== 'aboutUsSection') {
+    updateAboutUsSectionHeight();
+  }
 }
 
-function updateAboutUsSectionHeight(aboutUsButton) {
+function updateAboutUsSectionHeight() {
   const aboutUsSection = document.getElementById("aboutUsSection");
   const subDropdowns = document.querySelectorAll(".sub-dropdown-content");
 
@@ -199,12 +200,8 @@ function updateAboutUsSectionHeight(aboutUsButton) {
     }
   });
 
-  // Check if the aboutUsButton is expanded
-  if (aboutUsButton && aboutUsButton.classList.contains("expanded")) {
-    // Add initial height value to accommodate the sub-dropdown buttons
-    aboutUsSection.style.maxHeight = (totalHeight + subDropdowns.length * 70) + "px";
-  } else {
-    aboutUsSection.style.maxHeight = null;
-  }
+  // Add initial height value to accommodate the sub-dropdown buttons
+  aboutUsSection.style.maxHeight = (totalHeight + subDropdowns.length * 70) + "px";
 }
+
 
