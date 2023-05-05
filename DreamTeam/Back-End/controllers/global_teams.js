@@ -58,6 +58,8 @@ const get_team_in_league = (req, res) =>{
                 w: W,
                 l: L
             };
+            // console.log("I fart");
+            // console.log(teamData.name);
             //JSON.stringify(teamData);
             res.send(teamData);
             db.close();
