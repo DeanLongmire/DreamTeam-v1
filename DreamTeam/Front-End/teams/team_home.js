@@ -1,3 +1,5 @@
+let teamId;
+
 //COOKIE INFO
 let getSessionId = function (callback) {
     const cookies = document.cookie.split(';');
@@ -16,6 +18,7 @@ let getSessionId = function (callback) {
 
 //Reference for username
 let userNameHeading = document.getElementById("username");
+const welcomeButton = document.querySelector("#welcome-button");
 let username = null;
 
 //Setting the username
@@ -126,12 +129,10 @@ let getTeamData = function (teamURL, callback) {
   .then(response => {
     if (response.ok) {
       response.json().then(data => {
-        setTeamData(data, () => {
-          console.log("Team Data Set");
-          const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
-          getLeagueData(leagueURL, () => {
-            callback();
-          });
+        teamId = data.id;
+        const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+        getLeagueData(leagueURL, () => {
+          callback();
         });
       });
     } 
@@ -154,10 +155,7 @@ let getLeagueData = function (leagueURL, callback) {
   .then(response => {
     if (response.ok) {
       response.json().then(data => {
-        setLeagueData(data, () => {
-          console.log("League Data Set");
-          callback();
-        });
+        callback();
       });
     } 
     else {
@@ -169,21 +167,51 @@ let getLeagueData = function (leagueURL, callback) {
   });
 }
 
-  //load data from league_home...
-  let loadData = function () {
-    getSessionId((userURL) => {
-      console.log("URL: " + userURL);
-      getUserData(userURL,() => {
-        console.log("All Data Set");
-        //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
-      });
-    });
-  };
+let getPlayers = function(url,callback) {
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    if(response.status === 200) { //we got players
+      response.json().then(data => {
+        data.forEach((player) => {
+          console.log(player);
+        })
+        callback();
+      })
+    }
+    else if(response.status === 201) { //no players on team
+      console.log("No Players On Team");
+      callback();
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    callback();
+  })
+}
 
-  loadData();
-  
-  document.querySelector("#Log-Out").onclick = function(){
-    logout(() => {
-      window.location.replace("../home/index.html");
+//load data from league_home...
+let loadData = function () {
+  getSessionId((userURL) => {
+    console.log("URL: " + userURL);
+    getUserData(userURL,() => {
+      console.log("All Data Set");
+      const getPlayersURL = 'http://127.0.0.1:5000/players/get_players_on_team/' + teamId;
+      getPlayers(getPlayersURL,() => {
+        console.log("Got Players");
+      })
     });
-  }
+  });
+};
+
+loadData();
+  
+document.querySelector("#Log-Out").onclick = function(){
+  logout(() => {
+    window.location.replace("../home/index.html");
+  });
+}

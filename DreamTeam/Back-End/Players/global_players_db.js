@@ -55,6 +55,22 @@ class player_dbmanager{
             callback();
         });
     }
+    get_players_on_team(teamId, callback){
+        let players = [];
+        this.db.serialize(()=>{
+            this.sql = 'SELECT * FROM Players WHERE Team_ID = ?';
+            this.db.all(this.sql,[teamId],(err,rows) => {
+                if(err){return console.error(err.message);}
+                if(rows.length === 0) {callback("No players");}
+                else if(rows) {
+                    rows.forEach((row) => {
+                        players.push(row);
+                    });
+                    callback(players);
+                }
+            });
+        });
+    }
     update_name(new_name, ID, callback){
         this.db.serialize(()=>{ 
             this.data = [new_name, ID];

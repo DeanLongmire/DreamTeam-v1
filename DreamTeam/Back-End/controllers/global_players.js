@@ -29,6 +29,25 @@ const get_player = (req, res) => {
     res.send("Got a player's info");
 }
 
+const get_players_on_team = (req, res) => {
+    const { teamId } = req.params;
+
+    get_path((path) => {
+        db.open(path);
+        db.get_players_on_team(teamId,(players) => {
+            db.close();
+            if(players === "No players")
+            {
+                res.status(201).send(players);
+            }
+            else
+            {
+                res.status(200).send(players);
+            }
+        })
+    }); 
+}
+
 const show_all = (req, res) => {
     get_path( (path) => {
         db.open(path);
@@ -100,4 +119,4 @@ const update_position = (req, res) =>{
     res.send('Position updated');
 }
 
-module.exports = {get_player, show_all, create_player, delete_player, update_name, update_position}
+module.exports = {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position}
