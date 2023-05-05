@@ -1,15 +1,51 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Slideshow Test</title>
-    <link rel="stylesheet" href="test.css">
-  </head>
-  <body>
-    <div id="team-list" class="dynprog-container dynprog-padding-32">
-      <h2 class="dynprog-center">View Teams</h2>
-      <div class="dynprog-row" id="team-container"></div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pyramid Collapsible About Us Section</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <div class="about-container">
+    <div class="about-us">
+      <h2>About Us</h2>
+      <button class="collapse-button" onclick="toggleCollapse('aboutUsSection', this)">&#x25BC;</button>
     </div>
-
-    <script src="test.js"></script>
-  </body>
+    <div class="about-us-section" id="aboutUsSection">
+      <!-- Sub Dropdowns -->
+      <div class="sub-dropdown">
+        <button class="sub-dropdown-button" onclick="toggleCollapse('subSection1', this)">Sub-section 1</button>
+        <div class="sub-dropdown-content" id="subSection1">
+          <p>Content for sub-section 1</p>
+        </div>
+      </div>
+      <div class="sub-dropdown">
+        <button class="sub-dropdown-button" onclick="toggleCollapse('subSection2', this)">Sub-section 2</button>
+        <div class="sub-dropdown-content" id="subSection2">
+          <p>Content for sub-section 2</p>
+        </div>
+      </div>
+      <div class="sub-dropdown">
+        <button class="sub-dropdown-button" onclick="toggleCollapse('subSection3', this)">Sub-section 3</button>
+        <div class="sub-dropdown-content" id="subSection3">
+          <p>Content for sub-section 3</p>
+        </div>
+      </div>
+      <div class="sub-dropdown">
+        <button class="sub-dropdown-button" onclick="toggleCollapse('subSection4', this)">Sub-section 4</button>
+        <div class="sub-dropdown-content" id="subSection4">
+          <p>Content for sub-section 4</p>
+        </div>
+      </div>
+      <div class="sub-dropdown">
+        <button class="sub-dropdown-button" onclick="toggleCollapse('subSection5', this)">Sub-section 5</button>
+        <div class="sub-dropdown-content" id="subSection5">
+          <p>Content for sub-section 5</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="test.js"></script>
+</body>
 </html>

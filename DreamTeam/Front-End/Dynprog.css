@@ -249,11 +249,77 @@ h9{font-size: 36px; font-family:Fantasy}
 .slides img {flex: 0 0 100%;display: block;width: 100%;height: auto;max-height: 400px; /* Adjust the maximum height as desired */}
 /*about us*/
 /* Global Styles */
-body {font-family: Arial, sans-serif;line-height: 1.6;color: #333;}
-.container {max-width: 800px;margin: 20px auto;}
+.about-container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
 /* About Us */
-.about-us { display: flex; align-items: center; justify-content: space-between; background-color: #ff8200; padding: 15px 20px; border-radius: 5px;}
-.about-us h2 {margin: 0;color: white;}
-.collapse-button {background-color: transparent;border: none;color: white;font-size: 24px;cursor: pointer;outline: none;transition: transform 0.3s;}
-.collapse-button.expanded {transform: rotate(180deg);}
-.about-us-section {padding: 0 20px;margin: 0 20px;max-height: 0;overflow: hidden;transition: max-height 0.3s ease-out;border-bottom: 2px solid #ff8200;}
+.about-us {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ff8200;
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+.about-us h2 {
+  margin: 0;
+  color: white;
+}
+
+.collapse-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s;
+}
+
+.collapse-button.expanded {
+  transform: rotate(180deg);
+}
+
+.about-us-section {
+padding: 0 20px;
+margin: 0 20px;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease-out;
+border-bottom: 2px solid #ff8200;
+}
+
+/* Sub Dropdowns */
+.sub-dropdown {
+margin: 15px 0;
+}
+
+.sub-dropdown-button {
+background-color: #ff8200;
+color: white;
+font-size: 18px;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+text-align: left;
+outline: none;
+width: 100%;
+border-radius: 5px;
+transition: background-color 0.3s;
+}
+
+.sub-dropdown-button:hover {
+background-color: #ff8200;
+}
+
+.sub-dropdown-content {
+padding: 0 18px;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.2s ease-out;
+border-bottom: 1px solid #ff8200;
+border-radius: 0 0 5px 5px;
+}
