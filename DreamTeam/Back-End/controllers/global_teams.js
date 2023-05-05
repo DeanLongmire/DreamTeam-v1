@@ -20,7 +20,8 @@ const get_path = (callback) => {
 // Get team information
 const get_team = (req, res) => {
     const { id } = req.params;
-
+    console.log(id)
+    
     get_path( (path) => {
         db.open(path);
         db.get_all(id, (name, ID, P_ID, A_ID, sport, num_players, W, L, profile_picture) => {
