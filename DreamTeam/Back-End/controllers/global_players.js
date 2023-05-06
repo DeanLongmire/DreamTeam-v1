@@ -67,7 +67,7 @@ const create_player = (req, res) => {
     console.log(uwid);
     get_path((path) => {
         db.open(path);
-        db.insert(uwid.player,uwid.username,uwid.id,uwid.teamId,uwid.pos, () =>{
+        db.insert(uwid.player,uwid.username,uwid.id,uwid.teamId,uwid.pos,0,0,0,0,0,0,0,0,() =>{
             db.close();
             usersDb.open(path);
             usersDb.update_playerId(uwid.id,uwid.userId,() => {
@@ -119,4 +119,17 @@ const update_position = (req, res) =>{
     res.send('Position updated');
 }
 
-module.exports = {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position}
+const increment_TD = (req, res) => {
+    const { id } = req.params;
+    const newTDs = req.body.TDs;
+
+    get_path((path) => {
+        db.open(path);
+        db.increment_TD(newTDs,id,() => {
+            db.close();
+            res.send("TDs Updated");
+        })
+    })
+}
+
+module.exports = {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position, increment_TD}

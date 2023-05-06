@@ -11,7 +11,7 @@ class player_dbmanager{
         });
     }
     create(){
-        this.db.run('CREATE TABLE Players(name, username, ID, Team_ID, position)', (err)=>{
+        this.db.run('CREATE TABLE Players(name, username, ID, Team_ID, position, TDs, catches, tackels, goals, saves, hits, RBIs, errors)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created player table');
         }); 
@@ -22,10 +22,10 @@ class player_dbmanager{
             console.log('Dropped player table')
         });
     }
-    insert(name, username, ID, Team_ID, position, callback){
+    insert(name, username, ID, Team_ID, position, TDs, catches, tackels, goals, saves, hits, RBIs, errors, callback){
         this.db.serialize(() => {
-            this.sql = 'INSERT INTO Players (name, username, ID, Team_ID, position) VALUES(?,?,?,?,?)';
-            this.db.run(this.sql, [name, username, ID, Team_ID, position], (err)=>{
+            this.sql = 'INSERT INTO Players(name, username, ID, Team_ID, position, TDs, catches, tackels, goals, saves, hits, RBIs, errors) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)';
+            this.db.run(this.sql, [name, username, ID, Team_ID, position, TDs, catches, tackels, goals, saves, hits, RBIs, errors], (err)=>{
                 if(err) {return console.error(err.message);}
                 console.log("New row created in Player table");
             });
@@ -49,7 +49,7 @@ class player_dbmanager{
             this.sql = 'SELECT * FROM Players WHERE ID = ?';
             this.db.get(this.sql, [ID], (err, row) => {
                 if(err){return console.error(err.message);}
-                if(row){callback(row.name,row.username,row.ID,row.Team_ID,row.position);}
+                if(row){callback(row.name,row.username,row.ID,row.Team_ID,row.position,row.TDs,row.catches,row.tackels,row.goals,row.saves,row.hits,row.RBIs,row.errors);}
                 else{console.log("error");}
             });
             callback();
@@ -93,6 +93,33 @@ class player_dbmanager{
             callback();
         });
     }
+    increment_TD(TDs, ID, callback){
+        let updatedTDs;
+        this.db.serialize(()=>{ 
+            this.db.get('SELECT TDs FROM Players WHERE ID = ?',[ID],(err,row) => {
+                if(err)
+                {
+                    console.log(err.message);
+                    return;
+                }
+                if(row.TDs !== null)
+                {
+                    updatedTDs = row.TDs + TDs;
+                    this.db.run('UPDATE Players SET TDs = ? WHERE ID = ?',[updatedTDs,ID],(err) => {
+                        if(err)
+                        {
+                            console.log(err.message)
+                            return;
+                        }
+                        else
+                        {
+                            callback();
+                        }
+                    });
+                }
+            });
+        });
+    }
     delete(ID, callback){
         this.db.serialize(()=>{ 
             this.sql = 'DELETE FROM Players WHERE ID = ?';
@@ -113,8 +140,6 @@ class player_dbmanager{
     }
 }
 
-//let db = new player_dbmanager;
-//db.open('../database.db');
 //db.drop();
 //db.create();
 //db.close();
