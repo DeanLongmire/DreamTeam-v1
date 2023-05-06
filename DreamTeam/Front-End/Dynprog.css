@@ -333,3 +333,8 @@ background-color: white;
 .l_container .dynprog-left-align {
   text-align: left;
 }
+
+#join_button {
+  display: flex;
+  flex-direction: column;
+}

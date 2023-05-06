@@ -16,29 +16,53 @@ let getSessionId = function (callback) {
     callback(userURL);
   }
   let setLeagueData = function(LeagueDataJSON, callback){
-    const leagueContainer = document.getElementById("league_contain_names");
-    const lContainer = document.getElementById("l_container");
-    const join = document.getElementById("join_button");
+    const tableBody = document.querySelector('#league-table tbody');
+
+    //const leagueContainer = document.getElementById("league_contain_names");
+    //const lContainer = document.getElementById("l_container");
+    //const join = document.getElementById("join_button");
     names = LeagueDataJSON.names;
     sports = LeagueDataJSON.sports;
     for (let i = 0; i < names.length; i++) {
       const leagueName = names[i];
       const leagueSport = sports[i];
-      const h4 = document.createElement("h4");
-      h4.textContent = leagueName;
-      leagueContainer.appendChild(h4);
-      const head = document.createElement("h4");
+      const row = document.createElement('tr');
+      const nameCol = document.createElement('td');
+      const sportCol = document.createElement('td');
+      const join = document.createElement('td');
+      const join_bt = document.createElement('button');
+      //const h4 = document.createElement("h4");
+      //h4.textContent = leagueName;
+      //leagueContainer.appendChild(h4);
+      nameCol.textContent = leagueName;
+      //const head = document.createElement("h4");
       if(leagueSport=== "Flag_football"){
-        head.textContent = "Flag Football";
+            sportCol.textContent = "Flag Football";
+          //head.textContent = "Flag Football";
       }else if(leagueSport === "Men_soccer"){
-          head.textContent = "Men's Soccer";
+            sportCol.textContent = "Men's Soccer";
+          //head.textContent = "Men's Soccer";
       }else{
-        head.textContent = leagueSport;
+          sportCol.textContent = leagueSport;
+          //head.textContent = leagueSport;
       }
-      lContainer.appendChild(head);
-      const but = document.createElement("button");
-      but.textContent = "Join this league";
-      join.appendChild(but);
+      //lContainer.appendChild(head);
+      //const but = document.createElement("button");
+      //but.textContent = "Join this league";
+      join_bt.textContent = "Join this league";
+      join_bt.classList.add("dynprog-button");
+      join_bt.addEventListener("click", function(){
+        //popup code
+        console.log("button clicked");
+      });
+
+      //but.style.marginBottom = "10px";
+      join.appendChild(join_bt);
+      row.appendChild(nameCol);
+      row.appendChild(sportCol);
+      row.appendChild(join);
+      tableBody.appendChild(row);
+
     }
     callback();
   } 
