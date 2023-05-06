@@ -119,66 +119,141 @@ const update_position = (req, res) =>{
     res.send('Position updated');
 }
 
-const increment_TD = (id, newTDs) => {
-    get_path((path) => {
-        db.open(path);
-        db.increment_TD(newTDs,id,() => {
-            db.close();
+const increment_TD = (id, newTDs, callback) => {
+    if(newTDs == undefined) {callback();}
+    else
+    {
+        get_path((path) => {
+            db.open(path);
+            db.increment_TD(newTDs,id,() => {
+                callback();
+            })
         })
-    })
+    }
 }
 
-const promise_stats = (id,newStats) => {
-    return new Promise((resolve,reject) => {
-        let updateCount = 0;
+const increment_catches = (id, newCatches, callback) => {
+    if(newCatches == undefined) {callback();}
+    else
+    {
+        get_path((path) => {
+            db.open(path);
+            db.increment_catches(newCatches,id,() => {
+                callback();
+            })
+        })
+    }
+}
 
-        if(newStats.TDs !== undefined)
-        { 
-            increment_TD(id,newStats.TDs);
-            updateCount++;
-            if(updateCount === newStats.numToBeUpdated)
-            {
-                resolve();
-            }
-        }
-        if(newStats.catches !== undefined)
-        { 
-            console.log(newStats.catches);
-        }
-        if(newStats.tackles !== undefined)
-        { 
-            console.log(newStats.tackles);
-        }
-        if(newStats.goals !== undefined)
-        { 
-            console.log(newStats.goals);
-        }
-        if(newStats.saves !== undefined)
-        { 
-            console.log(newStats.saves);
-        }
-        if(newStats.hits !== undefined)
-        { 
-            console.log(newStats.hits);
-        }
-        if(newStats.RBIs !== undefined)
-        { 
-            console.log(newStats.RBIs);
-        }
-        if(newStats.errors !== undefined)
-        {
-            console.log(newStats.errors); 
-        }
+const increment_tackles = (id, newTackles, callback) => {
+    if(newTackles == undefined) {callback();}
+    else
+    {
+        get_path((path) => {
+            db.open(path);
+            db.increment_tackles(newTackles,id,() => {
+                callback();
+            })
+        })
+    }
+}
+
+const increment_goals = (id, newGoals, callback) => {
+    if(newGoals == undefined) {callback();}
+    else
+    {
+        get_path((path) => {
+            db.open(path);
+            db.increment_goals(newGoals,id,() => {
+                callback();
+            })
+        })
+    }
+}
+
+const increment_saves = (id, newSaves, callback) => {
+    if(newSaves == undefined) {callback();}
+    else
+    {
+        get_path((path) => {
+            db.open(path);
+            db.increment_saves(newSaves,id,() => {
+                callback();
+            })
+        })
+    }
+}
+
+const increment_hits = (id, newHits, callback) => {
+    if(newHits == undefined) {callback();}
+    else
+    {
+        get_path((path) => {
+            db.open(path);
+            db.increment_hits(newHits,id,() => {
+                callback();
+            })
+        })
+    }
+}
+
+const increment_RBIs = (id, newRBIs, callback) => {
+    if(newRBIs == undefined) {callback();}
+    else
+    {
+        get_path((path) => {
+            db.open(path);
+            db.increment_RBIs(newRBIs,id,() => {
+                callback();
+            })
+        })
+    }
+}
+
+const increment_errors = (id, newErrors, callback) => {
+    if(newErrors == undefined) {callback();}
+    else
+    {
+        get_path((path) => {
+            db.open(path);
+            db.increment_errors(newErrors,id,() => {
+                callback();
+            })
+        })
+    }
+}
+
+const promise_stats = (id, newStats, callback) => {
+    //About to be callback hell but oh well, gotta do what ya gotta do
+    increment_TD(id,newStats.TDs,() => {
+        increment_catches(id,newStats.catches,() => {
+            increment_tackles(id,newStats.tackles,() => {
+                increment_goals(id,newStats.goals,() => {
+                    increment_saves(id,newStats.saves,() => {
+                        increment_hits(id,newStats.hits,() => {
+                            increment_RBIs(id,newStats.RBIs,() => {
+                                increment_errors(id,newStats.errors,() => {
+                                    callback();
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
     });
 }
 
-const increment_stats = (req,res) => {
+
+
+const increment_stats = (req, res) => {
     const { id } = req.params;
     const newStats = req.body;
 
-    promise_stats(id,newStats).then(() => {
+    promise_stats(id,newStats,() => {
+        db.close();
         res.send("Stats Incremented");
-    })
+    });
 }
 
 module.exports = {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position, increment_stats}

@@ -120,6 +120,195 @@ class player_dbmanager{
             });
         });
     }
+    increment_catches(catches, ID, callback){
+        let updatedCatches;
+        this.db.serialize(()=>{ 
+            this.db.get('SELECT catches FROM Players WHERE ID = ?',[ID],(err,row) => {
+                if(err)
+                {
+                    console.log(err.message);
+                    return;
+                }
+                if(row.catches !== null)
+                {
+                    updatedCatches = row.catches + catches;
+                    this.db.run('UPDATE Players SET catches = ? WHERE ID = ?',[updatedCatches,ID],(err) => {
+                        if(err)
+                        {
+                            console.log(err.message)
+                            return;
+                        }
+                        else
+                        {
+                            callback();
+                        }
+                    });
+                }
+            });
+        });
+    }
+    increment_tackles(tackles, ID, callback){
+        let updatedTackles;
+        this.db.serialize(()=>{ 
+            this.db.get('SELECT tackles FROM Players WHERE ID = ?',[ID],(err,row) => {
+                if(err)
+                {
+                    console.log(err.message);
+                    return;
+                }
+                if(row.tackles !== null)
+                {
+                    updatedTackles = row.tackles + tackles;
+                    this.db.run('UPDATE Players SET tackles = ? WHERE ID = ?',[updatedTackles,ID],(err) => {
+                        if(err)
+                        {
+                            console.log(err.message)
+                            return;
+                        }
+                        else
+                        {
+                            callback();
+                        }
+                    });
+                }
+            });
+        });
+    }
+    increment_goals(goals, ID, callback){
+        let updatedGoals;
+        this.db.serialize(()=>{ 
+            this.db.get('SELECT goals FROM Players WHERE ID = ?',[ID],(err,row) => {
+                if(err)
+                {
+                    console.log(err.message);
+                    return;
+                }
+                if(row.goals !== null)
+                {
+                    updatedGoals = row.goals + goals;
+                    this.db.run('UPDATE Players SET goals = ? WHERE ID = ?',[updatedGoals,ID],(err) => {
+                        if(err)
+                        {
+                            console.log(err.message)
+                            return;
+                        }
+                        else
+                        {
+                            callback();
+                        }
+                    });
+                }
+            });
+        });
+    }
+    increment_saves(saves, ID, callback){
+        let updateSaves;
+        this.db.serialize(()=>{ 
+            this.db.get('SELECT saves FROM Players WHERE ID = ?',[ID],(err,row) => {
+                if(err)
+                {
+                    console.log(err.message);
+                    return;
+                }
+                if(row.saves !== null)
+                {
+                    updateSaves = row.saves + saves;
+                    this.db.run('UPDATE Players SET saves = ? WHERE ID = ?',[updateSaves,ID],(err) => {
+                        if(err)
+                        {
+                            console.log(err.message)
+                            return;
+                        }
+                        else
+                        {
+                            callback();
+                        }
+                    });
+                }
+            });
+        });
+    }
+    increment_hits(hits, ID, callback){
+        let updateHits;
+        this.db.serialize(()=>{ 
+            this.db.get('SELECT hits FROM Players WHERE ID = ?',[ID],(err,row) => {
+                if(err)
+                {
+                    console.log(err.message);
+                    return;
+                }
+                if(row.hits !== null)
+                {
+                    updateHits = row.hits + hits;
+                    this.db.run('UPDATE Players SET hits = ? WHERE ID = ?',[updateHits,ID],(err) => {
+                        if(err)
+                        {
+                            console.log(err.message)
+                            return;
+                        }
+                        else
+                        {
+                            callback();
+                        }
+                    });
+                }
+            });
+        });
+    }
+    increment_RBIs(RBIs, ID, callback){
+        let updateRBIs;
+        this.db.serialize(()=>{ 
+            this.db.get('SELECT RBIs FROM Players WHERE ID = ?',[ID],(err,row) => {
+                if(err)
+                {
+                    console.log(err.message);
+                    return;
+                }
+                if(row.RBIs !== null)
+                {
+                    updateRBIs = row.RBIs + RBIs;
+                    this.db.run('UPDATE Players SET RBIs = ? WHERE ID = ?',[updateRBIs,ID],(err) => {
+                        if(err)
+                        {
+                            console.log(err.message)
+                            return;
+                        }
+                        else
+                        {
+                            callback();
+                        }
+                    });
+                }
+            });
+        });
+    }
+    increment_errors(errors, ID, callback){
+        let updateErrors;
+        this.db.serialize(()=>{ 
+            this.db.get('SELECT errors FROM Players WHERE ID = ?',[ID],(err,row) => {
+                if(err)
+                {
+                    console.log(err.message);
+                    return;
+                }
+                if(row.errors !== null)
+                {
+                    updateErrors = row.errors + errors;
+                    this.db.run('UPDATE Players SET errors = ? WHERE ID = ?',[updateErrors,ID],(err) => {
+                        if(err)
+                        {
+                            console.log(err.message)
+                            return;
+                        }
+                        else
+                        {
+                            callback();
+                        }
+                    });
+                }
+            });
+        });
+    }
     delete(ID, callback){
         this.db.serialize(()=>{ 
             this.sql = 'DELETE FROM Players WHERE ID = ?';
