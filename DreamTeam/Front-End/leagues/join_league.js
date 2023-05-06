@@ -17,6 +17,12 @@ let getSessionId = function (callback) {
   }
   let setLeagueData = function(LeagueDataJSON, callback){
     const tableBody = document.querySelector('#league-table tbody');
+    const leagueInModal = document.getElementById("league_in_modal");
+    const enrollPlayer = document.getElementById("confirm_enrollment");
+    // Get the modal
+    var modal = document.getElementById("modal");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
     //const leagueContainer = document.getElementById("league_contain_names");
     //const lContainer = document.getElementById("l_container");
@@ -52,9 +58,26 @@ let getSessionId = function (callback) {
       join_bt.textContent = "Join this league";
       join_bt.classList.add("dynprog-button");
       join_bt.addEventListener("click", function(){
-        //popup code
+        modal.style.display = "block";
+        leagueInModal.textContent = leagueName;
+        enrollPlayer.addEventListener("click", function(){
+            console.log("Confirm click");
+            //NEED TO GET THE LEAGUE ID SO THAT WE CAN ADD THE USER TO IT!!
+        });
         console.log("button clicked");
       });
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+             modal.style.display = "none";
+          }
+        }
 
       //but.style.marginBottom = "10px";
       join.appendChild(join_bt);
