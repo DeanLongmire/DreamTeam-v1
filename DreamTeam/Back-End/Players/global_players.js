@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position, increment_TD} = require('../controllers/global_players.js');
+const {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position, increment_stats} = require('../controllers/global_players.js');
 const router = express.Router();
 
 router.use(bodyParser.json());
@@ -21,6 +21,6 @@ router.delete('/:id', delete_player);
 //update player info
 router.patch('/update_name/:id', update_name);
 router.patch('/update_position/:id', update_position);
-router.patch('/increment_tds/:id', increment_TD);
+router.patch('/increment_stats/:id', increment_stats);                                                                                               
 
 module.exports = router;

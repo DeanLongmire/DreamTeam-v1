@@ -11,7 +11,7 @@ class player_dbmanager{
         });
     }
     create(){
-        this.db.run('CREATE TABLE Players(name, username, ID, Team_ID, position, TDs, catches, tackels, goals, saves, hits, RBIs, errors)', (err)=>{
+        this.db.run('CREATE TABLE Players(name, username, ID, Team_ID, position, TDs, catches, tackles, goals, saves, hits, RBIs, errors)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created player table');
         }); 
@@ -24,7 +24,7 @@ class player_dbmanager{
     }
     insert(name, username, ID, Team_ID, position, TDs, catches, tackels, goals, saves, hits, RBIs, errors, callback){
         this.db.serialize(() => {
-            this.sql = 'INSERT INTO Players(name, username, ID, Team_ID, position, TDs, catches, tackels, goals, saves, hits, RBIs, errors) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)';
+            this.sql = 'INSERT INTO Players(name, username, ID, Team_ID, position, TDs, catches, tackles, goals, saves, hits, RBIs, errors) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)';
             this.db.run(this.sql, [name, username, ID, Team_ID, position, TDs, catches, tackels, goals, saves, hits, RBIs, errors], (err)=>{
                 if(err) {return console.error(err.message);}
                 console.log("New row created in Player table");
@@ -49,7 +49,7 @@ class player_dbmanager{
             this.sql = 'SELECT * FROM Players WHERE ID = ?';
             this.db.get(this.sql, [ID], (err, row) => {
                 if(err){return console.error(err.message);}
-                if(row){callback(row.name,row.username,row.ID,row.Team_ID,row.position,row.TDs,row.catches,row.tackels,row.goals,row.saves,row.hits,row.RBIs,row.errors);}
+                if(row){callback(row.name,row.username,row.ID,row.Team_ID,row.position,row.TDs,row.catches,row.tackles,row.goals,row.saves,row.hits,row.RBIs,row.errors);}
                 else{console.log("error");}
             });
             callback();

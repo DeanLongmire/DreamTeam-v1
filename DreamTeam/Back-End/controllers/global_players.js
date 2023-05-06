@@ -119,17 +119,66 @@ const update_position = (req, res) =>{
     res.send('Position updated');
 }
 
-const increment_TD = (req, res) => {
-    const { id } = req.params;
-    const newTDs = req.body.TDs;
-
+const increment_TD = (id, newTDs) => {
     get_path((path) => {
         db.open(path);
         db.increment_TD(newTDs,id,() => {
             db.close();
-            res.send("TDs Updated");
         })
     })
 }
 
-module.exports = {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position, increment_TD}
+const promise_stats = (id,newStats) => {
+    return new Promise((resolve,reject) => {
+        let updateCount = 0;
+
+        if(newStats.TDs !== undefined)
+        { 
+            increment_TD(id,newStats.TDs);
+            updateCount++;
+            if(updateCount === newStats.numToBeUpdated)
+            {
+                resolve();
+            }
+        }
+        if(newStats.catches !== undefined)
+        { 
+            console.log(newStats.catches);
+        }
+        if(newStats.tackles !== undefined)
+        { 
+            console.log(newStats.tackles);
+        }
+        if(newStats.goals !== undefined)
+        { 
+            console.log(newStats.goals);
+        }
+        if(newStats.saves !== undefined)
+        { 
+            console.log(newStats.saves);
+        }
+        if(newStats.hits !== undefined)
+        { 
+            console.log(newStats.hits);
+        }
+        if(newStats.RBIs !== undefined)
+        { 
+            console.log(newStats.RBIs);
+        }
+        if(newStats.errors !== undefined)
+        {
+            console.log(newStats.errors); 
+        }
+    });
+}
+
+const increment_stats = (req,res) => {
+    const { id } = req.params;
+    const newStats = req.body;
+
+    promise_stats(id,newStats).then(() => {
+        res.send("Stats Incremented");
+    })
+}
+
+module.exports = {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position, increment_stats}
