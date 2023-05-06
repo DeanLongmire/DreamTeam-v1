@@ -2,6 +2,7 @@
 const url = 'http://127.0.0.1:5000/leagues'
 let userCookieId;
 let userID;
+let leagueData;
 
 //Make the fields and create button itself
 const create_button = document.querySelector('#create_league_button');
@@ -36,8 +37,6 @@ function toggleCreateButton(){
     }
 }
 
-let leagueData;
-
 //Function to create a league on click
 function createLeague(event){
   event.preventDefault();
@@ -45,7 +44,8 @@ function createLeague(event){
   const leagueName = leagueInput.value; //Set leaguename
   const data = { 
     sport: selectedSport, 
-    leagueName: leagueName 
+    leagueName: leagueName,
+    adminId: userID
   };
           
   console.log(data);

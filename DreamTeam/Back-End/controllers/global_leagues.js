@@ -18,10 +18,11 @@ const get_league = (req, res) => {
 
     get_path((path) =>{
         db.open(path, () => {
-            db.get_all(id, (name, ID, sport) => {
+            db.get_all(id, (name, ID, adminID, sport) => {
                 console.log(name + " " + ID + " " + sport);
                 const leagueData = {
                     ID: ID,
+                    adminId: adminID,
                     name: name,
                     sport: sport
                 };
@@ -60,7 +61,7 @@ const create_league = (req, res) => {
     console.log(uwid);
     get_path((path) => {
       db.open(path);
-      db.insert(uwid.leagueName,uwid.id,uwid.sport, () =>{
+      db.insert(uwid.leagueName,uwid.id,uwid.adminId,uwid.sport, () =>{
           db.close();
           const leagueData = {
             id: uwid.id
