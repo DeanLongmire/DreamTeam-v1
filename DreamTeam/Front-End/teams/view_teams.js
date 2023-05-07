@@ -220,7 +220,7 @@ let setTeamData = function(teamDataJSON, callback){
     join_bt.textContent = "Join this team";
     join_bt.classList.add("dynprog-button");
     if(teamID != null){
-      join_bt.style.display = "none";
+      join_bt.textContent = "You are already in a team."
     }
     join_bt.addEventListener("click", function(){
         modal.style.display = "block";
