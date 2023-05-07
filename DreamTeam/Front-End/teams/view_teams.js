@@ -139,6 +139,7 @@ let loadData = function () {
       getAllURL = "http://127.0.0.1:5000/teams/get_team_in_league/" + leagueId;
       getAllTeams(getAllURL,() => {
         //fill in html with teams here, use set team data
+
       });
     });
   });
@@ -187,26 +188,59 @@ let logout = function(callback) {
   });
 }
 
-/*let setTeamData = function(teamDataJSON, callback){
-    const teamContainer = document.getElementById("team-container");
-    //const lContainer = document.getElementById("l_container");
-    names = teamDataJSON.name;
-    sports = teamDataJSON.sport;
-    nPlayers = teamDataJSON.num_players;
-    wins = teamDataJSON.W;
-    losses = teamDataJSON.L;
-    for (let i = 0; i < names.length; i++) {
-      const teamName = names[i];
-      const teamSport = sports[i];
-      const pCount = nPlayers[i];
-      const win = wins[i];
-      const loss = losses[i];
-      const h4 = document.createElement("h4");
-      h4.textContent = teamName + " " + teamSport + " " + pCount + " " + win + " " + loss;
-      teamContainer.appendChild(h4);
+let setTeamData = function(teamDataJSON, callback){
+  const tableBody = document.querySelector('#team-table tbody');
+  const teamInModal = document.getElementById("team_in_modal");
+  const enrollPlayer = document.getElementById("confirm_enrollment");
+  // Get the modal
+  var modal = document.getElementById("modal");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  names = teamDataJSON.names;
+
+  for(let i = 0; i < names.length; i++){
+    const teamname = names[i];
+    console.log(teamname);
+
+    const row = document.createElement('tr');
+    const nameCol = document.createElement('td');
+    const join = document.createElement('td');
+    const join_bt = document.createElement('button');
+    nameCol.textContent = teamname;
+    join_bt.textContent = "Join this team";
+    join_bt.classList.add("dynprog-button");
+    join_bt.addEventListener("click", function(){
+        modal.style.display = "block";
+        teamInModal.textContent = teamname;
+        enrollPlayer.addEventListener("click", function(){
+            console.log("Confirm click");
+            //NEED TO GET THE LEAGUE ID SO THAT WE CAN ADD THE USER TO IT!!
+        });
+        console.log("button clicked");
+      });
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+             modal.style.display = "none";
+          }
+        }
+
+      //but.style.marginBottom = "10px";
+      join.appendChild(join_bt);
+      row.appendChild(nameCol);
+      row.appendChild(join);
+      tableBody.appendChild(row);
+
     }
     callback();
-  }*/
+  }
 
 /*If user selects log out, a message says they have been logged out
 then they return back to the home page*/
