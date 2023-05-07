@@ -93,7 +93,7 @@ let getUserData = function (url,callback) {
     if (response.ok) {
       response.json().then(data => {
         setUserData(data, () => {
-          teamID = data.teamId
+          teamID = data.teamID;
           console.log("User Data Set");
           callback();
         });
@@ -195,6 +195,7 @@ let setTeamData = function(teamDataJSON, callback){
   const tableBody = document.querySelector('#team-table tbody');
   const teamInModal = document.getElementById("team_in_modal");
   const enrollPlayer = document.getElementById("confirm_enrollment");
+  const joinText = document.getElementById("join_pls");
   // Get the modal
   var modal = document.getElementById("modal");
   // Get the <span> element that closes the modal
@@ -219,8 +220,10 @@ let setTeamData = function(teamDataJSON, callback){
     recordCol.textContent = "(" + winScore + "-" + lossScore + ")";
     join_bt.textContent = "Join this team";
     join_bt.classList.add("dynprog-button");
+    console.log(teamID);
     if(teamID != null){
-      join_bt.textContent = "You are already in a team."
+      join_bt.style.display = "none";
+      joinText.textContent = "";
     }
     join_bt.addEventListener("click", function(){
         modal.style.display = "block";
