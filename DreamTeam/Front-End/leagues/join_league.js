@@ -1,94 +1,117 @@
 let userCookieId;
+let userID;
 
 ///COOKIE INFO
 let getSessionId = function (callback) {
-    const cookies = document.cookie.split(';');
-    const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
-    userCookieId = cookie ? cookie.split('=')[1] : null;
-    console.log(userCookieId);
-  
-    const sessionId = {
-      id: userCookieId
-    }
-  
-    const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
-  
-    callback(userURL);
+  const cookies = document.cookie.split(';');
+  const cookie = cookies.find(c => c.trim().startsWith('UserCookie'));
+  userCookieId = cookie ? cookie.split('=')[1] : null;
+  console.log(userCookieId);
+
+  const sessionId = {
+    id: userCookieId
   }
-  let setLeagueData = function(LeagueDataJSON, callback){
-    const tableBody = document.querySelector('#league-table tbody');
-    const leagueInModal = document.getElementById("league_in_modal");
-    const enrollPlayer = document.getElementById("confirm_enrollment");
-    // Get the modal
-    var modal = document.getElementById("modal");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
 
-    //const leagueContainer = document.getElementById("league_contain_names");
-    //const lContainer = document.getElementById("l_container");
-    //const join = document.getElementById("join_button");
-    names = LeagueDataJSON.names;
-    sports = LeagueDataJSON.sports;
-    for (let i = 0; i < names.length; i++) {
-      const leagueName = names[i];
-      const leagueSport = sports[i];
-      const row = document.createElement('tr');
-      const nameCol = document.createElement('td');
-      const sportCol = document.createElement('td');
-      const join = document.createElement('td');
-      const join_bt = document.createElement('button');
-      //const h4 = document.createElement("h4");
-      //h4.textContent = leagueName;
-      //leagueContainer.appendChild(h4);
-      nameCol.textContent = leagueName;
-      //const head = document.createElement("h4");
-      if(leagueSport=== "Flag_football"){
-            sportCol.textContent = "Flag Football";
-          //head.textContent = "Flag Football";
-      }else if(leagueSport === "Men_soccer"){
-            sportCol.textContent = "Men's Soccer";
-          //head.textContent = "Men's Soccer";
-      }else{
-          sportCol.textContent = leagueSport;
-          //head.textContent = leagueSport;
-      }
-      //lContainer.appendChild(head);
-      //const but = document.createElement("button");
-      //but.textContent = "Join this league";
-      join_bt.textContent = "Join this league";
-      join_bt.classList.add("dynprog-button");
-      join_bt.addEventListener("click", function(){
-        modal.style.display = "block";
-        leagueInModal.textContent = leagueName;
-        enrollPlayer.addEventListener("click", function(){
-            console.log("Confirm click");
-            //NEED TO GET THE LEAGUE ID SO THAT WE CAN ADD THE USER TO IT!!
-        });
-        console.log("button clicked");
-      });
+  const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
 
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() {
-        modal.style.display = "none";
-      }
+  callback(userURL);
+}
 
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-          if (event.target == modal) {
-             modal.style.display = "none";
-          }
-        }
-
-      //but.style.marginBottom = "10px";
-      join.appendChild(join_bt);
-      row.appendChild(nameCol);
-      row.appendChild(sportCol);
-      row.appendChild(join);
-      tableBody.appendChild(row);
-
+let update_user_league = function(url,newLeague,callback)
+{
+  fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newLeague)
+  })
+  .then(response => {
+    if(response.ok){
+      callback();
     }
-    callback();
-  } 
+  })
+  .catch((err) => {console.log(err);})
+}
+
+let setLeagueData = function(LeagueDataJSON, callback){
+  const tableBody = document.querySelector('#league-table tbody');
+  const leagueInModal = document.getElementById("league_in_modal");
+  const enrollPlayer = document.getElementById("confirm_enrollment");
+  // Get the modal
+  var modal = document.getElementById("modal");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  //const leagueContainer = document.getElementById("league_contain_names");
+  //const lContainer = document.getElementById("l_container");
+  //const join = document.getElementById("join_button");
+  names = LeagueDataJSON.names;
+  sports = LeagueDataJSON.sports;
+  ids = LeagueDataJSON.ids;
+  for (let i = 0; i < names.length; i++) {
+    const leagueName = names[i];
+    const leagueSport = sports[i];
+    const leagueId = ids[i];
+    const row = document.createElement('tr');
+    const nameCol = document.createElement('td');
+    const sportCol = document.createElement('td');
+    const join = document.createElement('td');
+    const join_bt = document.createElement('button');
+    //const h4 = document.createElement("h4");
+    //h4.textContent = leagueName;
+    //leagueContainer.appendChild(h4);
+    nameCol.textContent = leagueName;
+    //const head = document.createElement("h4");
+    if(leagueSport=== "Flag_football"){
+          sportCol.textContent = "Flag Football";
+        //head.textContent = "Flag Football";
+    }else if(leagueSport === "Men_soccer"){
+          sportCol.textContent = "Men's Soccer";
+        //head.textContent = "Men's Soccer";
+    }else{
+        sportCol.textContent = leagueSport;
+        //head.textContent = leagueSport;
+    }
+    //lContainer.appendChild(head);
+    //const but = document.createElement("button");
+    //but.textContent = "Join this league";
+    join_bt.textContent = "Join this league";
+    join_bt.classList.add("dynprog-button");
+    join_bt.addEventListener("click", function(){
+      modal.style.display = "block";
+      leagueInModal.textContent = leagueName;
+      enrollPlayer.addEventListener("click", function(){
+          console.log("Confirm click");
+          const updateURL = 'http://127.0.0.1:5000/users/update_league/' + userID;
+          const dataJSON = {
+            leagueId: leagueId
+          }
+          update_user_league(updateURL,dataJSON,() => {
+            window.location.replace("league_home.html");
+          })
+      });
+      console.log("button clicked");
+    });
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+           modal.style.display = "none";
+        }
+      }
+    //but.style.marginBottom = "10px";
+    join.appendChild(join_bt);
+    row.appendChild(nameCol);
+    row.appendChild(sportCol);
+    row.appendChild(join);
+    tableBody.appendChild(row);
+  }
+  callback();
+} 
+
   let getLeagueData = function(leagueURL, callback){
     fetch(leagueURL, {
       method: 'GET',
@@ -121,6 +144,7 @@ let getSessionId = function (callback) {
           setUserData(data, () => {
             console.log("User Data Set");
             //CONTINUE FROM HERE
+            userID = data.id;
             leagueURL = "http://127.0.0.1:5000/leagues/"
             getLeagueData(leagueURL,()=>{
               console.log("League Data Set");

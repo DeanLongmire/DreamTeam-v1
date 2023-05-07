@@ -41,10 +41,11 @@ const get_league = (req, res) => {
 const show_all = (req, res) => {
     get_path((path) => {
         db.open(path);
-        db.display_all( (league_names,league_sports) => {
+        db.display_all( (league_names,league_sports,league_ids) => {
             const data = { 
                 names: league_names,
-                sports: league_sports
+                sports: league_sports,
+                ids: league_ids
             }
             db.close();
             res.send(data);

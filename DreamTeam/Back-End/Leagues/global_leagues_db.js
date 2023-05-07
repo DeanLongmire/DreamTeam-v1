@@ -39,17 +39,17 @@ class league_dbmanager{
     display_all(callback){
         const league_names = [];
         const league_sports = [];
+        const league_ids = [];
         this.db.serialize(()=>{ 
-            this.sql = 'SELECT name,sport FROM Leagues';
+            this.sql = 'SELECT name,ID,sport FROM Leagues';
             this.db.all(this.sql, [], (err,rows)=>{
                 if(err) {return console.error(err.message);}
                 rows.forEach((row)=>{
-                    console.log(row.name);
-                    console.log(row.sport);
                     league_names.push(row.name);
                     league_sports.push(row.sport);
+                    league_ids.push(row.ID);
                 });
-                callback(league_names,league_sports);
+                callback(league_names,league_sports,league_ids);
             });
         });
     }

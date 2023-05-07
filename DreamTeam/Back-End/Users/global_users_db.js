@@ -294,6 +294,7 @@ class users_dbmanager{
 
     //update a users league ID column
     update_leagueId(leagueId, ID, callback) {
+      console.log("IN league " + leagueId);
       this.sql = "UPDATE Users SET leagueID = ? WHERE ID = ?"
       this.db.run(this.sql, [leagueId, ID], (err)=>{
         if(err){return console.log(err.message)}
