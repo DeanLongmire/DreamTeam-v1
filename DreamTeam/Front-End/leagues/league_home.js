@@ -2,6 +2,7 @@
 //Will have to make dynamic boxes to account for different numbers of teams
 
 let leagueAdmin;
+let userId;
 
 //COOKIE INFO
 let getSessionId = function (callback) {
@@ -32,6 +33,7 @@ let getUserData = function (url,callback) {
       response.json().then(data => {
         setUserData(data, () => {
           console.log("User Data Set");
+          userId = data.id;
           const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
             if(data.teamID !== null) 
             {
@@ -112,6 +114,7 @@ let getLeagueData = function (leagueURL, callback) {
       response.json().then(data => {
         setLeagueData(data, () => {
           console.log("League Data Set");
+          leagueAdmin = data.adminId;
           callback();
         });
       });
@@ -130,7 +133,14 @@ let loadData = function () {
     console.log("URL: " + userURL);
     getUserData(userURL,() => {
       console.log("All Data Set");
-            
+      if(leagueAdmin == userId)
+      {
+        console.log("Admin Logged In");
+      }
+      else
+      {
+        console.log("You are not an admin")
+      }
     });
   });
 };
