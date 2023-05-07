@@ -219,7 +219,7 @@ let setTeamData = function(teamDataJSON, callback){
     recordCol.textContent = "(" + winScore + "-" + lossScore + ")";
     join_bt.textContent = "Join this team";
     join_bt.classList.add("dynprog-button");
-    if(teamID === null){
+    if(teamID != null){
       join_bt.style.display = "none";
     }
     join_bt.addEventListener("click", function(){
