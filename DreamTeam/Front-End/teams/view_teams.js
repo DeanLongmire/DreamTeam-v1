@@ -65,6 +65,7 @@ let username = null;
 //GLOBALS
 let userCookieId;
 let leagueId;
+let teamID;
 
 ///COOKIE INFO
 let getSessionId = function (callback) {
@@ -92,6 +93,7 @@ let getUserData = function (url,callback) {
     if (response.ok) {
       response.json().then(data => {
         setUserData(data, () => {
+          teamID = data.teamId
           console.log("User Data Set");
           callback();
         });
@@ -139,6 +141,7 @@ let loadData = function () {
       getAllURL = "http://127.0.0.1:5000/teams/get_team_in_league/" + leagueId;
       getAllTeams(getAllURL,(data) => {
         //fill in html with teams here, use set team data
+        setTeamData(data, ()=>{});
         console.log(data);
       });
     });
@@ -198,24 +201,33 @@ let setTeamData = function(teamDataJSON, callback){
   var span = document.getElementsByClassName("close")[0];
 
   names = teamDataJSON.names;
+  wins = teamDataJSON.wins;
+  losses = teamDataJSON.losses;
 
   for(let i = 0; i < names.length; i++){
     const teamname = names[i];
+    const winScore = wins[i];
+    const lossScore = losses[i];
     console.log(teamname);
 
     const row = document.createElement('tr');
     const nameCol = document.createElement('td');
+    const recordCol = document.createElement('td');
     const join = document.createElement('td');
     const join_bt = document.createElement('button');
     nameCol.textContent = teamname;
+    recordCol.textContent = "(" + winScore + "-" + lossScore + ")";
     join_bt.textContent = "Join this team";
     join_bt.classList.add("dynprog-button");
+    if(teamID === null){
+      join_bt.style.display = "none";
+    }
     join_bt.addEventListener("click", function(){
         modal.style.display = "block";
         teamInModal.textContent = teamname;
         enrollPlayer.addEventListener("click", function(){
             console.log("Confirm click");
-            //NEED TO GET THE LEAGUE ID SO THAT WE CAN ADD THE USER TO IT!!
+            //NEED TO GET THE TEAM ID SO THAT WE CAN ADD THE USER TO IT!!
         });
         console.log("button clicked");
       });
@@ -235,6 +247,7 @@ let setTeamData = function(teamDataJSON, callback){
       //but.style.marginBottom = "10px";
       join.appendChild(join_bt);
       row.appendChild(nameCol);
+      row.appendChild(recordCol);
       row.appendChild(join);
       tableBody.appendChild(row);
 
