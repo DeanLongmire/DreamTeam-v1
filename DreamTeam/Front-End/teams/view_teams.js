@@ -137,9 +137,9 @@ let loadData = function () {
     getUserData(userURL,() => {
       console.log("All Data Set");
       getAllURL = "http://127.0.0.1:5000/teams/get_team_in_league/" + leagueId;
-      getAllTeams(getAllURL,() => {
+      getAllTeams(getAllURL,(data) => {
         //fill in html with teams here, use set team data
-
+        console.log(data);
       });
     });
   });

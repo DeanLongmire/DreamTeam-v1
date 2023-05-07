@@ -129,18 +129,29 @@ class team_dbmanager{
         });
     }
     get_all_with_id(ID, callback){
-        console.log(`id: ${ID}`);
+        let names = [];   
+        let ids = [];
+        let wins = [];
+        let losses = [];
         this.sql = 'SELECT * FROM Teams WHERE P_ID = ?';
-        this.db.get(this.sql, [ID], (err, row) => {
-        if(err){
-            return console.error(err.message);
-        }
-        if(row){
-            callback(row.name, row.sport, row.num_players, row.W, row.L);
-        }
-        else{
-            console.log("error");
-        }
+        this.db.all(this.sql, [ID], (err, rows) => {
+            if(err){
+                return console.error(err.message);
+            }
+            if(rows.length == 0){callback("No Players");}
+            else if(rows)
+            {
+                rows.forEach((row) => {
+                    names.push(row.name);
+                    ids.push(row.ID);
+                    wins.push(row.W);
+                    losses.push(row.L);
+                })
+                callback(names,ids,wins,losses);
+            }
+            else{
+                console.log("error");
+            }
         });
     }
     SetAdminID(A_ID, ID, callback){

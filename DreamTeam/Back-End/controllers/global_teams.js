@@ -47,25 +47,17 @@ const get_team_in_league = (req, res) =>{
     const { leagueid } = req.params;
     get_path((path) => {
         db.open(path);
-        db.get_all_with_id(leagueid, (name, sport, num_players, W, L) => {
-            console.log(`${name} ${sport} ${num_players} ${W} ${L}`);
-            const teamData = {
-                name: name,
-                // id: ID,
-                // p_id: P_ID,
-                // a_id: A_ID,
-                sport: sport,
-                nPlayers: num_players,
-                w: W,
-                l: L
-            };
-            // console.log("I fart");
-            // console.log(teamData.name);
-            //JSON.stringify(teamData);
-            res.send(teamData);
+        db.get_all_with_id(leagueid, (names,ids,wins,losses) => {
+            const allData = {
+                names: names,
+                ids: ids,
+                wins: wins,
+                losses: losses
+            }
             db.close();
+            res.send(allData);
         });
-    })
+    });
     // search db where p_id = league id (will have to make a db function for this)
     // store all of these teams with their names, sport, W, L, numplayers maybe in a JSON object
     // might need to have a count of all teams returned
