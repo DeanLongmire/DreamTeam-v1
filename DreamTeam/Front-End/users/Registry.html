@@ -1,6 +1,11 @@
 <!--Registration Page of Website-->
 <!DOCTYPE html>
 <html>
+
+<div class="dynprog-center">
+    <h7>DreamTeam</h7>
+</div>
+
     <link rel="stylesheet" href="../Dynprog.css">
     <title> DreamTeam - Create Account</title>
 
@@ -13,12 +18,13 @@
         <a href="login.html" class="dynprog-bar-item dynprog-button">Login</a>
     </div>
 
+    <div class="dynprog-padding-12"></div>
 
     <!--insipration from W3.css register form-->
     <!--make a json object store data in it and print it out-->
-
+<div class="dynprog-gradient-background-gray">
     <div class="dynprog-card-4 dynprog-padding-24">
-        <div class="dynprog-container dynprog-center dynprog-gray">
+        <div class="dynprog-container dynprog-center dynprog-orange">
             <h2 class="dynprog-text-white">Register Account</h2>
         </div>
         
@@ -26,6 +32,7 @@
         <button id="password-toggle" class="dynprog-button dynprog-round-small dynprog-text-white dynprog-orange">Show Password</button>
         </div>
 
+    <div class="dynprog-container dynprog-better-box dynprog-margin-more dynprog-white">
     <form id = regform class="dynprog-container dynprog-margin"> 
         <label>Username</label>
         <input class="dynprog-input" type="text" placeholder="Username" name="name" id="name"></input>
@@ -39,11 +46,12 @@
         <label>Confirm Password</label>
         <input class="dynprog-input" type="text" placeholder="Re-Enter Password" name="psw-repeat" id="psw-repeat" required>
     </form>
-    
+
+    <div id="password-error-message" class="dynprog-password-error-message dynprog-center"></div>
+
+</div>
     <!--takes user to profile-->
     <div class="dynprog-center dynprog-padding-24">
-
-        <div id="password-error-message" class="dynprog-password-error-message"></div>
 
         <button id="create_account" class="dynprog-button dynprog-round-large dynprog-text-white dynprog-orange">Create Account</button>
 
@@ -60,6 +68,7 @@
         </footer>
 
     </div>  
+</div>
 <script src="Registry.js"></script>
 
 </html>
