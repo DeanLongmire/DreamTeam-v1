@@ -30,6 +30,7 @@ const get_team = (req, res) => {
                 name: name,
                 id: ID,
                 p_id: P_ID,
+                a_id: A_ID,
                 sport: sport,
                 nPlayers: num_players,
                 w: W,
