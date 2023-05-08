@@ -1,6 +1,8 @@
 //Team Admin JS form
 const url = 'http://127.0.0.1:5000/teams/team_admin'   //HOW WE NEED TO SET URLS FROM NOW ON
 
+let teamID;
+
 //Form stuff will go here
 const update_team_BT = document.querySelector('#update_team_button');
 const team_name = document.querySelector('#team_name');
@@ -51,9 +53,6 @@ let getSessionId = function(callback) {
   callback(userURL);
 }
 
-
-
-
 let getUserData = function (url, callback) {
   console.log(url);
   fetch(url, {
@@ -99,7 +98,7 @@ let getTeamData = function (teamURL, callback) {
       if (response.ok) {
         response.json().then(data => {
           setTeamData(data, () => {
-            console.log("Team Data Set");
+            teamID = data.id;
             const teamURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
             getLeagueData(leagueURL, () => {
               callback();
@@ -191,6 +190,59 @@ let logout = function (callback) {
 }
 
 //Need to add team and league after get it working on profile
+
+let makeRequest = function (dataToBeUpdated, url, callback) {
+  errorElement.style.display = "none"; //Hide the error message
+  fetch(url, {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataToBeUpdated)
+   })
+   .then(response => {
+      if(response.ok){
+        (console.log("Responded"));
+        callback();
+      }else{
+        if(response.status === 413){
+          console.log("Picture Too Big");  //MAKE THIS GO TO SCREEN
+          errorElement.innerText = "*The picture you uploaded is too big*";
+          errorElement.style.display = "block";
+      }
+      }
+   })
+   .catch(error => console.error(error));
+}
+
+const waitOnRequest = function (numOfInputs, userID,) {
+  return new Promise((resolve,reject) => {
+      let proccessed = 0;
+      if(numOfInputs === proccessed) resolve(); //if zero fields were updated
+      if(team_name.value !== "") //if the field is filled in
+      {
+          const tn = {
+              newName: team_name.value   //get the value entered
+          }
+          const updateTNUrl = 'http://127.0.0.1:5000/teams/update_team_name/' + teamID;  //construct patch URL
+          makeRequest(tn,updateTNUrl, () => {  //make the patch request, see makeRequest function
+              proccessed += 1;                  //increment the number of proccessed requests
+              if(proccessed === numOfInputs) resolve();   //if the number proccessed equals number inputted, all requests processed, return
+          });
+      }
+      if(team_photo.value !== "")
+      {
+          const photo = {
+              pp: last_name.value
+          }
+          const updatePPUrl = 'http://127.0.0.1:5000/teams/update_picture/' + teamID;
+          makeRequest(photo,updatePPUrl, () => {
+              proccessed += 1;
+              if(proccessed === numOfInputs) resolve();
+          });
+      }
+  });
+};
 
 let getNumOfInputs = function () {
   let numOfInputs = 0;
