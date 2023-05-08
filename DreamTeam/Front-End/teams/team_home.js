@@ -79,17 +79,6 @@ let getPlayers = function(url,callback) {
   .then(response => {
     if(response.status === 200) { //we got players
       response.json().then(data => {
-        console.log(data.usernames);
-        console.log(data.positions);
-        console.log(data.ids);
-        console.log(data.TDs);
-        console.log(data.catches);
-        console.log(data.tackles);
-        console.log(data.goals);
-        console.log(data.saves);
-        console.log(data.hits);
-        console.log(data.RBIs);
-        console.log(data.errors);
         callback(data);
       })
     }
@@ -102,6 +91,12 @@ let getPlayers = function(url,callback) {
     console.error(error);
     callback();
   })
+}
+
+let createPlayerCookie = function(id,callback)
+{
+  document.cookie = "PlayerCookie=" + id;
+  callback();
 }
 
 //display player data to table
@@ -184,17 +179,22 @@ if(team_admin != userId){
   updateStats.textContent = "";
 }
 
-edit_bt.addEventListener("click", function(){
-  if(league_sport === "Flag_football"){
-    window.location.replace("edit_fb_stats");
-  }
-  else if(league_sport === "Men_soccer"){
-    window.location.replace("edit_sc_stats");
-  }else{
-    window.location.replace("edit_sb_stats");
-  }
-  
-});
+  edit_bt.addEventListener("click", function(){
+    if(league_sport === "Flag_football"){
+      createPlayerCookie(tableIds,() => {
+        window.location.replace("edit_fb_stats.html");
+      })
+    }
+    else if(league_sport === "Men_soccer"){
+      createPlayerCookie(tableIds,() => {
+        window.location.replace("edit_sc_stats.html");
+      })
+    }else{
+      createPlayerCookie(tableIds,() => {
+        window.location.replace("edit_sb_stats.html");
+      })
+    }
+  });
 
   editCol.appendChild(edit_bt);
   row.appendChild(nameCol);
