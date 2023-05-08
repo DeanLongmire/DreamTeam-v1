@@ -156,24 +156,24 @@ if(league_sport === "Flag_football"){
   stat1.textContent = "Touchdowns";
   stat2.textContent = "Catches";
   stat3.textContent = "Tackles";
-  stat1col.textContent = TDs;
-  stat2col.textContent = catches;
-  stat3col.textContent = tackles;
+  stat1col.textContent = playerTDs;
+  stat2col.textContent = playerCatches;
+  stat3col.textContent = playerTackles;
 }
 else if(league_sport === "Men_soccer"){
   stat1.textContent = "Goals";
   stat2.textContent = "Saves";
-  stat1col.textContent = goals;
-  stat2col.textContent = saves;
+  stat1col.textContent = playerGoals;
+  stat2col.textContent = playerSaves;
   stat3col.textContent = "";
 }
 else{
   stat1.textContent = "Hits";
   stat2.textContent = "RBIs";
   stat3.textContent = "Errors";
-  stat1col.textContent = hits;
-  stat2col.textContent = RBIs;
-  stat3col.textContent = errors;
+  stat1col.textContent = playerHits;
+  stat2col.textContent = playerRBIs;
+  stat3col.textContent = playerErrors;
 }
 
 edit_bt.textContent = "Edit Player's Stats";
