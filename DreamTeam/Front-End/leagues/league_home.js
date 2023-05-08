@@ -1,6 +1,6 @@
 //JS Page for League Home
 //Will have to make dynamic boxes to account for different numbers of teams
-
+let adminButton = document.getElementById("league_owner");
 let leagueAdmin;
 let userId;
 
@@ -136,9 +136,14 @@ let loadData = function () {
       if(leagueAdmin == userId)
       {
         console.log("Admin Logged In");
+        adminButton.textContent = "Edit my league's information"
+        adminButton.onclick = function(){
+          window.location.href = "league_admin.html";
+        }
       }
       else
       {
+        adminButton.style.display = "none";
         console.log("You are not an admin")
       }
     });
@@ -184,6 +189,7 @@ let setLeagueData = function (leagueDataJSON,callback){
       sportHeading.textContent = "Sport: " + sport_type;
     }
     }
+   
  
   callback();
 }
