@@ -93,10 +93,16 @@ function dragEnd() {
   // Determine if the slide should change based on drag distance
   var slideChangeThreshold = slidesContainer.offsetWidth / 4;
   if (Math.abs(currentTranslate - prevTranslate) > slideChangeThreshold) {
-    if (currentTranslate > prevTranslate && currentSlide > 0) {
-      currentSlide--;
-    } else if (currentTranslate < prevTranslate && currentSlide < slides.length - 1) {
-      currentSlide++;
+    if (currentTranslate > prevTranslate) {
+      if(currentSlide==0){
+        currentSlide = slides.length-1;
+      }
+      else{currentSlide--;}
+    } else if (currentTranslate < prevTranslate) {
+      if(currentSlide == slides.length-1){
+        currentSlide = 0;
+      }
+      else{currentSlide++;}
     }
   }
 
@@ -132,16 +138,38 @@ function touchEnd() {
   // Determine if the slide should change based on drag distance
   var slideChangeThreshold = slidesContainer.offsetWidth / 4;
   if (Math.abs(currentTranslate - prevTranslate) > slideChangeThreshold) {
-    if (currentTranslate > prevTranslate && currentSlide > 0) {
-      currentSlide--;
-    } else if (currentTranslate < prevTranslate && currentSlide < slides.length - 1) {
-      currentSlide++;
+    if (currentTranslate > prevTranslate) {
+      if(currentSlide==0){
+        currentSlide = slides.length-1;
+      }
+      else{currentSlide--;}
+    } else if (currentTranslate < prevTranslate) {
+      if(currentSlide == slides.length-1){
+        currentSlide = 0;
+      }
+      else{currentSlide++;}
     }
   }
 
   // Reset the current translate value
   currentTranslate = -currentSlide * slidesContainer.offsetWidth;
   setSlidePosition();
+}
+
+function autoAdvance() {
+  currentSlide++;
+
+  if (currentSlide >= slides.length) {
+    currentSlide = 0;
+  }
+
+  currentTranslate = -currentSlide * slidesContainer.offsetWidth;
+  setSlidePosition();
+}
+
+// Start the automatic slideshow with a 5-second interval
+if (slidesContainer !== null) {
+  setInterval(autoAdvance, 5000);
 }
 
 function getPositionX(event) {
@@ -157,19 +185,6 @@ function setSlidePosition() {
 
 setSlidePosition();
 
-// /*about us*/
-// function toggleCollapse() {
-//   const aboutUsSection = document.getElementById("aboutUsSection");
-//   const collapseButton = document.querySelector(".collapse-button");
-
-//   if (aboutUsSection.style.maxHeight) {
-//     aboutUsSection.style.maxHeight = null;
-//     collapseButton.classList.remove("expanded");
-//   } else {
-//     aboutUsSection.style.maxHeight = aboutUsSection.scrollHeight + "px";
-//     collapseButton.classList.add("expanded");
-//   }
-// }
 
 function toggleCollapse(elementId, button) {
   const section = document.getElementById(elementId);
