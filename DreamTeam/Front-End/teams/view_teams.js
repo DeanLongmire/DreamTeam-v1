@@ -247,6 +247,7 @@ let setTeamData = function(teamDataJSON, callback){
   const teamInModal = document.getElementById("team_in_modal");
   const enrollPlayer = document.getElementById("confirm_enrollment");
   const joinText = document.getElementById("join_pls");
+  const createTeam = document.getElementById("create_team_box");
   // Get the modal
   var modal = document.getElementById("modal");
   // Get the <span> element that closes the modal
@@ -277,6 +278,7 @@ let setTeamData = function(teamDataJSON, callback){
     if(teamID != null){
       join_bt.style.display = "none";
       joinText.textContent = "";
+      createTeam.style.display = "none";
     }
     join_bt.addEventListener("click", function(){
         modal.style.display = "block";
