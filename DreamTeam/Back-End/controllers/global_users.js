@@ -216,7 +216,7 @@ const create_user = (req, res) => {
 };
 
 //deletes a user
-const delete_user =  (req, res) => {
+const delete_user = (req, res) => {
     const { id } = req.params;
 
     get_path( (path) => {

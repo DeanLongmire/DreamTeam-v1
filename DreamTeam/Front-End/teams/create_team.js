@@ -137,7 +137,7 @@ let getTeamData = function (teamURL, callback) {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
-  }
+    }
   })
   .then(response => {
     if (response.ok) {
@@ -187,7 +187,6 @@ let loadData = function () {
     console.log("URL: " + userURL);
     getUserData(userURL,() => {
       console.log("All Data Set");
-      //FOR JULIANA: ADD CODE OR FUNCTION HERE TO DELETE LOADING ELEMENT
     });
   });
 };

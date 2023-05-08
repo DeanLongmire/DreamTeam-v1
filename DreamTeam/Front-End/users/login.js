@@ -87,7 +87,7 @@ function loginUser() {
   });
 }
 
-  //Event listener for when user clicks the button
-  loginBT.addEventListener('click', () =>{
-    loginUser();
-  });
+//Event listener for when user clicks the button
+loginBT.addEventListener('click', () =>{
+  loginUser();
+});

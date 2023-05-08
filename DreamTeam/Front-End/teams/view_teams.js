@@ -23,7 +23,7 @@ function expandBox(teamElement) {
   const card = teamElement.querySelector('.dynprog-crd');
   card.style.height = "200px";
 }
-  
+
 function collapseBox(teamElement) {
   const card = teamElement.querySelector('.dynprog-crd');
   card.style.height = "100px";
@@ -66,6 +66,9 @@ let username = null;
 let userCookieId;
 let leagueId;
 let teamID;
+let UserId;
+let UserUsername;
+let UserPosition;
 
 ///COOKIE INFO
 let getSessionId = function (callback) {
@@ -94,6 +97,9 @@ let getUserData = function (url,callback) {
       response.json().then(data => {
         setUserData(data, () => {
           teamID = data.teamID;
+          UserId = data.id;
+          UserUsername = data.username;
+          UserPosition = data.pos;
           console.log("User Data Set");
           callback();
         });
@@ -140,7 +146,6 @@ let loadData = function () {
       console.log("All Data Set");
       getAllURL = "http://127.0.0.1:5000/teams/get_team_in_league/" + leagueId;
       getAllTeams(getAllURL,(data) => {
-        //fill in html with teams here, use set team data
         setTeamData(data, ()=>{});
         console.log(data);
       });
@@ -191,6 +196,52 @@ let logout = function(callback) {
   });
 }
 
+let update_user_team = function(url,dataJSON,callback) {
+  fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dataJSON)
+  })
+  .then(response => {
+    if (response.ok) {
+      callback();
+    } 
+    else 
+    {
+      console.error('Error: ' + response.statusText);
+      callback();
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+let create_player = function(url,dataJSON,callback) {
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dataJSON)
+  })
+  .then(response => {
+    if (response.ok) {
+      callback();
+    } 
+    else 
+    {
+      console.error('Error: ' + response.statusText);
+      callback();
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
 let setTeamData = function(teamDataJSON, callback){
   const tableBody = document.querySelector('#team-table tbody');
   const teamInModal = document.getElementById("team_in_modal");
@@ -204,11 +255,13 @@ let setTeamData = function(teamDataJSON, callback){
   names = teamDataJSON.names;
   wins = teamDataJSON.wins;
   losses = teamDataJSON.losses;
+  ids = teamDataJSON.ids;
 
   for(let i = 0; i < names.length; i++){
     const teamname = names[i];
     const winScore = wins[i];
     const lossScore = losses[i];
+    const tableIds = ids[i];
     console.log(teamname);
 
     const row = document.createElement('tr');
@@ -229,8 +282,23 @@ let setTeamData = function(teamDataJSON, callback){
         modal.style.display = "block";
         teamInModal.textContent = teamname;
         enrollPlayer.addEventListener("click", function(){
-            console.log("Confirm click");
-            //NEED TO GET THE TEAM ID SO THAT WE CAN ADD THE USER TO IT!!
+            const tUrl = 'http://127.0.0.1:5000/users/update_team/' + UserId;
+            const pUrl = 'http://127.0.0.1:5000/players';
+            const teamData = {
+              teamId: tableIds
+            }
+            console.log(teamID);
+            const playerData = {
+              username: UserUsername,
+              teamId: tableIds,
+              pos: UserPosition,
+              userId: UserId
+            }
+            update_user_team(tUrl,teamData,() => {
+              create_player(pUrl,playerData,() => {
+                window.location.replace("team_home.html");
+              })
+            })
         });
         console.log("button clicked");
       });
