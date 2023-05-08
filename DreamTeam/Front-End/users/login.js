@@ -71,6 +71,10 @@ function loginUser() {
         errorElement.innerText = "*Wrong Password*";
         errorElement.style.display = "block";
       }
+      else
+      {
+        window.location.replace("../error.html");
+      }
       throw new Error('Account not found');
     }
   })
@@ -79,7 +83,7 @@ function loginUser() {
     window.location.replace("profile.html");
   })
   .catch(response => {
-    console.log("test");
+    window.location.replace("../error.html");
   });
 }
 
