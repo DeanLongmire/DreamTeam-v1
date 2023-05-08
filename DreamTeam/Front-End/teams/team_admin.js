@@ -192,6 +192,29 @@ let logout = function (callback) {
 
 //Need to add team and league after get it working on profile
 
+let getNumOfInputs = function () {
+  let numOfInputs = 0;
+
+  if(team_name.value !== "")    numOfInputs += 1;
+  if(team_photo.value !== "")   numOfInputs += 1;
+
+  return numOfInputs;
+}
+
+let buttonSubmit = function () {
+  let numOfInputs = getNumOfInputs(); //get number of fields that the user entered
+  getSessionId((url) => { //get user from session store to get user ID
+      getUserData(url, (id) => { //get user ID
+          waitOnRequest(numOfInputs,id).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
+              window.location.replace("profile.html"); //take back to profile page
+          })
+          .catch(error => {
+              console.log(error);
+          })
+      });
+  });
+};
+
 /*If user selects log out, a message says they have been logged out
 then they return back to the home page*/
 document.querySelector("#Log-Out").onclick = function () {
