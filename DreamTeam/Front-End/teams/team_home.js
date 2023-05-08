@@ -12,7 +12,7 @@ let getSessionId = function (callback) {
   }
 
   const userURL = 'http://127.0.0.1:5000/users/' + sessionId.id;
-
+teas
   callback(userURL);
 }
 
@@ -64,6 +64,109 @@ let logout = function(callback) {
     console.error(error);
   });
 }
+
+//stuff from league page
+let getUserData = function (url,callback) {
+  console.log(url);
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      response.json().then(data => {
+        setUserData(data, () => {
+          console.log("User Data Set");
+          const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
+            if(data.teamID !== null) 
+            {
+              getTeamData(teamURL, () => {
+                callback();
+              });
+            }
+            else if(data.teamID === null && data.leagueID == null)
+            {
+              let leagueNull;
+              let teamNull; 
+              setLeagueData(leagueNull, ()=> {
+                callback();
+              });
+              setTeamData(teamNull, ()=> {
+                callback();
+              });
+                
+              callback();
+            }
+            else
+            {
+              const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.leagueID;
+              getLeagueData(leagueURL, () => {
+                
+                callback();
+              });
+            }
+        });
+      });
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+let getTeamData = function (teamURL, callback) {
+  fetch(teamURL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+  }
+  })
+  .then(response => {
+    if (response.ok) {
+      response.json().then(data => {
+        teamId = data.id;
+        const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+        getLeagueData(leagueURL, () => {
+          callback();
+        });
+      });
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+let getLeagueData = function (leagueURL, callback) {
+  fetch(leagueURL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+  }
+  })
+  .then(response => {
+    if (response.ok) {
+      response.json().then(data => {
+        callback();
+      });
+    } 
+    else {
+      console.error('Error: ' + response.statusText);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
 let getPlayers = function(url,callback) {
   fetch(url, {
     method: 'GET',
