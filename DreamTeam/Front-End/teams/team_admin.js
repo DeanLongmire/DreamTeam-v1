@@ -6,7 +6,7 @@ let teamID;
 //Form stuff will go here
 const update_team_BT = document.querySelector('#update_team_button');
 const team_name = document.querySelector('#team_name');
-const team_photo = document.querySelector('team_photo');
+const team_photo = document.querySelector('#profile_photo');
 let selectedSport = null; //Define outside function
 const sportsRadios = document.getElementsByTagName("sport");
 //Need to see if can get photo this way
@@ -97,13 +97,11 @@ let getTeamData = function (teamURL, callback) {
     .then(response => {
       if (response.ok) {
         response.json().then(data => {
-          setTeamData(data, () => {
             teamID = data.id;
-            const teamURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+            const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
             getLeagueData(leagueURL, () => {
               callback();
             });
-          });
         });
       }
       else {
@@ -125,10 +123,8 @@ let getLeagueData = function (leagueURL, callback) {
     .then(response => {
       if (response.ok) {
         response.json().then(data => {
-          setLeagueData(data, () => {
-            console.log("League Data Set");
-            callback();
-          });
+          console.log("League Data Set");
+          callback();
         });
       }
       else 
@@ -192,7 +188,7 @@ let logout = function (callback) {
 //Need to add team and league after get it working on profile
 
 let makeRequest = function (dataToBeUpdated, url, callback) {
-  errorElement.style.display = "none"; //Hide the error message
+  //errorElement.style.display = "none"; //Hide the error message
   fetch(url, {
       method: 'PATCH',
       headers: {
@@ -207,8 +203,8 @@ let makeRequest = function (dataToBeUpdated, url, callback) {
       }else{
         if(response.status === 413){
           console.log("Picture Too Big");  //MAKE THIS GO TO SCREEN
-          errorElement.innerText = "*The picture you uploaded is too big*";
-          errorElement.style.display = "block";
+          //errorElement.innerText = "*The picture you uploaded is too big*";
+          //errorElement.style.display = "block";
       }
       }
    })
@@ -258,7 +254,7 @@ let buttonSubmit = function () {
   getSessionId((url) => { //get user from session store to get user ID
       getUserData(url, (id) => { //get user ID
           waitOnRequest(numOfInputs,id).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
-              window.location.replace("profile.html"); //take back to profile page
+              window.location.replace("team_home.html"); //take back to team home page
           })
           .catch(error => {
               console.log(error);
