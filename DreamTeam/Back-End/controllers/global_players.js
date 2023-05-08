@@ -34,8 +34,21 @@ const get_players_on_team = (req, res) => {
 
     get_path((path) => {
         db.open(path);
-        db.get_players_on_team(teamId,(players) => {
+        db.get_players_on_team(teamId,(usernames,positions,ids,TDs,catches,tackles,goals,saves,hits,RBIs,errors) => {
             db.close();
+            const players = {
+                usernames: usernames,
+                positions: positions,
+                ids: ids,
+                TDs: TDs,
+                catches: catches,
+                tackles: tackles,
+                goals: goals,
+                saves: saves,
+                hits: hits,
+                RBIs: RBIs,
+                errors: errors
+            }
             if(players === "No players")
             {
                 res.status(201).send(players);
@@ -243,8 +256,6 @@ const promise_stats = (id, newStats, callback) => {
         });
     });
 }
-
-
 
 const increment_stats = (req, res) => {
     const { id } = req.params;
