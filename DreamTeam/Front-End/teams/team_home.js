@@ -1,6 +1,9 @@
 let teamId;
 let league_sport;
 let team_admin;
+let adminButton = document.getElementById("team_owner");
+let userId;
+let teamHeading = document.getElementById("teams");
 //COOKIE INFO
 let getSessionId = function (callback) {
   const cookies = document.cookie.split(';');
@@ -172,9 +175,26 @@ else{
   stat2col.textContent = RBIs;
   stat3col.textContent = errors;
 }
+
 edit_bt.textContent = "Edit Player's Stats";
 edit_bt.classList.add("dynprog-button");
-edit_bt.addEventListener("click", function(){});
+
+if(team_admin != userId){
+  edit_bt.style.display = "none";
+  updateStats.textContent = "";
+}
+
+edit_bt.addEventListener("click", function(){
+  if(league_sport === "Flag_football"){
+    window.location.replace("edit_fb_stats");
+  }
+  else if(league_sport === "Men_soccer"){
+    window.location.replace("edit_sc_stats");
+  }else{
+    window.location.replace("edit_sb_stats");
+  }
+  
+});
 
   editCol.appendChild(edit_bt);
   row.appendChild(nameCol);
@@ -206,6 +226,7 @@ let getUserData = function (url,callback) {
       response.json().then(data => {
         setUserData(data, () => {
           console.log("User Data Set");
+          userId = data.id;
           const teamURL = 'http://127.0.0.1:5000/teams/' + data.teamID;
             if(data.teamID !== null) 
             {
@@ -256,8 +277,10 @@ let getTeamData = function (teamURL, callback) {
   .then(response => {
     if (response.ok) {
       response.json().then(data => {
+        console.log("this is the name " + data.name);
+        teamHeading.textContent = data.name;
         teamId = data.id;
-        team_admin = data.A_ID; 
+        team_admin = data.a_id; 
         const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
         getLeagueData(leagueURL, () => {
           callback();
@@ -302,6 +325,16 @@ let loadData = function () {
   getSessionId((userURL) => {
     console.log("URL: " + userURL);
     getUserData(userURL,() => {
+      if(team_admin == userId){
+        console.log("Admin Logged In");
+        adminButton.textContent = "Edit my Team's information"
+        adminButton.onclick = function(){
+          window.location.href = "team_admin.html";
+        }
+      }
+      else{
+        adminButton.style.display = "none";
+      }
       console.log("All Data Set");
       const getPlayersURL = 'http://127.0.0.1:5000/players/get_players_on_team/' + teamId;
       getPlayers(getPlayersURL,(data) => {
