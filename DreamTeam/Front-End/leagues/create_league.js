@@ -7,6 +7,7 @@ let leagueData;
 //Make the fields and create button itself
 const create_button = document.querySelector('#create_league_button');
 const leagueInput = document.getElementById("league_input");
+
 let selectedSport = null; //Define outside function
 
 //Disable the button in the beginning

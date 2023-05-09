@@ -12,7 +12,7 @@ class league_dbmanager{
         });
     }
     create(){
-        this.db.run('CREATE TABLE Leagues(name, ID, adminID, sport)', (err)=>{
+        this.db.run('CREATE TABLE Leagues(name, ID, adminID, sport, profile_picture)', (err)=>{
             if(err){return console.error(err.message);}
             console.log('Created league table');
         }); 
@@ -23,10 +23,10 @@ class league_dbmanager{
             console.log('Dropped league table')
         });
     }
-    insert(name, ID, adminID, sport, callback){
+    insert(name, ID, adminID, sport, profile_picture, callback){
         this.db.serialize(() => {
-            this.sql = 'INSERT INTO Leagues (name, ID, adminID, sport) VALUES(?,?,?,?)';
-            this.db.run(this.sql, [name, ID, adminID, sport], (err)=>{
+            this.sql = 'INSERT INTO Leagues (name, ID, adminID, sport, profile_picture) VALUES(?,?,?,?,?)';
+            this.db.run(this.sql, [name, ID, adminID, sport,profile_picture], (err)=>{
                 if (err) {
                     console.error(err.message);
                 } else {
@@ -59,7 +59,7 @@ class league_dbmanager{
             this.db.get(this.sql, [ID], (err, row) =>{
                 if(err){return console.error(err.message);}
                 if(row){
-                    callback(row.name,row.ID,row.adminID,row.sport);
+                    callback(row.name,row.ID,row.adminID,row.sport,row.profile_picture);
                     console.log("HERE");
                 }
                 else{console.log("error");}
@@ -85,6 +85,13 @@ class league_dbmanager{
             callback();
         });
     }
+/*    update_profile_picture(new_pp, ID, callback){
+        this.sql = 'UPDATE Leages SET profile_picture = ? WHERE ID = ?';
+        this.db.run(this.sql, [new_pp, ID], (err)=>{
+            if(err){return console.log(err.message)}
+        })
+        callback();
+    }*/
     delete(ID, callback){
         this.db.serialize(()=>{ 
             this.sql = 'DELETE FROM Leagues WHERE ID = ?';

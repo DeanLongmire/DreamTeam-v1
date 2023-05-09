@@ -1,5 +1,5 @@
 const global_leagues = require("../Leagues/global_leagues_db.js")
-
+const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 let db = new global_leagues.league_dbmanager;
@@ -18,25 +18,27 @@ const get_league = (req, res) => {
 
     get_path((path) =>{
         db.open(path, () => {
-            db.get_all(id, (name, ID, adminID, sport) => {
+            db.get_all(id, (name, ID, adminID, sport, picPath) => {
+                let encodedPic;
+                if(picPath !== null){
+                    encodedPic = encodePhoto(picPath);
+                }
                 console.log(name + " " + ID + " " + sport);
                 const leagueData = {
                     ID: ID,
                     adminId: adminID,
                     name: name,
-                    sport: sport
+                    sport: sport,
+                    pp: encodedPic
                 };
             
                 res.send(leagueData);
                 db.close();
              });
-        });
+        })
     });
 };
 
-//making cookies res.cookie(something)
-//will
-//create_session -- reference users
 
 const show_all = (req, res) => {
     get_path((path) => {
@@ -62,7 +64,7 @@ const create_league = (req, res) => {
     console.log(uwid);
     get_path((path) => {
       db.open(path);
-      db.insert(uwid.leagueName,uwid.id,uwid.adminId,uwid.sport, () =>{
+      db.insert(uwid.leagueName,uwid.id,uwid.adminId,uwid.sport,null, () =>{
           db.close();
           const leagueData = {
             id: uwid.id
@@ -112,4 +114,45 @@ const update_sport = (req, res) => {
     res.send('Sport updated');
 }
 
-module.exports = {get_league, show_all, create_league, delete_league, update_name, update_sport}
+/*const update_profile_picture = (req, res) => {
+    const { id } = req.params;
+    const new_pp = req.body.pp;
+
+    storePhoto(new_pp,id,(picPath) =>{
+        get_path( (path) => {
+            db.open(path);
+            db.update_profile_picture(picPath,id,() =>{
+                db.close();
+            })
+            res.send('Picture Updated');
+        })
+    })
+}
+
+const storePhoto = function(base64Encoded, id, callback){
+    const data = base64Encoded.replace(/^data:image\/\w+;base64,/, "");
+
+    const buffer = Buffer.from(data, 'base64');
+
+    let picPath = "./DreamTeam/Back-End/Leagues/profile_pictures/" + id + ".png";
+
+    fs.writeFile(picPath, buffer, function(err) {
+        if(err){
+            console.log(err);
+        } else{
+
+        }
+    })
+    callback(picPath);
+}
+const encodePhoto = function(picPath) {
+    console.log(picPath)
+
+    let pic = fs.readFileSync(picPath);
+    let picBase64 = Buffer.from(pic).toString('base64');
+
+    //console.log("PIC STRING: " + picBase64);
+    return(picBase64);
+}
+*/
+module.exports = {get_league, show_all, create_league, delete_league, update_name, update_sport/*, update_profile_picture, storePhoto, encodePhoto*/}

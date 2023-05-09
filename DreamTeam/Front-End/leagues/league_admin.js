@@ -9,16 +9,13 @@ const sportsRadios = document.getElementsByTagName("sport");
 const errorElement = document.getElementById("error-message");
 //Need to see if can get photo this way
 const profile_photo = document.getElementById("profile_photo");
-let encodedPhoto;
-
 league_name.addEventListener("input", buildData);
-//league_photo.addEventListener("input", buildData);
+profile_photo.addEventListener("input", buildData);
+let encodedPhoto;
 let selectedSport = null; //Define outside function
-
 let leagueID;
 
-function buildData(){
-  
+function buildData(){  
   //Check if there is even a value for the field
   if(league_name.value.trim === ''){
       league_name.value = null;
