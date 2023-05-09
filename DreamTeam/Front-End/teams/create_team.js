@@ -64,9 +64,16 @@ let globalUPOS;
 let globalUUN;
 let parentLeagueID;
 let leagueSport;
+const welcomeButton = document.querySelector("#welcome-button");
+let userNameHeading = document.getElementById("username");
+let username = null;
 
-const setUserData = function(data, callback) {
-  console.log("Setting User Data");
+const setUserData = function(userDataJSON, callback) {
+  console.log(userDataJSON.username);
+  if(userDataJSON.username){
+    username = userDataJSON.username;
+    welcomeButton.textContent = "Welcome, " + username + "!";
+  };
   callback();
 }
 
@@ -307,6 +314,7 @@ function createTeam(){
               const playerURL = 'http://127.0.0.1:5000/players';
               createPlayer(playerURL,globalUserData,() => {
                 console.log("DONE");
+                window.location.replace('team_admin.html');
               });
             })
           });

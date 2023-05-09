@@ -1,0 +1,440 @@
+index.js
+
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  53) var slides = document.querySelectorAll('.slides img');
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  54) var currentSlide = 0;       
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  55) var isDragging = false;     
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  56) var startPosition = 0;      
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  57) var currentTranslate = 0;   
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  58) var prevTranslate = 0;      
+8f104f36 (Finli-Hill   2023-05-02 10:49:24 -0400  59) if(slidesContainer!==null){ 
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  60) slidesContainer.addEventListener('mousedown', dragStart);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  61) slidesContainer.addEventListener('mousemove', drag);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  62) slidesContainer.addEventListener('mouseup', dragEnd);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  63) slidesContainer.addEventListener('mouseleave', dragEnd);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  64) slidesContainer.addEventListener('touchstart', touchStart);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  65) slidesContainer.addEventListener('touchmove', touchMove);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  66) slidesContainer.addEventListener('touchend', touchEnd);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  67) slidesContainer.addEventListener('touchcancel', touchEnd);
+8f104f36 (Finli-Hill   2023-05-02 10:49:24 -0400  68) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  69) function dragStart(event) { 
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  70)   event.preventDefault();   
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  71)   isDragging = true;        
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  72)   startPosition = getPositionX(event);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  73)   prevTranslate = currentTranslate;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  74)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  75)   // Add CSS class to disable transitions during dragging
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  76)   slidesContainer.classList.add('dragging');
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  77) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  78)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  79) function drag(event) {      
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  80)   if (isDragging) {
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  81)     var currentPosition = getPositionX(event);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  82)     currentTranslate = prevTranslate + currentPosition - startPosition;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  83)     setSlidePosition();     
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  84)   }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  85) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  86)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  87) function dragEnd() {        
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  88)   isDragging = false;       
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  89)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  90)   // Remove CSS class to enable transitions after dragging
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  91)   slidesContainer.classList.remove('dragging');
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  92)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  93)   // Determine if the slide should change based on drag distance
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  94)   var slideChangeThreshold = slidesContainer.offsetWidth / 4;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500  95)   if (Math.abs(currentTranslate - prevTranslate) > slideChangeThreshold) {
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400  96)     if (currentTranslate > prevTranslate) {
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400  97)       if(currentSlide==0){  
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400  98)         currentSlide = slides.length-1;
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400  99)       }
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 100)       else{currentSlide--;} 
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 101)     } else if (currentTranslate < prevTranslate) {
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 102)       if(currentSlide == slides.length-1){
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 103)         currentSlide = 0;   
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 104)       }
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 105)       else{currentSlide++;} 
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 106)     }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 107)   }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 108)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 109)   // Reset the current translate value
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 110)   currentTranslate = -currentSlide * slidesContainer.offsetWidth;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 111)   setSlidePosition();       
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 112) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 113)
+8f104f36 (Finli-Hill   2023-05-02 10:49:24 -0400 114)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 115) function touchStart(event) {5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 116)   isDragging = true;        
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 117)   startPosition = getPositionX(event.touches[0]);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 118)   prevTranslate = currentTranslate;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 119)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 120)   // Add CSS class to disable transitions during dragging
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 121)   slidesContainer.classList.add('dragging');
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 122) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 123)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 124) function touchMove(event) { 
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 125)   if (isDragging) {
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 126)     var currentPosition = getPositionX(event.touches[0]);
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 127)     currentTranslate = prevTranslate + currentPosition - startPosition;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 128)     setSlidePosition();     
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 129)   }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 130) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 131)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 132) function touchEnd() {       
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 133)   isDragging = false;       
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 134)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 135)   // Remove CSS class to enable transitions after dragging
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 136)   slidesContainer.classList.remove('dragging');
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 137)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 138)   // Determine if the slide should change based on drag distance
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 139)   var slideChangeThreshold = slidesContainer.offsetWidth / 4;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 140)   if (Math.abs(currentTranslate - prevTranslate) > slideChangeThreshold) {
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 141)     if (currentTranslate > prevTranslate) {
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 142)       if(currentSlide==0){  
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 143)         currentSlide = slides.length-1;
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 144)       }
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 145)       else{currentSlide--;} 
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 146)     } else if (currentTranslate < prevTranslate) {
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 147)       if(currentSlide == slides.length-1){
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 148)         currentSlide = 0;
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 149)       }
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 150)       else{currentSlide++;} 
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 151)     }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 152)   }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 153)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 154)   // Reset the current translate value
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 155)   currentTranslate = -currentSlide * slidesContainer.offsetWidth;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 156)   setSlidePosition();       
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 157) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 158)
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 159) function autoAdvance() {    
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 160)   currentSlide++;
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 161)
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 162)   if (currentSlide >= slides.length) {
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 163)     currentSlide = 0;       
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 164)   }
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 165)
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 166)   currentTranslate = -curren
+tSlide * slidesContainer.offsetWidth;
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 167)   setSlidePosition();       
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 168) }
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 169)
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 170) // Start the automatic slideshow with a 5-second interval
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 171) if (slidesContainer !== null) {
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 172)   setInterval(autoAdvance, 5000);
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 173) }
+5acd90b3 (Finli-Hill   2023-05-08 19:23:30 -0400 174)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 175) function getPositionX(event) {
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 176)   return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 177) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 178)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 179) function setSlidePosition() {
+8f104f36 (Finli-Hill   2023-05-02 10:49:24 -0400 180)   if (slidesContainer) {    
+8f104f36 (Finli-Hill   2023-05-02 10:49:24 -0400 181)     slidesContainer.style.transform = `translateX(${currentTranslate}px)`;
+8f104f36 (Finli-Hill   2023-05-02 10:49:24 -0400 182)   }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 183) }
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 184)
+8f104f36 (Finli-Hill   2023-05-02 10:49:24 -0400 185)
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 186) setSlidePosition();
+5485ecee (Finli-Hill   2023-05-01 13:58:17 -0500 187)
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 188)
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 189) function toggleCollapse(elementId, button) {
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 190)   const section = document.getElementById(elementId);
+2d5f8c62 (Finli-Hill   2023-05-03 21:06:51 -0400 191)
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 192)   if (section.style.maxHeight) {
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 193)     section.style.maxHeight = null;
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 194)     button.classList.remove("expanded");
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 195)   } else {
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 196)     section.style.maxHeight = section.scrollHeight + "px";
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 197)     button.classList.add("expanded");
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 198)   }
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 199)
+16cbde5e (Finli-Hill   2023-05-04 21:42:56 -0400 200)   // Update the height of the aboutUsSection only if it's a sub-dropdown being toggled
+16cbde5e (Finli-Hill   2023-05-04 21:42:56 -0400 201)   if (elementId !== 'aboutUsSection') {
+16cbde5e (Finli-Hill   2023-05-04 21:42:56 -0400 202)     updateAboutUsSectionHeight();
+16cbde5e (Finli-Hill   2023-05-04 21:42:56 -0400 203)   }
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 204) }
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 205)
+16cbde5e (Finli-Hill   2023-05-04 21:42:56 -0400 206) function updateAboutUsSectionHeight() {
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 207)   const aboutUsSection = document.getElementById("aboutUsSection");
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 208)   const subDropdowns = document.querySelectorAll(".sub-dropdown-content");
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 209)
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 210)   let totalHeight = 0;      
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 211)
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 212)   subDropdowns.forEach((dropdown) => {
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 213)     if (dropdown.style.maxHeight) {
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 214)       totalHeight += parseInt(dropdown.style.maxHeight);
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 215)     }
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 216)   });
+60585211 (Finli-Hill   2023-05-04 20:50:44 -0400 217)
+16cbde5e (Finli-Hill   2023-05-04 21:42:56 -0400 218)   // Add initial height value to accommodate the sub-dropdown buttons
+16cbde5e (Finli-Hill   2023-05-04 21:42:56 -0400 219)   aboutUsSection.style.maxHeight = (totalHeight + subDropdowns.length * 70) + "px";
+2d5f8c62 (Finli-Hill   2023-05-03 21:06:51 -0400 220) }
+2d5f8c62 (Finli-Hill   2023-05-03 21:06:51 -0400 221)
+16cbde5e (Finli-Hill   2023-05-04 21:42:56 -0400 222)
+-------------------------------------------------------------------------------------------
+index.html
+5485ecee (Finli-Hill        2023-05-01 13:58:17 -0500  37)     <div class="slideshow-container">
+5485ecee (Finli-Hill        2023-05-01 13:58:17 -0500  38)       <div class = "slides">
+5485ecee (Finli-Hill        2023-05-01 13:58:17 -0500  39)           <img src="../photos/5v5.jpg" alt="Image 1">
+5485ecee (Finli-Hill        2023-05-01 13:58:17 -0500  40)           <img src="../photos/Flag Football.jpg" alt="Image 2">
+5485ecee (Finli-Hill        2023-05-01 13:58:17 -0500  41)           <img src="../photos/Softball.jpg" alt="Image 3">
+5485ecee (Finli-Hill        2023-05-01 13:58:17 -0500  42)       </div>
+5485ecee (Finli-Hill        2023-05-01 13:58:17 -0500  43)     </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  44)
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  45)     <div class="about-container">
+2d5f8c62 (Finli-Hill        2023-05-03 21:06:51 -0400  46)       <div class="about-us">
+2d5f8c62 (Finli-Hill        2023-05-03 21:06:51 -0400  47)         <h2>About Us</h2>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  48)         <button class="collapse-button" onclick="toggleCollapse('aboutUsSection', this)">&#x25BC;</button>
+2d5f8c62 (Finli-Hill        2023-05-03 21:06:51 -0400  49)       </div>
+2d5f8c62 (Finli-Hill        2023-05-03 21:06:51 -0400  50)       <div class="about-us-section" id="aboutUsSection">
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  51)         <!-- <p>       
+2d5f8c62 (Finli-Hill        2023-05-03 21:06:51 -0400  52)           Your about us
+ content goes here. You can add more paragraphs, images, or any other content as needed.
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  53)         </p> -->       
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  54)               <!-- Sub Dropdowns -->
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  55)       <div class="sub-dropdown">
+076fa8bc (Finli-Hill        2023-05-04 21:16:15 -0400  56)         <button class="sub-dropdown-button" onclick="toggleCollapse('subSection1', this)" style = "font-family: Fantasy;">Dean Longmire</button>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  57)         <div class="sub-dropdown-content" id="subSection1">
+16cbde5e (Finli-Hill        2023-05-04 21:42:56 -0400  58)           <p style = "font-family: Georgia, 'Times New Roman', Times, serif;">Dean is a smart cookie</p> 
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  59)         </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  60)       </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  61)       <div class="sub-dropdown">
+076fa8bc (Finli-Hill        2023-05-04 21:16:15 -0400  62)         <button class="sub-dropdown-button" onclick="toggleCollapse('subSection2', this)" style = "font-family: Fantasy;">Juliana Broussard</button>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  63)         <div class="sub-dropdown-content" id="subSection2">
+16cbde5e (Finli-Hill        2023-05-04 21:42:56 -0400  64)           <p style = "font-family: Georgia, 'Times New Roman', Times, serif;">Juliana is hard-working boss queen entrepenuer</p>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  65)         </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  66)       </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  67)       <div class="sub-dropdown">
+076fa8bc (Finli-Hill        2023-05-04 21:16:15 -0400  68)         <button class="sub-dropdown-button" onclick="toggleCollapse('subSection3', this)" style = "font-family: Fantasy;">Finli Hill</button>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  69)         <div class="sub-dropdown-content" id="subSection3">
+16cbde5e (Finli-Hill        2023-05-04 21:42:56 -0400  70)           <p style = "font-family: Georgia, 'Times New Roman', Times, serif;">Senior Prompt Engineer</p> 
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  71)         </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  72)       </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  73)       <div class="sub-dropdown">
+076fa8bc (Finli-Hill        2023-05-04 21:16:15 -0400  74)         <button class="sub-dropdown-button" onclick="toggleCollapse('subSection4', this)" style = "font-family: Fantasy;">Logan Bowers</button>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  75)         <div class="sub-dropdown-content" id="subSection4">
+16cbde5e (Finli-Hill        2023-05-04 21:42:56 -0400  76)           <p color = "" style = "font-family: Georgia, 'Times New Roman', Times, serif;">ᛗᚤ ᚠᚨᚡᛟᚱᛁᛏᛖ ᛏᚺᛁᚾᚷᛋ ᚨᚱᛖ ᛏᚺᛖ ᚷᚤᛗ, ᚡᛁᚴᛁᚾᚷᛋ, ᛋᛏᚨᚱᚹᚨᚱᛋ, ᚲᚨᛈᚤᛒᚨᚱᚨᛋ, ᚨᚾᛞ ᚨ ᚱᚨᚹ ᚠᛟᛟᛞ ᛞᛁᛖᛏ.</p>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  77)         </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  78)       </div>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  79)       <div class="sub-dropdown">
+076fa8bc (Finli-Hill        2023-05-04 21:16:15 -0400  80)         <button class="sub-dropdown-button" onclick="toggleCollapse('subSection5', this)" style = "font-family: Fantasy;">Ryan Carnes</button>
+60585211 (Finli-Hill        2023-05-04 20:50:44 -0400  81)         <div class="sub-dropdown-content" id="subSection5">
+16cbde5e (Finli-Hill        2023-05-04 21:42:56 -0400  82)           <p style = "font-family: Georgia, 'Times New Roman', Times, serif;">Ryan codes for fun</p> 
+------------------------------------------------------------------------------------
+
+team_home.html
+
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500  1) <!DOCTYPE html>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400  2) <html>
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500  3)     <link rel="stylesheet" href="../Dynprog.css">
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500  4) 
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400  5)     <div class="dynprog-padding-12"></div>
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500  6) 
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400  7)     <div class="dynprog-center">
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400  8)         <h7>DreamTeam</h7>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400  9)     </div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 10) 
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 11)     <!--Log out and Welcome message that are in top right
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 12)     When user clicks, welcom name should take them to profile page-->
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 13)     <head>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 14)         <A HREF="../home/index.html">
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 15)             <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 16)         </A>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 17)         <A HREF="../users/profile.html"> 
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 18)             <button id="welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 19)         </A>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 20)     </head>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 21) 
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 22)     <div class="dynprog-padding-12"></div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 23) 
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 24)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 25)         <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 26)     </div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 27)
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 28)     <div class="dynprog-padding-12"></div>
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500 29)
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 30)     <div class="dynprog-gradient-background-orange dynprog-padding-24">
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500 31)
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 32)         <body>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 33)         <div class="dynprog-center dynprog-text-black">
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 34)             <h2>Team: <h7 id="teams">Team_Name</h7></h2>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 35)             <div class="dynprog-padding-12"></div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 36)         </div>
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500 37)
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 38) <!--These are the two columns on the page, this allows for them to be side by side
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 39)     This has all the user's information-->
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 40)     <div class="dynprog-parent-column">
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 41)         <div class="dynprog-child-column">
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 42)             <div class="dynprog-container dynprog-center">
+5acd90b3 (Finli-Hill        2023-05-08 19:23:30 -0400 43)                 <img src="../photos/DynProg.jpg" alt="blank person" >
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 44)             </div>      
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 45)         </div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 46)     </div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 47)
+5acd90b3 (Finli-Hill        2023-05-08 19:23:30 -0400 48)     <div class="dynprog-child-column">
+5acd90b3 (Finli-Hill        2023-05-08 19:23:30 -0400 49)         <div class="dynprog-container dynprog-center">
+5acd90b3 (Finli-Hill        2023-05-08 19:23:30 -0400 50)             <button class="dynprog-button dynprog-gray dynprog-text-white" id = "team_owner"></button>    
+5acd90b3 (Finli-Hill        2023-05-08 19:23:30 -0400 51)         </div>
+5acd90b3 (Finli-Hill        2023-05-08 19:23:30 -0400 52)     </div>
+137aa82e (Finli-Hill        2023-05-08 18:47:08 -0400 53)     <div class="dynprog-panel dynprog-white dynprog-center dynprog-margin-more dynprog-better-box3 dynprog-text-orange">
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 54)         <h2>View Players</h2>
+137aa82e (Finli-Hill        2023-05-08 18:47:08 -0400 55)     <table id="player-table" class="dynprog-table dynprog-center dynprog-white dynprog-bordered">
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 56)         <thead>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 57)           <tr>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 58)             <th><h3>Player</h3></th>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 59)             <th><h3>Position</h3></th>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 60)             <th><h3 id="stat-1"></h3></th>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 61)             <th><h3 id="stat-2"></h3></th>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 62)             <th><h3 id="stat-3"></h3></th>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 63)             <th><h3 id="edit-stats"></h3></th>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 64)           </tr>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 65)         </thead>        
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 66)         <tbody>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 67)         </tbody>        
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 68)     </table>
+733515cf (Finli-Hill        2023-05-08 16:09:12 -0400 69)   </div>
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500 70)
+^5485ece (Finli-Hill        2023-05-01 13:58:17 -0500 71)
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 72)        <div class="dynprog-container">
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 73)             <div class="dynprog-card-4 dynprog-center dynprog-white">
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 74)                 <div id="team"></div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 75)             </div>      
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 76)         </div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 78)
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 79)         </body>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 80)
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 81)         <!--This is the footer!-->
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 82)     <footer>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 83)         <div class="dynprog-center dynprog-text-black dynprog-padding-24">
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 84)             <p> &copy; Copyright Spring 2023 DynProg Team. All rights reserved. Developed by DynProg.</p> 
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 85)         </div>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 86)     </footer>
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 88)
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 90) </html>
+----------------------------------------------------------------
+team_home.js
+
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400   2) let league_sport;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400   3) let team_admin;
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400   4) let adminButton = document.getElementById("team_owner");
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400   5) let userId;
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400   6) let teamHeading = document.getElementById("teams");
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400  82)         callback(data);310c5185 (jlongmi9          2023-05-05 19:13:42 -0400  83)       })
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 102) //display player data to table
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 103) let setPlayerData = function (playerDataJSON, callback){
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 104)  const tableBody = document.querySelector('#player-table tbody');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 105)  const updateStats = document.getElementById("edit-stats");
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 106)  const stat1 = document.getElementById("stat-1");
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 107)  const stat2 = document.getElementById("stat-2");
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 108)  const stat3 = document.getElementById("stat-3");
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 109)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 110)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 111)  names = playerDataJSON.usernames;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 112)  positions = playerDataJSON.positions;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 113)  ids = playerDataJSON.ids;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 114)  TDs = playerDataJSON.TDs;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 115)  catches = playerDataJSON.catches;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 116)  tackles = playerDataJSON.tackles;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 117)  goals = playerDataJSON.goals;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 118)  saves = playerDataJSON.saves;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 119)  hits = playerDataJSON.hits;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 120)  RBIs = playerDataJSON.RBIs;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 121)  errors = playerDataJSO
+N.errors;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 122)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 123)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 124)  for(let i = 0; i<names.length; i++){
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 125)   const playerName = names[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 126)   const playerPostions = positions[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 127)   const tableIds = ids[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 128)   const playerTDs = TDs[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 129)   const playerCatches = catches[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 130)   const playerTackles = tackles[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 131)   const playerGoals = goals[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 132)   const playerSaves = saves[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 133)   const playerHits = hi
+ts[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 134)   const playerRBIs = RBIs[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 135)   const playerErrors = errors[i];
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 136)   console.log(playerName);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 137)   console.log("this is team_admin" +team_admin);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 138)   const row = document.createElement('tr');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 139)   const nameCol = document.createElement('td');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 140)   const posCol = document.createElement('td');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 141)   const stat1col = document.createElement('td');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 142)   const stat2col = document.createElement('td');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 143)   const stat3col = document.createElement('td');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 144)   const editCol = document.createElement('td');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 145)   const edit_bt = document.createElement('button');
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 146)   nameCol.textContent = playerName;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 147)   posCol.textContent = playerPostions;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 148)   updateStats.textContent = "Edit Stats";
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 149) //check for sport:     
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 150) if(league_sport === "Flag_football"){
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 151)   stat1.textContent = "Touchdowns";
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 152)   stat2.textContent = "Catches";
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 153)   stat3.textContent = "Tackles";
+46dc64bc (Finli-Hill        2023-05-08 18:53:38 -0400 154)   stat1col.textContent = playerTDs;
+46dc64bc (Finli-Hill        2023-05-08 18:53:38 -0400 155)   stat2col.textContent = playerCatches;
+46dc64bc (Finli-Hill        2023-05-08 18:53:38 -0400 156)   stat3col.textContent = playerTackles;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 157) }
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 158) else if(league_sport === "Men_soccer"){
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 159)   stat1.textContent = "Goals";
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 160)   stat2.textContent = "Saves";
+46dc64bc (Finli-Hill        2023-05-08 18:53:38 -0400 161)   stat1col.textContent = playerGoals;
+46dc64bc (Finli-Hill        2023-05-08 18:53:38 -0400 162)   stat2col.textContent = playerSaves;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 163)   stat3col.textContent = "";
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 164) }
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 165) else{
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 166)   stat1.textContent = "Hits";
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 167)   stat2.textContent = "RBIs";
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 168)   stat3.textContent = "Errors";
+46dc64bc (Finli-Hill        2023-05-08 18:53:38 -0400 169)   stat1col.textContent = playerHits;
+46dc64bc (Finli-Hill        2023-05-08 18:53:38 -0400 170)   stat2col.textContent = playerRBIs;
+46dc64bc (Finli-Hill        2023-05-08 18:53:38 -0400 171)   stat3col.textContent = playerErrors;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 172) }
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 173)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 174) edit_bt.textContent = "Edit Player's Stats";
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 175) edit_bt.classList.add("dynprog-button");
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 176)
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 177) if(team_admin != userId){
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 178)   edit_bt.style.display = "none";
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 179)   updateStats.textContent = "";
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 180) }
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 181)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 198)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 199)   editCol.appendChild(edit_bt);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 200)   row.appendChild(nameCol);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 201)   row.appendChild(posCol);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 202)   row.appendChild(stat1col);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 203)   row.appendChild(stat2col);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 204)   row.appendChild(stat3col);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 205)   row.appendChild(editCol);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 206)   tableBody.appendChild(row);
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 207)  }
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 208)  callback();
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 209) }
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 210)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 211)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 212)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 213)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 214)
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 215)        console.log("User Data Set");
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 229)           userId = data.id;
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 280)         console.log("this is the name " + data.name);
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 281)         teamHeading.textContent = data.name;
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 283)         team_admin = data.a_id;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 309)         league_sport = data.sport;
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 310)         console.log("this the sport: " + data.sport);
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 328)       if(team_admin == userId){
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 329)         console.log("Admin Logged In");
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 330)         adminButton.textContent = "Edit my Team's information"
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 331)         adminButton.onclick = function(){
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 332)           window.location.href = "team_admin.html";
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 333)         }
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 334)       }
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 335)       else{
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 336)         adminButton.style.display = "none";
+f21dc736 (Finli-Hill        2023-05-08 18:32:03 -0400 337)       }
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 340)       getPlayers(getPlayersURL,(data) => {
+05c7d363 (Finli-Hill        2023-05-08 18:08:00 -0400 341)         setPlayerData(data,()=>{});
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 344)     });
+98014a85 (Finli-Hill        2023-05-04 17:55:04 -0400 347)

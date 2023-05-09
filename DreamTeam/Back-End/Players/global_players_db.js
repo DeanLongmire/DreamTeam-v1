@@ -52,11 +52,20 @@ class player_dbmanager{
                 if(row){callback(row.name,row.username,row.ID,row.Team_ID,row.position,row.TDs,row.catches,row.tackles,row.goals,row.saves,row.hits,row.RBIs,row.errors);}
                 else{console.log("error");}
             });
-            callback();
         });
     }
     get_players_on_team(teamId, callback){
-        let players = [];
+        let usernames = [];
+        let positions = [];
+        let ids = [];
+        let TDs = [];
+        let catches = [];
+        let tackles = [];
+        let goals = [];
+        let saves = [];
+        let hits = [];
+        let RBIs = [];
+        let errors = [];
         this.db.serialize(()=>{
             this.sql = 'SELECT * FROM Players WHERE Team_ID = ?';
             this.db.all(this.sql,[teamId],(err,rows) => {
@@ -64,9 +73,19 @@ class player_dbmanager{
                 if(rows.length === 0) {callback("No players");}
                 else if(rows) {
                     rows.forEach((row) => {
-                        players.push(row);
+                        usernames.push(row.username);
+                        positions.push(row.position);
+                        ids.push(row.ID);
+                        TDs.push(row.TDs);
+                        catches.push(row.catches);
+                        tackles.push(row.tackles);
+                        goals.push(row.goals);
+                        saves.push(row.saves);
+                        hits.push(row.hits);
+                        RBIs.push(row.RBIs);
+                        errors.push(row.errors);
                     });
-                    callback(players);
+                    callback(usernames,positions,ids,TDs,catches,tackles,goals,saves,hits,RBIs,errors);
                 }
             });
         });

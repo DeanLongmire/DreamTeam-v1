@@ -21,12 +21,18 @@ const get_player = (req, res) => {
     get_path((path) =>{
         db.open(path);
         db.get_all(id, (name, username, ID, Team_ID, position)=> {
-            console.log(name + " " + username + " " + ID + " " + Team_ID + " " + position);
             db.close();
+
+            let data = {
+                username: username,
+                id: ID,
+                teamId: Team_ID,
+                pos: position
+            }
+
+            res.send(data);
         });
     });
-
-    res.send("Got a player's info");
 }
 
 const get_players_on_team = (req, res) => {
@@ -34,8 +40,21 @@ const get_players_on_team = (req, res) => {
 
     get_path((path) => {
         db.open(path);
-        db.get_players_on_team(teamId,(players) => {
+        db.get_players_on_team(teamId,(usernames,positions,ids,TDs,catches,tackles,goals,saves,hits,RBIs,errors) => {
             db.close();
+            const players = {
+                usernames: usernames,
+                positions: positions,
+                ids: ids,
+                TDs: TDs,
+                catches: catches,
+                tackles: tackles,
+                goals: goals,
+                saves: saves,
+                hits: hits,
+                RBIs: RBIs,
+                errors: errors
+            }
             if(players === "No players")
             {
                 res.status(201).send(players);
@@ -124,7 +143,7 @@ const increment_TD = (id, newTDs, callback) => {
     else
     {
         get_path((path) => {
-            db.open(path);
+            //db.open(path);
             db.increment_TD(newTDs,id,() => {
                 callback();
             })
@@ -137,7 +156,7 @@ const increment_catches = (id, newCatches, callback) => {
     else
     {
         get_path((path) => {
-            db.open(path);
+            //db.open(path);
             db.increment_catches(newCatches,id,() => {
                 callback();
             })
@@ -150,7 +169,7 @@ const increment_tackles = (id, newTackles, callback) => {
     else
     {
         get_path((path) => {
-            db.open(path);
+            //db.open(path);
             db.increment_tackles(newTackles,id,() => {
                 callback();
             })
@@ -163,7 +182,7 @@ const increment_goals = (id, newGoals, callback) => {
     else
     {
         get_path((path) => {
-            db.open(path);
+            //db.open(path);
             db.increment_goals(newGoals,id,() => {
                 callback();
             })
@@ -176,7 +195,7 @@ const increment_saves = (id, newSaves, callback) => {
     else
     {
         get_path((path) => {
-            db.open(path);
+            //db.open(path);
             db.increment_saves(newSaves,id,() => {
                 callback();
             })
@@ -188,8 +207,9 @@ const increment_hits = (id, newHits, callback) => {
     if(newHits == undefined) {callback();}
     else
     {
+        console.log(newHits);
         get_path((path) => {
-            db.open(path);
+            //db.open(path);
             db.increment_hits(newHits,id,() => {
                 callback();
             })
@@ -202,7 +222,7 @@ const increment_RBIs = (id, newRBIs, callback) => {
     else
     {
         get_path((path) => {
-            db.open(path);
+            //db.open(path);
             db.increment_RBIs(newRBIs,id,() => {
                 callback();
             })
@@ -215,7 +235,7 @@ const increment_errors = (id, newErrors, callback) => {
     else
     {
         get_path((path) => {
-            db.open(path);
+            //db.open(path);
             db.increment_errors(newErrors,id,() => {
                 callback();
             })
@@ -244,16 +264,19 @@ const promise_stats = (id, newStats, callback) => {
     });
 }
 
-
-
 const increment_stats = (req, res) => {
     const { id } = req.params;
     const newStats = req.body;
 
-    promise_stats(id,newStats,() => {
-        db.close();
-        res.send("Stats Incremented");
-    });
+    console.log("\n\nSTART\n");
+
+    get_path((path) => {
+        db.open(path);
+        promise_stats(id,newStats,() => {
+            db.close();
+            res.send("Stats Incremented");
+        });
+    })
 }
 
 module.exports = {get_player, get_players_on_team, show_all, create_player, delete_player, update_name, update_position, increment_stats}
