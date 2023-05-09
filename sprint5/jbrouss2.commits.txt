@@ -1,1 +1,834 @@
-//Dynprog.css
+Dynprog.css
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 327) 
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 328) .l_container {
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 329)   display: flex;
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 330)   justify-content: center;
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 331) }
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 332)
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 333) .l_container .dynprog-left-align {
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 334)   text-align: left;
+2b97b146 (Juliana Broussard 2023-05-04 21:56:17 -0400 335) }
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400 336)
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 337) /*Not using this I think... but leave it for now pls*/
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400 338) #join_button {
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400 339)   display: flex;
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400 340)   flex-direction: column;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 341) }
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 342)
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 343) /* The Modal (background) */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 344) .modal {
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 345)   display: none; /* Hidden by default */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 346)   position: fixed; /* Stay in place */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 347)   z-index: 1; /* Sit on top */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 348)   left: 0;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 349)   top: 0;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 350)   width: 100%; /* Full width */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 351)   height: 100%; /* Full height */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 352)   overflow: auto; /* Enable scroll if needed */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 353)   background-color: #fff; /* Fallback color */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 354)   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 355) }
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 356)
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 357) /* Modal Content/Box */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 358) .modal-content {
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 359)   background-color: #fff;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 360)   margin: 15% auto; /* 15% from the top and centered */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 361)   padding: 20px;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 362)   border: 1px solid  #58595B;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 363)   width: 80%; /* Could be more or less, depending on screen size */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 364) }
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 365)
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 366) /* The Close Button */
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 367) .close {
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 368)   color:  #58595B;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 369)   float: right;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 370)   font-size: 28px;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 371)   font-weight: bold;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 372) }
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 373)
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 374) .close:hover,
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 375) .close:focus {
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 376)   color: #000;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 377)   text-decoration: none;
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 378)   cursor: pointer;
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400 379) }
+
+Registry.html
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400  5) <div class="dynprog-center">
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400  6)     <h7>DreamTeam</h7>
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400  7) </div>
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 21)     <div class="dynprog-padding-12"></div>
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 25) <div class="dynprog-gradient-background-gray">
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 27)         <div class="dynprog-container dynprog-center dynprog-orange">
+4dbc6541 (Juliana Broussard 2023-05-08 14:37:38 -0400 35)     <div class="dynprog-container dynprog-better-box dynprog-margin-more dynprog-light-gray">
+22412788 (Juliana Broussard 2023-05-04 20:11:16 -0400 37)         <label>Username</label>
+22412788 (Juliana Broussard 2023-05-04 20:11:16 -0400 38)         <input class="dynprog-input" type="text" placeholder="Username" name="name" id="name"></input>
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 52) </div>
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 71) </div>
+
+Profile.html
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400  30)         <a href="../home/index.html" class="dynprog-bar-item dynprog-button"><h4>Home</h4></a>
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  31)         <h4 id="league_bt" class="dynprog-bar-item dynprog-button"></h4>        
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  32)         <h4 id="team_bt" class="dynprog-bar-item dynprog-button"></h4>
+3937dfff (Juliana Broussard 2023-05-07 19:36:23 -0400  82)     <button onclick="myFunction('Leagues')" class="dynprog-button dynprog-block 
+dynprog-text-white dynprog-gray dynprog-center">View my League</button>
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400  84)     <h4 id = "league" class="dynprog-hover-white">No League Found: Join/Create one here!</h4>
+3937dfff (Juliana Broussard 2023-05-07 19:36:23 -0400  86) <button onclick="myFunction('Teams')" class="dynprog-button dynprog-block dynprog-text-white dynprog-gray dynprog-center">View my Team</button>
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400  88)     <h4 id ="team" class="dynprog-hover-white">No Team Found: Join/Create one here!</h4>
+
+Profile.js
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400   2) const welcomeButton = document.querySelector("#welcome-button");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400   3) // Get a reference to the <h4> element for each object
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400   4) let fullNameHeading = document.getElementById("full_name");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400   5) let userNameHeading = document.getElementById("username");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400   6) let email = document.getElementById("email");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400   7) let position = document.getElementById("position");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400   8) let bio = document.getElementById("bio");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400   9) let username = null;
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  10) let first = null;
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  11) let last = null;
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  12) let leagueHeading = document.getElementById("league");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  13) let leaguename = null;
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  14) let barLeague = document.getElementById("league_bt");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  15) let teamHeading = document.getElementById("team");
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  16) let teamname = null;
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  17) let barTeam = document.getElementById("team_bt");
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  58)               let leagueNull;
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  59)               let teamNull;
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  60)               setLeagueData(leagueNull, ()=> {
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  61)                 callback();
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  62)               });
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  63)               setTeamData(teamNull, ()=> {
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  64)                 callback();
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400  65)               });
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  76)               teamHeading.onclick = function(){
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  77)                 window.location.href = "../teams/view_teams.html";
+2bcdf290 (Juliana Broussard 2023-05-02 11:14:54 -0400  78)               }
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 201)   if(teamDataJSON != null){
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 203)     teamHeading.textContent = "View " + teamname + " Home Page";
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 204)
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 205)     teamHeading.onclick = function(){
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 206)       window.location.href = "../teams/team_home.html";
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 207)     }
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 210)   else{
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 211)     teamHeading.textContent = "Must be in league to join a team"
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 212)   }
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 225)     leagueHeading.textContent = "View " + leaguename + " Home Page";
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 226)
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 227)     leagueHeading.onclick = function(){
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 228)       window.location.href = "../leagues/league_home.html";
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 229)     }
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 230) 
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 231)     barLeague.textContent = "View my league";
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 232)     barLeague.onclick = function(){
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 233)       window.location.href = "../leagues/league_home.html";
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 234)     }
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 236)   else{
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 237)     console.log("NO LEAGUE NAME EXISTS");
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 238)     leagueHeading.textContent = "No league found: Please join one or create on here"
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 239)     leagueHeading.onclick = function(){
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 240)       window.location.href = "../leagues/join_league.html";
+75028a6d (Juliana Broussard 2023-05-01 16:50:48 -0400 241)     }
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 242)     barLeague.textContent = "Join a League"
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 243)     barLeague.onclick = function(){
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 244)       window.location.href = "../leagues/join_league.html";
+ec07eac5 (Juliana Broussard 2023-05-01 11:24:10 -0400 245)     }
+f56d6b2c (Juliana Broussard 2023-04-29 13:50:22 -0400 246)   }
+
+create_league.js
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 243) let logout = function(callback) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 244)   const cookies = document.cookie.split(";");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 245)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 246)   cookies.forEach(cookie => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 247)     console.log(cookie)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 248)     if (cookie.trim().startsWith("UserCookie")) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 249)       console.log("Test");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 250)       // Set the cookie's expiration date to a past date to delete it
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 251)       document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 252)       console.log(document.cookie)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 253)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 254)   });
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 255)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 256)   const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userCookieId;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 257)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 258)   fetch(deleteSessionURL, {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 259)     method: 'DELETE'
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 260)   })
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 261)   .then(response => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 262)     if (response.ok) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 263)       console.log("Session Deleted");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 264)       callback();
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 265)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 266)     else {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 267)       console.error('Error: ' + response.statusText);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 268)       callback();
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 269)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 270)   })
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 271)   .catch(error => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 272)     console.error(error);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 273)   });
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 274) }
+
+join_league.html
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  32)             <div class="dynprog-padding-12"></div>
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  33)
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  34)         <div class="dynprog-parent-column">
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  35)             <div class="dynprog-child-column">
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  36)                 <div class="dynprog-left-align">
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  37)                     <div id="league_contain_names"></div>
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  38)                 </div>
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  39)             </div>
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  40)
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  41)             <div class="dynprog-child-column">
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  42)                 <div class="dynprog-center">
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  43)                     <div id="l_container" class="dynprog-left-align"></div>     
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  44)                 </div>
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  45)             </div>
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  46)
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  47)             <div class="dynprog-child-column">
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  48)                 <div class="dynprog-right-align">
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  49)                     <div id="join_button" class="dynprog-left-align"></div>     
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  50)                 </div>
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  51)             </div>
+f598ccd7 (Juliana Broussard 2023-05-04 21:17:27 -0400  52)         </div>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  53)     </div>-->
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  54)
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  55)     <!--This is the table the is being populated by the data from the backend-->8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  56)     <div class="dynprog-panel dynprog-orange dynprog-center dynprog-margin-more dynprog-better-box3 dynprog-text-black">
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  57)         <h2>View Leagues</h2>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  58)     <table id="league-table" class="dynprog-table dynprog-center dynprog-orange dynprog-bordered">
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  59)         <thead>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  60)           <tr>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  61)             <th><h3>League</h3></th>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  62)             <th><h3>Sport</h3></th>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  63)             <th><h3>Join!</h3></th>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  64)           </tr>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  65)         </thead>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  66)         <tbody>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  67)         </tbody>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  68)     </table>
+8aa3c240 (Juliana Broussard 2023-05-06 15:20:45 -0400  69) </div>
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  71) <div id="modal" class="modal">
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  72)     <div class="modal-content dynprog-center">
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  73)       <span class="close">&times;</span>
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  74)       <h3>Join this League</h3>
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  75)       <h4>Do you want to join this league? </h4>
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  76)       <h4>Pressing this button will confirm your enrollment in the following league: <h8 id="league_in_modal"></h8></h4>
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  77)       <button class="dynprog-button dynprog-orange" id="confirm_enrollment">Confirm my enrollment</button>
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  78)     </div>
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  79)   </div>
+
+join_league.js
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400  88)           }
+79938d4f (Juliana Broussard 2023-05-06 19:49:23 -0400 103)         }
+a533ed01 (Juliana Broussard 2023-04-25 08:04:39 -0400 185)       welcomeButton.textContent = "Welcome, " + username + "!";
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 190) let logout = function(callback) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 191)   const cookies = document.cookie.split(";");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 192)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 193)   cookies.forEach(cookie => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 194)     console.log(cookie)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 195)     if (cookie.trim().startsWith("UserCookie")) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 196)       console.log("Test");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 197)       // Set the cookie's expiration date to a past date to delete it
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 198)       document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 199)       console.log(document.cookie)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 200)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 201)   });
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 202)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 203)   const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userCookieId;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 204)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 205)   fetch(deleteSessionURL, {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 206)     method: 'DELETE'
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 207)   })
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 208)   .then(response => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 209)     if (response.ok) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 210)       console.log("Session Deleted");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 211)       callback();
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 212)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 213)     else {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 214)       console.error('Error: ' + response.statusText);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 215)       callback();
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 216)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 217)   })
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 218)   .catch(error => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 219)     console.error(error);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 220)   });
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 221) }
+
+league_admin.html
+22412788 (Juliana Broussard 2023-05-04 20:11:16 -0400 25)     <a href="join_league.html" class="dynprog-bar-item dynprog-button"> View League</a>
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 56)     <input class="dynprog-radio" type="radio" name="sport" value="Men_soccer">   
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 59)     <input class="dynprog-radio" type="radio" name="sport" value="Softball"> 
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 69)     <div id="error-message" class="dynprog-center dynprog-password-error-message"></div>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 90) <script src="league_admin.js"></script>
+
+league_admin.js
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400   9) const errorElement = document.getElementById("error-message");
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  10) //Need to see if can get photo this way
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  11) const profile_photo = document.getElementById("profile_photo");
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  12) let encodedPhoto;
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  15) //league_photo.addEventListener("input", buildData);
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  16) let selectedSport = null; //Define outside function
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  17)
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400  18) let leagueID;
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  22)   //Check if there is even a value for the field
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  23)   if(league_name.value.trim === ''){
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  24)       league_name.value = null;
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  25)     }
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  26)
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  27)     //Radio buttons
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  28)     //Get data from each element
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  29)     const sportRadios = document.getElementsByName("sport");
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  30)
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  31)     //Checking if a sport is checked
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  32)     for (const sport of sportRadios) {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  33)         if (sport.checked) {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  34)         selectedSport = sport.value; //Setting value of selectedSport
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  35)         break;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  36)         }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  37)     }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  38)
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  39)     //Picture
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  40)     if(profile_photo.value.trim() === ''){
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  41)       profile_photo.value = null;
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  42)   }
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  43)   else{
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  44)       const pic = profile_photo.files[0];
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  45)       const reader = new FileReader();
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  46)       reader.readAsDataURL(pic);
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  47)       reader.onload = function() {
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  48)           encodedPhoto = reader.result;
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  49)       };
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  50)   }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  69)   let buttonSubmit = function () {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  70)     let numOfInputs = getNumOfInputs(); //get number of fields that the user entered
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  71)     getSessionId((url) => { //get user from session store to get user ID        
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  72)         getUserData(url, (id) => { //get user ID
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400  73)             waitOnRequest(numOfInputs,leagueID).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  74)                 window.location.replace("league_home.html"); //take back to league home page
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  75)             })
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  76)             .catch(error => {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  77)                 console.log(error);
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  78)             })
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  79)         });
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  80)     });
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  81) };
+4a882733 (Juliana Broussard 2023-05-03 17:36:45 -0400  82)
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  83) let makeRequest = function (dataToBeUpdated, url, callback) {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  84)   errorElement.style.display = "none"; //Hide the error message
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  85)   fetch(url, {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  86)       method: 'PATCH',
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  87)       headers: {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  88)           'Content-Type': 'application/json'
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  89)       },
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  90)       body: JSON.stringify(dataToBeUpdated)
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  91)    })
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  92)    .then(response => {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  93)       if(response.ok){
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  94)         (console.log("Responded"));
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  95)         callback();
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  96)       }else{
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  97)         if(response.status === 413){
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  98)           console.log("Picture Too Big");  //MAKE THIS GO TO SCREEN
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400  99)           errorElement.innerText = "*The picture you uploaded is too big*";
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 100)           errorElement.style.display = "block";
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 101)       }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 102)       }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 103)    })
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 104)    .catch(error => console.error(error));
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 105) }
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 119)           leagueID = data.leagueID;
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 120)           console.log(leagueID);
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 146)   const waitOnRequest = function(numOfInputs, leagueID,){
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 147)     return new Promise((resolve, reject) => {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 148)       let proccessed = 1;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 149)       if(numOfInputs === proccessed) resolve(); //Only sport updated
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 150)       if(league_name.value !== "")
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 151)       {
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 152)         const newName = {
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 153)           newName: league_name.value //get the value
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 154)         }
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 155)         console.log(league_name.value);
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 156)         console.log(leagueID);
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 157)         const updateFNUrl = 'http://127.0.0.1:5000/leagues/update_name/' + leagueID;  //construct patch URL
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 158)         makeRequest(newName, updateFNUrl, () => {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 159)               proccessed += 1;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 160)               if(proccessed === numOfInputs) resolve();
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 161)         });
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 162)       }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 163)       if (selectedSport){
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 164)         const newSport = {
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 165)           newSport: selectedSport
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 166)         }
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 167)         console.log(selectedSport);
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 168)         console.log(leagueID);
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 169)         const updateFNUrl = 'http://127.0.0.1:5000/leagues/update_sport/' + leagueID;  //construct patch URL
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 170)         makeRequest(newSport, updateFNUrl, () => {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 171)               proccessed += 1;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 172)               if(proccessed === numOfInputs) resolve();
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 173)         });
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 174)       }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 175)       if(profile_photo.value !== "")
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 176)         {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 177)             const pp = {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 178)                 pp: encodedPhoto
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 179)             }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 180)             const updatePPUrl = 'http://127.0.0.1:5000/leagues/update_picture/' leagueID;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 181)             makeRequest(pp,updatePPUrl, () => {
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 182)                 proccessed += 1;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 183)                 if(proccessed === numOfInputs) resolve();
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 184)             });
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 185)         }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 186)     });
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 187)   };
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 188)
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 189)   let getNumOfInputs = function (){
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 190)     let numOfInputs = 1;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 191)     if(league_name.value !== "")    numOfInputs += 1;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 192)     if(profile_photo.value !== "")  numOfInputs += 1;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 193)
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 194)     return numOfInputs;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 195)   }
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 196) 
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 197)   //Event listener for when user clicks the submit button
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 198) update_league_BT.addEventListener('click', (event) =>{
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 199)   event.preventDefault();
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 200)   buttonSubmit();
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 201)   return false;
+d3e854d2 (Juliana Broussard 2023-05-04 17:44:45 -0400 202) });
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 262) let loadData = function () {
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 263)   getSessionId((userURL) => {
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 264)     console.log("URL: " + userURL);
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 265)     getUserData(userURL,() => {
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 266)       console.log("All Data Set");
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 267)     });
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 268)   });
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 269) };
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 281)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 282) let logout = function(callback) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 283)   const cookies = document.cookie.split(";");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 284)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 285)   cookies.forEach(cookie => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 286)     console.log(cookie)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 287)     if (cookie.trim().startsWith("UserCookie")) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 288)       console.log("Test");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 289)       // Set the cookie's expiration date to a past date to delete it
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 290)       document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 291)       console.log(document.cookie)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 292)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 293)   });
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 294) 
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 295)   const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userCookieId;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 296)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 297)   fetch(deleteSessionURL, {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 298)     method: 'DELETE'
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 299)   })
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 300)   .then(response => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 301)     if (response.ok) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 302)       console.log("Session Deleted");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 303)       callback();
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 304)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 305)     else {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 306)       console.error('Error: ' + response.statusText);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 307)       callback();
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 308)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 309)   })
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 310)   .catch(error => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 311)     console.error(error);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 312)   });
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 313) }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 314)
+0fd2c3b2 (Juliana Broussard 2023-05-04 18:36:47 -0400 315) loadData();
+
+league_home.html
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 38) <!--These are the two columns on the page, this allows for them to be side by side
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 39)     This has all the user's information-->
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 40)     <div class="dynprog-parent-column">
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 41)         <div class="dynprog-child-column">
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 42)             <div class="dynprog-container dynprog-center">
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 43)                 <img src="../photos/DynProg.jpg" alt="blank person" style="width:40%">
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 44)             </div>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 45)         </div>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 46)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 47)         <div class="dynprog-child-column">
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 48)             <div class= "dynprog-left-align dynprog-text-black">
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 49)                 <h3>General Information about your league</h3>
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 50)                 <h3 id="sport_type">Sport</h3>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 51)                 <div class="dynprog-padding-12"></div>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 52)     
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 53)                 </div>
+3f0ad5b3 (Juliana Broussard 2023-05-07 20:04:13 -0400 54)                     <button class="dynprog-button dynprog-gray dynprog-text-white" id="league_owner"></button>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 55)         </div>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 56)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 57)     </div>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 58)
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 59)     <div class="dynprog-center">
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 60)         <a href="../teams/view_teams.html">
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 61)             <button class="dynprog-button dynprog-gray dynprog-text-white">View Teams in this League</button>
+30eca3c5 (Juliana Broussard 2023-05-07 18:59:30 -0400 62)         </a>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 63)     </div>
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 64)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 65)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 68) 
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 83)     <script src="league_home.js"></script>                <div id="team"></div>
+
+league_home.js
+3f0ad5b3 (Juliana Broussard 2023-05-07 20:04:13 -0400   3) let adminButton = document.getElementById("league_owner");
+3f0ad5b3 (Juliana Broussard 2023-05-07 20:04:13 -0400 139)         adminButton.textContent = "Edit my league's information"
+3f0ad5b3 (Juliana Broussard 2023-05-07 20:04:13 -0400 140)         adminButton.onclick = function(){
+3f0ad5b3 (Juliana Broussard 2023-05-07 20:04:13 -0400 141)           window.location.href = "league_admin.html";
+3f0ad5b3 (Juliana Broussard 2023-05-07 20:04:13 -0400 142)         }
+3f0ad5b3 (Juliana Broussard 2023-05-07 20:04:13 -0400 146)         adminButton.style.display = "none";
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 161) let sportHeading = document.getElementById("sport_type");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 162) let sport_type = null;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 175)   console.log(leagueDataJSON.name);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 176)   console.log(leagueDataJSON.sport);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 178)   if(leagueDataJSON.name){
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 179)     leaguename = leagueDataJSON.name;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 180)     leagueHeading.textContent = leaguename;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 181)     sport_type = leagueDataJSON.sport;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 182)     if(sport_type === "Flag_football"){
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 183)       sportHeading.textContent = "Sport: Flag Football"
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 189)       sportHeading.textContent = "Sport: " + sport_type;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 190)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 191)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 201) let logout = function(callback) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 202)   const cookies = document.cookie.split(";");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 203) 
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 204)   cookies.forEach(cookie => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 205)     console.log(cookie)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 206)     if (cookie.trim().startsWith("UserCookie")) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 207)       console.log("Test");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 208)       // Set the cookie's expiration date to a past date to delete it
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 209)       document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 210)       console.log(document.cookie)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 211)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 212)   });
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 213)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 214)   const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userC
+ookieId;
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 215)
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 216)   fetch(deleteSessionURL, {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 217)     method: 'DELETE'
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 218)   })
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 219)   .then(response => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 220)     if (response.ok) {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 221)       console.log("Session Deleted");
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 222)       callback();
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 223)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 224)     else {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 225)       console.error('Error: ' + response.statusText);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 226)       callback();
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 227)     }
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 228)   })
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 229)   .catch(error => {
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 230)     console.error(error);
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 231)   });
+95544193 (Juliana Broussard 2023-04-30 18:04:26 -0400 232) }
+
+create_team.html
+9940d3f5 (Juliana Broussard 2023-05-02 12:55:53 -0400 39)         <label style="margin-right: 15 px">Five</label>
+9940d3f5 (Juliana Broussard 2023-05-02 12:55:53 -0400 42)         <label style="margin-right: 15 px">Six</label>
+267fc44f (Juliana Broussard 2023-05-02 13:01:19 -0400 49)         <label for="team_name" style="font: size 20px;">Choose your team name</label>
+
+create_team.js
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  67) const welcomeButton = document.querySelector("#welcome-button");
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  68) let userNameHeading = document.getElementById("username");
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  69) let username = null;
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  70)
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  71) const setUserData = function(userDataJSON, callback) {
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  72)   console.log(userDataJSON.username);
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  73)   if(userDataJSON.username){
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  74)     username = userDataJSON.username;
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  75)     welcomeButton.textContent = "Welcome, " + username + "!";
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400  76)   };
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400 317)                 window.location.replace('team_admin.html');
+852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 333) });
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 334)
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 335) //Logout functionality on the create team page
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 336) let logout = function(callback) {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 337)   const cookies = document.cookie.split(";");
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 338)
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 339)   cookies.forEach(cookie => {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 340)     console.log(cookie)
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 341)     if (cookie.trim().startsWith("UserCookie")) {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 342)       console.log("Test");
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 343)       // Set the cookie's expiration date to a past date to delete it
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 344)       document.cookie = cookie.split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 345)       console.log(document.cookie)
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 346)     }
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 347)   });
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 348)
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 349)   const deleteSessionURL = 'http://127.0.0.1:5000/users/delete_session/' + userCookieId;
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 350)
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 351)   fetch(deleteSessionURL, {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 352)     method: 'DELETE'
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 353)   })
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 354)   .then(response => {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 355)     if (response.ok) {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 356)       console.log("Session Deleted");
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 357)       callback();
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 358)     } 
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 359)     else {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 360)       console.error('Error: ' + response.statusText);
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 361)       callback();
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 362)     }
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 363)   })
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 364)   .catch(error => {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 365)     console.error(error);
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 366)   });
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 367) }
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 368)
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 369) loadData();
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 370)
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 371) /*If user selects log out, a message says they have been logged out
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 372) then they return back to the home page*/
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 373) document.querySelector("#Log-Out").onclick = function(){
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 374)   logout(() => {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 375)     window.location.replace("../home/index.html");
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 376)   });
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 377) }
+
+team_home.html
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 87)     </div>
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400 89)     <script src="team_home.js"></script>
+
+team_home.js
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400   8) let getSessionId = function (callback) {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400  16)   }
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400  24) let userNameHeading = document.getElementById("username");
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400  26) let username = null;
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400  29) let setUserData = function (userDataJSON,callback) {
+6852b085 (Juliana Broussard 2023-05-02 13:19:15 -0400  39) let logout = function(callback) {
+
+view_teams.html
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 27)     <div class="dynprog-padding-12"></div>
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 29)   <div class = "dynprog-gradient-background-gray">
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400 31)     <div class="dynprog-padding-12"></div>
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 39)           <th><h3>Record</h3></th>
+6f04f9de (Juliana Broussard 2023-05-07 19:48:19 -0400 40)           <th><h3 id="join_pls">Join!</h3></th>
+2ceade4e (Juliana Broussard 2023-05-08 15:19:44 -0400 58) <div class="dynprog-panel"></div>
+2ceade4e (Juliana Broussard 2023-05-08 15:19:44 -0400 59)
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400 60)         <div class="dynprog-center dynprog-tiny-box" id="create_team_box">       
+2ceade4e (Juliana Broussard 2023-05-08 15:19:44 -0400 61)             <h3>Don't see the team you're looking for</h3>
+2ceade4e (Juliana Broussard 2023-05-08 15:19:44 -0400 62)             <a href="create_team.html">
+2ceade4e (Juliana Broussard 2023-05-08 15:19:44 -0400 63)             <button class="dynprog-button dynprog-gray dynprog-text-white">Create one here</button>
+2ceade4e (Juliana Broussard 2023-05-08 15:19:44 -0400 64)             </a>
+2ceade4e (Juliana Broussard 2023-05-08 15:19:44 -0400 65)         </div>
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 73)   </div>
+
+view_teams.js
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400  68) let teamID;
+6f04f9de (Juliana Broussard 2023-05-07 19:48:19 -0400  99)           teamID = data.teamID;
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 149)         setTeamData(data, ()=>{});
+6f04f9de (Juliana Broussard 2023-05-07 19:48:19 -0400 249)   const joinText = document.getElementById("join_pls");
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400 250)   const createTeam = document.getElementById("create_team_box");
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 257)   wins = teamDataJSON.wins;
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 258)   losses = teamDataJSON.losses;
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 263)     const winScore = wins[i];
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 264)     const lossScore = losses[i]
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 270)     const recordCol = document.createElement('td');
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 274)     recordCol.textContent = "(" + winScore + "-" + lossScore + ")";
+6f04f9de (Juliana Broussard 2023-05-07 19:48:19 -0400 277)     console.log(teamID);
+3937dfff (Juliana Broussard 2023-05-07 19:36:23 -0400 278)     if(teamID != null){
+6f04f9de (Juliana Broussard 2023-05-07 19:48:19 -0400 279)       join_bt.style.display = "none";
+6f04f9de (Juliana Broussard 2023-05-07 19:48:19 -0400 280)       joinText.textContent = "";
+38f47307 (Juliana Broussard 2023-05-08 16:28:34 -0400 281)       createTeam.style.display = "none";
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 282)     }
+5dcaf3f4 (Juliana Broussard 2023-05-07 19:31:00 -0400 323)       row.appendChild(recordCol);
+
+edit_fb_stats.html
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  1) <!--Form to Edit Stats-->
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  2)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  3) <!DOCTYPE html>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  4) <html>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  5)     <link rel="stylesheet" href="../Dynprog.css">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  6)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  7)     <div class="dynprog-padding-12"></div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  8)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400  9)     <div class="dynprog-center">    
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 10)         <h7>DreamTeam</h7>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 11)     </div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 12)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 13)     <head>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 14)             <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 15)         <A HREF="../users/profile.html">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 16)             <button id = "welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 17)         </A>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 18)     </head>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 19)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 20)     <div class="dynprog-padding-12"></div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 21)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 22)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 23)         <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 24)     </div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 25)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 26)     <div class="dynprog-padding-12"></div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 27)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 28)     <div class="dynprog-gradient-background-orange">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 29)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 30)     <div class="dynprog-padding-12"></div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 31) 
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 32)      <div class="dynprog-center dynprog-better-box2 dynprog-margin-more">
+542a0237 DreamTeam/Front-End/teams/edit_fb_stats.html (Juliana Broussard 2023-05-08 19:35:49 -0400 33)             <h2 class="dynprog-text-white">Hi, good game! Time to update <h8 id="player_name">Name</h8> stats!</h2>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 34)     </div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 35)
+c6779779 DreamTeam/Front-End/teams/edit_fb_stats.html (Juliana Broussard 2023-05-08 18:59:19 -0400 36)     <form id= edit_player_stats class="dynprog-container dynprog-text-white dynprog-gray dynprog-better-box dynprog-margin-more">
+d60d724e DreamTeam/Front-End/teams/edit_fb_stats.html (Juliana Broussard 2023-05-08 19:21:15 -0400 37)         <label style="font: size 20px;">Touchdowns this game</label>
+c6779779 DreamTeam/Front-End/teams/edit_fb_stats.html (Juliana Broussard 2023-05-08 18:59:19 -0400 38)         <input id="touchdowns" class="dynprog-input dynprog-border" type="text">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 39)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 40)         <div class="dynprog-panel"></div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 41)
+d60d724e DreamTeam/Front-End/teams/edit_fb_stats.html (Juliana Broussard 2023-05-08 19:21:15 -0400 42)         <label style="font: size 20px;">Catches this game</label>
+c6779779 DreamTeam/Front-End/teams/edit_fb_stats.html (Juliana Broussard 2023-05-08 18:59:19 -0400 43)         <input id="catches" class="dynprog-input dynprog-border" type="text">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 44)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 45)         <div class="dynprog-panel"></div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 46)
+d60d724e DreamTeam/Front-End/teams/edit_fb_stats.html (Juliana Broussard 2023-05-08 19:21:15 -0400 47)         <label style="font: size 20px;">Tackles this game</label>
+c6779779 DreamTeam/Front-End/teams/edit_fb_stats.html (Juliana Broussard 2023-05-08 18:59:19 -0400 48)         <input id="tackles" class="dynprog-input dynprog-border" type="text">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 49)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 50)         <div class="dynprog-panel"></div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 51)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 52)     </form>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 53)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 54)     <div class="dynprog-center dynprog-padding-16">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 55)         <button id="update_stats_button" class="dynprog-button dynprog-round-large dynprog-text-black dynprog-white">Update Player Stats</button>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 56)     </div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 57)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 58)     <footer>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 59)         <div class="dynprog-center dynprog-text-white dynprog-padding-24">
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 60)             <p> &copy; Copyright Spring 2023 DynProg Team. All rights reserved. Developed by DynProg.</p>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 61)         </div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 62)     </footer>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 63)
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 65)     </div>
+d096f59e DreamTeam/Front-End/teams/edit_stats.html    (Juliana Broussard 2023-05-08 17:40:10 -0400 66) </html>
+
+edit_sb_stats.html
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  1) <!--Edit softball Stats-->
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  2) <!DOCTYPE html>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  3) <html>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  4)     <link rel="stylesheet" href="../Dynprog.css">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  5)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  6)     <div class="dynprog-padding-12"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  7)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  8)     <div class="dynprog-center">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  9)         <h7>DreamTeam</h7>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 10)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 11)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 12)     <head>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 13)             <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 14)         <A HREF="../users/profile.html">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 15)             <button id = "welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 16)         </A>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 17)     </head>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 18)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 19)     <div class="dynprog-padding-12"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 20)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 21)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 22)         <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 23)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 24)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 25)     <div class="dynprog-padding-12"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 26)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 27)     <div class="dynprog-gradient-background-orange">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 28)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 29)     <div class="dynprog-padding-12"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 30)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 31)      <div class="dynprog-center dynprog-better-box2 dynprog-margin-more">        
+d60d724e (Juliana Broussard 2023-05-08 19:21:15 -0400 32)             <h2 class="dynprog-text-white">Hi, good game! Time to update <h8 id="player_name">Name</h8> stats!</h2>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 33)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 34)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 35)     <form id= edit_player_stats class="dynprog-container dynprog-text-white dynprog-gray dynprog-better-box dynprog-margin-more">
+d60d724e (Juliana Broussard 2023-05-08 19:21:15 -0400 36)         <label style="font: size 20px;">Hits this game</label>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 37)         <input id="hits" class="dynprog-input dynprog-border" type="text">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 38)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 39)         <div class="dynprog-panel"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 40)
+d60d724e (Juliana Broussard 2023-05-08 19:21:15 -0400 41)         <label style="font: size 20px;">RBIs this game</label>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 42)         <input id="rbis" class="dynprog-input dynprog-border" type="text">       
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 43)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 44)         <div class="dynprog-panel"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 45)
+d60d724e (Juliana Broussard 2023-05-08 19:21:15 -0400 46)         <label style="font: size 20px;">Errors this game</label>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 47)         <input id="errors" class="dynprog-input dynprog-border" type="text">     
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 48)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 49)         <div class="dynprog-panel"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 50) 
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 51)     </form>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 52)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 53)     <div class="dynprog-center dynprog-padding-16">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 54)         <button id="update_stats_button" class="dynprog-button dynprog-round-large dynprog-text-black dynprog-white">Update Player Stats</button>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 55)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 56)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 57)     <footer>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 58)         <div class="dynprog-center dynprog-text-white dynprog-padding-24">       
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 59)             <p> &copy; Copyright Spring 2023 DynProg Team. All rights reserved. Developed by DynProg.</p>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 60)         </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 61)     </footer>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 62)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 63)     <script src="edit_sb_stats.js"></script>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 64)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 65) </html>
+
+edit_sc_stats.html
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  1) <!--Soccer Edit Stats-->
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  2) <!--Edit softball Stats-->
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  3) <!DOCTYPE html>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  4) <html>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  5)     <link rel="stylesheet" href="../Dynprog.css">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  6)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  7)     <div class="dynprog-padding-12"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  8)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400  9)     <div class="dynprog-center">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 10)         <h7>DreamTeam</h7>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 11)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 12)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 13)     <head>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 14)             <button class ="dynprog-button dynprog-text-black dynprog-right" id="Log-Out">Log out</button>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 15)         <A HREF="../users/profile.html">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 16)             <button id = "welcome-button" class ="dynprog-button dynprog-text-black dynprog-right">Welcome, user!</button>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 17)         </A>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 18)     </head>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 19)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 20)     <div class="dynprog-padding-12"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 21)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 22)     <div class="dynprog-bar dynprog-border dynprog-large dynprog-orange">        
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 23)         <a href="../home/index.html" class="dynprog-bar-item dynprog-button">Home</a>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 24)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 25)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 26)     <div class="dynprog-padding-12"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 27)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 28)     <div class="dynprog-gradient-background-orange">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 29)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 30)     <div class="dynprog-padding-12"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 31)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 32)      <div class="dynprog-center dynprog-better-box2 dynprog-margin-more">        
+d60d724e (Juliana Broussard 2023-05-08 19:21:15 -0400 33)             <h2 class="dynprog-text-white">Hi, good game! Time to update <h8 id="player_name">Name</h8> stats!</h2>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 34)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 35)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 36)     <form id= edit_player_stats class="dynprog-container dynprog-text-white dynprog-gray dynprog-better-box dynprog-margin-more">
+d60d724e (Juliana Broussard 2023-05-08 19:21:15 -0400 37)         <label style="font: size 20px;">Goals this game</label>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 38)         <input id="goals" class="dynprog-input dynprog-border" type="text">      
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 39)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 40)         <div class="dynprog-panel"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 41)
+d60d724e (Juliana Broussard 2023-05-08 19:21:15 -0400 42)         <label style="font: size 20px;">Saves this game</label>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 43)         <input id="saves" class="dynprog-input dynprog-border" type="text">      
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 44)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 45)         <div class="dynprog-panel"></div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 46)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 47)     </form>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 48)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 49)     <div class="dynprog-center dynprog-padding-16">
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 50)         <button id="update_stats_button" class="dynprog-button dynprog-round-large dynprog-text-black dynprog-white">Update Player Stats</button>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 51)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 52)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 53)     <footer>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 54)         <div class="dynprog-center dynprog-text-white dynprog-padding-24">       
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 55)             <p> &copy; Copyright Spring 2023 DynProg Team. All rights reserved. Developed by DynProg.</p>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 56)         </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 57)     </footer>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 58)
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 59)     <script src="edit_sc_stats.js"></script>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 60)     </div>
+c6779779 (Juliana Broussard 2023-05-08 18:59:19 -0400 61) </html>
