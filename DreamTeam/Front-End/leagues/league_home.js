@@ -188,7 +188,12 @@ let setLeagueData = function (leagueDataJSON,callback){
     else{
       sportHeading.textContent = "Sport: " + sport_type;
     }
-    }
+  }
+  if(leagueDataJSON.pp)
+  {
+    const league_photo = document.getElementById("league_photo");
+    league_photo.src = "data:image/jpeg;base64," + leagueDataJSON.pp;
+  }
    
  
   callback();

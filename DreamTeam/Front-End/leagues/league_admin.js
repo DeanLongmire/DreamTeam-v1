@@ -67,6 +67,13 @@ let getSessionId = function (callback) {
     let numOfInputs = getNumOfInputs(); //get number of fields that the user entered
     getSessionId((url) => { //get user from session store to get user ID
         getUserData(url, (id) => { //get user ID
+            const sportRadios = document.getElementsByName("sport");
+            for(const sport of sportRadios) {
+              if(sport.checked) {
+                selectedSport = sport.value; //Setting value of selectedSport
+                break;
+              }
+            }
             waitOnRequest(numOfInputs,leagueID).then(() => {  //make patch requests until the number of fields match proccessed, returning when all requests have been made
                 window.location.replace("league_home.html"); //take back to league home page
             })
@@ -157,12 +164,12 @@ let makeRequest = function (dataToBeUpdated, url, callback) {
               if(proccessed === numOfInputs) resolve();
         });
       }
-      if (selectedSport){
+      if (selectedSport !== ""){
         const newSport = {
           newSport: selectedSport
         }
-        console.log(selectedSport);
-        console.log(leagueID);
+        console.log("-> " + newSport.newSport);
+        console.log("Here? " + leagueID);
         const updateFNUrl = 'http://127.0.0.1:5000/leagues/update_sport/' + leagueID;  //construct patch URL
         makeRequest(newSport, updateFNUrl, () => {
               proccessed += 1;
@@ -208,12 +215,9 @@ update_league_BT.addEventListener('click', (event) =>{
     .then(response => {
       if (response.ok) {
         response.json().then(data => {
-          setTeamData(data, () => {
-            console.log("Team Data Set");
-            const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
-            getLeagueData(leagueURL, () => {
-              callback();
-            });
+          const leagueURL = 'http://127.0.0.1:5000/leagues/' + data.p_id;
+          getLeagueData(leagueURL, () => {
+            callback();
           });
         });
       } 
@@ -226,7 +230,7 @@ update_league_BT.addEventListener('click', (event) =>{
     });
   }
   
-  /*let getLeagueData = function (leagueURL, callback) {
+  let getLeagueData = function (leagueURL, callback) {
     fetch(leagueURL, {
       method: 'GET',
       headers: {
@@ -236,10 +240,7 @@ update_league_BT.addEventListener('click', (event) =>{
     .then(response => {
       if (response.ok) {
         response.json().then(data => {
-          setLeagueData(data, () => {
-            console.log("League Data Set");
-            callback();
-          });
+          callback();
         });
       } 
       else {
@@ -249,7 +250,7 @@ update_league_BT.addEventListener('click', (event) =>{
     .catch(error => {
       console.error(error);
     });
-  }*/
+  }
 
   //Reference for username
 const welcomeButton = document.querySelector("#welcome-button");
