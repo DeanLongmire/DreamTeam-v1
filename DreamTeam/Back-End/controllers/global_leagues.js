@@ -20,7 +20,7 @@ const get_league = (req, res) => {
         db.open(path, () => {
             db.get_all(id, (name, ID, adminID, sport, picPath) => {
                 let encodedPic;
-                if(picPath !== null){
+                if(picPath != null){
                     encodedPic = encodePhoto(picPath);
                 }
                 console.log(name + " " + ID + " " + sport);
@@ -114,12 +114,12 @@ const update_sport = (req, res) => {
     res.send('Sport updated');
 }
 
-/*const update_profile_picture = (req, res) => {
+const update_profile_picture = (req, res) => {
     const { id } = req.params;
     const new_pp = req.body.pp;
 
     storePhoto(new_pp,id,(picPath) =>{
-        get_path( (path) => {
+        get_path((path) => {
             db.open(path);
             db.update_profile_picture(picPath,id,() =>{
                 db.close();
@@ -131,7 +131,7 @@ const update_sport = (req, res) => {
 
 const storePhoto = function(base64Encoded, id, callback){
     const data = base64Encoded.replace(/^data:image\/\w+;base64,/, "");
-
+    console.log(data);
     const buffer = Buffer.from(data, 'base64');
 
     let picPath = "./DreamTeam/Back-End/Leagues/profile_pictures/" + id + ".png";
@@ -145,6 +145,7 @@ const storePhoto = function(base64Encoded, id, callback){
     })
     callback(picPath);
 }
+
 const encodePhoto = function(picPath) {
     console.log(picPath)
 
@@ -154,5 +155,5 @@ const encodePhoto = function(picPath) {
     //console.log("PIC STRING: " + picBase64);
     return(picBase64);
 }
-*/
-module.exports = {get_league, show_all, create_league, delete_league, update_name, update_sport/*, update_profile_picture, storePhoto, encodePhoto*/}
+
+module.exports = {get_league, show_all, create_league, delete_league, update_name, update_sport, update_profile_picture, storePhoto, encodePhoto}

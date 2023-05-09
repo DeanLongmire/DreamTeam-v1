@@ -85,13 +85,13 @@ class league_dbmanager{
             callback();
         });
     }
-/*    update_profile_picture(new_pp, ID, callback){
-        this.sql = 'UPDATE Leages SET profile_picture = ? WHERE ID = ?';
+    update_profile_picture(new_pp, ID, callback){
+        this.sql = 'UPDATE Leagues SET profile_picture = ? WHERE ID = ?';
         this.db.run(this.sql, [new_pp, ID], (err)=>{
             if(err){return console.log(err.message)}
         })
         callback();
-    }*/
+    }
     delete(ID, callback){
         this.db.serialize(()=>{ 
             this.sql = 'DELETE FROM Leagues WHERE ID = ?';
