@@ -8,6 +8,8 @@ let userCookieId;
 const welcomeButton = document.querySelector("#welcome-button");
 const update_player_BT = document.getElementById('update_stats_button');
 let playerName = document.getElementById("player_name");
+let goals = document.getElementById("goals");
+let saves = document.getElementById("saves");
 
 //get sessionId from cookie
 let getSessionId = function(callback) {
@@ -111,8 +113,39 @@ let getLeagueData = function (leagueURL, callback) {
     });
 }
 
+let getPlayerData = function(url,callback) {
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if(response.ok) 
+        {
+            response.json().then(data => {
+                setPlayerData(data,() => {
+                    callback();
+                })
+            });
+        } 
+        else 
+        {
+            console.error('Error: ' + response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
+
 let setUserData = function(userDataJSON,callback) {
     welcomeButton.textContent = "Welcome, " + userDataJSON.username + "!";
+    callback();
+}
+
+let setPlayerData = function(playerDataJSON,callback) {
+    playerName.textContent = playerDataJSON.username + "'s";
     callback();
 }
 
@@ -124,7 +157,10 @@ let loadData = function() {
             getTeamData(teamURL,() => {
                 const leagueURL = 'http://127.0.0.1:5000/leagues/' + leagueID;
                 getLeagueData(leagueURL,() => {
-                    console.log("Blob")
+                    const playerURL = 'http://127.0.0.1:5000/players/' + editPlayerID;
+                    getPlayerData(playerURL,() => {
+                        console.log("Loaded")
+                    })
                 });
             });
         });
@@ -133,13 +169,68 @@ let loadData = function() {
 
 loadData();
 
-let buttonSubmit = function() {
+let buttonSubmit = function(callback) {
+    let newGoals;
+    let newSaves;
 
+    if(goals.value != "")
+    {
+        newGoals = parseInt(goals.value);
+    }
+    else
+    {
+        newGoals = undefined;
+    }
+    if(saves.value != "")
+    {
+        newSaves = parseInt(saves.value);
+    }
+    else
+    {
+        newSaves = undefined;
+    }
+
+    let dataToBeUpdated = {
+        goals: newGoals,
+        saves: newSaves
+    }
+
+    const updateURL = 'http://127.0.0.1:5000/players/increment_stats/' + editPlayerID;
+
+
+    updateRequest(updateURL,dataToBeUpdated,() => {
+        callback();
+    })
+}
+
+let updateRequest = function(url,updateData,callback) {
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateData)
+    })
+    .then(response => {
+        if(response.ok) 
+        {
+            callback();
+        } 
+        else 
+        {
+            console.error('Error: ' + response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
 }
 
 update_player_BT.addEventListener('click', (event) =>{
     event.preventDefault();
-    buttonSubmit();
+    buttonSubmit(() => {
+        window.location.replace("team_home.html");
+    });
     return false;
 });
 

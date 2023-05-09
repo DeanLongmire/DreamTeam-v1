@@ -52,7 +52,6 @@ class player_dbmanager{
                 if(row){callback(row.name,row.username,row.ID,row.Team_ID,row.position,row.TDs,row.catches,row.tackles,row.goals,row.saves,row.hits,row.RBIs,row.errors);}
                 else{console.log("error");}
             });
-            callback();
         });
     }
     get_players_on_team(teamId, callback){
