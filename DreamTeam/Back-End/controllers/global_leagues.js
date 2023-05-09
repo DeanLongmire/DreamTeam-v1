@@ -104,7 +104,6 @@ const update_sport = (req, res) => {
     const { id } = req.params;
     const new_sport = req.body.newSport; //newSport not real yet
 
-    console.log(new_sport + " --------------------- " + id);
     get_path((path) => {
         db.open(path);
         db.update_sport(new_sport,id, () =>{
