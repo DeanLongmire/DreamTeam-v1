@@ -28,15 +28,15 @@ This is a website that is essentially a team manager for intramural/club sports.
 ### How to Use the Product - Assuming you are a new user
 1. Once you are on the home page, click "Create Account."
 2. Enter the prompted information then click the "Create Account" button.
-3. Now, you are brought to a set-up profile page where you can choose to enter more information.
+3. Now, you are brought to a set-up profile page where you can choose to enter more information. You can either fill in how many fields you want including 0 fields.
 4. After you click "Update Account," you are taken to your profile page. Here your information will be displayed.
 5. You can edit your information by clicking "Edit my Information" and following steps 3-4 above.
-6. Then you can click "View my Leagues and Teams" which will dropdown two options. 1: To view your teams 2. To view your leagues Since you are a new user, there will be links to creating a league or team.
-7. Once you select either Join a League or Join a Team, you will be taken to the respective page that shows the current leagues and teams. You have the option to join these or create your own.
-8. If you select create your own, you are prompted to 
+6. Then you can click "View my Leagues and Teams" which will dropdown two options. 1: To view your teams 2. To view your leagues Since you are a new user, there will be links to creating a league.
+7. Once you select either Join a League, you will be taken to the respective page that shows the current leagues. You have the option to join an existing league, should any exist, or create your own league.
+8. If you select join a league for an existing league, a modal will pop-up that asks to confirm your enrollment. After confimration, you will be re-directed to the league home page. If you select to create a league, you will be taken to a form where you enter a league name and choose the sport. We currently have three options for sports: flag football, men's soccer, or softball. After you select "Create League," you will be taken to a league admin form where you can choose to add a photo or change the name or sport. Once you click "Update League," you will be redirected to the league home page.
 
 ## License Information
-* Link to our license.txt file
+* [View our license](https://github.com/utk-cs340-spring23/DynProg/blob/main/LICENSE)
 
 
 
