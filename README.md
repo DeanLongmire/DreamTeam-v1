@@ -1,4 +1,4 @@
-# DreamTeam - League Creator
+# DreamTeam - League Manager
 ## Developed by DynProg
 ### Creators:
 * Dean Longmire: jlongmi9
