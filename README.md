@@ -1,5 +1,6 @@
 # DreamTeam - League Creator
-## Developed by DynProg - Members:
+## Developed by DynProg
+### Creators:
 * Dean Longmire: jlongmi9
 * Juliana Broussard: jbrouss2
 * Logan Bowers: lbower10
