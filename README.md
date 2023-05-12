@@ -14,12 +14,20 @@
 ## Product Description
 This is a website that is essentially a team manager for intramural/club sports. It will involve in depth stat tracking as well as team customization and game scheduling. This product will have the ability to draft fantasy teams as well. The goal of this project is to deliver a piece of software that is accessible to a wide variety of people including universities for intramural leagues, rec league organizers, or even for individual use amongst friends.
 
-## Instructions for our Project
-### How to Download
-1. -
+## How to Download & Install 
+This project was developed and tested in a powershell environment, In theory it should work on a linux system but this is untested
 
-### How to Install 
-1. -
+### Install node.js
+1. Go to the official Node.js website: [here](https://nodejs.org/)
+2. Click on the "Download" button for the current version.
+3. Choose the appropriate installer for your operating system (Windows, macOS, or Linux).
+4. Run the installer and follow the instructions to complete the installation.
+5. After installation, open a terminal or command prompt and type "node -v" to verify that Node.js is installed properly and to see the version number.
+
+### Set up server
+1. Clone the repository "DynProg"
+2. Run "npm install" in the project home directory to install all needed modules
+3. Run "npm start" to boot up the server
 
 ### How to Run the Product
 1. Open VS Code (or your IDE of choice). 
