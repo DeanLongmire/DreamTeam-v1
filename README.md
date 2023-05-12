@@ -15,7 +15,7 @@
 This is a website that is essentially a team manager for intramural/club sports. It will involve in depth stat tracking as well as team customization and game scheduling. This product will have the ability to draft fantasy teams as well. The goal of this project is to deliver a piece of software that is accessible to a wide variety of people including universities for intramural leagues, rec league organizers, or even for individual use amongst friends.
 
 ## How to Download & Install 
-This project was developed and tested in a powershell environment, In theory it should work on a linux system but this is untested
+This project was developed and tested in a powershell environment. In theory it should work on a linux system but this is untested.
 
 ### Install node.js
 1. Go to the official Node.js website: [here](https://nodejs.org/)
